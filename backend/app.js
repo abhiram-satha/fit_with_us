@@ -8,6 +8,12 @@ const axios = require("axios");
 const router = express.Router();
 const port = 8080;
 
+// PG database client/connection setup
+const { Pool } = require("pg");
+const dbParams = require("./lib/db.js");
+const db = new Pool(dbParams);
+db.connect();
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(bodyParser.json());
