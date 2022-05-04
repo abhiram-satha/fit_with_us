@@ -2,10 +2,10 @@ import RecipeCard from "./RecipeCard";
 import Weighthistorygraph from "./Weighthistorygraph";
 
 
-export default function Homepage({userWeight}) {
+export default function Homepage({recipes, userWeight}) {
   return (
     <>
-      <RecipeCard />
+      <RecipeCard recipes={recipes}/>
       <Weighthistorygraph weights={userWeight}/>
     </>
   )

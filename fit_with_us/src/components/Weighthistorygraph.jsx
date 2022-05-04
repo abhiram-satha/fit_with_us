@@ -4,9 +4,9 @@ export default function Weighthistorygraph({weights}) {
   // console.log(weight)
 
   let data = weights.map(weight => {
-    return {name: weight.date, uv: weight.weight}
+    return {name: weight.date.getDate(), uv: weight.weight}
   })
-  console.log(data)
+  // console.log(data)
   // const data = [{name: 'Page A', uv: 400}, {name: 'Page B', uv: 300}, {name: 'Page C', uv: 250}];
   return (
   <>
