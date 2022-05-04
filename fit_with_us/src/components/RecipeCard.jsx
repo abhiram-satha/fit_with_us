@@ -15,8 +15,9 @@ export default function RecipeCard({recipes}) {
   return (
     <>
     <h1>RecipeCard</h1>
+    {recipeRecord !== 0 && <button onClick={()=>setRecipeRecord(prev=>prev-1)}>Back</button>}
     <img src={info.images.THUMBNAIL.url} />
-    <button onClick={()=>setRecipeRecord(prev=>prev+1)}>Next</button>
+    {recipeRecord !== 19 && <button onClick={()=>setRecipeRecord(prev=>prev+1)}>Next</button>}
     <p>{info.label}</p>
     <p>Calories Per Serving: {Math.floor(info.calories / info.yield)}</p>
     <ul>
