@@ -7,246 +7,30 @@ import BottomNav from "./components/BottomNav";
 
 
 function App() {
-  const [recipes, setRecipes] = useState([{
-    from: 21,
-    to: 40,
-    count: 10000,
-    _links: {
-    next: {
-    href: "https://api.edamam.com/api/recipes/v2?q=chicken&app_key=35468e3059752f205fc55cbd181c94bc&_cont=CHcVQBtNNQphDmgVQntAEX4BYlRtDAMGRmJDCmQValJ6DQsVX3cUATRAZVV0DFIDQGVCCmcbZFF6DVYFEWBFA2YbYgR1BxFqX3cWQT1OcV93BB8VADQWVhFCPwoxXVZEITQeVDcBaR4-SQ%3D%3D&calories=100-500&type=public&app_id=d44a082f",
-    title: "Next page"
-    }
-    },
-    hits: [
-    {
-    recipe: {
-    uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_14ebd7d6d65f761843dba35202de4b37",
-    label: "Chicken Satay",
-    image: "https://edamam-product-images.s3.amazonaws.com/web-img/ba6/ba6f66d885e4d62a98055b088a5a85a3.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKT%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQDUx3AaLZwwrHCykpVr4b2vpB9jnpYdnfzYhC4rxD8m%2BQIhAP9bHHNe0ZOqAfN7oLxeYazoKBBcnIj%2FXhryuj5QUt0wKtIECGwQABoMMTg3MDE3MTUwOTg2IgwCRDVe2JWiXaLgI%2BMqrwTwn9qqA8Xs55zfnxMSEaVASX%2FMRJ3VD8g8NLVvZOpHxr64VyhXvnqDLtGkxBwOWsbRb5F1cnAHqDgoVCxQHLAhYdI9%2Fbi8D7q0bvavwoe1jOb22hAa77iO99TTycQrwyafJZAj6S%2FplohjaKsEHN3fUqwuCdCqcVwYqNMfEdrKz6wYdGMSEhqUVCM2Ffi%2BlPKZooioUfdJ8DomMENYldZjvkbruJtpMJAF8Xq9kqgTJBjs8cwRyj9m7t2s1kJyO0uj%2BE8JH8BSnd4uPg4fUgOUt1spAU3BdO74PozytFJAr2bS2v7PhjlHo4Dac4ZmNFqZ01PbHS%2FjsYpPub5ybGVuhSZWG%2BS%2B1J8fAUhmMPAhVjgTeYW%2BHZznr3YKdJmLcXKwYoZ%2BzrAd3mnmvUVzJai%2BdDZCh0N%2BtYLlNm1qhFZ4%2F4sHY8YntUxYIuY7bxXCcOdYHdE%2F0LgKrYTxYZZ9Z7yPWKUGqnfn12vZtHrPyIDRl39vdI3r3qbmQCikT7w93tA37cnEeaPfgxfxFAdStDZjgYZTXxmLg2soJ53dAk2V4qe%2FYCZeAO9UYAAW1hjsmVkEhkyIH2N2kbzbobqB1xBylxhxW7D9c8DgufXoXkIibNX5OHY6nle7HDNDc2Pl1PPZWqME3aZQoFfm7JD5hEOLZJklOCK3xmC%2BrY7ONktl3blHILm6yblFwD8Btkiwg5%2FnmUewHRUEkAj34ILp%2Ft5Th7PBy8pE%2B0N11EVHP7vNMJTgx5MGOqgBLm9dCpZ5A9UCgA5ZS5IQK3mpZIUWSPyL98cz9irR3d3BY03zWN2hud2e5cZR5Mrbh5%2BqZKCEpf69HLMRgdhoKZH4Au5f3uU5DvBni6KHjCY6GHNzXiBx1Ixg1rttux8P%2Bjm5vqqYDMNNtYdCc%2FS47%2FXQ2zYzhP3yd475SsT2Cujs3DA0fPkwsuwU%2BFiZ4N8aAhSktR1GbB88S7BRHV5fSwFA%2BW2IMALq&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220504T045220Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFENJPMN6X%2F20220504%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=f8a80e437d847dcd698aabb75e32443abb719e4f4ba5e4afb8547c0f138798ac",
-    images: {
-    THUMBNAIL: {
-    url: "https://edamam-product-images.s3.amazonaws.com/web-img/ba6/ba6f66d885e4d62a98055b088a5a85a3-s.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKT%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQDUx3AaLZwwrHCykpVr4b2vpB9jnpYdnfzYhC4rxD8m%2BQIhAP9bHHNe0ZOqAfN7oLxeYazoKBBcnIj%2FXhryuj5QUt0wKtIECGwQABoMMTg3MDE3MTUwOTg2IgwCRDVe2JWiXaLgI%2BMqrwTwn9qqA8Xs55zfnxMSEaVASX%2FMRJ3VD8g8NLVvZOpHxr64VyhXvnqDLtGkxBwOWsbRb5F1cnAHqDgoVCxQHLAhYdI9%2Fbi8D7q0bvavwoe1jOb22hAa77iO99TTycQrwyafJZAj6S%2FplohjaKsEHN3fUqwuCdCqcVwYqNMfEdrKz6wYdGMSEhqUVCM2Ffi%2BlPKZooioUfdJ8DomMENYldZjvkbruJtpMJAF8Xq9kqgTJBjs8cwRyj9m7t2s1kJyO0uj%2BE8JH8BSnd4uPg4fUgOUt1spAU3BdO74PozytFJAr2bS2v7PhjlHo4Dac4ZmNFqZ01PbHS%2FjsYpPub5ybGVuhSZWG%2BS%2B1J8fAUhmMPAhVjgTeYW%2BHZznr3YKdJmLcXKwYoZ%2BzrAd3mnmvUVzJai%2BdDZCh0N%2BtYLlNm1qhFZ4%2F4sHY8YntUxYIuY7bxXCcOdYHdE%2F0LgKrYTxYZZ9Z7yPWKUGqnfn12vZtHrPyIDRl39vdI3r3qbmQCikT7w93tA37cnEeaPfgxfxFAdStDZjgYZTXxmLg2soJ53dAk2V4qe%2FYCZeAO9UYAAW1hjsmVkEhkyIH2N2kbzbobqB1xBylxhxW7D9c8DgufXoXkIibNX5OHY6nle7HDNDc2Pl1PPZWqME3aZQoFfm7JD5hEOLZJklOCK3xmC%2BrY7ONktl3blHILm6yblFwD8Btkiwg5%2FnmUewHRUEkAj34ILp%2Ft5Th7PBy8pE%2B0N11EVHP7vNMJTgx5MGOqgBLm9dCpZ5A9UCgA5ZS5IQK3mpZIUWSPyL98cz9irR3d3BY03zWN2hud2e5cZR5Mrbh5%2BqZKCEpf69HLMRgdhoKZH4Au5f3uU5DvBni6KHjCY6GHNzXiBx1Ixg1rttux8P%2Bjm5vqqYDMNNtYdCc%2FS47%2FXQ2zYzhP3yd475SsT2Cujs3DA0fPkwsuwU%2BFiZ4N8aAhSktR1GbB88S7BRHV5fSwFA%2BW2IMALq&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220504T045220Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFENJPMN6X%2F20220504%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=4422634d2ff264a078b45aedc851a73995d2b011acf877d250b219351318eba2",
-    width: 100,
-    height: 100
-    },
-    SMALL: {},
-    REGULAR: {},
-    LARGE: {}
-    },
-    source: "BBC Good Food",
-    url: "http://www.bbcgoodfood.com/recipes/3645/",
-    shareAs: "http://www.edamam.com/recipe/chicken-satay-14ebd7d6d65f761843dba35202de4b37/chicken/100-500-cal",
-    yield: 4,
-    dietLabels: [
-    "High-Protein",
-    "Low-Carb"
-    ],
-    healthLabels: [],
-    cautions: [],
-    ingredientLines: [],
-    ingredients: [
-    {
-    text: "100.0ml soy sauce (Kikkoman is good)",
-    quantity: 100,
-    measure: "milliliter",
-    food: "soy sauce",
-    weight: 107.78219736212455,
-    foodCategory: "plant-based protein",
-    foodId: "food_a5g9yevb1iactoaiimbvjbkrxueh",
-    image: "https://www.edamam.com/food-img/f56/f562e461eb0618f367f538b836c17b82.jpg"
-    },
-    {
-    text: "4.0 tbsp smooth peanut butter",
-    quantity: 4,
-    measure: "tablespoon",
-    food: "peanut butter",
-    weight: 64,
-    foodCategory: "plant-based protein",
-    foodId: "food_bz6b8fsbccyn3zaij72f7av8dl9m",
-    image: "https://www.edamam.com/food-img/d74/d740276ae1409472a8714b2cee88a310.jpg"
-    },
-    {
-    text: "4 skinless chicken breasts fillets",
-    quantity: 4,
-    measure: "<unit>",
-    food: "skinless chicken breasts",
-    weight: 1088,
-    foodCategory: "Poultry",
-    foodId: "food_bdrxu94aj3x2djbpur8dhagfhkcn",
-    image: "https://www.edamam.com/food-img/da5/da510379d3650787338ca16fb69f4c94.jpg"
-    }
-    ],
-    calories: 1745.4445646019262,
-    totalWeight: 1259.7821973621246,
-    totalTime: 0,
-    cuisineType: [],
-    mealType: [],
-    dishType: [],
-    totalNutrients: {},
-    totalDaily: {},
-    digest: []
-    }, _links: {
-      self: {
-      href: "https://api.edamam.com/api/recipes/v2/14ebd7d6d65f761843dba35202de4b37?type=public&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc",
-      title: "Self"
-      }
-      }
-      },
-    {
-      recipe: {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_0820532c3c71ff94a3e3d2deca93a5f5",
-      label: "Chicken Enchiladas",
-      image: "https://edamam-product-images.s3.amazonaws.com/web-img/a33/a332121eaa60a84c93174a5ee54e06b2.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKT%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQDUx3AaLZwwrHCykpVr4b2vpB9jnpYdnfzYhC4rxD8m%2BQIhAP9bHHNe0ZOqAfN7oLxeYazoKBBcnIj%2FXhryuj5QUt0wKtIECGwQABoMMTg3MDE3MTUwOTg2IgwCRDVe2JWiXaLgI%2BMqrwTwn9qqA8Xs55zfnxMSEaVASX%2FMRJ3VD8g8NLVvZOpHxr64VyhXvnqDLtGkxBwOWsbRb5F1cnAHqDgoVCxQHLAhYdI9%2Fbi8D7q0bvavwoe1jOb22hAa77iO99TTycQrwyafJZAj6S%2FplohjaKsEHN3fUqwuCdCqcVwYqNMfEdrKz6wYdGMSEhqUVCM2Ffi%2BlPKZooioUfdJ8DomMENYldZjvkbruJtpMJAF8Xq9kqgTJBjs8cwRyj9m7t2s1kJyO0uj%2BE8JH8BSnd4uPg4fUgOUt1spAU3BdO74PozytFJAr2bS2v7PhjlHo4Dac4ZmNFqZ01PbHS%2FjsYpPub5ybGVuhSZWG%2BS%2B1J8fAUhmMPAhVjgTeYW%2BHZznr3YKdJmLcXKwYoZ%2BzrAd3mnmvUVzJai%2BdDZCh0N%2BtYLlNm1qhFZ4%2F4sHY8YntUxYIuY7bxXCcOdYHdE%2F0LgKrYTxYZZ9Z7yPWKUGqnfn12vZtHrPyIDRl39vdI3r3qbmQCikT7w93tA37cnEeaPfgxfxFAdStDZjgYZTXxmLg2soJ53dAk2V4qe%2FYCZeAO9UYAAW1hjsmVkEhkyIH2N2kbzbobqB1xBylxhxW7D9c8DgufXoXkIibNX5OHY6nle7HDNDc2Pl1PPZWqME3aZQoFfm7JD5hEOLZJklOCK3xmC%2BrY7ONktl3blHILm6yblFwD8Btkiwg5%2FnmUewHRUEkAj34ILp%2Ft5Th7PBy8pE%2B0N11EVHP7vNMJTgx5MGOqgBLm9dCpZ5A9UCgA5ZS5IQK3mpZIUWSPyL98cz9irR3d3BY03zWN2hud2e5cZR5Mrbh5%2BqZKCEpf69HLMRgdhoKZH4Au5f3uU5DvBni6KHjCY6GHNzXiBx1Ixg1rttux8P%2Bjm5vqqYDMNNtYdCc%2FS47%2FXQ2zYzhP3yd475SsT2Cujs3DA0fPkwsuwU%2BFiZ4N8aAhSktR1GbB88S7BRHV5fSwFA%2BW2IMALq&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220504T045220Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIASXCYXIIFENJPMN6X%2F20220504%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9e5cc38525eb3e1e111e491d5c371c3733d7efc6cb6cdae1e12b50025ad71f94",
+  const [recipes, setRecipes] = useState([
+    [{recipe: {
       images: {
-      THUMBNAIL: {
-      url: "https://edamam-product-images.s3.amazonaws.com/web-img/a33/a332121eaa60a84c93174a5ee54e06b2-s.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKT%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQDUx3AaLZwwrHCykpVr4b2vpB9jnpYdnfzYhC4rxD8m%2BQIhAP9bHHNe0ZOqAfN7oLxeYazoKBBcnIj%2FXhryuj5QUt0wKtIECGwQABoMMTg3MDE3MTUwOTg2IgwCRDVe2JWiXaLgI%2BMqrwTwn9qqA8Xs55zfnxMSEaVASX%2FMRJ3VD8g8NLVvZOpHxr64VyhXvnqDLtGkxBwOWsbRb5F1cnAHqDgoVCxQHLAhYdI9%2Fbi8D7q0bvavwoe1jOb22hAa77iO99TTycQrwyafJZAj6S%2FplohjaKsEHN3fUqwuCdCqcVwYqNMfEdrKz6wYdGMSEhqUVCM2Ffi%2BlPKZooioUfdJ8DomMENYldZjvkbruJtpMJAF8Xq9kqgTJBjs8cwRyj9m7t2s1kJyO0uj%2BE8JH8BSnd4uPg4fUgOUt1spAU3BdO74PozytFJAr2bS2v7PhjlHo4Dac4ZmNFqZ01PbHS%2FjsYpPub5ybGVuhSZWG%2BS%2B1J8fAUhmMPAhVjgTeYW%2BHZznr3YKdJmLcXKwYoZ%2BzrAd3mnmvUVzJai%2BdDZCh0N%2BtYLlNm1qhFZ4%2F4sHY8YntUxYIuY7bxXCcOdYHdE%2F0LgKrYTxYZZ9Z7yPWKUGqnfn12vZtHrPyIDRl39vdI3r3qbmQCikT7w93tA37cnEeaPfgxfxFAdStDZjgYZTXxmLg2soJ53dAk2V4qe%2FYCZeAO9UYAAW1hjsmVkEhkyIH2N2kbzbobqB1xBylxhxW7D9c8DgufXoXkIibNX5OHY6nle7HDNDc2Pl1PPZWqME3aZQoFfm7JD5hEOLZJklOCK3xmC%2BrY7ONktl3blHILm6yblFwD8Btkiwg5%2FnmUewHRUEkAj34ILp%2Ft5Th7PBy8pE%2B0N11EVHP7vNMJTgx5MGOqgBLm9dCpZ5A9UCgA5ZS5IQK3mpZIUWSPyL98cz9irR3d3BY03zWN2hud2e5cZR5Mrbh5%2BqZKCEpf69HLMRgdhoKZH4Au5f3uU5DvBni6KHjCY6GHNzXiBx1Ixg1rttux8P%2Bjm5vqqYDMNNtYdCc%2FS47%2FXQ2zYzhP3yd475SsT2Cujs3DA0fPkwsuwU%2BFiZ4N8aAhSktR1GbB88S7BRHV5fSwFA%2BW2IMALq&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220504T045220Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFENJPMN6X%2F20220504%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=450e4617349d8a0d1173b081e2c46d77e97b514b0b979af19400698b565f6c0d",
-      width: 100,
-      height: 100
+        THUMBNAIL: {url: null}
       },
-      SMALL: {
-      url: "https://edamam-product-images.s3.amazonaws.com/web-img/a33/a332121eaa60a84c93174a5ee54e06b2-m.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKT%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQDUx3AaLZwwrHCykpVr4b2vpB9jnpYdnfzYhC4rxD8m%2BQIhAP9bHHNe0ZOqAfN7oLxeYazoKBBcnIj%2FXhryuj5QUt0wKtIECGwQABoMMTg3MDE3MTUwOTg2IgwCRDVe2JWiXaLgI%2BMqrwTwn9qqA8Xs55zfnxMSEaVASX%2FMRJ3VD8g8NLVvZOpHxr64VyhXvnqDLtGkxBwOWsbRb5F1cnAHqDgoVCxQHLAhYdI9%2Fbi8D7q0bvavwoe1jOb22hAa77iO99TTycQrwyafJZAj6S%2FplohjaKsEHN3fUqwuCdCqcVwYqNMfEdrKz6wYdGMSEhqUVCM2Ffi%2BlPKZooioUfdJ8DomMENYldZjvkbruJtpMJAF8Xq9kqgTJBjs8cwRyj9m7t2s1kJyO0uj%2BE8JH8BSnd4uPg4fUgOUt1spAU3BdO74PozytFJAr2bS2v7PhjlHo4Dac4ZmNFqZ01PbHS%2FjsYpPub5ybGVuhSZWG%2BS%2B1J8fAUhmMPAhVjgTeYW%2BHZznr3YKdJmLcXKwYoZ%2BzrAd3mnmvUVzJai%2BdDZCh0N%2BtYLlNm1qhFZ4%2F4sHY8YntUxYIuY7bxXCcOdYHdE%2F0LgKrYTxYZZ9Z7yPWKUGqnfn12vZtHrPyIDRl39vdI3r3qbmQCikT7w93tA37cnEeaPfgxfxFAdStDZjgYZTXxmLg2soJ53dAk2V4qe%2FYCZeAO9UYAAW1hjsmVkEhkyIH2N2kbzbobqB1xBylxhxW7D9c8DgufXoXkIibNX5OHY6nle7HDNDc2Pl1PPZWqME3aZQoFfm7JD5hEOLZJklOCK3xmC%2BrY7ONktl3blHILm6yblFwD8Btkiwg5%2FnmUewHRUEkAj34ILp%2Ft5Th7PBy8pE%2B0N11EVHP7vNMJTgx5MGOqgBLm9dCpZ5A9UCgA5ZS5IQK3mpZIUWSPyL98cz9irR3d3BY03zWN2hud2e5cZR5Mrbh5%2BqZKCEpf69HLMRgdhoKZH4Au5f3uU5DvBni6KHjCY6GHNzXiBx1Ixg1rttux8P%2Bjm5vqqYDMNNtYdCc%2FS47%2FXQ2zYzhP3yd475SsT2Cujs3DA0fPkwsuwU%2BFiZ4N8aAhSktR1GbB88S7BRHV5fSwFA%2BW2IMALq&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220504T045220Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFENJPMN6X%2F20220504%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=326d0d5f8ea44993b953bc7649bb8eaa1cbeb1c7daf13ba8a01e7c8d3ca00e31",
-      width: 200,
-      height: 200
-      },
-      REGULAR: {
-      url: "https://edamam-product-images.s3.amazonaws.com/web-img/a33/a332121eaa60a84c93174a5ee54e06b2.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKT%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQDUx3AaLZwwrHCykpVr4b2vpB9jnpYdnfzYhC4rxD8m%2BQIhAP9bHHNe0ZOqAfN7oLxeYazoKBBcnIj%2FXhryuj5QUt0wKtIECGwQABoMMTg3MDE3MTUwOTg2IgwCRDVe2JWiXaLgI%2BMqrwTwn9qqA8Xs55zfnxMSEaVASX%2FMRJ3VD8g8NLVvZOpHxr64VyhXvnqDLtGkxBwOWsbRb5F1cnAHqDgoVCxQHLAhYdI9%2Fbi8D7q0bvavwoe1jOb22hAa77iO99TTycQrwyafJZAj6S%2FplohjaKsEHN3fUqwuCdCqcVwYqNMfEdrKz6wYdGMSEhqUVCM2Ffi%2BlPKZooioUfdJ8DomMENYldZjvkbruJtpMJAF8Xq9kqgTJBjs8cwRyj9m7t2s1kJyO0uj%2BE8JH8BSnd4uPg4fUgOUt1spAU3BdO74PozytFJAr2bS2v7PhjlHo4Dac4ZmNFqZ01PbHS%2FjsYpPub5ybGVuhSZWG%2BS%2B1J8fAUhmMPAhVjgTeYW%2BHZznr3YKdJmLcXKwYoZ%2BzrAd3mnmvUVzJai%2BdDZCh0N%2BtYLlNm1qhFZ4%2F4sHY8YntUxYIuY7bxXCcOdYHdE%2F0LgKrYTxYZZ9Z7yPWKUGqnfn12vZtHrPyIDRl39vdI3r3qbmQCikT7w93tA37cnEeaPfgxfxFAdStDZjgYZTXxmLg2soJ53dAk2V4qe%2FYCZeAO9UYAAW1hjsmVkEhkyIH2N2kbzbobqB1xBylxhxW7D9c8DgufXoXkIibNX5OHY6nle7HDNDc2Pl1PPZWqME3aZQoFfm7JD5hEOLZJklOCK3xmC%2BrY7ONktl3blHILm6yblFwD8Btkiwg5%2FnmUewHRUEkAj34ILp%2Ft5Th7PBy8pE%2B0N11EVHP7vNMJTgx5MGOqgBLm9dCpZ5A9UCgA5ZS5IQK3mpZIUWSPyL98cz9irR3d3BY03zWN2hud2e5cZR5Mrbh5%2BqZKCEpf69HLMRgdhoKZH4Au5f3uU5DvBni6KHjCY6GHNzXiBx1Ixg1rttux8P%2Bjm5vqqYDMNNtYdCc%2FS47%2FXQ2zYzhP3yd475SsT2Cujs3DA0fPkwsuwU%2BFiZ4N8aAhSktR1GbB88S7BRHV5fSwFA%2BW2IMALq&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220504T045220Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFENJPMN6X%2F20220504%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=f5edd1bd7c46b459367d68c0663f7ecc5ffc1bb1413a73b44079f4d347723c69",
-      width: 300,
-      height: 300
-      },
-      LARGE: {
-      url: "https://edamam-product-images.s3.amazonaws.com/web-img/a33/a332121eaa60a84c93174a5ee54e06b2-l.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKT%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQDUx3AaLZwwrHCykpVr4b2vpB9jnpYdnfzYhC4rxD8m%2BQIhAP9bHHNe0ZOqAfN7oLxeYazoKBBcnIj%2FXhryuj5QUt0wKtIECGwQABoMMTg3MDE3MTUwOTg2IgwCRDVe2JWiXaLgI%2BMqrwTwn9qqA8Xs55zfnxMSEaVASX%2FMRJ3VD8g8NLVvZOpHxr64VyhXvnqDLtGkxBwOWsbRb5F1cnAHqDgoVCxQHLAhYdI9%2Fbi8D7q0bvavwoe1jOb22hAa77iO99TTycQrwyafJZAj6S%2FplohjaKsEHN3fUqwuCdCqcVwYqNMfEdrKz6wYdGMSEhqUVCM2Ffi%2BlPKZooioUfdJ8DomMENYldZjvkbruJtpMJAF8Xq9kqgTJBjs8cwRyj9m7t2s1kJyO0uj%2BE8JH8BSnd4uPg4fUgOUt1spAU3BdO74PozytFJAr2bS2v7PhjlHo4Dac4ZmNFqZ01PbHS%2FjsYpPub5ybGVuhSZWG%2BS%2B1J8fAUhmMPAhVjgTeYW%2BHZznr3YKdJmLcXKwYoZ%2BzrAd3mnmvUVzJai%2BdDZCh0N%2BtYLlNm1qhFZ4%2F4sHY8YntUxYIuY7bxXCcOdYHdE%2F0LgKrYTxYZZ9Z7yPWKUGqnfn12vZtHrPyIDRl39vdI3r3qbmQCikT7w93tA37cnEeaPfgxfxFAdStDZjgYZTXxmLg2soJ53dAk2V4qe%2FYCZeAO9UYAAW1hjsmVkEhkyIH2N2kbzbobqB1xBylxhxW7D9c8DgufXoXkIibNX5OHY6nle7HDNDc2Pl1PPZWqME3aZQoFfm7JD5hEOLZJklOCK3xmC%2BrY7ONktl3blHILm6yblFwD8Btkiwg5%2FnmUewHRUEkAj34ILp%2Ft5Th7PBy8pE%2B0N11EVHP7vNMJTgx5MGOqgBLm9dCpZ5A9UCgA5ZS5IQK3mpZIUWSPyL98cz9irR3d3BY03zWN2hud2e5cZR5Mrbh5%2BqZKCEpf69HLMRgdhoKZH4Au5f3uU5DvBni6KHjCY6GHNzXiBx1Ixg1rttux8P%2Bjm5vqqYDMNNtYdCc%2FS47%2FXQ2zYzhP3yd475SsT2Cujs3DA0fPkwsuwU%2BFiZ4N8aAhSktR1GbB88S7BRHV5fSwFA%2BW2IMALq&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220504T045220Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFENJPMN6X%2F20220504%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=e0d30eb5c1961d3e5db4a03f0422f7222797f259d4b4564c19473ee95b413736",
-      width: 600,
-      height: 600
-      }
-      },
-      source: "Food52",
-      url: "https://food52.com/recipes/29588-chicken-enchiladas",
-      shareAs: "http://www.edamam.com/recipe/chicken-enchiladas-0820532c3c71ff94a3e3d2deca93a5f5/chicken/100-500-cal",
-      yield: 8,
-      dietLabels: [
-      "Low-Carb"
-      ],
-      healthLabels: [
-      "Sugar-Conscious",
-      "Egg-Free",
-      "Peanut-Free",
-      "Tree-Nut-Free",
-      "Soy-Free",
-      "Fish-Free",
-      "Shellfish-Free",
-      "Pork-Free",
-      "Red-Meat-Free",
-      "Crustacean-Free",
-      "Celery-Free",
-      "Mustard-Free",
-      "Sesame-Free",
-      "Lupine-Free",
-      "Mollusk-Free",
-      "Alcohol-Free",
-      "Sulfite-Free"
-      ],
-      cautions: [
-      "Sulfites"
-      ],
-      ingredientLines: [
-      "4 Chicken Breasts - cooked and shredded",
-      "1 cup Sour Cream",
-      "8 ounces Old El Paso Green Chillies",
-      "1 packet Flour Tortillas",
-      "1 Onion diced",
-      "10 ounces Shredded Mexican Cheese Blend",
-      "1 Can Cream of Chicken Soup"
-      ],
-      ingredients: [
-      {
-      text: "4 Chicken Breasts - cooked and shredded",
-      quantity: 4,
-      measure: "<unit>",
-      food: "Chicken Breasts",
-      weight: 696,
-      foodCategory: "Poultry",
-      foodId: "food_a9hdg97b1sqqs5aj1al75bbo5iyt",
-      image: "https://www.edamam.com/food-img/093/093749f4c93e448119fc81976d2c3067.jpg"
-      },
-      {
-      text: "1 cup Sour Cream",
-      quantity: 1,
-      measure: "cup",
-      food: "Sour Cream",
-      weight: 230,
-      foodCategory: "Dairy",
-      foodId: "food_adp9fcubzl3lr7bcvzn3rbfiiiwq",
-      image: "https://www.edamam.com/food-img/f9d/f9d6183267b041b0aff9a10b89c9c15f.jpg"
-      },
-      {
-      text: "8 ounces Old El Paso Green Chillies",
-      quantity: 8,
-      measure: "ounce",
-      food: "Green Chillies",
-      weight: 226.796185,
-      foodCategory: "vegetables",
-      foodId: "food_bv2gevdbd1orbiarnp1vfaez1r85",
-      image: "https://www.edamam.com/food-img/73f/73ff2eeb21372fe15b0ec51f9ecf368d.jpeg"
-      },
-      {
-      text: "1 packet Flour Tortillas",
-      quantity: 1,
-      measure: "<unit>",
-      food: "Flour Tortillas",
-      weight: 49,
-      foodCategory: "bread, rolls and tortillas",
-      foodId: "food_a9ql6pdb639bs5b2nlvbob3w0mlj",
-      image: "https://www.edamam.com/food-img/357/357e415685787e6d6844e8d08c1b1586.jpg"
-      },
-      {
-      text: "1 Onion diced",
-      quantity: 1,
-      measure: "<unit>",
-      food: "Onion",
-      weight: 125,
-      foodCategory: "vegetables",
-      foodId: "food_bmrvi4ob4binw9a5m7l07amlfcoy",
-      image: "https://www.edamam.com/food-img/205/205e6bf2399b85d34741892ef91cc603.jpg"
-      },
-      {
-      text: "10 ounces Shredded Mexican Cheese Blend",
-      quantity: 10,
-      measure: "ounce",
-      food: "Cheese",
-      weight: 283.49523125,
-      foodCategory: "Cheese",
-      foodId: "food_bhppgmha1u27voagb8eptbp9g376",
-      image: "https://www.edamam.com/food-img/bcd/bcd94dde1fcde1475b5bf0540f821c5d.jpg"
-      },
-      {
-      text: "1 Can Cream of Chicken Soup",
-      quantity: 1,
-      measure: "can",
-      food: "Cream of Chicken Soup",
-      weight: 593,
-      foodCategory: "canned soup",
-      foodId: "food_ai0spvcaict4osbmml7erbrgckhv",
-      image: "https://www.edamam.com/food-img/cdb/cdb46a22081917716e631ef03e519e52.jpg"
-      }
-      ],
-      calories: 3362.899112875,
-      totalWeight: 2203.29141625,
-      totalTime: 0,
-      cuisineType: [
-      "mexican"
-      ]
-      }} 
-  ]} ]);
+      yield: null,
+      calories: null,
+      label: null,
+      ingredients: ["milk"],
+      url: null,
+
+    }}]
+]);
   const [weight, setWeight] = useState([{date: new Date(), weight: 140}, {date: new Date(), weight: 150}, {date: new Date(), weight: 130}]);
 
-  // useEffect(() => {
-  //   Promise.all([axios.get("http://localhost:8080/")])
-  //     .then((all) => {
-  //       const calories = all[0].data["hits"][0]["recipe"];
-  //       setRecipes([calories]);
-  //     })
-  //     .catch((err) => console.log(err.message));
-  // }, []);
+  useEffect(() => {
+    Promise.all([axios.get("http://localhost:8080/")])
+      .then((all) => {
+        // console.log(all[0]['data']['hits'])
+        const calories = all[0].data["hits"];
+        setRecipes([calories]);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
 
   return (
   <>
