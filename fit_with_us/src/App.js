@@ -1,6 +1,7 @@
 import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Button from "./components/Button";
 
 function App() {
   const [calories, setCalories] = useState();
@@ -15,7 +16,11 @@ function App() {
       .catch((err) => console.log(err.message));
   }, []);
 
-  return <div className="App">Calories: {calories}</div>;
+  return (
+    <div className="App">
+      <Button />
+    </div>
+  );
 }
 
 export default App;
