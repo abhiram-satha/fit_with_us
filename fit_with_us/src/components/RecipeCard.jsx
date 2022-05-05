@@ -4,7 +4,7 @@ import useLocalStorage from '../hooks/useLocalStorage';
 
 
 export default function RecipeCard({recipes}) {
-  const [recipeRecord, setRecipeRecord] = useLocalStorage('recipe',0);
+  const [recipeRecord, setRecipeRecord] = useLocalStorage('recipe', localStorage.getItem('recipe') || 0);
 
 
   const info = recipes[0][recipeRecord]['recipe']

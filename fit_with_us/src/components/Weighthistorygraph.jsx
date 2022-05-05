@@ -4,7 +4,7 @@ export default function Weighthistorygraph({weights}) {
   // console.log(weight)
 
   let data = weights.map(weight => {
-    let date = weight.date.slice(8,10)
+    let date = weight.date.slice(5,10)
     return {name: date, uv: weight.weight}
   })
   // console.log(data)
