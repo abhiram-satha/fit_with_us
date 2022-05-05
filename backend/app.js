@@ -31,9 +31,7 @@ app.use("/api/user", userRoutes(db));
 //Routes
 app.get("/", (req, res) => {
   axios
-    .get(
-      "https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc&calories=100-500"
-    )
+    .get("https://localhost:8080/api/user")
     .then((response) => res.send(response.data))
     .catch((err) => console.log(err));
 });
