@@ -1,7 +1,7 @@
 import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import Form from "./components/Form";
+import Form from "./Form";
 
 function App() {
   // const [calories, setCalories] = useState();
