@@ -1,6 +1,6 @@
 import Thread from "./Thread"
 
-export default function Posts({posts, comments}) {
+export default function Posts({posts, comments, onClick}) {
   
   // const listOfPosts = 
 
@@ -10,6 +10,10 @@ export default function Posts({posts, comments}) {
   
   return (
     <>
+    <form onClick={(event)=>{onClick(event, 1)}}>
+    <input type="text" placeholder="Create a New Post" name="newPost"/>
+    <input type="submit" />
+    </form>
     {parentPost}
     </>
   )

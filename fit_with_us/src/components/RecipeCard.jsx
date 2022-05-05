@@ -16,7 +16,7 @@ export default function RecipeCard({recipes}) {
   // console.log(info.images.THUMBNAIL.url)
   return (
     <>
-    <h1>RecipeCard</h1>
+    <h1>Recommended Recipe</h1>
     {recipeRecord !== 0 && <button onClick={()=>setRecipeRecord(prev=>prev-1)}>Back</button>}
     <img src={info.images.THUMBNAIL.url} />
     {recipeRecord !== 19 && <button onClick={()=>setRecipeRecord(prev=>prev+1)}>Next</button>}

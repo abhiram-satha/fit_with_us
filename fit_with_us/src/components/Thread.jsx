@@ -7,7 +7,6 @@ export default function Thread({username, message, comments, postID}) {
   } ).map(comment => {
     return <Comment comment={comment} />
   })
-  console.log(commentArray)
   // console.log(commentArray)
   return (
     <div>

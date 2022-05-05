@@ -39,6 +39,18 @@ export default function BottomNav() {
       .catch((err) => console.log(err.message));
   }, []);
 
+  const createPost = function(event, id) {
+    event.preventDefault()
+    console.log('clicked')
+    // return axios.put("http://localhost:8080/api/posts")
+    //   .then(()=> {
+    //     setComments((prev)=> {
+    //       let newPost = [{user_id: id, message:"new post", date: new Date()}]
+    //       return [...prev, newPost]
+    //     })
+    //   })
+  }
+
 
   return (
     <>
@@ -51,7 +63,7 @@ export default function BottomNav() {
       </nav>
 
       <Routes>
-        <Route path="/*" element={<Homepage userWeight={weight} recipes={recipes}/>}/>
+        <Route path="/*" element={<Homepage userWeight={weight} recipes={recipes} onClick={createPost}/>}/>
         <Route path="/posts" element={posts.length === 0 ? "Loading" : <Posts posts={posts} comments={comments}/>}/>
       </Routes>
 
