@@ -1,9 +1,11 @@
 import RecipeIngredients from "./RecipeIngredients"
 import {useState} from 'react'
+import useLocalStorage from '../hooks/useLocalStorage';
+
 
 export default function RecipeCard({recipes}) {
-  const [recipeRecord, setRecipeRecord] = useState(0)
-  // console.log(recipes[0])
+  const [recipeRecord, setRecipeRecord] = useLocalStorage('recipe',0);
+
 
   const info = recipes[0][recipeRecord]['recipe']
   // console.log(recipes[0])
