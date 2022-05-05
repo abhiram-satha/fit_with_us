@@ -1,7 +1,7 @@
 import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import Button from "./components/Button";
+import Form from "./components/Form";
 
 function App() {
   const [calories, setCalories] = useState();
@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div className="App">
-      <Button />
+      <Form />
     </div>
   );
 }
