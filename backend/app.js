@@ -24,9 +24,11 @@ app.use(cors());
 
 //Seperated Routes for Resources
 const userRoutes = require("./routes/users");
+const weightRoutes = require("./routes/weights")
 
 //Mount all resource routes
 app.use("/api/user", userRoutes(db));
+app.use("/api/weights", weightRoutes(db))
 
 //Routes
 app.get("/", (req, res) => {

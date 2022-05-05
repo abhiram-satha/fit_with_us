@@ -26,8 +26,8 @@ function App() {
     Promise.all([axios.get("http://localhost:8080/")])
       .then((all) => {
         // console.log(all[0]['data']['hits'])
-        const calories = all[0].data["hits"];
-        setRecipes([calories]);
+        const listOfRecipes = all[0].data["hits"];
+        setRecipes([listOfRecipes]);
       })
       .catch((err) => console.log(err.message));
   }, []);
