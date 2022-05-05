@@ -21,11 +21,14 @@ function App() {
     }}]
 ]);
   const [weight, setWeight] = useState([{date: new Date(), weight: 140}, {date: new Date(), weight: 150}, {date: new Date(), weight: 130}]);
-
+  console.log(weight)
   useEffect(() => {
-    Promise.all([axios.get("http://localhost:8080/")])
+    Promise.all([
+      axios.get("http://localhost:8080/"),
+      axios.get("http://localhost:8080/api/weights")
+    ])
       .then((all) => {
-        // console.log(all[0]['data']['hits'])
+        setWeight(all[1].data["weights"])
         const listOfRecipes = all[0].data["hits"];
         setRecipes([listOfRecipes]);
       })

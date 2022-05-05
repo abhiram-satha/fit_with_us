@@ -3,15 +3,15 @@ import {useState} from 'react'
 
 export default function RecipeCard({recipes}) {
   const [recipeRecord, setRecipeRecord] = useState(0)
-  console.log(recipes[0])
+  // console.log(recipes[0])
 
   const info = recipes[0][recipeRecord]['recipe']
-  console.log(recipes[0])
+  // console.log(recipes[0])
   
   const RecipeIngredientsArray = info.ingredients.map(ingredient => {
     return <RecipeIngredients ingredient={ingredient} size={info.yield}/>
   })
-  console.log(info.images.THUMBNAIL.url)
+  // console.log(info.images.THUMBNAIL.url)
   return (
     <>
     <h1>RecipeCard</h1>
