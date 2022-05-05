@@ -12,6 +12,7 @@ export default function Form(props) {
       <FormCategory name="email" type="email" />
       <FormCategory name="password" type="password" />
       <FormCategory name="passwordConfirmation" type="password" />
+      <FormCategory name="username" type="text" />
       <FormCategory name="currentWeight" type="number" />
       <FormCategory name="goalWeight" type="number" />
       <FormCategory name="height" type="number" />
