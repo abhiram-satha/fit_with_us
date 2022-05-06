@@ -15,5 +15,25 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/", (req, res) => {
+    const posts = req.body;
+    const values = [
+      1,
+      posts.message,
+      new Date()
+    ];
+
+    const query = `INSERT INTO post(user_id, message, date) VALUES ($1, $2, $3)`;
+
+    console.log(query);
+    db.query(query, values)
+      .then((data) => {
+        res.send("Post added");
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
   return router;
 };
