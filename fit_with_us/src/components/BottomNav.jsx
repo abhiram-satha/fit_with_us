@@ -57,12 +57,18 @@ export default function BottomNav() {
 
   return (
     <>
-      BottomNav
       <Router>
         <nav>
-          <Link to="/posts">Community</Link>
-          <Link to="/homepage">Your Profile</Link>
+          
+          
         </nav>
+
+        <div class="tabs is-centered is-medium is-fullwidth">
+            <ul>
+              <li><Link to="/homepage">You</Link></li>
+              <li><Link to="/posts">Us</Link></li>
+            </ul>
+       </div>
 
         <Routes>
           <Route
