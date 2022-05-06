@@ -1,12 +1,19 @@
 import RecipeCard from "./RecipeCard";
 import Weighthistorygraph from "./Weighthistorygraph";
 
-
-export default function Homepage({recipes, userWeight}) {
+export default function Homepage({ recipes, userWeight }) {
   return (
     <>
-      <RecipeCard recipes={recipes} className="card"/>
-      <Weighthistorygraph weights={userWeight} className="card"/>
+      {recipes[0].length === 1 ? (
+        "Loading"
+      ) : (
+        <RecipeCard recipes={recipes} className="card" />
+      )}
+      {userWeight.length === 0 ? (
+        "Loading"
+      ) : (
+        <Weighthistorygraph weights={userWeight} className="card" />
+      )}
     </>
-  )
+  );
 }
