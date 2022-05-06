@@ -1,6 +1,7 @@
 import Comment from "./Comment"
+import CommentReply from "./CommentReply"
 
-export default function Thread({username, message, comments, postID}) {
+export default function Thread({onClick, username, message, comments, postID}) {
 
   const commentArray = comments.filter((comment) => {
     return comment.parent_id === postID
@@ -13,6 +14,7 @@ export default function Thread({username, message, comments, postID}) {
     {username}<br/>
     {message}
       {commentArray}
+    <CommentReply post_id={postID} onClick={onClick}/>
     <br/>
     </div>
   )

@@ -29,7 +29,7 @@ export default function BottomNav() {
   useEffect(() => {
     Promise.all([
       axios.get("http://localhost:8080/"),
-      axios.get("http://localhost:8080/api/weights"),
+      axios.get(`http://localhost:8080/api/weights/`),
       axios.get("http://localhost:8080/api/posts"),
       axios.get("http://localhost:8080/api/comments"),
     ])
@@ -59,7 +59,7 @@ export default function BottomNav() {
 
         <Routes>
           <Route
-            path="/*"
+            path={`/homepage`}
             element={
               <Homepage
                 userWeight={weight}
