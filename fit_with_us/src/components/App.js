@@ -2,6 +2,8 @@ import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Form from "./Form";
+import TopNav from "./TopNav";
+import BottomNav from "./BottomNav";
 
 function App() {
   // const [calories, setCalories] = useState();
@@ -19,6 +21,10 @@ function App() {
   return (
     <div className="App">
       <Form />
+      <TopNav />
+      <br />
+      <br />
+      <BottomNav />
     </div>
   );
 }
