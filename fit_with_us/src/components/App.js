@@ -20,12 +20,6 @@ function App() {
 
   return (
     <div className="App">
-        <>
-    <TopNav />
-    <br/>
-    <br />
-    <BottomNav />
-  </>
       <Form />
       <TopNav />
       <br />
