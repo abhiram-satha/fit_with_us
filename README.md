@@ -44,6 +44,14 @@ User Stories
 ***Admin functionality
 ***- User can enter their own receipe to share with others (ingredients, calories,)
 
+- git pull origin main
+- git checkout -b new-branch
+- write code
+- git add .
+- git commit -m "comment"
+- git push origin new-branch
+- go to github, merge pull request from there
+
 
 
 
