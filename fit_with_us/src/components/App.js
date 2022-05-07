@@ -43,11 +43,15 @@ function App() {
     setLoggedIn(true);
   }
 
-  function loggedOutUser() {
-    removeCookie("id", { path: "/" });
+  function backButton() {
     setLoggedIn(false);
     setLogin(false);
     setSignUp(false);
+  }
+
+  function loggedOutUser() {
+    removeCookie("id", { path: "/" });
+    backButton();
   }
 
   function loginUser() {
@@ -55,7 +59,7 @@ function App() {
   }
 
   function signUserUp() {
-    setLoggedIn(true);
+    setSignUp(true);
   }
 
   return (
@@ -67,24 +71,25 @@ function App() {
           <br />
           <BottomNav />
         </>
-      ) : // Login = False, Sign Up = False => See Login/Sign up Button
-
-      //Login = True, Sign Up = False => See Login Form
-
-      //Login = False, Sign Up = True => See Sign Up Form
-      login ? (
-        <UserLogin
-          loggedInUser={loggedInUser}
-          setSignUp={setSignUp}
-          signUserUp={signUserUp}
-        />
+      ) : login ? (
+        <>
+          <TopNav backButton={backButton} />
+          <UserLogin
+            loggedInUser={loggedInUser}
+            setSignUp={setSignUp}
+            signUserUp={signUserUp}
+          />
+        </>
       ) : signUp ? (
-        <SignUp setLoggedIn={setLoggedIn} />
+        <>
+          <TopNav backButton={backButton} />
+          <SignUp loggedInUser={loggedInUser} />
+        </>
       ) : (
         <>
           <h1>Welcome to Fit with Us!</h1>
           <Button onClick={loginUser} name="Login" />
-          <Button name="Sign Up!" />
+          <Button onClick={signUserUp} name="Sign Up!" />
         </>
       )}
     </div>

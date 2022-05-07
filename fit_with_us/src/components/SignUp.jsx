@@ -4,11 +4,18 @@ import Button from "./Button";
 import axios from "axios";
 
 export default function Form(props) {
-  const [show, setShow] = useState(true);
+  //States
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [errorUsername, setUsername] = useState(false);
 
   //Helper Functions
   const submitUserInformation = (e) => {
     e.preventDefault();
+    const params = {
+      email: e.target[0].value,
+      password: e.target[1].value,
+      username: e.target[3].value,
+    };
     const email = e.target[0].value;
     const password = e.target[1].value;
     const passwordConfirmation = e.target[2].value;
@@ -18,6 +25,19 @@ export default function Form(props) {
     const height = e.target[6].value;
     const age = e.target[7].value;
 
+    //Check to see if email/user already exists
+    //   Promise.all([
+    //     axios.get("http://localhost:8080/api/userCheck", { params }),
+    //   ]).then((all) => {
+    //     const userData = all[0].data.users;
+    //     const user = userData[0];
+    //     if (userData.length !== 0) {
+    //       props.loggedInUser(user.id);
+    //     }
+    //   });
+    // })
+
+    //Makes entry into database
     Promise.all([
       axios.post("http://localhost:8080/api/user", {
         email,
@@ -30,13 +50,23 @@ export default function Form(props) {
       }),
     ])
       .then((all) => {
-        console.log("Successfuilly sent");
-        setShow(false);
+        console.log("Successfully sent");
+
+        //Returns user ID
+        Promise.all([
+          axios.get("http://localhost:8080/api/user", { params }),
+        ]).then((all) => {
+          const userData = all[0].data.users;
+          const user = userData[0];
+          if (userData.length !== 0) {
+            props.loggedInUser(user.id);
+          }
+        });
       })
       .catch((err) => console.log(err.message));
   };
 
-  return show ? (
+  return (
     <form
       onSubmit={submitUserInformation}
       action="http://localhost:8080/api/user"
@@ -52,7 +82,5 @@ export default function Form(props) {
       <FormCategory name="age" type="number" />
       <Button name="Submit" />
     </form>
-  ) : (
-    <div></div>
   );
 }
