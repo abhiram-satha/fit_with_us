@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 export default function BottomNav() {
 
-  localStorage.setItem('user', 2)
+  localStorage.setItem('user', 1)
   let userID = localStorage.getItem('user')
   const [recipes, setRecipes] = useState([
     [
@@ -72,12 +72,26 @@ export default function BottomNav() {
       message: event.target[0].value,
       post_id: event.target[0].attributes.post_id.value
     }
-    axios.post('http://localhost:8080/api/comments', data)
+    axios.post(`http://localhost:8080/api/comments/${userID}`, data)
       .then(response => axios.get("http://localhost:8080/api/comments"))
       .then(comments => setComments(comments.data.posts))
       .then(response => event.target[0].value ="") 
       .catch(error => console.log(error))
     // console.log(data)
+  }
+
+  const updateWeight = (event) => {
+    event.preventDefault();
+    // console.log(event.target[0].value)
+    const data = {
+      newWeight: event.target[0].value
+    }
+    axios.post(`http://localhost:8080/api/weights/${userID}`, data)
+      // .then(response => console.log(response))
+      .then(response => axios.get(`http://localhost:8080/api/weights/${userID}`))
+      .then(weights => setWeight(weights.data.weights))
+      .then(response => event.target[0].value ="") 
+      .catch(error => console.log(error))
   }
 
   return (
@@ -95,6 +109,7 @@ export default function BottomNav() {
             element={
               <Homepage
                 userWeight={weight}
+                updateWeight={updateWeight}
                 recipes={recipes}
               />
             }

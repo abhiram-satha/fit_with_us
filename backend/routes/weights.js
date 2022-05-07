@@ -14,6 +14,27 @@ module.exports = (db) => {
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
+
+      router.post("/:id", (req, res) => {
+        const updatedWeight = req.body;
+        console.log(req.body)
+        const values = [
+          req.params.id,
+          new Date(),
+          updatedWeight.newWeight
+        ];
+    
+        const query = `INSERT INTO weights(user_id, date, weight) VALUES ($1, $2, $3)`;
+    
+        console.log(query);
+        db.query(query, values)
+          .then((data) => {
+            res.send("Weight added");
+          })
+          .catch((err) => {
+            res.status(500).json({ error: err.message });
+          });
+      });
   });
 
   return router;

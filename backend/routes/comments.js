@@ -15,11 +15,11 @@ module.exports = (db) => {
       });
   });
 
-  router.post("/", (req, res) => {
+  router.post("/:id", (req, res) => {
     const comment = req.body;
     console.log(req.body)
     const values = [
-      1,
+      req.params.id,
       comment.post_id,
       comment.message,
       new Date()
