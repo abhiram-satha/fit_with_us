@@ -32,7 +32,7 @@ module.exports = (db) => {
     const query = `INSERT INTO users(email, password, username, current_weight, goal_weight, height, age, gender, dietary_restrictions) VALUES ($1, $2, $3, $4, $5, $6, $7, null, null)`;
     db.query(query, values)
       .then((data) => {
-        res.send(data);
+        // res.send(data);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });

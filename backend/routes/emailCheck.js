@@ -4,10 +4,8 @@ const router = express.Router();
 module.exports = (db) => {
   router.get("/", (req, res) => {
     const loginInfo = req.query;
-    const values = [loginInfo.email, loginInfo.username];
-    const query = `SELECT * FROM users WHERE email = $1 OR username = $2`;
-    const testQuery = `SELECT * FROM users WHERE email = ${loginInfo.email} OR username = ${loginInfo.username}`;
-    console.log(testQuery);
+    const values = [loginInfo.email];
+    const query = `SELECT * FROM users WHERE email = $1`;
     db.query(query, values)
       .then((data) => {
         const users = data.rows;
