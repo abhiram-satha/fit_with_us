@@ -53,10 +53,17 @@ export default function BottomNav() {
       // .then(response => console.log(response))
       .then(response => axios.get("http://localhost:8080/api/posts"))
       .then(posts => setPosts(posts.data))
+      .then(response => event.target[0].value ="") 
       .catch(error => console.log(error))
   }
 
   const newComment = (event) => {
+    if (event.target[0].value === " ") {
+       alert("Post cant empty")
+       return
+
+    }
+    
     event.preventDefault();
     console.log(event.target[0].attributes.post_id.value)
     const data = {
@@ -66,7 +73,7 @@ export default function BottomNav() {
     axios.post('http://localhost:8080/api/comments', data)
       .then(response => axios.get("http://localhost:8080/api/comments"))
       .then(comments => setComments(comments.data.posts))
-      // .then(comments => console.log(comments.data.posts))
+      .then(response => event.target[0].value ="") 
       .catch(error => console.log(error))
     // console.log(data)
   }
