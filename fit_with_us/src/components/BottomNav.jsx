@@ -3,6 +3,7 @@ import Homepage from "./Homepage";
 import Posts from "./Posts";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useAlert } from 'react-alert'
 
 export default function BottomNav() {
 
@@ -24,6 +25,8 @@ export default function BottomNav() {
       },
     ],
   ]);
+
+  const alert = useAlert()
   const [weight, setWeight] = useState([]);
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
@@ -46,6 +49,13 @@ export default function BottomNav() {
   }, []);
 
   const newPost = (event) => {
+    if (!event.target[0].value) {
+      event.preventDefault();
+      console.log(event.target[0].value)
+       alert.show("Post can't be empty")
+       return
+
+    } else {
     event.preventDefault();
     // console.log(event.target[0].value)
     const data = {
@@ -57,27 +67,31 @@ export default function BottomNav() {
       .then(posts => setPosts(posts.data))
       .then(response => event.target[0].value ="") 
       .catch(error => console.log(error))
+    }
   }
-
   const newComment = (event) => {
-    if (event.target[0].value === " ") {
-       alert("Post cant empty")
+    if (!event.target[0].value) {
+      event.preventDefault();
+      console.log(event.target[0].value)
+       alert.show("Comment can't be empty")
        return
 
+    } else {
+      event.preventDefault();
+      // console.log(event.target[0].attributes.post_id.value)
+      const data = {
+        message: event.target[0].value,
+        post_id: event.target[0].attributes.post_id.value
+      }
+      axios.post(`http://localhost:8080/api/comments/${userID}`, data)
+        .then(response => axios.get("http://localhost:8080/api/comments"))
+        .then(comments => setComments(comments.data.posts))
+        .then(response => event.target[0].value ="") 
+        .catch(error => console.log(error))
+      // console.log(data)
     }
     
-    event.preventDefault();
-    console.log(event.target[0].attributes.post_id.value)
-    const data = {
-      message: event.target[0].value,
-      post_id: event.target[0].attributes.post_id.value
-    }
-    axios.post(`http://localhost:8080/api/comments/${userID}`, data)
-      .then(response => axios.get("http://localhost:8080/api/comments"))
-      .then(comments => setComments(comments.data.posts))
-      .then(response => event.target[0].value ="") 
-      .catch(error => console.log(error))
-    // console.log(data)
+ 
   }
 
   const updateWeight = (event) => {
