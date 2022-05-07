@@ -95,6 +95,14 @@ export default function BottomNav() {
   }
 
   const updateWeight = (event) => {
+
+    if (!event.target[0].value) {
+      event.preventDefault();
+      console.log(event.target[0].value)
+       alert.show("Weight can't empty")
+       return
+
+    } else {
     event.preventDefault();
     // console.log(event.target[0].value)
     const data = {
@@ -106,6 +114,7 @@ export default function BottomNav() {
       .then(weights => setWeight(weights.data.weights))
       .then(response => event.target[0].value ="") 
       .catch(error => console.log(error))
+    }
   }
 
   return (
