@@ -19,14 +19,27 @@ function App() {
   //     .catch((err) => console.log(err.message));
   // }, []);
 
+  //User States
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [signUp, setSignUp] = useState(false);
+
   return (
     <div className="App">
-      <UserLogin />
-      <SignUp />
-      <TopNav />
-      <br />
-      <br />
-      <BottomNav />
+      {loggedIn ? (
+        <>
+          {signUp ? (
+            <SignUp setLoggedIn={setLoggedIn} setSignUp={setSignUp} />
+          ) : (
+            <div></div>
+          )}
+          <TopNav />
+          <br />
+          <br />
+          <BottomNav />
+        </>
+      ) : (
+        <UserLogin setLoggedIn={setLoggedIn} setSignUp={setSignUp} />
+      )}
     </div>
   );
 }

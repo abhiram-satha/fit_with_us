@@ -6,28 +6,18 @@ import axios from "axios";
 export default function UserLogin(props) {
   const submitUserInformation = (e) => {
     e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
-    const passwordConfirmation = e.target[2].value;
-    const username = e.target[3].value;
-    const currentWeight = e.target[4].value;
-    const goalWeight = e.target[5].value;
-    const height = e.target[6].value;
-    const age = e.target[7].value;
+    const params = {
+      email: e.target[0].value,
+      password: e.target[1].value,
+    };
 
-    Promise.all([
-      axios.post("http://localhost:8080/api/user", {
-        email,
-        password,
-        username,
-        currentWeight,
-        goalWeight,
-        height,
-        age,
-      }),
-    ])
+    Promise.all([axios.get("http://localhost:8080/api/user", { params })])
       .then((all) => {
-        console.log("Successfuilly sent");
+        const userData = all[0].data;
+        console.log(all[0].data);
+        if (userData.length !== 0) {
+          props.setLoggedIn(true);
+        }
       })
       .catch((err) => console.log(err.message));
   };
@@ -41,6 +31,7 @@ export default function UserLogin(props) {
       <FormCategory id="user-email" name="email" type="email" />
       <FormCategory id="user-password" name="password" type="password" />
       <Button name="Login" />
+      <Button name="Sign Up" />
     </form>
   );
 }

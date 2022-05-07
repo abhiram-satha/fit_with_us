@@ -3,7 +3,10 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+    const loginInfo = req.query;
+    const values = [loginInfo.email, loginInfo.password];
+    const query = `SELECT * FROM users WHERE email = $1 AND password = $2`;
+    db.query(query, values)
       .then((data) => {
         const users = data.rows;
         res.send({ users });
@@ -26,8 +29,6 @@ module.exports = (db) => {
     ];
 
     const query = `INSERT INTO users(email, password, username, current_weight, goal_weight, height, age, gender, dietary_restrictions) VALUES ($1, $2, $3, $4, $5, $6, $7, null, null)`;
-
-    console.log(query);
     db.query(query, values)
       .then((data) => {
         res.send("User added");
