@@ -15,10 +15,11 @@ module.exports = (db) => {
       });
   });
 
-  router.post("/", (req, res) => {
+  router.post("/:id", (req, res) => {
     const posts = req.body;
+
     const values = [
-      1,
+      req.params.id,
       posts.message,
       new Date()
     ];

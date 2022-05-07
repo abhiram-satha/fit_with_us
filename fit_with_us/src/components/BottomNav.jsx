@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 export default function BottomNav() {
 
-  localStorage.setItem('user', 1)
+  localStorage.setItem('user', 2)
   let userID = localStorage.getItem('user')
   const [recipes, setRecipes] = useState([
     [
@@ -32,7 +32,7 @@ export default function BottomNav() {
     Promise.all([
       axios.get("http://localhost:8080/"),
       axios.get(`http://localhost:8080/api/weights/${userID}`),
-      axios.get("http://localhost:8080/api/posts"),
+      axios.get(`http://localhost:8080/api/posts/`),
       axios.get("http://localhost:8080/api/comments"),
     ])
       .then((all) => {
@@ -47,11 +47,11 @@ export default function BottomNav() {
 
   const newPost = (event) => {
     event.preventDefault();
-    console.log(event.target[0].value)
+    // console.log(event.target[0].value)
     const data = {
       message: event.target[0].value
     }
-    axios.post('http://localhost:8080/api/posts', data)
+    axios.post(`http://localhost:8080/api/posts/${userID}`, data)
       // .then(response => console.log(response))
       .then(response => axios.get("http://localhost:8080/api/posts"))
       .then(posts => setPosts(posts.data))
@@ -85,7 +85,7 @@ export default function BottomNav() {
       BottomNav
       <Router>
         <nav>
-          <Link to="/posts">Community</Link>
+          <Link to='/posts/'>Community</Link>
           <Link to="/homepage">Your Profile</Link>
         </nav>
 

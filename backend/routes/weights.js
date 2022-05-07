@@ -4,7 +4,6 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get("/:id", (req, res) => {
-    console.log(req.params.id);
     db.query(`SELECT * FROM weights
             WHERE user_id = ${req.params.id}
     ;`)
