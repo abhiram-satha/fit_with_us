@@ -18,7 +18,6 @@ export default function UserLogin(props) {
         console.log(user);
         console.log(all[0].data);
         if (userData.length !== 0) {
-          props.setLoggedIn(true);
           props.loggedInUser(user.id);
         }
       })
@@ -34,7 +33,6 @@ export default function UserLogin(props) {
       <FormCategory id="user-email" name="email" type="email" />
       <FormCategory id="user-password" name="password" type="password" />
       <Button name="Login" />
-      <Button name="Sign Up" />
     </form>
   );
 }
