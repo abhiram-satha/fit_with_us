@@ -13,10 +13,13 @@ export default function UserLogin(props) {
 
     Promise.all([axios.get("http://localhost:8080/api/user", { params })])
       .then((all) => {
-        const userData = all[0].data;
+        const userData = all[0].data.users;
+        const user = userData[0];
+        console.log(user);
         console.log(all[0].data);
         if (userData.length !== 0) {
           props.setLoggedIn(true);
+          props.loggedInUser(user.id);
         }
       })
       .catch((err) => console.log(err.message));

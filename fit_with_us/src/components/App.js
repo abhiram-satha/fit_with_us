@@ -1,6 +1,7 @@
 import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useCookies, Cookies, withCookies } from "react-cookie";
 import UserLogin from "./UserLogin";
 import SignUp from "./SignUp";
 import TopNav from "./TopNav";
@@ -23,6 +24,19 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [signUp, setSignUp] = useState(false);
 
+  //Set Cookies
+  const [cookies, setCookie] = useCookies(["id"]);
+
+  useEffect(() => {
+    const loggedUser = cookies.id;
+    if (loggedUser) {
+      setLoggedIn(true);
+    }
+  }, []);
+
+  function loggedInUser(id) {
+    setCookie("id", id, { path: "/" });
+  }
   return (
     <div className="App">
       {loggedIn ? (
@@ -38,7 +52,11 @@ function App() {
           <BottomNav />
         </>
       ) : (
-        <UserLogin setLoggedIn={setLoggedIn} setSignUp={setSignUp} />
+        <UserLogin
+          setLoggedIn={setLoggedIn}
+          setSignUp={setSignUp}
+          loggedInUser={loggedInUser}
+        />
       )}
     </div>
   );
