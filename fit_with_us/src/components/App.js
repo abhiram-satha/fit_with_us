@@ -1,7 +1,8 @@
 import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import Form from "./Form";
+import UserLogin from "./UserLogin";
+import SignUp from "./SignUp";
 import TopNav from "./TopNav";
 import BottomNav from "./BottomNav";
 
@@ -20,7 +21,8 @@ function App() {
 
   return (
     <div className="App">
-      <Form />
+      <UserLogin />
+      <SignUp />
       <TopNav />
       <br />
       <br />

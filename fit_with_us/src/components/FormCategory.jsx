@@ -23,7 +23,11 @@ export default function FormCategory(props) {
   return (
     <div className="form-example">
       <label htmlFor={props.name}>Enter your {categoryName}: </label>
-      <input type={props.type} name={props.name} id={props.name} />
+      <input
+        type={props.type}
+        name={props.name}
+        id={props.id ? props.id : props.name}
+      />
     </div>
   );
 }
