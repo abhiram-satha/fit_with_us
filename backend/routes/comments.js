@@ -17,10 +17,11 @@ module.exports = (db) => {
 
   router.post("/", (req, res) => {
     const comment = req.body;
+    console.log(req.body)
     const values = [
       1,
       comment.post_id,
-      comment.commentReply,
+      comment.message,
       new Date()
     ];
 

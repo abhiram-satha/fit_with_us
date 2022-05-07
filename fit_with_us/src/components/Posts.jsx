@@ -2,11 +2,11 @@ import axios from "axios"
 import Button from "./Button"
 import Thread from "./Thread"
 
-export default function Posts({posts, comments, onClick, newPost}) {
+export default function Posts({posts, comments, newComment, newPost}) {
   
 
   const parentPost = posts.posts.map(post=> {
-    return <Thread onClick={onClick} key={post.id} postID={post.id} username={post.username} message={post.message} comments={comments}/>
+    return <Thread newComment={newComment} key={post.id} postID={post.id} username={post.username} message={post.message} comments={comments}/>
   })
 
 
