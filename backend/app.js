@@ -24,12 +24,14 @@ app.use(cors());
 
 //Seperated Routes for Resources
 const userRoutes = require("./routes/users");
+const allUsersRoutes = require("./routes/allUsers");
 const weightRoutes = require("./routes/weights");
 const postRoutes = require("./routes/posts");
 const commentRoutes = require("./routes/comments");
 
 //Mount all resource routes
 app.use("/api/user", userRoutes(db));
+app.use("/api/allUsers", allUsersRoutes(db));
 app.use("/api/weights", weightRoutes(db));
 app.use("/api/posts", postRoutes(db));
 app.use("/api/comments", commentRoutes(db));
