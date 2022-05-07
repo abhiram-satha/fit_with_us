@@ -6,25 +6,12 @@ import TopNav from "./TopNav";
 import BottomNav from "./BottomNav";
 
 function App() {
-  // const [calories, setCalories] = useState();
-
-  // useEffect(() => {
-  //   Promise.all([axios.get("http://localhost:8080/")])
-  //     .then((all) => {
-  //       const calories = all[0].data["hits"][0]["recipe"]["calories"];
-  //       const quantityYield = all[0].data["hits"][0]["recipe"]["yield"];
-  //       setCalories([calories / quantityYield]);
-  //     })
-  //     .catch((err) => console.log(err.message));
-  // }, []);
+const user_id = localStorage.getItem('user');
 
   return (
     <div className="App">
-      <Form />
-      <TopNav />
-      <br />
-      <br />
-      <BottomNav />
+      {!user_id ? <Form /> :<BottomNav/>}
+      
     </div>
   );
 }

@@ -5,6 +5,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 export default function BottomNav() {
+
+  localStorage.setItem('user', 1)
+  let userID = localStorage.getItem('user')
   const [recipes, setRecipes] = useState([
     [
       {
@@ -25,11 +28,10 @@ export default function BottomNav() {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
 
-  // console.log(weight)
   useEffect(() => {
     Promise.all([
       axios.get("http://localhost:8080/"),
-      axios.get(`http://localhost:8080/api/weights/`),
+      axios.get(`http://localhost:8080/api/weights/${userID}`),
       axios.get("http://localhost:8080/api/posts"),
       axios.get("http://localhost:8080/api/comments"),
     ])
