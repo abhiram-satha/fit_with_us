@@ -25,11 +25,11 @@ function App() {
   const [signUp, setSignUp] = useState(false);
 
   //Set Cookies
-  const [cookies, setCookie] = useCookies(["id"]);
+  const [cookies, setCookie, removeCookie] = useCookies();
 
   useEffect(() => {
-    const loggedUser = cookies.id;
-    if (loggedUser) {
+    const userID = cookies.id;
+    if (userID) {
       setLoggedIn(true);
     }
   }, []);
@@ -37,6 +37,12 @@ function App() {
   function loggedInUser(id) {
     setCookie("id", id, { path: "/" });
   }
+
+  function loggedOutUser() {
+    removeCookie("id", { path: "/" });
+    setLoggedIn(false);
+  }
+
   return (
     <div className="App">
       {loggedIn ? (
@@ -46,7 +52,7 @@ function App() {
           ) : (
             <div></div>
           )}
-          <TopNav />
+          <TopNav loggedOutUser={loggedOutUser} />
           <br />
           <br />
           <BottomNav />
