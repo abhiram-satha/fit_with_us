@@ -1,5 +1,5 @@
 export default function CommentReply ({onClick, post_id}) {
-  console.log(post_id)
+  // console.log(post_id)
   return (
     <div>
       <details>

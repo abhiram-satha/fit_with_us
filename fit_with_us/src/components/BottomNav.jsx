@@ -43,10 +43,18 @@ export default function BottomNav() {
       .catch((err) => console.log(err.message));
   }, []);
 
-  const createPost = (event) => {
-    // event.preventDefault()
-    console.log("clicked");
-  };
+  const newPost = (event) => {
+    event.preventDefault();
+    console.log(event.target[0].value)
+    const data = {
+      message: event.target[0].value
+    }
+    axios.post('http://localhost:8080/api/posts', data)
+      // .then(response => console.log(response))
+      .then(response => axios.get("http://localhost:8080/api/posts"))
+      .then(posts => setPosts(posts.data))
+      .catch(error => console.log(error))
+  }
 
   return (
     <>
@@ -73,7 +81,8 @@ export default function BottomNav() {
               posts.length === 0 ? (
                 "Loading"
               ) : (
-                <Posts posts={posts} comments={comments} onClick={createPost}/>
+                <Posts posts={posts} comments={comments} newPost={newPost}/>
+                // <Posts posts={posts} comments={comments} onClick={createPost}/>
               )
             }
           />
