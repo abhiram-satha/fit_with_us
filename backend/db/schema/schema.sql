@@ -7,9 +7,9 @@ DROP TABLE IF EXISTS comment CASCADE;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY NOT NULL,
-    email VARCHAR(30) NOT NULL,
+    email VARCHAR(30) NOT NULL UNIQUE,
     password VARCHAR(30) NOT NULL,
-    username VARCHAR(30) NOT NULL,
+    username VARCHAR(30) NOT NULL UNIQUE,
     current_weight INTEGER NOT NULL,
     goal_weight INTEGER NOT NULL,
     height INTEGER NOT NULL,
