@@ -90,10 +90,9 @@ export default function Form(props) {
                 </span>
               </p>
           </div>
-
           <div class="field has-addons">
             <label class="label">Goal weight</label>
-            <p class="control">
+            <p class="control is-expanded">
               <input class="input" type="number" placeholder="Amount of money"/>
             </p>
             <p class="control">
@@ -105,7 +104,6 @@ export default function Form(props) {
                 </span>
               </p>
           </div>
-
           <div class="field is-grouped">
             <div class="control">
               <button class="button is-link">Submit</button>
