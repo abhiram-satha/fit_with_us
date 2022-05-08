@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import FormCategory from "./FormCategory";
 import Button from "./Button";
 import axios from "axios";
+import Error from "./Error";
 
 export default function Form(props) {
   //States
@@ -9,6 +10,7 @@ export default function Form(props) {
   const [errorUsername, setErrorUsername] = useState(false);
 
   //Helper Functions
+
   const submitUserInformation = (e) => {
     //Reset States
     setErrorEmail(false);
@@ -37,7 +39,7 @@ export default function Form(props) {
       .then((all) => {
         const userData = all[0].data.users;
         if (userData.length !== 0) {
-          return setErrorUsername(true);
+          throw setErrorUsername("The username already exists");
         }
       })
       .then((all) => {
@@ -47,7 +49,7 @@ export default function Form(props) {
         ]).then((all) => {
           const userData = all[0].data.users;
           if (userData.length !== 0) {
-            return setErrorEmail(true);
+            throw setErrorEmail("The email already exists");
           }
         });
       })
@@ -71,8 +73,6 @@ export default function Form(props) {
             axios.get("http://localhost:8080/api/user", { params }),
           ]).then((all) => {
             //Returns user ID
-            console.log("From cookie set!");
-            console.log(all);
             const userData = all[0].data.users;
             const user = userData[0];
             if (userData.length !== 0) {
@@ -90,12 +90,16 @@ export default function Form(props) {
       action="http://localhost:8080/api/user"
       method="POST"
     >
+      {errorEmail || errorUsername ? (
+        <details>
+          <summary>Errors</summary>
+          <Error errorMessages={errorEmail ? errorEmail : errorUsername} />
+        </details>
+      ) : null}
       <FormCategory name="email" type="email" />
-      {errorEmail ? "Error email is already used!" : null}
       <FormCategory name="password" type="password" />
       <FormCategory name="passwordConfirmation" type="password" />
       <FormCategory name="username" type="text" />
-      {errorUsername ? "Error username is already used!" : null}
       <FormCategory name="currentWeight" type="number" />
       <FormCategory name="goalWeight" type="number" />
       <FormCategory name="height" type="number" />
