@@ -20,9 +20,9 @@ function App() {
 
   return (
     <div className="App">
-      <Form />
       <TopNav />
       <br />
+        <Form></Form>
       <br />
       <BottomNav />
     </div>

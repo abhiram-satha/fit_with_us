@@ -58,18 +58,6 @@ export default function BottomNav() {
   return (
     <>
       <Router>
-        <nav>
-          
-          
-        </nav>
-
-        <div class="tabs is-centered is-medium is-fullwidth">
-            <ul>
-              <li><Link to="/homepage">You</Link></li>
-              <li><Link to="/posts">Us</Link></li>
-            </ul>
-       </div>
-
         <Routes>
           <Route
             path="/*"
@@ -92,6 +80,12 @@ export default function BottomNav() {
             }
           />
         </Routes>
+        <div class="tabs is-centered is-medium is-fullwidth is-fixed-bottom">
+            <ul>
+              <li><Link to="/homepage">You</Link></li>
+              <li><Link to="/posts">Us</Link></li>
+            </ul>
+       </div>
       </Router>
     </>
   );
