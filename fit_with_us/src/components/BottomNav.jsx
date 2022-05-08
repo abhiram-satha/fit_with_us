@@ -34,7 +34,7 @@ export default function BottomNav() {
 
   useEffect(() => {
     Promise.all([
-      axios.get("https://api.edamam.com/api/recipes/v2?type=public&q=beef&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc&calories=100-500"),
+      axios.get("https://api.edamam.com/api/recipes/v2?type=public&q=vegan&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc&calories=100-500"),
       axios.get(`http://localhost:8080/api/weights/${userID}`),
       axios.get(`http://localhost:8080/api/posts/`),
       axios.get("http://localhost:8080/api/comments"),
@@ -101,7 +101,7 @@ export default function BottomNav() {
     if (!event.target[0].value) {
       event.preventDefault();
       console.log(event.target[0].value)
-       alert.show("Weight can't empty")
+       alert.show("Weight can't be empty")
        return
 
     } else {
@@ -119,21 +119,71 @@ export default function BottomNav() {
     }
   }
 
-  console.log(users)
+  const caloriesPerGender = (gender, age, goalPlan) => {
+    if(gender === "male" && age >= 20 && age < 30 && goalPlan > "Increase Weight") {
+      let calories = 3230;
+    } else if(gender === "male" && age >= 30 && age < 40 && goalPlan > "Increase Weight") {
+      let calories = 3153;
+    } else if(gender === "male" && age >= 40 && age < 50 && goalPlan > "Increase Weight") {
+      let calories = 3075;
+    } else if(gender === "male" && age >= 50 && goalPlan > "Increase Weight") {
+      let calories = 2998;
+    } else if(gender === "male" && age >= 20 && age < 30 && goalPlan > "Maintain Weight") {
+      let calories = 2806;
+    } else if(gender === "male" && age >= 30 && age < 40 && goalPlan > "Maintain Weight") {
+      let calories = 2728;
+    } else if(gender === "male" && age >= 40 && age < 50 && goalPlan > "Maintain Weight") {
+      let calories = 2651;
+    } else if(gender === "male" && age >= 50 && goalPlan > "Maintain Weight") {
+      let calories = 2573;
+    } else if(gender === "female" && age >= 20 && age < 30 && goalPlan > "Lose Weight") {
+      let calories = 2306;
+    } else if(gender === "female" && age >= 30 && age < 40 && goalPlan > "Lose Weight") {
+      let calories = 2228;
+    } else if(gender === "female" && age >= 40 && age < 50 && goalPlan > "Lose Weight") {
+      let calories = 2151;
+    } else if(gender === "female" && age >= 50 && goalPlan > "Lose Weight") {
+      let calories = 2073;
+    } else if (gender === "female" && age >= 20 && age < 30 && goalPlan > "Increase Weight") {
+      let calories = 2700;
+    } else if(gender === "female" && age >= 30 && age < 40 && goalPlan > "Increase Weight") {
+      let calories = 2500;
+    } else if(gender === "female" && age >= 40 && age < 50 && goalPlan > "Increase Weight") {
+      let calories = 2500;
+    } else if(gender === "female" && age >= 50 && goalPlan > "Increase Weight") {
+      let calories = 2300;
+    } else if(gender === "female" && age >= 20 && age < 30 && goalPlan > "Maintain Weight") {
+      let calories = 2200;
+    } else if(gender === "female" && age >= 30 && age < 40 && goalPlan > "Maintain Weight") {
+      let calories = 2000;
+    } else if(gender === "female" && age >= 40 && age < 50 && goalPlan > "Maintain Weight") {
+      let calories = 2000;
+    } else if(gender === "female" && age >= 50 && goalPlan > "Maintain Weight") {
+      let calories = 1800;
+    } else if(gender === "female" && age >= 20 && age < 30 && goalPlan > "Lose Weight") {
+      let calories = 1700;
+    } else if(gender === "female" && age >= 30 && age < 40 && goalPlan > "Lose Weight") {
+      let calories = 1500;
+    } else if(gender === "female" && age >= 40 && age < 50 && goalPlan > "Lose Weight") {
+      let calories = 1500;
+    } else if(gender === "female" && age >= 50 && goalPlan > "Lose Weight") {
+      let calories = 1300;
+    }
+  }
+
+  // console.log(users)
   return (
     <>
       BottomNav
       <Router>
-        <nav>
-          <Link to='/posts/'>Community</Link>
-          <Link to="/homepage">Your Profile</Link>
-        </nav>
+        
 
         <Routes>
           <Route
             path={`/homepage`}
             element={
               <Homepage
+                users={users}
                 userWeight={weight}
                 updateWeight={updateWeight}
                 recipes={recipes}
@@ -146,12 +196,17 @@ export default function BottomNav() {
               posts.length === 0 ? (
                 "Loading"
               ) : (
-                <Posts posts={posts} comments={comments} newPost={newPost} newComment={newComment}/>
+                <Posts posts={posts} users={users} comments={comments} newPost={newPost} newComment={newComment}/>
                 // <Posts posts={posts} comments={comments} onClick={createPost}/>
               )
             }
           />
         </Routes>
+
+        <nav>
+          <Link to='/posts/'>Community</Link>
+          <Link to="/homepage">Your Profile</Link>
+        </nav>
       </Router>
     </>
   );

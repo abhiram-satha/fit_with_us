@@ -2,11 +2,11 @@ import axios from "axios"
 import Button from "./Button"
 import Thread from "./Thread"
 
-export default function Posts({posts, comments, newComment, newPost}) {
+export default function Posts({posts, comments, newComment, newPost, users}) {
   
   let postsCopy = [...posts.posts]
   const parentPost = postsCopy.reverse().map(post=> {
-    return <Thread newComment={newComment} key={post.id} postID={post.id} username={post.username} message={post.message} comments={comments}/>
+    return <Thread newComment={newComment} key={post.id} postID={post.id} users={users} username={post.username} message={post.message} comments={comments}/>
   })
 
 

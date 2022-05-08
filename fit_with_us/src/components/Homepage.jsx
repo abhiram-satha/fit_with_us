@@ -1,7 +1,8 @@
 import RecipeCard from "./RecipeCard";
 import Weighthistorygraph from "./Weighthistorygraph";
 
-export default function Homepage({ recipes, userWeight, updateWeight }) {
+export default function Homepage({ users, recipes, userWeight, updateWeight }) {
+
   return (
     <>
       {recipes[0].length === 1 ? (
