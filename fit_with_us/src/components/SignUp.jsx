@@ -102,39 +102,52 @@ export default function Form(props) {
           }
         });
       })
-      .then((all) => {
+      .then(async (all) => {
         //Makes entry into database
-        Promise.all([
-          axios.post("http://localhost:8080/api/user", {
-            email,
-            password,
-            username,
-            currentWeight,
-            goalWeight,
-            height,
-            age,
-            gender,
-            dietaryRestrictions,
-          }),
-        ]).then((all) => {});
-      })
-      .then((all) => {
-        Promise.all([
-          axios.get("http://localhost:8080/api/user", { params }),
-        ]).then((all) => {
-          //Returns user ID
-          const userData = all[0].data.users;
-          const user = userData[0];
-          if (
-            userData.length !== 0 &&
-            !errorEmail &&
-            !errorUsername &&
-            !errorPassword
-          ) {
-            props.loggedInUser(user.id);
-          }
+        await axios.post("http://localhost:8080/api/user", {
+          email,
+          password,
+          username,
+          currentWeight,
+          goalWeight,
+          height,
+          age,
+          gender,
+          dietaryRestrictions,
         });
+
+        const response = await axios.get("http://localhost:8080/api/user", {
+          params,
+        });
+        //Returns user ID
+        const userData = response[0].data.users;
+        const user = userData[0];
+        if (
+          userData.length !== 0 &&
+          !errorEmail &&
+          !errorUsername &&
+          !errorPassword
+        ) {
+          props.loggedInUser(user.id);
+        }
       })
+      // .then((all) => {
+      //   Promise.all([
+      //     axios.get("http://localhost:8080/api/user", { params }),
+      //   ]).then((all) => {
+      //     //Returns user ID
+      //     const userData = all[0].data.users;
+      //     const user = userData[0];
+      //     if (
+      //       userData.length !== 0 &&
+      //       !errorEmail &&
+      //       !errorUsername &&
+      //       !errorPassword
+      //     ) {
+      //       props.loggedInUser(user.id);
+      //     }
+      //   });
+      // })
       .catch((err) => console.log(err.message));
   };
 
