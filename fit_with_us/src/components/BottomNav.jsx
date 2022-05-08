@@ -136,13 +136,13 @@ export default function BottomNav() {
       let calories = 2651;
     } else if(gender === "male" && age >= 50 && goalPlan > "Maintain Weight") {
       let calories = 2573;
-    } else if(gender === "female" && age >= 20 && age < 30 && goalPlan > "Lose Weight") {
+    } else if(gender === "male" && age >= 20 && age < 30 && goalPlan > "Lose Weight") {
       let calories = 2306;
-    } else if(gender === "female" && age >= 30 && age < 40 && goalPlan > "Lose Weight") {
+    } else if(gender === "male" && age >= 30 && age < 40 && goalPlan > "Lose Weight") {
       let calories = 2228;
-    } else if(gender === "female" && age >= 40 && age < 50 && goalPlan > "Lose Weight") {
+    } else if(gender === "male" && age >= 40 && age < 50 && goalPlan > "Lose Weight") {
       let calories = 2151;
-    } else if(gender === "female" && age >= 50 && goalPlan > "Lose Weight") {
+    } else if(gender === "male" && age >= 50 && goalPlan > "Lose Weight") {
       let calories = 2073;
     } else if (gender === "female" && age >= 20 && age < 30 && goalPlan > "Increase Weight") {
       let calories = 2700;
@@ -166,7 +166,7 @@ export default function BottomNav() {
       let calories = 1500;
     } else if(gender === "female" && age >= 40 && age < 50 && goalPlan > "Lose Weight") {
       let calories = 1500;
-    } else if(gender === "female" && age >= 50 && goalPlan > "Lose Weight") {
+    } else {
       let calories = 1300;
     }
   }
