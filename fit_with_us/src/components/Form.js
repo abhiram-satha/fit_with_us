@@ -1,11 +1,11 @@
 import React from "react";
-import FormCategory from "./FormCategory";
-import Button from "./Button";
+//import FormCategory from "./FormCategory";
+//import Button from "./Button";
 
 export default function Form(props) {
-  function handleSubmit(e) {
-    e.preventDefault();
-  }
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  // }
 
   return (
     <div class="column is-two-thirds">
@@ -63,6 +63,16 @@ export default function Form(props) {
             <p class="help is-danger">Your password must be at least eight characters long</p>
           </div>
           <div class="field">
+            <label class="label">Gender</label>
+            <div class="select">
+              <select>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Prefer not to say</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
             <label class="label">Dietary Restrictions</label>
             <div class="control">
               <div class="select">
@@ -76,10 +86,10 @@ export default function Form(props) {
               </div>
             </div>
           </div>
+          <label class="label">Current weight</label>
           <div class="field has-addons">
-            <label class="label">Current weight</label>
             <p class="control">
-              <input class="input" type="number" placeholder="Amount of money"/>
+              <input class="input" type="number" placeholder="Enter your current weight"/>
             </p>
             <p class="control">
                 <span class="select">
@@ -90,16 +100,30 @@ export default function Form(props) {
                 </span>
               </p>
           </div>
+          <label class="label">Goal weight</label>
           <div class="field has-addons">
-            <label class="label">Goal weight</label>
-            <p class="control is-expanded">
-              <input class="input" type="number" placeholder="Amount of money"/>
+            <p class="control">
+              <input class="input" type="number" placeholder="Enter your desired weight"/>
             </p>
             <p class="control">
                 <span class="select">
                   <select>
                     <option>lbs</option>
                     <option>kgs</option>
+                  </select>
+                </span>
+              </p>
+          </div>
+          <label class="label">Height</label>
+          <div class="field has-addons">
+            <p class="control">
+              <input class="input" type="number" placeholder="Enter your height"/>
+            </p>
+            <p class="control">
+                <span class="select">
+                  <select>
+                    <option>in.</option>
+                    <option>cms</option>
                   </select>
                 </span>
               </p>
