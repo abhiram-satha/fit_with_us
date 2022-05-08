@@ -90,8 +90,6 @@ export default function BottomNav() {
         .catch(error => console.log(error))
       // console.log(data)
     }
-    
- 
   }
 
   const updateWeight = (event) => {
@@ -116,6 +114,7 @@ export default function BottomNav() {
       .catch(error => console.log(error))
     }
   }
+
 
   return (
     <>

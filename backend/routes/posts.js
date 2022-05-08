@@ -35,6 +35,26 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
+  router.put("/:id", (req, res) => {
+    const posts = req.body;
+
+    const values = [
+      req.params.id,
+      posts.message
+    ];
+
+    const query = `UPDATE post SET message = $2 WHERE id = $1`;
+
+    console.log(query);
+    db.query(query, values)
+      .then((data) => {
+        res.send("Post Updated");
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
 
   return router;
 };
