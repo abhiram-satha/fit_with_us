@@ -8,13 +8,27 @@ export default function Form(props) {
   //States
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorUsername, setErrorUsername] = useState(false);
+  const [errorPassword, setErrorPassword] = useState(false);
 
   //Helper Functions
+  const checkEqualPasswords = (password, passwordConfirmation) => {
+    if (password !== passwordConfirmation) {
+      return true;
+    }
+    return false;
+  };
+
+  const checkEmail = (params) => {
+    new Promise((resolve, reject) => {
+      resolve(axios.get("http://localhost:8080/api/usernameCheck", { params }));
+    });
+  };
 
   const submitUserInformation = (e) => {
     //Reset States
     setErrorEmail(false);
     setErrorUsername(false);
+    setErrorPassword(false);
 
     e.preventDefault();
     const params = {
@@ -31,6 +45,10 @@ export default function Form(props) {
     const goalWeight = e.target[5].value;
     const height = e.target[6].value;
     const age = e.target[7].value;
+
+    if (checkEqualPasswords(password, passwordConfirmation)) {
+      return setErrorPassword("The passwords do not match");
+    }
 
     //Check Username
     Promise.all([
@@ -75,7 +93,12 @@ export default function Form(props) {
             //Returns user ID
             const userData = all[0].data.users;
             const user = userData[0];
-            if (userData.length !== 0) {
+            if (
+              userData.length !== 0 &&
+              !errorEmail &&
+              !errorUsername &&
+              !errorPassword
+            ) {
               props.loggedInUser(user.id);
             }
           });
@@ -90,10 +113,18 @@ export default function Form(props) {
       action="http://localhost:8080/api/user"
       method="POST"
     >
-      {errorEmail || errorUsername ? (
+      {errorEmail || errorUsername || errorPassword ? (
         <details>
           <summary>Errors</summary>
-          <Error errorMessages={errorEmail ? errorEmail : errorUsername} />
+          <Error
+            errorMessages={
+              errorEmail
+                ? errorEmail
+                : errorUsername
+                ? errorUsername
+                : errorPassword
+            }
+          />
         </details>
       ) : null}
       <FormCategory name="email" type="email" />
@@ -104,6 +135,11 @@ export default function Form(props) {
       <FormCategory name="goalWeight" type="number" />
       <FormCategory name="height" type="number" />
       <FormCategory name="age" type="number" />
+      <FormCategory
+        optionsName="gender-choices"
+        name="gender"
+        options={["Male", "Female", "Prefer not to disclose"]}
+      />
       <Button name="Submit" />
     </form>
   );
