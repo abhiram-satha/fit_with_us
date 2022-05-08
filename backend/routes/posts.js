@@ -15,5 +15,46 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/:id", (req, res) => {
+    const posts = req.body;
+
+    const values = [
+      req.params.id,
+      posts.message,
+      new Date()
+    ];
+
+    const query = `INSERT INTO post(user_id, message, date) VALUES ($1, $2, $3)`;
+
+    console.log(query);
+    db.query(query, values)
+      .then((data) => {
+        res.send("Post added");
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+  router.put("/:id", (req, res) => {
+    const posts = req.body;
+
+    const values = [
+      req.params.id,
+      posts.message
+    ];
+
+    const query = `UPDATE post SET message = $2 WHERE id = $1`;
+
+    console.log(query);
+    db.query(query, values)
+      .then((data) => {
+        res.send("Post Updated");
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+
   return router;
 };

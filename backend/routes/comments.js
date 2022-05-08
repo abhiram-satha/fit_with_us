@@ -15,5 +15,27 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/:id", (req, res) => {
+    const comment = req.body;
+    console.log(req.body)
+    const values = [
+      req.params.id,
+      comment.post_id,
+      comment.message,
+      new Date()
+    ];
+
+    const query = `INSERT INTO comment(user_id, post_id, message, date) VALUES ($1, $2, $3, $4)`;
+
+    console.log(query);
+    db.query(query, values)
+      .then((data) => {
+        res.send("Comment added");
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
   return router;
 };

@@ -1,7 +1,8 @@
 import RecipeCard from "./RecipeCard";
 import Weighthistorygraph from "./Weighthistorygraph";
 
-export default function Homepage({ recipes, userWeight }) {
+export default function Homepage({ users, recipes, userWeight, updateWeight }) {
+
   return (
     <>
       {recipes[0].length === 1 ? (
@@ -12,7 +13,7 @@ export default function Homepage({ recipes, userWeight }) {
       {userWeight.length === 0 ? (
         "Loading"
       ) : (
-        <Weighthistorygraph weights={userWeight} className="card" />
+        <Weighthistorygraph weights={userWeight} className="card" updateWeight={updateWeight}/>
       )}
     </>
   );
