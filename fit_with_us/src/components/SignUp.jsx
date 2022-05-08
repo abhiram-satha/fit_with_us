@@ -140,6 +140,12 @@ export default function Form(props) {
         name="gender"
         options={["Male", "Female", "Prefer not to disclose"]}
       />
+      <FormCategory
+        optionsName="dietary-choices"
+        name="dietaryRestrictions"
+        options={["No Eggs", "Vegetarian", "No Dairy"]}
+        size={true}
+      />
       <Button name="Submit" />
     </form>
   );

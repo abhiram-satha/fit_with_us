@@ -31,9 +31,18 @@ export default function FormCategory(props) {
 
   return (
     <div className="form-example">
-      <label htmlFor={props.name}>Enter your {categoryName}: </label>
+      <label htmlFor={props.name}>
+        Enter your {categoryName}{" "}
+        {categoryName.includes("weight") ? "(lb)" : null}
+        {categoryName.includes("height") ? "(cm)" : null}
+      </label>
       {inputList ? (
-        <select name={props.name} id={props.id ? props.id : props.name}>
+        <select
+          name={props.name}
+          id={props.id ? props.id : props.name}
+          size={props.size ? inputList.length : false}
+          multiple={props.size ? true : false}
+        >
           {inputList}
         </select>
       ) : (
