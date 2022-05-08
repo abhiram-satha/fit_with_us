@@ -30,13 +30,15 @@ export default function BottomNav() {
   const [weight, setWeight] = useState([]);
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     Promise.all([
-      axios.get("http://localhost:8080/"),
+      axios.get("https://api.edamam.com/api/recipes/v2?type=public&q=beef&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc&calories=100-500"),
       axios.get(`http://localhost:8080/api/weights/${userID}`),
       axios.get(`http://localhost:8080/api/posts/`),
       axios.get("http://localhost:8080/api/comments"),
+      axios.get(`http://localhost:8080/api/users/${userID}`),
     ])
       .then((all) => {
         // console.log([all[0].data["hits"]]);
@@ -44,6 +46,8 @@ export default function BottomNav() {
         setWeight(all[1].data["weights"]);
         setPosts(all[2].data);
         setComments(all[3].data.posts);
+        setUsers(all[4].data);
+
       })
       .catch((err) => console.log(err.message));
   }, []);
@@ -115,7 +119,7 @@ export default function BottomNav() {
     }
   }
 
-
+  console.log(users)
   return (
     <>
       BottomNav

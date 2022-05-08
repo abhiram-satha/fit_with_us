@@ -29,20 +29,20 @@ const postRoutes = require("./routes/posts");
 const commentRoutes = require("./routes/comments");
 
 //Mount all resource routes
-app.use("/api/user", userRoutes(db));
+app.use("/api/users", userRoutes(db));
 app.use("/api/weights", weightRoutes(db));
 app.use("/api/posts", postRoutes(db));
 app.use("/api/comments", commentRoutes(db));
 
 //Routes
-app.get("/", (req, res) => {
-  axios
-    .get(
-      "https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc&calories=100-500"
-    )
-    .then((response) => res.send(response.data))
-    .catch((err) => console.log(err));
-});
+// app.get("/", (req, res) => {
+//   axios
+//     .get(
+//       "https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc&calories=100-500"
+//     )
+//     .then((response) => res.send(response.data))
+//     .catch((err) => console.log(err));
+// });
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

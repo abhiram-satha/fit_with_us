@@ -6,16 +6,16 @@ import useLocalStorage from '../hooks/useLocalStorage';
 export default function RecipeCard({recipes}) {
   const [recipeRecord, setRecipeRecord] = useLocalStorage('recipe', localStorage.getItem('recipe') || 0);
 
-
+  const healthLabel = recipes[0][recipeRecord]['recipe']['healthLabels']
   const info = recipes[0][recipeRecord]['recipe']
-  // console.log(recipes[0])
+  console.log(healthLabel)
   
   const RecipeIngredientsArray = info.ingredients.map(ingredient => {
     return <RecipeIngredients ingredient={ingredient} size={info.yield}/>
   })
   // console.log(info.images.THUMBNAIL.url)
   return (
-    <>
+    <div className="row container">
     <h1>Recommended Recipe</h1>
     {recipeRecord !== 0 && <button onClick={()=>setRecipeRecord(prev=>prev-1)}>Back</button>}
     <img src={info.images.THUMBNAIL.url} />
@@ -25,8 +25,8 @@ export default function RecipeCard({recipes}) {
     <ul>
     {RecipeIngredientsArray}
     </ul>
-    <a href={info.url} target="_blank">Instructions</a>
+    <a href={info.url} target="_blank"><button>Instructions</button></a>
     
-    </>
+    </div>
   )
 }

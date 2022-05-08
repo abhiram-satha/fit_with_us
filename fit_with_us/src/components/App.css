@@ -40,3 +40,9 @@
 .card {
   border: solid 1px darkgray;
 }
+
+.container {
+  overflow-y: scroll;
+  height: 500px;
+  width: 50%;
+}

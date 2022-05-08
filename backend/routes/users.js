@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+  router.get("/:id", (req, res) => {
+    db.query(`SELECT * FROM users
+              WHERE id = ${req.params.id};`)
       .then((data) => {
         const users = data.rows;
         res.send({ users });
