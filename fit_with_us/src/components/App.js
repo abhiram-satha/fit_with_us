@@ -1,5 +1,5 @@
 import "./App.css";
-import Form from "./Form";
+// import Form from "./Form";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useCookies, Cookies, withCookies } from "react-cookie";
@@ -55,7 +55,9 @@ const user_id = localStorage.getItem('user');
 
   return (
     <div className="App">
-      {!user_id ? <Form /> :<BottomNav/>}
+      <BottomNav />
+ 
+      {/* {!user_id ? <Form /> :<BottomNav/>}
       
       {loggedIn ? (
         <>
@@ -84,7 +86,7 @@ const user_id = localStorage.getItem('user');
           <Button onClick={loginUser} name="Login" />
           <Button onClick={signUserUp} name="Sign Up!" />
         </>
-      )}
+      )} */}
     </div>
   );
 }

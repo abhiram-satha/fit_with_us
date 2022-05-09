@@ -38,7 +38,7 @@ export default function BottomNav() {
       axios.get(`http://localhost:8080/api/weights/${userID}`),
       axios.get(`http://localhost:8080/api/posts/`),
       axios.get("http://localhost:8080/api/comments"),
-      axios.get(`http://localhost:8080/api/users/${userID}`),
+      axios.get(`http://localhost:8080/api/user/${userID}`),
     ])
       .then((all) => {
         // console.log([all[0].data["hits"]]);
