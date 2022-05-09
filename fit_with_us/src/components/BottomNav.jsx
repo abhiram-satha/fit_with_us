@@ -174,10 +174,7 @@ export default function BottomNav() {
   // console.log(users)
   return (
     <>
-      BottomNav
       <Router>
-        
-
         <Routes>
           <Route
             path={`/homepage`}
@@ -202,11 +199,12 @@ export default function BottomNav() {
             }
           />
         </Routes>
-
-        <nav>
-          <Link to='/posts/'>Community</Link>
-          <Link to="/homepage">Your Profile</Link>
-        </nav>
+        <div class="tabs is-centered is-medium is-fullwidth is-fixed-bottom">
+            <ul>
+              <li><Link to="/homepage">You</Link></li>
+              <li><Link to="/posts">Us</Link></li>
+            </ul>
+       </div>
       </Router>
     </>
   );
