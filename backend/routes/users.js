@@ -14,8 +14,7 @@ module.exports = (db) => {
   });
 
   router.post("/", (req, res) => {
-    const userInfo = req.body;
-    console.log(userInfo)
+    const userInfo = req.body;ß
     const values = [
       userInfo.email,
       userInfo.password,
