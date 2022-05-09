@@ -4,11 +4,12 @@ import useLocalStorage from '../hooks/useLocalStorage';
 
 
 export default function RecipeCard({recipes}) {
+  console.log(recipes)
   const [recipeRecord, setRecipeRecord] = useLocalStorage('recipe', localStorage.getItem('recipe') || 0);
 
   const healthLabel = recipes[0][recipeRecord]['recipe']['healthLabels']
   const info = recipes[0][recipeRecord]['recipe']
-  console.log(healthLabel)
+  // console.log(healthLabel)
   
   const RecipeIngredientsArray = info.ingredients.map(ingredient => {
     return <RecipeIngredients ingredient={ingredient} size={info.yield}/>

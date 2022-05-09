@@ -16,6 +16,9 @@ INSERT INTO comment(user_id, post_id, message, date) VALUES (2, 1, 'OMG Congrats
 INSERT INTO comment(user_id, post_id, message, date) VALUES (1, 2, 'You got this','2022-05-02');
 
 INSERT INTO dietary_restrictions(restriction) VALUES ('Dairy-Free');
-INSERT INTO dietary_restrictions(restriction) VALUES ('Vegetarian');
+INSERT INTO dietary_restrictions(restriction) VALUES ('Egg-Free');
+INSERT INTO dietary_restrictions(restriction) VALUES ('Peanut-Free');
 
 INSERT INTO user_restrictions(user_id, dietary_restrictions_id) VALUES (1,1);
+INSERT INTO user_restrictions(user_id, dietary_restrictions_id) VALUES (1,2);
+INSERT INTO user_restrictions(user_id, dietary_restrictions_id) VALUES (1,3);

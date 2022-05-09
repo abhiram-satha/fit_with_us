@@ -31,23 +31,50 @@ export default function BottomNav() {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
   const [users, setUsers] = useState([]);
+  const [dietRestrictions, setDietRestrictions] = useState([]);
+
+  const makeArrayOfRestrictions = (apiArray) => {
+
+    // if (apiArray.length === 0) {
+    //   return ;
+    // }
+    let arrayOfRestrictions = [];
+    // &health=dairy-free&health=egg-free
+
+    let dietRestrictionString = ''
+
+    for (let i = 0; i < apiArray.length; i++) {
+      // arrayOfRestrictions.push(apiArray[i]['restriction'])
+      let lowerCaseRestriction = apiArray[i]['restriction'].toLowerCase()
+      dietRestrictionString += `&health=${lowerCaseRestriction}`
+    }
+    // console.log(dietRestrictionString)
+    return dietRestrictionString
+
+
+  }
 
   useEffect(() => {
-    Promise.all([
-      axios.get("https://api.edamam.com/api/recipes/v2?type=public&q=vegan&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc&calories=100-500"),
-      axios.get(`http://localhost:8080/api/weights/${userID}`),
-      axios.get(`http://localhost:8080/api/posts/`),
-      axios.get("http://localhost:8080/api/comments"),
-      axios.get(`http://localhost:8080/api/user/${userID}`),
-    ])
+    Promise.all([axios.get(`http://localhost:8080/api/dietary_restrictions/${userID}`)])
+    // .then(response =>  response[0]['data']['users'])
+    // .then(result => console.log(result[0]['data']['users']))
+    .then(result => makeArrayOfRestrictions(result[0]['data']['users']))
+    .then(dietRestrictionComment => {
+      return Promise.all([
+        axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${dietRestrictionComment}&mealType=Dinner&dishType=Main%20course`),
+        axios.get(`http://localhost:8080/api/weights/${userID}`),
+        axios.get(`http://localhost:8080/api/posts/`),
+        axios.get("http://localhost:8080/api/comments"),
+        axios.get(`http://localhost:8080/api/user/${userID}`),
+      ])
+    })
       .then((all) => {
-        // console.log([all[0].data["hits"]]);
+        // console.log(all);
         setRecipes([all[0].data["hits"]]);
         setWeight(all[1].data["weights"]);
         setPosts(all[2].data);
         setComments(all[3].data.posts);
         setUsers(all[4].data);
-
       })
       .catch((err) => console.log(err.message));
   }, []);
@@ -187,6 +214,7 @@ export default function BottomNav() {
                 userWeight={weight}
                 updateWeight={updateWeight}
                 recipes={recipes}
+                // dietRestrictions={dietRestrictions.users[0]}
               />
             }
           />
