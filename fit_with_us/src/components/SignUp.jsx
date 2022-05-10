@@ -18,8 +18,13 @@ export default function Form(props) {
   const [errorUsername, setErrorUsername] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [currentOptionsValue, setCurrentOptionsValues] = useState(["None"]);
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+  const [userUsername, setUsername] = useState("");
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log("Use Effect occuring!");
+  }, []);
 
   //Variables
   const gender = [];
@@ -121,34 +126,32 @@ export default function Form(props) {
         setErrorPassword("The passwords do not match");
       }
 
-      console.log(errorUsername);
-      console.log(errorEmail);
-      console.log(errorPassword);
+      console.log("Current States:", errorUsername, errorEmail, errorPassword);
 
-      if (!errorUsername && !errorEmail && !errorPassword) {
-        console.log("posted");
-        await axios.post("http://localhost:8080/api/user", {
-          email,
-          password,
-          username,
-          currentWeight,
-          goalWeight,
-          height,
-          age,
-        });
-      }
-      const response = await axios.get("http://localhost:8080/api/user", {
-        params,
-      });
+      // if (!errorUsername && !errorEmail && !errorPassword) {
+      //   console.log("posted");
+      //   await axios.post("http://localhost:8080/api/user", {
+      //     email,
+      //     password,
+      //     username,
+      //     currentWeight,
+      //     goalWeight,
+      //     height,
+      //     age,
+      //   });
+      // }
+      // const response = await axios.get("http://localhost:8080/api/user", {
+      //   params,
+      // });
 
-      console.log(response);
-      //Returns user ID
-      const userData = response.data.users;
-      const user = userData[0];
-      console.log(user);
-      if (!errorEmail && !errorUsername && !errorPassword) {
-        props.loggedInUser(user.id);
-      }
+      // console.log(response);
+      // //Returns user ID
+      // const userData = response.data.users;
+      // const user = userData[0];
+      // console.log(user);
+      // if (!errorEmail && !errorUsername && !errorPassword) {
+      //   props.loggedInUser(user.id);
+      // }
     });
 
     // //Check Username
