@@ -21,15 +21,15 @@ export default function Form(props) {
   const [currentOptionsValue, setCurrentOptionsValues] = useState(["None"]);
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [userUsername, setUsername] = useState("");
+  const [userUsername, setUserUsername] = useState("");
 
   useEffect(() => {
-    const userInformation = getUserInformation();
-    if (!errorEmail && !errorUsername && !errorPassword) {
-      console.log("Information can be used");
-    } else {
-      console.log("Something is wrong");
-    }
+    // const userInformation = getUserInformation();
+    // if (!errorEmail && !errorUsername && !errorPassword) {
+    //   console.log("Information can be used");
+    // } else {
+    //   console.log("Something is wrong");
+    // }
   }, []);
 
   //Variables
@@ -48,7 +48,7 @@ export default function Form(props) {
     return await axios.get("http://localhost:8080/api/allUsers");
   };
 
-  const checkForInformation = async (usersDatabase, value, userColumn) => {
+  const checkForInformation = (usersDatabase, value, userColumn) => {
     for (const user of usersDatabase) {
       if (user[userColumn] === value) {
         return true;
@@ -57,11 +57,11 @@ export default function Form(props) {
     return false;
   };
 
-  const checkEmail = (params) => {
-    new Promise((resolve, reject) => {
-      resolve(axios.get("http://localhost:8080/api/usernameCheck", { params }));
-    });
-  };
+  // const checkEmail = async (params) => {
+  //   return await axios.get("http://localhost:8080/api/usernameCheck", {
+  //     params,
+  //   });
+  // };
 
   function addToOptionsList(e) {
     const numberOfOptions = currentDietaryRestrictions
@@ -77,7 +77,7 @@ export default function Form(props) {
     setCurrentOptionsValues(selectedList);
   }
 
-  const submitUserInformation = (e) => {
+  const submitUserInformation = async (e) => {
     //Reset States
     setErrorEmail(false);
     setErrorUsername(false);
@@ -101,63 +101,25 @@ export default function Form(props) {
     const gender = e.target[8].value;
     const dietaryRestrictions = currentOptionsValue;
 
-    //Grab User Information
-    getUserInformation().then(async (result) => {
-      //Check username
-      const usersDatabase = result.data.users;
-      const userExists = await checkForInformation(
-        usersDatabase,
+    await getUserInformation().then((response) => {
+      const userDatabase = response.data.users;
+      console.log(userDatabase);
+      const emailExists = checkForInformation(userDatabase, email, "email");
+      const usernameExists = checkForInformation(
+        userDatabase,
         username,
         "username"
       );
-      const emailExists = await checkForInformation(
-        usersDatabase,
-        email,
-        "email"
-      );
-      const passwordsMatch = await checkEqualPasswords(
-        password,
-        passwordConfirmation
-      );
 
-      if (userExists) {
-        setErrorUsername("The username already exists");
-      }
+      console.log("Values", emailExists, usernameExists);
 
       if (emailExists) {
-        setErrorEmail("The email already exists");
+        setErrorEmail("The email exists");
       }
 
-      if (!passwordsMatch) {
-        setErrorPassword("The passwords do not match");
+      if (usernameExists) {
+        setErrorUsername("The username exists");
       }
-
-      console.log("Current States:", errorUsername, errorEmail, errorPassword);
-
-      // if (!errorUsername && !errorEmail && !errorPassword) {
-      //   console.log("posted");
-      //   await axios.post("http://localhost:8080/api/user", {
-      //     email,
-      //     password,
-      //     username,
-      //     currentWeight,
-      //     goalWeight,
-      //     height,
-      //     age,
-      //   });
-      // }
-      // const response = await axios.get("http://localhost:8080/api/user", {
-      //   params,
-      // });
-
-      // console.log(response);
-      // //Returns user ID
-      // const userData = response.data.users;
-      // const user = userData[0];
-      // console.log(user);
-      // if (!errorEmail && !errorUsername && !errorPassword) {
-      //   props.loggedInUser(user.id);
-      // }
     });
 
     // //Check Username
@@ -289,6 +251,12 @@ export default function Form(props) {
 
   return (
     <>
+      <p>
+        {userEmail}
+        {userPassword}
+        {userUsername}
+      </p>
+
       {userEmail && userPassword && userUsername ? (
         <Loading message="Signing In" />
       ) : (
