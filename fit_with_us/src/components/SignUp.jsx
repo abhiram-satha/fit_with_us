@@ -3,6 +3,7 @@ import FormCategory from "./FormCategory";
 import Button from "./Button";
 import axios from "axios";
 import Error from "./Error";
+import Loading from "./Loading";
 
 export default function Form(props) {
   //Variables
@@ -23,7 +24,12 @@ export default function Form(props) {
   const [userUsername, setUsername] = useState("");
 
   useEffect(() => {
-    console.log("Use Effect occuring!");
+    const userInformation = getUserInformation();
+    if (!errorEmail && !errorUsername && !errorPassword) {
+      console.log("Information can be used");
+    } else {
+      console.log("Something is wrong");
+    }
   }, []);
 
   //Variables
@@ -282,36 +288,42 @@ export default function Form(props) {
   };
 
   return (
-    <form
-      onSubmit={submitUserInformation}
-      action="http://localhost:8080/api/user"
-      method="POST"
-    >
-      <FormCategory name="email" type="email" />
-      {errorEmail ? <Error errorMessages={errorEmail} /> : null}
-      <FormCategory name="password" type="password" />
-      <FormCategory name="passwordConfirmation" type="password" />
-      {errorPassword ? <Error errorMessages={errorPassword} /> : null}
-      <FormCategory name="username" type="text" />
-      {errorUsername ? <Error errorMessages={errorUsername} /> : null}
-      <FormCategory name="currentWeight" type="number" />
-      <FormCategory name="goalWeight" type="number" />
-      <FormCategory name="height" type="number" />
-      <FormCategory name="age" type="number" />
-      <FormCategory
-        optionsName="gender-choices"
-        name="gender"
-        options={["-----", "Male", "Female", "Prefer not to disclose"]}
-      />
-      <FormCategory
-        onChange={addToOptionsList}
-        optionsName="dietary-choices"
-        name="dietaryRestrictions"
-        options={currentDietaryRestrictions}
-        size={true}
-        value={currentOptionsValue}
-      />
-      <Button name="Submit" />
-    </form>
+    <>
+      {userEmail && userPassword && userUsername ? (
+        <Loading message="Signing In" />
+      ) : (
+        <form
+          onSubmit={submitUserInformation}
+          action="http://localhost:8080/api/user"
+          method="POST"
+        >
+          <FormCategory name="email" type="email" />
+          {errorEmail ? <Error errorMessages={errorEmail} /> : null}
+          <FormCategory name="password" type="password" />
+          <FormCategory name="passwordConfirmation" type="password" />
+          {errorPassword ? <Error errorMessages={errorPassword} /> : null}
+          <FormCategory name="username" type="text" />
+          {errorUsername ? <Error errorMessages={errorUsername} /> : null}
+          <FormCategory name="currentWeight" type="number" />
+          <FormCategory name="goalWeight" type="number" />
+          <FormCategory name="height" type="number" />
+          <FormCategory name="age" type="number" />
+          <FormCategory
+            optionsName="gender-choices"
+            name="gender"
+            options={["-----", "Male", "Female", "Prefer not to disclose"]}
+          />
+          <FormCategory
+            onChange={addToOptionsList}
+            optionsName="dietary-choices"
+            name="dietaryRestrictions"
+            options={currentDietaryRestrictions}
+            size={true}
+            value={currentOptionsValue}
+          />
+          <Button name="Submit" />
+        </form>
+      )}
+    </>
   );
 }
