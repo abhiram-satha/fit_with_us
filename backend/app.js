@@ -41,6 +41,7 @@ app.use("/api/allUsers", allUsersRoutes(db));
 app.use("/api/weights", weightRoutes(db));
 app.use("/api/posts", postRoutes(db));
 app.use("/api/comments", commentRoutes(db));
+app.use("/api/dietary_restrictions", dietary_restrictions(db));
 app.use("/api/user_preferences", user_preferences(db));
 
 
