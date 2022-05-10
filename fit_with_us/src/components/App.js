@@ -54,9 +54,7 @@ const user_id = localStorage.getItem('user');
 
   return (
     <div className="App">
-      {/* {!user_id ? <Form /> :<BottomNav/>} */}
-      
-      {loggedIn ? (
+      {!user_id ? loggedIn ? (
         <>
           <TopNav loggedOutUser={loggedOutUser} />
           <br />
@@ -83,7 +81,7 @@ const user_id = localStorage.getItem('user');
           <Button onClick={loginUser} name="Login" />
           <Button onClick={signUserUp} name="Sign Up!" />
         </>
-      )}
+       ) :<BottomNav/>}
     </div>
   );
 }

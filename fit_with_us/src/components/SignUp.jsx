@@ -152,6 +152,10 @@ export default function SignUp(props) {
 //       .catch((err) => console.log(err.message));
 //   };
 
+//   // const validate = () => {
+
+//   // }
+
 //   return (
 // <div class="column is-two-thirds">
 //     {/* <form onSubmit={submitUserInformation} action="http://localhost:8080/api/user" method="POST"> */}
@@ -214,10 +218,10 @@ export default function SignUp(props) {
 //               <input class="input" name="age" id="age" type="number" maxlength="4" placeholder="YYYY"/>
 //             </div>
 //             <div class="control">
-//               <input class="input" id="month" maxlength="2" placeholder="MM"/>
+//               <input class="input" id="month" type="number" maxlength="2" placeholder="MM"/>
 //             </div>
 //             <div class="control">
-//               <input class="input" id="day" maxlength="2" placeholder="DD"/>
+//               <input class="input" id="day" type="number" maxlength="2" placeholder="DD"/>
 //             </div>
 //           </div>
 //           <div class="field">
