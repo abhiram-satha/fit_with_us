@@ -5,8 +5,8 @@ import useLocalStorage from '../hooks/useLocalStorage';
 
 export default function RecipeCard({users, recipes}) {
 
-  const {goal_weight, current_weight} = users
-  console.log(users)
+  const {goal_weight, current_weight} = users.users[0]
+  // console.log("1", users.users[0])
 
   const [recipeRecord, setRecipeRecord] = useLocalStorage('recipe', localStorage.getItem('recipe') || 0);
 

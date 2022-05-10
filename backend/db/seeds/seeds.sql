@@ -24,12 +24,12 @@ INSERT INTO user_restrictions(user_id, dietary_restrictions_id) VALUES (1,1);
 INSERT INTO user_restrictions(user_id, dietary_restrictions_id) VALUES (1,2);
 INSERT INTO user_restrictions(user_id, dietary_restrictions_id) VALUES (1,3);
 
-INSERT INTO recipe_category(category) VALUES ('Chicken');
-INSERT INTO recipe_category(category) VALUES ('Fish');
-INSERT INTO recipe_category(category) VALUES ('Beef');
-INSERT INTO recipe_category(category) VALUES ('Pork');
-INSERT INTO recipe_category(category) VALUES ('Vegetarian');
-INSERT INTO recipe_category(category) VALUES ('Vegan');
+INSERT INTO recipe_category(category) VALUES ('chicken');
+INSERT INTO recipe_category(category) VALUES ('fish');
+INSERT INTO recipe_category(category) VALUES ('beef');
+INSERT INTO recipe_category(category) VALUES ('pork');
+INSERT INTO recipe_category(category) VALUES ('vegetarian');
+INSERT INTO recipe_category(category) VALUES ('vegan');
 
 INSERT INTO user_preferences(user_id, recipe_category_id) VALUES (1, 1);
 INSERT INTO user_preferences(user_id, recipe_category_id) VALUES (1, 2);

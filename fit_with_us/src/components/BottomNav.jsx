@@ -33,6 +33,7 @@ export default function BottomNav() {
   const [users, setUsers] = useState([]);
   const [dietRestrictions, setDietRestrictions] = useState([]);
 
+  let string =""
   const makeArrayOfRestrictions = (apiArray) => {
 
     if (apiArray.length === 0) {
@@ -55,13 +56,26 @@ export default function BottomNav() {
   }
 
   useEffect(() => {
-    Promise.all([axios.get(`http://localhost:8080/api/dietary_restrictions/${userID}`)])
+    Promise.all([
+      axios.get(`http://localhost:8080/api/dietary_restrictions/${userID}`),
+      axios.get(`http://localhost:8080/api/user_preferences/${userID}`)
+  ])
     // .then(response =>  response[0]['data']['users'])
     // .then(result => console.log(result[0]['data']['users']))
-    .then(result => makeArrayOfRestrictions(result[0]['data']['users']))
+    .then(result => {
+      // console.log(result[1])
+      string  += makeArrayOfRestrictions(result[0]['data']['users'])
+    })
+    .then(answer => {
+      return Promise.all([
+        axios.get(`http://localhost:8080/api/user_preferences/${userID}`)
+    ])
+    }
+    )
+    .then(response => console.log(response[0]['data']))
     .then(dietRestrictionComment => {
       return Promise.all([
-        axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${dietRestrictionComment}&mealType=Dinner&dishType=Main%20course&calories=100-600`),
+        axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&calories=100-600`),
         axios.get(`http://localhost:8080/api/weights/${userID}`),
         axios.get(`http://localhost:8080/api/posts/`),
         axios.get("http://localhost:8080/api/comments"),
