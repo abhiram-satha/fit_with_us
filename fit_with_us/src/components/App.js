@@ -1,5 +1,4 @@
 import "./App.css";
-import Form from "./Form";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useCookies, Cookies, withCookies } from "react-cookie";
@@ -20,14 +19,14 @@ const user_id = localStorage.getItem('user');
   //Set Cookies
   const [cookies, setCookie, removeCookie] = useCookies();
 
-  useEffect(() => {
-    const userID = cookies.id;
-    if (userID) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const userID = cookies.id;
+  //   if (userID) {
+  //     setLoggedIn(true);
+  //   } else {
+  //     setLoggedIn(false);
+  //   }
+  // }, []);
 
   function loggedInUser(id) {
     setCookie("id", id, { path: "/" });
@@ -55,7 +54,7 @@ const user_id = localStorage.getItem('user');
 
   return (
     <div className="App">
-      {!user_id ? <Form /> :<BottomNav/>}
+      {/* {!user_id ? <Form /> :<BottomNav/>} */}
       
       {loggedIn ? (
         <>

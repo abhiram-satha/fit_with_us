@@ -18,17 +18,16 @@ module.exports = (db) => {
 
   router.post("/", (req, res) => {
     const userInfo = req.body;
-    console.log(userInfo);
-    const values = [
+        const values = [
       userInfo.email,
       userInfo.password,
       userInfo.username,
       userInfo.currentWeight,
       userInfo.goalWeight,
       userInfo.height,
-      userInfo.age,
+      2022 - userInfo.age,
     ];
-
+    console.log(values)
     const query = `INSERT INTO users(email, password, username, current_weight, goal_weight, height, age, gender, dietary_restrictions) VALUES ($1, $2, $3, $4, $5, $6, $7, null, null)`;
     db.query(query, values)
       .then((data) => {

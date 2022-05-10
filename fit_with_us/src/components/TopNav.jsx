@@ -60,7 +60,7 @@ export default function TopNav(props) {
     </div>
   </nav>
       {props.backButton ? (
-        <Button onClick={props.backButton} class="back" name="Back" />
+        <Button onClick={props.backButton} className="back" name="Back" />
       ) : null}
       {props.loggedOutUser ? (
         <Button onClick={props.loggedOutUser} name="Log out" />
