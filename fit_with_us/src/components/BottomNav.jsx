@@ -4,6 +4,7 @@ import Posts from "./Posts";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useAlert } from 'react-alert'
+import RecipeDetails from "./RecipeDetails";
 
 export default function BottomNav() {
 
@@ -198,6 +199,11 @@ export default function BottomNav() {
               )
             }
           />
+          <Route 
+            path="recipe-details"
+            element={
+              <RecipeDetails />
+            }/>
         </Routes>
         <div class="tabs is-centered is-medium is-fullwidth is-fixed-bottom">
             <ul>

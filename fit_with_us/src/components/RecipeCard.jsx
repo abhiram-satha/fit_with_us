@@ -1,6 +1,7 @@
-import RecipeIngredients from "./RecipeIngredients"
 import {useState} from 'react'
 import useLocalStorage from '../hooks/useLocalStorage';
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import RecipeDetails from "./RecipeDetails";
 
 
 export default function RecipeCard({recipes}) {
@@ -8,11 +9,8 @@ export default function RecipeCard({recipes}) {
 
   const healthLabel = recipes[0][recipeRecord]['recipe']['healthLabels']
   const info = recipes[0][recipeRecord]['recipe']
-  console.log(healthLabel)
+  console.log(info)
   
-  const RecipeIngredientsArray = info.ingredients.map(ingredient => {
-    return <RecipeIngredients ingredient={ingredient} size={info.yield}/>
-  })
   // console.log(info.images.THUMBNAIL.url)
   return (
     // <div className="row container">
@@ -30,6 +28,7 @@ export default function RecipeCard({recipes}) {
     // </div>
         <div class="column">
           <div class="card">
+            <Link to="/recipe-details">
             <div class="card-image">
                 <figure class="image is-square">
                   <img src={info.images.REGULAR.url} alt="Placeholder image"/>
@@ -41,6 +40,7 @@ export default function RecipeCard({recipes}) {
                     <p class="title is-4">{info.label}</p>
                   </div>
           </div>
+          </Link>
         </div>
     </div>
   );
