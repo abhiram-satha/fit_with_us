@@ -7,7 +7,7 @@ import { useAlert } from 'react-alert'
 
 export default function BottomNav() {
 
-  localStorage.setItem('user', 1)
+  localStorage.setItem('user', 3)
   let userID = localStorage.getItem('user')
   const [recipes, setRecipes] = useState([
     [
@@ -35,9 +35,9 @@ export default function BottomNav() {
 
   const makeArrayOfRestrictions = (apiArray) => {
 
-    // if (apiArray.length === 0) {
-    //   return ;
-    // }
+    if (apiArray.length === 0) {
+      return "";
+    }
     let arrayOfRestrictions = [];
     // &health=dairy-free&health=egg-free
 
@@ -61,7 +61,7 @@ export default function BottomNav() {
     .then(result => makeArrayOfRestrictions(result[0]['data']['users']))
     .then(dietRestrictionComment => {
       return Promise.all([
-        axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${dietRestrictionComment}&mealType=Dinner&dishType=Main%20course`),
+        axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${dietRestrictionComment}&mealType=Dinner&dishType=Main%20course&calories=100-600`),
         axios.get(`http://localhost:8080/api/weights/${userID}`),
         axios.get(`http://localhost:8080/api/posts/`),
         axios.get("http://localhost:8080/api/comments"),
@@ -222,7 +222,7 @@ export default function BottomNav() {
             path="/posts"
             element={
               posts.length === 0 ? (
-                "Loading"
+                ""
               ) : (
                 <Posts posts={posts} users={users} comments={comments} newPost={newPost} newComment={newComment}/>
                 // <Posts posts={posts} comments={comments} onClick={createPost}/>

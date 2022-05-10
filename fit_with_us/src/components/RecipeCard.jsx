@@ -3,8 +3,11 @@ import {useState} from 'react'
 import useLocalStorage from '../hooks/useLocalStorage';
 
 
-export default function RecipeCard({recipes}) {
-  console.log(recipes)
+export default function RecipeCard({users, recipes}) {
+
+  const {goal_weight, current_weight} = users
+  console.log(users)
+
   const [recipeRecord, setRecipeRecord] = useLocalStorage('recipe', localStorage.getItem('recipe') || 0);
 
   const healthLabel = recipes[0][recipeRecord]['recipe']['healthLabels']
@@ -12,7 +15,7 @@ export default function RecipeCard({recipes}) {
   // console.log(healthLabel)
   
   const RecipeIngredientsArray = info.ingredients.map(ingredient => {
-    return <RecipeIngredients ingredient={ingredient} size={info.yield}/>
+    return <RecipeIngredients ingredient={ingredient} size={info.yield} users={users}/>
   })
   // console.log(info.images.THUMBNAIL.url)
   return (
@@ -22,7 +25,7 @@ export default function RecipeCard({recipes}) {
     <img src={info.images.THUMBNAIL.url} />
     {recipeRecord !== 19 && <button onClick={()=>setRecipeRecord(prev=>prev+1)}>Next</button>}
     <p>{info.label}</p>
-    <p>Calories Per Serving: {Math.floor(info.calories / info.yield)}</p>
+    <p>Calories Per Serving: {goal_weight < current_weight ? Math.floor(info.calories / info.yield) : Math.floor(3 *info.calories / (info.yield))}</p>
     <ul>
     {RecipeIngredientsArray}
     </ul>

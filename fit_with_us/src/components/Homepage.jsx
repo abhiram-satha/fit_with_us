@@ -8,7 +8,7 @@ export default function Homepage({users, recipes, userWeight, updateWeight }) {
       {recipes[0].length === 1 ? (
         "Loading"
       ) : (
-        <RecipeCard recipes={recipes} className="card" />
+        <RecipeCard key={users.id} users={users} recipes={recipes} className="card" />
       )}
       {userWeight.length === 0 ? (
         "Loading"
