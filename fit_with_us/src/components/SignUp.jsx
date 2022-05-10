@@ -37,7 +37,7 @@ export default function Form(props) {
   const dietaryRestrictions = [];
 
   //Helper Functions
-  const checkEqualPasswords = async (password, passwordConfirmation) => {
+  const checkEqualPasswords = (password, passwordConfirmation) => {
     if (password === passwordConfirmation) {
       return true;
     }
@@ -110,8 +110,12 @@ export default function Form(props) {
         username,
         "username"
       );
+      const equalPasswords = checkEqualPasswords(
+        password,
+        passwordConfirmation
+      );
 
-      console.log("Values", emailExists, usernameExists);
+      console.log("Values", emailExists, usernameExists, equalPasswords);
 
       if (emailExists) {
         setErrorEmail("The email exists");
@@ -119,6 +123,10 @@ export default function Form(props) {
 
       if (usernameExists) {
         setErrorUsername("The username exists");
+      }
+
+      if (!equalPasswords) {
+        setErrorPassword("The passwords do not match");
       }
     });
 
