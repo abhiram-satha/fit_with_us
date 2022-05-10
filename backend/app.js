@@ -31,6 +31,7 @@ const postRoutes = require("./routes/posts");
 const commentRoutes = require("./routes/comments");
 const userRoutes = require("./routes/user");
 const dietary_restrictions = require("./routes/dietary_restrictions");
+const user_preferences = require("./routes/user_preferences");
 
 //Mount all resource routes
 app.use("/api/user", userRoutes(db));
@@ -40,7 +41,7 @@ app.use("/api/allUsers", allUsersRoutes(db));
 app.use("/api/weights", weightRoutes(db));
 app.use("/api/posts", postRoutes(db));
 app.use("/api/comments", commentRoutes(db));
-app.use("/api/dietary_restrictions", dietary_restrictions(db));
+app.use("/api/user_preferences", user_preferences(db));
 
 
 //Routes
