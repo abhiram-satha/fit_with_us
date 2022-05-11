@@ -7,7 +7,7 @@ import { useAlert } from 'react-alert'
 
 export default function BottomNav() {
 
-  localStorage.setItem('user', 3)
+  localStorage.setItem('user', 1)
   let userID = localStorage.getItem('user')
   const [recipes, setRecipes] = useState([
     [
@@ -52,6 +52,28 @@ export default function BottomNav() {
     // console.log(dietRestrictionString)
     return dietRestrictionString
 
+  }
+
+  const randomCategorySelector = (apiArray) => {
+    // console.log(apiArray)
+    if (apiArray.length === 0) {
+      return "";
+    }
+    let categoryArray = [];
+    // &health=dairy-free&health=egg-free
+
+    let categoryString = ''
+
+    for (let i = 0; i < apiArray.length; i++) {
+      // arrayOfRestrictions.push(apiArray[i]['restriction'])
+      categoryArray.push(apiArray[i]['category'].toLowerCase())
+    }
+    // console.log(dietRestrictionString)
+    // console.log(categoryArray)
+
+    let randomNumber = Math.floor(Math.random() * categoryArray.length)
+
+    return categoryArray[randomNumber]
 
   }
 
@@ -70,12 +92,11 @@ export default function BottomNav() {
       return Promise.all([
         axios.get(`http://localhost:8080/api/user_preferences/${userID}`)
     ])
-    }
-    )
-    .then(response => console.log(response[0]['data']))
-    .then(dietRestrictionComment => {
+    })
+    .then(response => randomCategorySelector(response[0]['data']['users']))
+    .then(categorySelection => {
       return Promise.all([
-        axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&calories=100-600`),
+        axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&calories=100-600`),
         axios.get(`http://localhost:8080/api/weights/${userID}`),
         axios.get(`http://localhost:8080/api/posts/`),
         axios.get("http://localhost:8080/api/comments"),
