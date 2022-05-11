@@ -1,5 +1,4 @@
 import "./App.css";
-import Form from "./Form";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useCookies, Cookies, withCookies } from "react-cookie";
@@ -10,7 +9,17 @@ import BottomNav from "./BottomNav";
 import Button from "./Button";
 
 function App() {
-const user_id = localStorage.getItem('user');
+  // const [calories, setCalories] = useState();
+
+  // useEffect(() => {
+  //   Promise.all([axios.get("http://localhost:8080/")])
+  //     .then((all) => {
+  //       const calories = all[0].data["hits"][0]["recipe"]["calories"];
+  //       const quantityYield = all[0].data["hits"][0]["recipe"]["yield"];
+  //       setCalories([calories / quantityYield]);
+  //     })
+  //     .catch((err) => console.log(err.message));
+  // }, []);
 
   //User States
   const [loggedIn, setLoggedIn] = useState(false);
@@ -55,8 +64,8 @@ const user_id = localStorage.getItem('user');
 
   return (
     <div className="App">
-      {!user_id ? <Form /> :<BottomNav/>}
-      
+      {/* {!user_id ? <Form /> :<BottomNav/>} */}
+
       {loggedIn ? (
         <>
           <TopNav loggedOutUser={loggedOutUser} />

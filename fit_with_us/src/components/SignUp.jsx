@@ -27,16 +27,23 @@ export default function Form(props) {
 
   //Helper Functions
   const checkEqualPasswords = (password, passwordConfirmation) => {
-    if (password !== passwordConfirmation) {
+    if (password === passwordConfirmation) {
       return true;
     }
     return false;
   };
 
-  const checkEmail = (params) => {
-    new Promise((resolve, reject) => {
-      resolve(axios.get("http://localhost:8080/api/usernameCheck", { params }));
-    });
+  const getUserInformation = async () => {
+    return await axios.get("http://localhost:8080/api/allUsers");
+  };
+
+  const checkForInformation = (usersDatabase, value, userColumn) => {
+    for (const user of usersDatabase) {
+      if (user[userColumn] === value) {
+        return true;
+      }
+    }
+    return false;
   };
 
   function addToOptionsList(e) {
@@ -53,7 +60,7 @@ export default function Form(props) {
     setCurrentOptionsValues(selectedList);
   }
 
-  const submitUserInformation = (e) => {
+  const submitUserInformation = async (e) => {
     //Reset States
     setErrorEmail(false);
     setErrorUsername(false);
@@ -77,78 +84,73 @@ export default function Form(props) {
     const gender = e.target[8].value;
     const dietaryRestrictions = currentOptionsValue;
 
-    if (checkEqualPasswords(password, passwordConfirmation)) {
-      return setErrorPassword("The passwords do not match");
-    }
+    await getUserInformation()
+      .then(async (response) => {
+        const userDatabase = response.data.users;
+        console.log(userDatabase);
+        const emailExists = checkForInformation(userDatabase, email, "email");
+        const usernameExists = checkForInformation(
+          userDatabase,
+          username,
+          "username"
+        );
+        const equalPasswords = checkEqualPasswords(
+          password,
+          passwordConfirmation
+        );
 
-    //Check Username
-    Promise.all([
-      axios.get("http://localhost:8080/api/usernameCheck", { params }),
-    ])
-      .then((all) => {
-        const userData = all[0].data.users;
-        if (userData.length !== 0) {
-          throw setErrorUsername("The username already exists");
+        console.log("Values", emailExists, usernameExists, equalPasswords);
+
+        if (emailExists) {
+          setErrorEmail("The email exists");
         }
-      })
-      .then((all) => {
-        //Check Email
-        Promise.all([
-          axios.get("http://localhost:8080/api/emailCheck", { params }),
-        ]).then((all) => {
-          const userData = all[0].data.users;
-          if (userData.length !== 0) {
-            throw setErrorEmail("The email already exists");
-          }
-        });
+
+        if (usernameExists) {
+          setErrorUsername("The username exists");
+        }
+
+        if (!equalPasswords) {
+          setErrorPassword("The passwords do not match");
+        }
+
+        if (emailExists || usernameExists || !equalPasswords) {
+          throw new Error("Information not correct");
+        }
       })
       .then(async (all) => {
         //Makes entry into database
-        await axios.post("http://localhost:8080/api/user", {
-          email,
-          password,
-          username,
-          currentWeight,
-          goalWeight,
-          height,
-          age,
-          gender,
-          dietaryRestrictions,
+        Promise.all([
+          axios.post("http://localhost:8080/api/user", {
+            email,
+            password,
+            username,
+            currentWeight,
+            goalWeight,
+            height,
+            age,
+          }),
+        ]).then((all) => {
+          console.log(all);
         });
-
-        const response = await axios.get("http://localhost:8080/api/user", {
-          params,
-        });
-        //Returns user ID
-        const userData = response[0].data.users;
-        const user = userData[0];
-        if (
-          userData.length !== 0 &&
-          !errorEmail &&
-          !errorUsername &&
-          !errorPassword
-        ) {
-          props.loggedInUser(user.id);
-        }
       })
-      // .then((all) => {
-      //   Promise.all([
-      //     axios.get("http://localhost:8080/api/user", { params }),
-      //   ]).then((all) => {
-      //     //Returns user ID
-      //     const userData = all[0].data.users;
-      //     const user = userData[0];
-      //     if (
-      //       userData.length !== 0 &&
-      //       !errorEmail &&
-      //       !errorUsername &&
-      //       !errorPassword
-      //     ) {
-      //       props.loggedInUser(user.id);
-      //     }
-      //   });
-      // })
-      .catch((err) => console.log(err.message));
+      .then((all) => {
+        setTimeout(() => {
+          Promise.all([
+            axios.get("http://localhost:8080/api/user", { params }),
+            axios.get("http://localhost:8080/api/allUsers"),
+          ]).then((all) => {
+            //Returns user ID
+            const userData = all[0].data.users;
+            const user = userData[0];
+            const test = all[1].data;
+            console.log(test);
+            if (userData.length !== 0) {
+              props.loggedInUser(user.id);
+            }
+          });
+        }, 100);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -157,24 +159,13 @@ export default function Form(props) {
       action="http://localhost:8080/api/user"
       method="POST"
     >
-      {errorEmail || errorUsername || errorPassword ? (
-        <details>
-          <summary>Errors</summary>
-          <Error
-            errorMessages={
-              errorEmail
-                ? errorEmail
-                : errorUsername
-                ? errorUsername
-                : errorPassword
-            }
-          />
-        </details>
-      ) : null}
       <FormCategory name="email" type="email" />
+      {errorEmail ? <Error errorMessages={errorEmail} /> : null}
       <FormCategory name="password" type="password" />
       <FormCategory name="passwordConfirmation" type="password" />
+      {errorPassword ? <Error errorMessages={errorPassword} /> : null}
       <FormCategory name="username" type="text" />
+      {errorUsername ? <Error errorMessages={errorUsername} /> : null}
       <FormCategory name="currentWeight" type="number" />
       <FormCategory name="goalWeight" type="number" />
       <FormCategory name="height" type="number" />
