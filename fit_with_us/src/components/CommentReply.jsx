@@ -1,3 +1,5 @@
+import Button from "./Button"
+
 export default function CommentReply ({newComment, post_id}) {
   // console.log(post_id)
   return (
@@ -5,8 +7,14 @@ export default function CommentReply ({newComment, post_id}) {
       <details>
         <summary>Reply</summary>
           <form onSubmit={newComment}>
-              <input placeholder="Reply" type="text" name="commentReply" post_id={post_id}></input>
-              <input type="submit" name="Post Reply"></input>
+            <div class="field has-addons">
+              <div class="control">
+                <input class="input" placeholder="Say something nice!" type="text" name="commentReply" post_id={post_id}></input>
+              </div>
+              <div class="control">
+                <Button type="submit" name="Post Reply"/>
+              </div>
+            </div>
           </form>
       </details>
     </div>

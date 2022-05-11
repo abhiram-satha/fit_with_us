@@ -20,7 +20,7 @@ export default function Posts({posts, comments, newComment, newPost, users}) {
     // {parentPost}
     // </>
       <>
-        <Form onSubmit={(newPost)} type="text" label="Let us know how you're getting on!" placeholder="Create a New Post"/>
+        <Form onSubmit={(newPost)} inputType="textarea" type="text" label="Let us know how you're getting on!" placeholder="Create a New Post" buttonName="Submit" />
         {parentPost}
       </>
   );

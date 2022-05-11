@@ -55,12 +55,12 @@ export default function Homepage({ users, recipes, userWeight, updateWeight }) {
     <section class="section">
       <div class="columns is-two-thirds">
       {recipes[0].length === 1 ? (
-        "Loading"
+        <progress class="progress is-small is-primary" max="100">15%</progress>
       ) : (
         <RecipeCard recipes={recipes} className="card" />
       )}
       {userWeight.length === 0 ? (
-        "Loading"
+        <progress class="progress is-small is-primary" max="100">15%</progress>
       ) : (
         <Weighthistorygraph weights={userWeight} className="card" updateWeight={updateWeight}/>
       )}

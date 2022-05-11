@@ -27,7 +27,7 @@ export default function Thread({newComment, users,username, message, comments, p
           <div class="content">
            {message}
           </div>
-          
+          <CommentReply post_id={postID} newComment={newComment}/>
           {commentArray}
       </div>
     </div>
