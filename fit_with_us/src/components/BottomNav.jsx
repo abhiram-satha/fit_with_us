@@ -192,9 +192,12 @@ export default function BottomNav() {
             path="/posts"
             element={
               posts.length === 0 ? (
-                "Loading"
-              ) : (
-                <Posts posts={posts} users={users} comments={comments} newPost={newPost} newComment={newComment}/>
+                <progress class="progress is-small is-primary" max="100">15%</progress>
+              ) : (    <div class="columns">
+                   <div class="column is-two-thirds">
+                <Posts posts={posts} users={users} comments={comments} newPost={newPost} newComment={newComment} />
+                </div>
+                </div>
                 // <Posts posts={posts} comments={comments} onClick={createPost}/>
               )
             }
@@ -205,7 +208,7 @@ export default function BottomNav() {
               <RecipeDetails />
             }/>
         </Routes>
-        <div class="tabs is-centered is-medium is-fullwidth is-fixed-bottom">
+        <div class="tabs is-centered is-medium is-fullwidth">
             <ul>
               <li><Link to="/homepage">You</Link></li>
               <li><Link to="/posts">Us</Link></li>

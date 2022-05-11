@@ -1,6 +1,6 @@
-import axios from "axios"
 import Button from "./Button"
 import Thread from "./Thread"
+import Form from "./Form"
 
 export default function Posts({posts, comments, newComment, newPost, users}) {
   
@@ -12,12 +12,16 @@ export default function Posts({posts, comments, newComment, newPost, users}) {
 
   
   return (
-    <>
-    <form onSubmit={(newPost)}>
-    <input type="text" placeholder="Create a New Post" name="message"/>
-    <input type="submit" name="Create Post"/>
-    </form>
-    {parentPost}
-    </>
-  )
+    // <>
+    // <form onSubmit={(newPost)}>
+    // <input type="text" placeholder="Create a New Post" name="message"/>
+    // <input type="submit" name="Create Post"/>
+    // </form>
+    // {parentPost}
+    // </>
+      <>
+        <Form onSubmit={(newPost)} type="text" label="Let us know how you're getting on!" placeholder="Create a New Post"/>
+        {parentPost}
+      </>
+  );
 }
