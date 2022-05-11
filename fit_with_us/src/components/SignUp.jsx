@@ -3,7 +3,6 @@ import FormCategory from "./FormCategory";
 import Button from "./Button";
 import axios from "axios";
 import Error from "./Error";
-import Loading from "./Loading";
 
 export default function Form(props) {
   //Variables
@@ -150,7 +149,8 @@ export default function Form(props) {
             }
           });
         }, 100);
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
