@@ -7,8 +7,9 @@ import { useAlert } from 'react-alert'
 
 export default function BottomNav() {
 
-  localStorage.setItem('user', 1)
+  localStorage.setItem('user', 3)
   let userID = localStorage.getItem('user')
+
   const [recipes, setRecipes] = useState([
     [
       {
@@ -31,7 +32,6 @@ export default function BottomNav() {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
   const [users, setUsers] = useState([]);
-  const [dietRestrictions, setDietRestrictions] = useState([]);
 
   let string =""
   const makeArrayOfRestrictions = (apiArray) => {
@@ -178,58 +178,6 @@ export default function BottomNav() {
       .then(weights => setWeight(weights.data.weights))
       .then(response => event.target[0].value ="") 
       .catch(error => console.log(error))
-    }
-  }
-
-  const caloriesPerGender = (gender, age, goalPlan) => {
-    if(gender === "male" && age >= 20 && age < 30 && goalPlan > "Increase Weight") {
-      let calories = 3230;
-    } else if(gender === "male" && age >= 30 && age < 40 && goalPlan > "Increase Weight") {
-      let calories = 3153;
-    } else if(gender === "male" && age >= 40 && age < 50 && goalPlan > "Increase Weight") {
-      let calories = 3075;
-    } else if(gender === "male" && age >= 50 && goalPlan > "Increase Weight") {
-      let calories = 2998;
-    } else if(gender === "male" && age >= 20 && age < 30 && goalPlan > "Maintain Weight") {
-      let calories = 2806;
-    } else if(gender === "male" && age >= 30 && age < 40 && goalPlan > "Maintain Weight") {
-      let calories = 2728;
-    } else if(gender === "male" && age >= 40 && age < 50 && goalPlan > "Maintain Weight") {
-      let calories = 2651;
-    } else if(gender === "male" && age >= 50 && goalPlan > "Maintain Weight") {
-      let calories = 2573;
-    } else if(gender === "male" && age >= 20 && age < 30 && goalPlan > "Lose Weight") {
-      let calories = 2306;
-    } else if(gender === "male" && age >= 30 && age < 40 && goalPlan > "Lose Weight") {
-      let calories = 2228;
-    } else if(gender === "male" && age >= 40 && age < 50 && goalPlan > "Lose Weight") {
-      let calories = 2151;
-    } else if(gender === "male" && age >= 50 && goalPlan > "Lose Weight") {
-      let calories = 2073;
-    } else if (gender === "female" && age >= 20 && age < 30 && goalPlan > "Increase Weight") {
-      let calories = 2700;
-    } else if(gender === "female" && age >= 30 && age < 40 && goalPlan > "Increase Weight") {
-      let calories = 2500;
-    } else if(gender === "female" && age >= 40 && age < 50 && goalPlan > "Increase Weight") {
-      let calories = 2500;
-    } else if(gender === "female" && age >= 50 && goalPlan > "Increase Weight") {
-      let calories = 2300;
-    } else if(gender === "female" && age >= 20 && age < 30 && goalPlan > "Maintain Weight") {
-      let calories = 2200;
-    } else if(gender === "female" && age >= 30 && age < 40 && goalPlan > "Maintain Weight") {
-      let calories = 2000;
-    } else if(gender === "female" && age >= 40 && age < 50 && goalPlan > "Maintain Weight") {
-      let calories = 2000;
-    } else if(gender === "female" && age >= 50 && goalPlan > "Maintain Weight") {
-      let calories = 1800;
-    } else if(gender === "female" && age >= 20 && age < 30 && goalPlan > "Lose Weight") {
-      let calories = 1700;
-    } else if(gender === "female" && age >= 30 && age < 40 && goalPlan > "Lose Weight") {
-      let calories = 1500;
-    } else if(gender === "female" && age >= 40 && age < 50 && goalPlan > "Lose Weight") {
-      let calories = 1500;
-    } else {
-      let calories = 1300;
     }
   }
 
