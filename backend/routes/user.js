@@ -15,11 +15,21 @@ module.exports = (db) => {
   });
   
   router.put("/:id", (req, res) => {
-    console.log("req", req)
-    console.log("res",res)
-    // db.query(`UPDATE users
-    // WHERE id = ${req.params.id};
-    // `)
+    // console.log(req.body.goal_weight)
+
+    const values = [
+      req.body.goal_weight,
+      req.params.id
+    ];
+
+    const query = `UPDATE users SET goal_weight = $1 WHERE id = $2;`
+    db.query(query, values)
+      .then((data) => {
+        res.send("Goal Weight updated")
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
   })
   return router;
 };

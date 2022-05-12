@@ -146,7 +146,7 @@ const user_id = localStorage.getItem('user');
     .then(response => randomCategorySelector(response[0]['data']['users']))
     .then(categorySelection => {
       return Promise.all([
-        axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&calories=100-600`),
+        axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&calories=300-600`),
         axios.get(`http://localhost:8080/api/weights/${userID}`),
         axios.get(`http://localhost:8080/api/posts/`),
         axios.get("http://localhost:8080/api/comments"),
@@ -235,7 +235,7 @@ const user_id = localStorage.getItem('user');
     if (!event.target[0].value) {
       event.preventDefault();
       console.log(event.target[0].value)
-       alert.show("Weight can't be empty")
+       alert.show("Goal Weight can't be empty")
        return
 
     } else {
@@ -245,13 +245,18 @@ const user_id = localStorage.getItem('user');
       goal_weight: event.target[0].value
     }
 
-    console.log(data)
-    // axios.put(`http://localhost:8080/api/user/${userID}`, data)
-    //   // .then(response => console.log(response))
-    //   .then(response => axios.get(`http://localhost:8080/api/weights/${userID}`))
-    //   .then(weights => setWeight(weights.data.weights))
-    //   .then(response => event.target[0].value ="") 
-    //   .catch(error => console.log(error))
+    // console.log(data)
+    axios.put(`http://localhost:8080/api/user/${userID}`, data)
+      // .then(response => console.log(response))
+      .then(response => axios.get(`http://localhost:8080/api/user/${userID}`))
+      // .then(weights => setWeight(weights.data.weights))
+      // .then(users => setUsers(prev => {...prev, goal_weight: data.goal_weight}))
+      .then(data => setUsers(prev => {
+          return {...prev, goal_weight: data.goal_weight}
+          }))
+      .then( window.location.reload(false))
+      .then(response => event.target[0].value ="") 
+      .catch(error => console.log(error))
     }
   }
 
