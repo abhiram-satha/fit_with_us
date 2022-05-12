@@ -18,8 +18,7 @@ module.exports = (db) => {
 
   router.post("/", (req, res) => {
     const userInfo = req.body;
-    console.log(userInfo)
-        const values = [
+    const values = [
       userInfo.email,
       userInfo.password,
       userInfo.username,
@@ -33,7 +32,7 @@ module.exports = (db) => {
     const query = `INSERT INTO users(email, password, username, current_weight, goal_weight, height, age, gender, dietary_restrictions) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
     db.query(query, values)
       .then((data) => {
-        // res.send(data);
+        console.log(data);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });

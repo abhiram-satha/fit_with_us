@@ -9,7 +9,17 @@ import BottomNav from "./BottomNav";
 import Button from "./Button";
 
 function App() {
-const user_id = localStorage.getItem('user');
+  // const [calories, setCalories] = useState();
+
+  // useEffect(() => {
+  //   Promise.all([axios.get("http://localhost:8080/")])
+  //     .then((all) => {
+  //       const calories = all[0].data["hits"][0]["recipe"]["calories"];
+  //       const quantityYield = all[0].data["hits"][0]["recipe"]["yield"];
+  //       setCalories([calories / quantityYield]);
+  //     })
+  //     .catch((err) => console.log(err.message));
+  // }, []);
 
   //User States
   const [loggedIn, setLoggedIn] = useState(false);
@@ -19,14 +29,14 @@ const user_id = localStorage.getItem('user');
   //Set Cookies
   const [cookies, setCookie, removeCookie] = useCookies();
 
-  // useEffect(() => {
-  //   const userID = cookies.id;
-  //   if (userID) {
-  //     setLoggedIn(true);
-  //   } else {
-  //     setLoggedIn(false);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const userID = cookies.id;
+    if (userID) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+  }, []);
 
   function loggedInUser(id) {
     setCookie("id", id, { path: "/" });
@@ -54,7 +64,9 @@ const user_id = localStorage.getItem('user');
 
   return (
     <div className="App">
-      {!user_id ? loggedIn ? (
+      {/* {!user_id ? <Form /> :<BottomNav/>} */}
+
+      {loggedIn ? (
         <>
           <TopNav loggedOutUser={loggedOutUser} />
           <br />
@@ -81,7 +93,7 @@ const user_id = localStorage.getItem('user');
           <Button onClick={loginUser} name="Login" />
           <Button onClick={signUserUp} name="Sign Up!" />
         </>
-       ) :<BottomNav/>}
+      )}
     </div>
   );
 }
