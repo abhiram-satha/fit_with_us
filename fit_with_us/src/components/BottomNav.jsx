@@ -184,7 +184,6 @@ export default function BottomNav({users, updateWeight, weight, recipes, posts, 
   // // console.log(users)
   return (
     <>
-      BottomNav
       <Router>
         
 
@@ -197,7 +196,6 @@ export default function BottomNav({users, updateWeight, weight, recipes, posts, 
                 userWeight={weight}
                 updateWeight={updateWeight}
                 recipes={recipes}
-                // dietRestrictions={dietRestrictions.users[0]}
               />
             }
           />
@@ -208,7 +206,6 @@ export default function BottomNav({users, updateWeight, weight, recipes, posts, 
                 ""
               ) : (
                 <Posts posts={posts} users={users} comments={comments} newPost={newPost} newComment={newComment}/>
-                // <Posts posts={posts} comments={comments} onClick={createPost}/>
               )
             }
           />

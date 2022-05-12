@@ -9,6 +9,8 @@ import TopNav from "./TopNav";
 import BottomNav from "./BottomNav";
 import Button from "./Button";
 import { useAlert } from 'react-alert'
+import Settings from "./Settings";
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";;
 
 function App() {
 const user_id = localStorage.getItem('user');
@@ -229,10 +231,50 @@ const user_id = localStorage.getItem('user');
     }
   }
 
+  const updateGoalWeight = (event) => {
+    if (!event.target[0].value) {
+      event.preventDefault();
+      console.log(event.target[0].value)
+       alert.show("Weight can't be empty")
+       return
+
+    } else {
+    event.preventDefault();
+    // console.log(event.target[0].value)
+    const data = {
+      goal_weight: event.target[0].value
+    }
+
+    console.log(data)
+    // axios.put(`http://localhost:8080/api/user/${userID}`, data)
+    //   // .then(response => console.log(response))
+    //   .then(response => axios.get(`http://localhost:8080/api/weights/${userID}`))
+    //   .then(weights => setWeight(weights.data.weights))
+    //   .then(response => event.target[0].value ="") 
+    //   .catch(error => console.log(error))
+    }
+  }
+
   // console.log(users)
 
   return (
     <div className="App">
+<Router>
+<Routes >
+  <Route 
+path={`/settings`}
+            element={
+              users.users === undefined ? "Loading" : <Settings
+                users={users}
+                updateGoalWeight={updateGoalWeight}
+              />}
+              />
+</Routes>
+<nav>
+          <Link to='/settings'>Setting</Link>
+        </nav>
+</Router>
+      
       <BottomNav weight={weight}
                 users = {users}
                 updateWeight = {updateWeight}

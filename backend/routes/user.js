@@ -13,5 +13,13 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
+  
+  router.put("/:id", (req, res) => {
+    console.log("req", req)
+    console.log("res",res)
+    // db.query(`UPDATE users
+    // WHERE id = ${req.params.id};
+    // `)
+  })
   return router;
 };
