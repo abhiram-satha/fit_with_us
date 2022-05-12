@@ -15,7 +15,14 @@ module.exports = (db) => {
           loginInfo.password,
           users[0].password
         );
-        res.send({ users });
+        console.log(correctPassword);
+        console.log(users);
+
+        if (correctPassword) {
+          res.send({ users });
+        } else {
+          throw new Error("Information is incorrect");
+        }
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
