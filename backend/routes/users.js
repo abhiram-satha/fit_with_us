@@ -1,26 +1,35 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcryptjs");
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
     const loginInfo = req.query;
-    const values = [loginInfo.email, loginInfo.password];
-    const query = `SELECT * FROM users WHERE email = $1 AND password = $2`;
+    const values = [loginInfo.email];
+    const query = `SELECT * FROM users WHERE email = $1`;
     db.query(query, values)
       .then((data) => {
         const users = data.rows;
-        res.send({ users });
+        console.log(loginInfo.password, users[0].password);
+        const correctPassword = bcrypt.compareSync(
+          loginInfo.password,
+          users[0].password
+        );
+        console.log(correctPassword);
+        console.log(users);
+        // res.send({ users });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
 
-  router.post("/", (req, res) => {
+  router.post("/", async (req, res) => {
     const userInfo = req.body;
+    const hashedPassword = await bcrypt.hashSync(userInfo.username, 10);
     const values = [
       userInfo.email,
-      userInfo.password,
+      hashedPassword,
       userInfo.username,
       userInfo.currentWeight,
       userInfo.goalWeight,
