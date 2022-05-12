@@ -25,10 +25,11 @@ module.exports = (db) => {
       userInfo.currentWeight,
       userInfo.goalWeight,
       userInfo.height,
-      userInfo.age,
+      2022 - userInfo.age,
+      userInfo.gender,
+      userInfo.dietaryRestrictions
     ];
-
-    const query = `INSERT INTO users(email, password, username, current_weight, goal_weight, height, age, gender, dietary_restrictions) VALUES ($1, $2, $3, $4, $5, $6, $7, null, null)`;
+    const query = `INSERT INTO users(email, password, username, current_weight, goal_weight, height, age, gender, dietary_restrictions) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
     db.query(query, values)
       .then((data) => {
         console.log(data);

@@ -10,12 +10,26 @@ export default function Thread({newComment, users,username, message, comments, p
   })
   // console.log(commentArray)
   return (
-    <div>
-    {username}<br/>
-    {message}
-      {commentArray}
-    <CommentReply post_id={postID} newComment={newComment}/>
-    <br/>
+    // <div>
+    // {username}<br/>
+    // {message}
+    //   {commentArray}
+    // <CommentReply post_id={postID} newComment={newComment}/>
+    // <br/>
+    // </div>
+    <div class="card mb-2">
+      <div class="card-content mb-0">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-6">{username}</p>
+          </div>
+        </div>
+          <div class="content">
+           {message}
+          </div>
+          <CommentReply post_id={postID} newComment={newComment}/>
+          {commentArray}
+      </div>
     </div>
-  )
+  );
 }

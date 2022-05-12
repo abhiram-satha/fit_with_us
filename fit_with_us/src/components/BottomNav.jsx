@@ -4,6 +4,7 @@ import Posts from "./Posts";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useAlert } from 'react-alert'
+import RecipeDetails from "./RecipeDetails";
 
 export default function BottomNav() {
 
@@ -38,7 +39,7 @@ export default function BottomNav() {
       axios.get(`http://localhost:8080/api/weights/${userID}`),
       axios.get(`http://localhost:8080/api/posts/`),
       axios.get("http://localhost:8080/api/comments"),
-      axios.get(`http://localhost:8080/api/users/${userID}`),
+      // axios.get(`http://localhost:8080/api/user/${userID}`),
     ])
       .then((all) => {
         // console.log([all[0].data["hits"]]);
@@ -174,10 +175,7 @@ export default function BottomNav() {
   // console.log(users)
   return (
     <>
-      BottomNav
       <Router>
-        
-
         <Routes>
           <Route
             path={`/homepage`}
@@ -194,19 +192,28 @@ export default function BottomNav() {
             path="/posts"
             element={
               posts.length === 0 ? (
-                "Loading"
-              ) : (
-                <Posts posts={posts} users={users} comments={comments} newPost={newPost} newComment={newComment}/>
+                <progress class="progress is-small is-primary" max="100">15%</progress>
+              ) : (    <div class="columns">
+                   <div class="column is-two-thirds">
+                <Posts posts={posts} users={users} comments={comments} newPost={newPost} newComment={newComment} />
+                </div>
+                </div>
                 // <Posts posts={posts} comments={comments} onClick={createPost}/>
               )
             }
           />
+          <Route 
+            path="recipe-details"
+            element={
+              <RecipeDetails />
+            }/>
         </Routes>
-
-        <nav>
-          <Link to='/posts/'>Community</Link>
-          <Link to="/homepage">Your Profile</Link>
-        </nav>
+        <div class="tabs is-centered is-medium is-fullwidth">
+            <ul>
+              <li><Link to="/homepage">You</Link></li>
+              <li><Link to="/posts">Us</Link></li>
+            </ul>
+       </div>
       </Router>
     </>
   );
