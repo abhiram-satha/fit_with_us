@@ -8,16 +8,14 @@ module.exports = (db) => {
     const values = [loginInfo.email];
     const query = `SELECT * FROM users WHERE email = $1`;
     db.query(query, values)
-      .then((data) => {
+      .then(async (data) => {
         const users = data.rows;
         console.log(loginInfo.password, users[0].password);
-        const correctPassword = bcrypt.compareSync(
+        const correctPassword = await bcrypt.compareSync(
           loginInfo.password,
           users[0].password
         );
-        console.log(correctPassword);
-        console.log(users);
-        // res.send({ users });
+        res.send({ users });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
