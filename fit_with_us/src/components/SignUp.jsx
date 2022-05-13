@@ -90,6 +90,7 @@ export default function Form(props) {
     setEmailClass("input");
     setPasswordClass("input");
     setPasswordConfirmationClass("input");
+    setUsernameClass("input");
     setCurrentWeightClass("input");
     setGoalWeightClass("input");
     setHeightClass("input");
@@ -123,6 +124,12 @@ export default function Form(props) {
     if (!checkEmptyInput(password)) {
       setErrorPassword("The field cannot be blank!");
       return setPasswordClass("input is-danger");
+    }
+
+    //Check empty password confirmation input
+    if (!checkEmptyInput(passwordConfirmation)) {
+      setErrorPassword("The field cannot be blank!");
+      return setPasswordConfirmationClass("input is-danger");
     }
 
     //Check empty username input
