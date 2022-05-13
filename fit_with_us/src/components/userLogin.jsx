@@ -5,13 +5,17 @@ import axios from "axios";
 import Error from "./Error";
 
 export default function UserLogin(props) {
-  const [errorLogin, setErrorLogin] = useState(false);
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [errorPassword, setErrorPassword] = useState(false);
   const [emailClass, setEmailClass] = useState("input");
   const [passwordClass, setPasswordClass] = useState("input");
 
   const submitUserInformation = (e) => {
     e.preventDefault();
-    setErrorLogin(false);
+    setErrorEmail(false);
+    setErrorPassword(false);
+    setEmailClass("input");
+    setPasswordClass("input");
     const params = {
       email: e.target[0].value,
       password: e.target[1].value,
@@ -23,8 +27,14 @@ export default function UserLogin(props) {
         const user = userData[0];
         if (userData.length !== 0) {
           const errorInformation = props.loggedInUser(user.id);
-          if (errorInformation) {
-            setErrorLogin(errorInformation);
+          if (errorInformation === "The password is incorrect") {
+            setEmailClass("input is-danger");
+            setPasswordClass(errorInformation);
+          }
+
+          if (errorInformation === "The email is incorrect") {
+            setPasswordClass("input is-danger");
+            setEmailClass(errorInformation);
           }
         }
       })
@@ -37,10 +47,20 @@ export default function UserLogin(props) {
       action="http://localhost:8080/api/user"
       method="GET"
     >
-      <FormCategory id="user-email" name="email" type="email" />
-      <FormCategory id="user-password" name="password" type="password" />
-      {errorLogin ? <Error message={errorLogin} /> : null}
-      {`Value is ${errorLogin}`}
+      <FormCategory
+        class={emailClass}
+        id="user-email"
+        name="email"
+        type="email"
+      />
+      <FormCategory
+        class={passwordClass}
+        id="user-password"
+        name="password"
+        type="password"
+      />
+      {/* {errorLogin ? <Error message={errorLogin} /> : null}
+      {`Value is ${errorLogin}`} */}
       <Button name="Login" />
     </form>
   );

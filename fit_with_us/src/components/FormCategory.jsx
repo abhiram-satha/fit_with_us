@@ -49,6 +49,7 @@ export default function FormCategory(props) {
         </select>
       ) : (
         <input
+          class={props.class}
           type={props.type}
           name={props.name}
           id={props.id ? props.id : props.name}
