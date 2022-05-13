@@ -22,6 +22,7 @@ export default function Form(props) {
   const [errorUsername, setErrorUsername] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorCurrentWeight, setErrorCurrentWeight] = useState(false);
+  const [errorGoalWeight, setErrorGoalWeight] = useState(false);
 
   //Input classes setters
   const [emailClass, setEmailClass] = useState("input");
@@ -30,6 +31,7 @@ export default function Form(props) {
     useState("input");
   const [usernameClass, setUsernameClass] = useState("input");
   const [currentWeightClass, setCurrentWeightClass] = useState("input");
+  const [goalWeightClass, setGoalWeightClass] = useState("input");
 
   useEffect(() => {}, []);
 
@@ -78,10 +80,12 @@ export default function Form(props) {
     setErrorUsername(false);
     setErrorPassword(false);
     setErrorCurrentWeight(false);
+    setErrorGoalWeight(false);
     setEmailClass("input");
     setPasswordClass("input");
     setPasswordConfirmationClass("input");
     setCurrentWeightClass("input");
+    setGoalWeightClass("input");
 
     e.preventDefault();
     const params = {
@@ -119,10 +123,16 @@ export default function Form(props) {
       return setUsernameClass("input is-danger");
     }
 
-    //Check empty username
+    //Check empty current weight
     if (!checkEmptyInput(currentWeight)) {
       setErrorCurrentWeight("The field cannot be blank!");
       return setCurrentWeightClass("input is-danger");
+    }
+
+    //Check empty goal weight
+    if (!checkEmptyInput(goalWeight)) {
+      setErrorGoalWeight("The field cannot be blank!");
+      return setGoalWeightClass("input is-danger");
     }
 
     await getUserInformation()
@@ -221,7 +231,8 @@ export default function Form(props) {
         class={currentWeightClass}
       />
       {errorCurrentWeight ? <Error errorMessage={errorCurrentWeight} /> : null}
-      <FormCategory name="goalWeight" type="number" />
+      <FormCategory name="goalWeight" type="number" class={goalWeightClass} />
+      {errorGoalWeight ? <Error errorMessage={errorGoalWeight} /> : null}
       <FormCategory name="height" type="number" />
       <FormCategory name="age" type="number" />
       <FormCategory
