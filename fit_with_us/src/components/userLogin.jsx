@@ -10,12 +10,17 @@ export default function UserLogin(props) {
   const [emailClass, setEmailClass] = useState("input");
   const [passwordClass, setPasswordClass] = useState("input");
 
+  //Function to handle submit
   const submitUserInformation = (e) => {
     e.preventDefault();
+
+    //Resets all states before logic
     setErrorEmail(false);
     setErrorPassword(false);
     setEmailClass("input");
     setPasswordClass("input");
+
+    //Set params to be sent to get user information
     const params = {
       email: e.target[0].value,
       password: e.target[1].value,
@@ -53,14 +58,16 @@ export default function UserLogin(props) {
         name="email"
         type="email"
       />
+
+      {errorEmail ? <Error message="Email is incorrect" /> : null}
+
       <FormCategory
         class={passwordClass}
         id="user-password"
         name="password"
         type="password"
       />
-      {/* {errorLogin ? <Error message={errorLogin} /> : null}
-      {`Value is ${errorLogin}`} */}
+      {errorPassword ? <Error message="Password is incorrect" /> : null}
       <Button name="Login" />
     </form>
   );
