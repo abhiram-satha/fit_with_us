@@ -2,15 +2,19 @@ import {useState} from 'react'
 import useLocalStorage from '../hooks/useLocalStorage';
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import RecipeDetails from "./RecipeDetails";
+import RecipeIngredients from './RecipeIngredients';
+//import { filterProps } from 'recharts/types/util/types';
 
 
-export default function RecipeCard({recipes}) {
+export default function RecipeCard({users, recipes}) {
+
   const [recipeRecord, setRecipeRecord] = useLocalStorage('recipe', localStorage.getItem('recipe') || 0);
 
   const healthLabel = recipes[0][recipeRecord]['recipe']['healthLabels']
   const info = recipes[0][recipeRecord]['recipe']
   console.log(info)
-  
+
+
   // console.log(info.images.THUMBNAIL.url)
   return (
     // <div className="row container">

@@ -48,7 +48,6 @@ export default function BottomNav() {
         setPosts(all[2].data);
         setComments(all[3].data.posts);
         setUsers(all[4].data);
-
       })
       .catch((err) => console.log(err.message));
   }, []);
@@ -193,20 +192,18 @@ export default function BottomNav() {
             element={
               posts.length === 0 ? (
                 <progress class="progress is-small is-primary" max="100">15%</progress>
-              ) : (    <div class="columns">
-                   <div class="column is-two-thirds">
+              ) : (    
                 <Posts posts={posts} users={users} comments={comments} newPost={newPost} newComment={newComment} />
-                </div>
-                </div>
                 // <Posts posts={posts} comments={comments} onClick={createPost}/>
               )
-            }
-          />
-          <Route 
+            }          />
+            <Route 
             path="recipe-details"
             element={
-              <RecipeDetails />
+              <RecipeDetails ingredients={recipes[0][0].recipe.ingredients} calories={recipes[0][0].recipe.calories} url={recipes[0][0].recipe.url} servings={recipes[0][0].recipe.yield}/>
             }/>
+
+          
         </Routes>
         <div class="tabs is-centered is-medium is-fullwidth">
             <ul>
