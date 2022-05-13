@@ -43,7 +43,7 @@ function App() {
       setCookie("id", id, { path: "/" });
       setLoggedIn(true);
     } else {
-      return true;
+      return id;
     }
   }
 
