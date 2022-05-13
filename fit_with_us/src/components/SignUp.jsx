@@ -3,6 +3,7 @@ import FormCategory from "./FormCategory";
 import Button from "./Button";
 import axios from "axios";
 import Error from "./Error";
+import { checkValidEmail } from "../helpers/signUpHelpers";
 
 export default function Form(props) {
   //Variables
@@ -15,6 +16,7 @@ export default function Form(props) {
 
   //States
   const [errorEmail, setErrorEmail] = useState(false);
+  const [emailClass, setEmailClass] = useState("input");
   const [errorUsername, setErrorUsername] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [currentOptionsValue, setCurrentOptionsValues] = useState(["None"]);
@@ -65,6 +67,7 @@ export default function Form(props) {
     setErrorEmail(false);
     setErrorUsername(false);
     setErrorPassword(false);
+    setEmailClass("input");
 
     e.preventDefault();
     const params = {
@@ -83,6 +86,11 @@ export default function Form(props) {
     const age = e.target[7].value;
     const gender = e.target[8].value;
     const dietaryRestrictions = currentOptionsValue;
+
+    if (!checkValidEmail(email)) {
+      setErrorEmail("The email cannot be blank!");
+      return setEmailClass("input is-danger");
+    }
 
     await getUserInformation()
       .then(async (response) => {
@@ -103,6 +111,7 @@ export default function Form(props) {
 
         if (emailExists) {
           setErrorEmail("The email exists");
+          setEmailClass("input is-danger");
         }
 
         if (usernameExists) {
@@ -159,7 +168,7 @@ export default function Form(props) {
       action="http://localhost:8080/api/user"
       method="POST"
     >
-      <FormCategory name="email" type="email" />
+      <FormCategory name="email" type="email" class={emailClass} />
       {errorEmail ? <Error errorMessage={errorEmail} /> : null}
       <FormCategory name="password" type="password" />
       <FormCategory name="passwordConfirmation" type="password" />
