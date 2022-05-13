@@ -69,13 +69,10 @@ function App() {
       {loggedIn ? (
         <>
           <TopNav loggedOutUser={loggedOutUser} />
-          <br />
-          <br />
           <BottomNav />
         </>
       ) : login ? (
         <>
-          <TopNav backButton={backButton} />
           <UserLogin
             loggedInUser={loggedInUser}
             setSignUp={setSignUp}
@@ -84,7 +81,6 @@ function App() {
         </>
       ) : signUp ? (
         <>
-          <TopNav backButton={backButton} />
           <SignUp loggedInUser={loggedInUser} />
         </>
       ) : (

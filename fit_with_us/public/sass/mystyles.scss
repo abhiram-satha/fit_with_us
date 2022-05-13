@@ -18,6 +18,7 @@ $primary: $purple;
 $link: $pink;
 $widescreen-enabled: false;
 $fullhd-enabled: false;
+$spacing-values: ("small": 10px, "medium": 30px, "large": 60px);
 
 // Update some of Bulma's component variables
 $body-background-color: $beige-lighter;

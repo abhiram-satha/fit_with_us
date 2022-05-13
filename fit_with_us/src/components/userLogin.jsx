@@ -1,7 +1,8 @@
 import React from "react";
 import Button from "./Button";
-import FormCategory from "./FormCategory";
+import Form from "./Form";
 import axios from "axios";
+import "../styles/UserLogin.scss"
 
 export default function UserLogin(props) {
   const submitUserInformation = (e) => {
@@ -25,14 +26,19 @@ export default function UserLogin(props) {
   };
 
   return (
-    <form
-      onSubmit={submitUserInformation}
-      action="http://localhost:8080/api/user"
-      method="GET"
-    >
-      <FormCategory id="user-email" name="email" type="email" />
-      <FormCategory id="user-password" name="password" type="password" />
-      <Button name="Login" />
-    </form>
+    <div class="columns is-mobile is-centered login-panel">
+      <div class="column is-four-fifths">
+        <figure class="image is-square">
+          <img src="https://i.imgur.com/1EehYbk.png"></img>
+        </figure>
+        <form onSubmit={submitUserInformation} action="http://localhost:8080/api/user" method="GET">
+          <Form id="user-email" inputType="input" name="email" type="email" placeholder="Enter your email"/>
+          <Form id="user-password" inputType="input" name="password" type="password" placeholder="Enter your password"/>
+          <br />
+          <br />
+          <Button  name="Login" />
+        </form>
+      </div>
+    </div>
   );
 }
