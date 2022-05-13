@@ -14,17 +14,22 @@ export default function Form(props) {
     "No Dairy",
   ];
 
-  //States
+  //Dietary Restrictions Values
+  const [currentOptionsValue, setCurrentOptionsValues] = useState(["None"]);
+
+  //Error States
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorUsername, setErrorUsername] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
-  const [currentOptionsValue, setCurrentOptionsValues] = useState(["None"]);
+  const [errorCurrentWeight, setErrorCurrentWeight] = useState(false);
 
   //Input classes setters
   const [emailClass, setEmailClass] = useState("input");
   const [passwordClass, setPasswordClass] = useState("input");
   const [passwordConfirmationClass, setPasswordConfirmationClass] =
     useState("input");
+  const [usernameClass, setUsernameClass] = useState("input");
+  const [currentWeightClass, setCurrentWeightClass] = useState("input");
 
   useEffect(() => {}, []);
 
@@ -72,7 +77,11 @@ export default function Form(props) {
     setErrorEmail(false);
     setErrorUsername(false);
     setErrorPassword(false);
+    setErrorCurrentWeight(false);
     setEmailClass("input");
+    setPasswordClass("input");
+    setPasswordConfirmationClass("input");
+    setCurrentWeightClass("input");
 
     e.preventDefault();
     const params = {
@@ -94,14 +103,26 @@ export default function Form(props) {
 
     //Check empty Email
     if (!checkEmptyInput(email)) {
-      setErrorEmail("The email cannot be blank!");
+      setErrorEmail("The field cannot be blank!");
       return setEmailClass("input is-danger");
     }
 
     //Check empty password
     if (!checkEmptyInput(password)) {
-      setErrorPassword("The password cannot be blank!");
+      setErrorPassword("The field cannot be blank!");
       return setPasswordClass("input is-danger");
+    }
+
+    //Check empty username
+    if (!checkEmptyInput(username)) {
+      setErrorUsername("The field cannot be blank!");
+      return setUsernameClass("input is-danger");
+    }
+
+    //Check empty username
+    if (!checkEmptyInput(currentWeight)) {
+      setErrorCurrentWeight("The field cannot be blank!");
+      return setCurrentWeightClass("input is-danger");
     }
 
     await getUserInformation()
@@ -128,6 +149,7 @@ export default function Form(props) {
 
         if (usernameExists) {
           setErrorUsername("The username exists");
+          setUsernameClass("input is-danger");
         }
 
         if (!equalPasswords) {
@@ -191,9 +213,14 @@ export default function Form(props) {
         class={passwordConfirmationClass}
       />
       {errorPassword ? <Error errorMessage={errorPassword} /> : null}
-      <FormCategory name="username" type="text" />
+      <FormCategory name="username" type="text" class={usernameClass} />
       {errorUsername ? <Error errorMessage={errorUsername} /> : null}
-      <FormCategory name="currentWeight" type="number" />
+      <FormCategory
+        name="currentWeight"
+        type="number"
+        class={currentWeightClass}
+      />
+      {errorCurrentWeight ? <Error errorMessage={errorCurrentWeight} /> : null}
       <FormCategory name="goalWeight" type="number" />
       <FormCategory name="height" type="number" />
       <FormCategory name="age" type="number" />
