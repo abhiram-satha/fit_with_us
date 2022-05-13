@@ -92,13 +92,13 @@ export default function Form(props) {
     const gender = e.target[8].value;
     const dietaryRestrictions = currentOptionsValue;
 
-    //Check Email
+    //Check empty Email
     if (!checkEmptyInput(email)) {
       setErrorEmail("The email cannot be blank!");
       return setEmailClass("input is-danger");
     }
 
-    //Check password
+    //Check empty password
     if (!checkEmptyInput(password)) {
       setErrorPassword("The password cannot be blank!");
       return setPasswordClass("input is-danger");
@@ -132,6 +132,8 @@ export default function Form(props) {
 
         if (!equalPasswords) {
           setErrorPassword("The passwords do not match");
+          setPasswordClass("input is-danger");
+          setPasswordConfirmationClass("input is-danger");
         }
 
         if (emailExists || usernameExists || !equalPasswords) {
