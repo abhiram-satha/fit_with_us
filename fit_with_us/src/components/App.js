@@ -104,12 +104,12 @@ const user_id = localStorage.getItem('user');
 
   }
 
+  let categoryArray = [];
   const randomCategorySelector = (apiArray) => {
     // console.log(apiArray)
     if (apiArray.length === 0) {
       return "";
     }
-    let categoryArray = [];
     // &health=dairy-free&health=egg-free
 
     let categoryString = ''
@@ -272,6 +272,7 @@ path={`/settings`}
               users.users === undefined ? "Loading" : <Settings
                 users={users}
                 updateGoalWeight={updateGoalWeight}
+                categoryArray={categoryArray}
               />}
               />
 </Routes>

@@ -1,14 +1,22 @@
-export default function Settings({users, updateGoalWeight}) {
+import UpdateCategoryPref from "./UpdateCategoryPref"
+import UpdateWeightGoal from "./UpdateWeightGoal"
 
-  const {goal_weight} = users.users[0]
+export default function Settings({users, updateGoalWeight, categoryArray}) {
+
+  
 
   return (
     <>
     This is the settings form
-      <form onSubmit={updateGoalWeight}>
-        <input type="number" placeholder={goal_weight} />
-        <input type="submit" name="Update Goal Weight"></input>
-      </form>
+    <details>
+      <summary>Update Settings</summary>
+        <details>
+          <summary>Update Weight Settings</summary>
+            <UpdateWeightGoal users={users} updateGoalWeight={updateGoalWeight}/>
+
+        </details>
+    </details>
+        <UpdateCategoryPref categoryArray={categoryArray}/>
     </>
   )
 }
