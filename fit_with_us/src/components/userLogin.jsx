@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./Button";
-import Form from "./Form";
+import Input from "./Input";
 import axios from "axios";
 import "../styles/UserLogin.scss"
 
@@ -32,8 +32,8 @@ export default function UserLogin(props) {
           <img src="https://i.imgur.com/1EehYbk.png"></img>
         </figure>
         <form onSubmit={submitUserInformation} action="http://localhost:8080/api/user" method="GET">
-          <Form id="user-email" inputType="input" name="email" type="email" placeholder="Enter your email"/>
-          <Form id="user-password" inputType="input" name="password" type="password" placeholder="Enter your password"/>
+          <Input id="user-email" inputType="input" name="email" type="email" placeholder="Enter your email"/>
+          <Input id="user-password" inputType="input" name="password" type="password" placeholder="Enter your password"/>
           <br />
           <br />
           <Button  name="Login" />
