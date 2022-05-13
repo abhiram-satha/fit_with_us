@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "./Button";
 import FormCategory from "./FormCategory";
 import axios from "axios";
+import Error from "./Error";
 
 export default function UserLogin(props) {
+  const [errorLogin, setErrorLogin] = useState(false);
+
   const submitUserInformation = (e) => {
     e.preventDefault();
+    setErrorLogin(false);
     const params = {
       email: e.target[0].value,
       password: e.target[1].value,
@@ -15,10 +19,11 @@ export default function UserLogin(props) {
       .then((all) => {
         const userData = all[0].data.users;
         const user = userData[0];
-        console.log(user);
-        console.log(all[0].data);
         if (userData.length !== 0) {
-          props.loggedInUser(user.id);
+          const errorPassword = props.loggedInUser(user.id);
+          if (errorPassword) {
+            setErrorLogin("Information is incorrect");
+          }
         }
       })
       .catch((err) => console.log(err.message));
@@ -32,6 +37,8 @@ export default function UserLogin(props) {
     >
       <FormCategory id="user-email" name="email" type="email" />
       <FormCategory id="user-password" name="password" type="password" />
+      {errorLogin ? <Error message={errorLogin} /> : null}
+      {`Value is ${errorLogin}`}
       <Button name="Login" />
     </form>
   );

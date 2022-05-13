@@ -9,7 +9,7 @@ module.exports = (db) => {
     const query = `SELECT * FROM users WHERE email = $1`;
     db.query(query, values)
       .then(async (data) => {
-        const users = data.rows;
+        const users = { ...data.rows };
         console.log(loginInfo.password, users[0].password);
         const correctPassword = await bcrypt.compareSync(
           loginInfo.password,
@@ -21,7 +21,9 @@ module.exports = (db) => {
         if (correctPassword) {
           res.send({ users });
         } else {
-          throw new Error("Information is incorrect");
+          users[0].id = "Wrong password";
+          console.log(users);
+          res.send({ users });
         }
       })
       .catch((err) => {
