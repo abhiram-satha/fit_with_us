@@ -20,9 +20,9 @@ export default function UserLogin(props) {
         const userData = all[0].data.users;
         const user = userData[0];
         if (userData.length !== 0) {
-          const errorPassword = props.loggedInUser(user.id);
-          if (errorPassword) {
-            setErrorLogin("Information is incorrect");
+          const errorInformation = props.loggedInUser(user.id);
+          if (errorInformation) {
+            setErrorLogin(errorInformation);
           }
         }
       })
