@@ -33,13 +33,13 @@ export default function UserLogin(props) {
         if (userData.length !== 0) {
           const errorInformation = props.loggedInUser(user.id);
           if (errorInformation === "The password is incorrect") {
-            setEmailClass("input is-danger");
-            setPasswordClass(errorInformation);
+            setPasswordClass("input is-danger");
+            setErrorPassword(errorInformation);
           }
 
           if (errorInformation === "The email is incorrect") {
-            setPasswordClass("input is-danger");
-            setEmailClass(errorInformation);
+            setEmailClass("input is-danger");
+            setErrorEmail(errorInformation);
           }
         }
       })
@@ -59,7 +59,7 @@ export default function UserLogin(props) {
         type="email"
       />
 
-      {errorEmail ? <Error message="Email is incorrect" /> : null}
+      {errorEmail ? <Error errorMessage="Email is incorrect" /> : null}
 
       <FormCategory
         class={passwordClass}
@@ -67,7 +67,7 @@ export default function UserLogin(props) {
         name="password"
         type="password"
       />
-      {errorPassword ? <Error message="Password is incorrect" /> : null}
+      {errorPassword ? <Error errorMessage="Password is incorrect" /> : null}
       <Button name="Login" />
     </form>
   );

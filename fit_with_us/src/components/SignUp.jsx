@@ -160,12 +160,12 @@ export default function Form(props) {
       method="POST"
     >
       <FormCategory name="email" type="email" />
-      {errorEmail ? <Error errorMessages={errorEmail} /> : null}
+      {errorEmail ? <Error errorMessage={errorEmail} /> : null}
       <FormCategory name="password" type="password" />
       <FormCategory name="passwordConfirmation" type="password" />
-      {errorPassword ? <Error errorMessages={errorPassword} /> : null}
+      {errorPassword ? <Error errorMessage={errorPassword} /> : null}
       <FormCategory name="username" type="text" />
-      {errorUsername ? <Error errorMessages={errorUsername} /> : null}
+      {errorUsername ? <Error errorMessage={errorUsername} /> : null}
       <FormCategory name="currentWeight" type="number" />
       <FormCategory name="goalWeight" type="number" />
       <FormCategory name="height" type="number" />
