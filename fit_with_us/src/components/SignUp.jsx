@@ -3,7 +3,7 @@ import FormCategory from "./FormCategory";
 import Button from "./Button";
 import axios from "axios";
 import Error from "./Error";
-import { checkValidEmail } from "../helpers/signUpHelpers";
+import { checkEmptyInput } from "../helpers/signUpHelpers";
 
 export default function Form(props) {
   //Variables
@@ -16,10 +16,15 @@ export default function Form(props) {
 
   //States
   const [errorEmail, setErrorEmail] = useState(false);
-  const [emailClass, setEmailClass] = useState("input");
   const [errorUsername, setErrorUsername] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [currentOptionsValue, setCurrentOptionsValues] = useState(["None"]);
+
+  //Input classes setters
+  const [emailClass, setEmailClass] = useState("input");
+  const [passwordClass, setPasswordClass] = useState("input");
+  const [passwordConfirmationClass, setPasswordConfirmationClass] =
+    useState("input");
 
   useEffect(() => {}, []);
 
@@ -87,9 +92,16 @@ export default function Form(props) {
     const gender = e.target[8].value;
     const dietaryRestrictions = currentOptionsValue;
 
-    if (!checkValidEmail(email)) {
+    //Check Email
+    if (!checkEmptyInput(email)) {
       setErrorEmail("The email cannot be blank!");
       return setEmailClass("input is-danger");
+    }
+
+    //Check password
+    if (!checkEmptyInput(password)) {
+      setErrorPassword("The password cannot be blank!");
+      return setPasswordClass("input is-danger");
     }
 
     await getUserInformation()
@@ -170,8 +182,12 @@ export default function Form(props) {
     >
       <FormCategory name="email" type="email" class={emailClass} />
       {errorEmail ? <Error errorMessage={errorEmail} /> : null}
-      <FormCategory name="password" type="password" />
-      <FormCategory name="passwordConfirmation" type="password" />
+      <FormCategory name="password" type="password" class={passwordClass} />
+      <FormCategory
+        name="passwordConfirmation"
+        type="password"
+        class={passwordConfirmationClass}
+      />
       {errorPassword ? <Error errorMessage={errorPassword} /> : null}
       <FormCategory name="username" type="text" />
       {errorUsername ? <Error errorMessage={errorUsername} /> : null}

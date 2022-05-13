@@ -1,4 +1,4 @@
-export function checkValidEmail(email) {
+export function checkEmptyInput(email) {
   if (email === "") {
     return false;
   }
