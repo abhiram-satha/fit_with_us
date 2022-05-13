@@ -205,7 +205,7 @@ export default function BottomNav() {
 
           
         </Routes>
-        <div class="tabs is-centered is-medium is-fullwidth">
+        <div class="navbar tabs is-centered is-medium is-fullwidth is-fixed-bottom">
             <ul>
               <li><Link to="/homepage">You</Link></li>
               <li><Link to="/posts">Us</Link></li>
