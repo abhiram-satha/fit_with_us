@@ -6,6 +6,8 @@ import Error from "./Error";
 
 export default function UserLogin(props) {
   const [errorLogin, setErrorLogin] = useState(false);
+  const [emailClass, setEmailClass] = useState("input");
+  const [passwordClass, setPasswordClass] = useState("input");
 
   const submitUserInformation = (e) => {
     e.preventDefault();
