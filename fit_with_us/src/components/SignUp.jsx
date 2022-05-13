@@ -24,6 +24,7 @@ export default function Form(props) {
   const [errorCurrentWeight, setErrorCurrentWeight] = useState(false);
   const [errorGoalWeight, setErrorGoalWeight] = useState(false);
   const [errorHeight, setErrorHeight] = useState(false);
+  const [errorAge, setErrorAge] = useState(false);
 
   //Input classes setters
   const [emailClass, setEmailClass] = useState("input");
@@ -34,6 +35,7 @@ export default function Form(props) {
   const [currentWeightClass, setCurrentWeightClass] = useState("input");
   const [goalWeightClass, setGoalWeightClass] = useState("input");
   const [heightClass, setHeightClass] = useState("input");
+  const [ageClass, setAgeClass] = useState("input");
 
   useEffect(() => {}, []);
 
@@ -84,12 +86,14 @@ export default function Form(props) {
     setErrorCurrentWeight(false);
     setErrorGoalWeight(false);
     setErrorHeight(false);
+    setErrorAge(false);
     setEmailClass("input");
     setPasswordClass("input");
     setPasswordConfirmationClass("input");
     setCurrentWeightClass("input");
     setGoalWeightClass("input");
     setHeightClass("input");
+    setAgeClass("input");
 
     e.preventDefault();
     const params = {
@@ -143,6 +147,12 @@ export default function Form(props) {
     if (!checkEmptyInput(height)) {
       setErrorHeight("The field cannot be blank!");
       return setHeightClass("input is-danger");
+    }
+
+    //Check empty age input
+    if (!checkEmptyInput(age)) {
+      setErrorAge("The field cannot be blank!");
+      return setAgeClass("input is-danger");
     }
 
     await getUserInformation()
@@ -245,7 +255,8 @@ export default function Form(props) {
       {errorGoalWeight ? <Error errorMessage={errorGoalWeight} /> : null}
       <FormCategory name="height" type="number" class={heightClass} />
       {errorHeight ? <Error errorMessage={errorHeight} /> : null}
-      <FormCategory name="age" type="number" />
+      <FormCategory name="age" type="number" class={ageClass} />
+      {errorAge ? <Error errorMessage={errorAge} /> : null}
       <FormCategory
         optionsName="gender-choices"
         name="gender"
