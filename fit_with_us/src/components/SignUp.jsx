@@ -23,6 +23,7 @@ export default function Form(props) {
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorCurrentWeight, setErrorCurrentWeight] = useState(false);
   const [errorGoalWeight, setErrorGoalWeight] = useState(false);
+  const [errorHeight, setErrorHeight] = useState(false);
 
   //Input classes setters
   const [emailClass, setEmailClass] = useState("input");
@@ -32,6 +33,7 @@ export default function Form(props) {
   const [usernameClass, setUsernameClass] = useState("input");
   const [currentWeightClass, setCurrentWeightClass] = useState("input");
   const [goalWeightClass, setGoalWeightClass] = useState("input");
+  const [heightClass, setHeightClass] = useState("input");
 
   useEffect(() => {}, []);
 
@@ -81,11 +83,13 @@ export default function Form(props) {
     setErrorPassword(false);
     setErrorCurrentWeight(false);
     setErrorGoalWeight(false);
+    setErrorHeight(false);
     setEmailClass("input");
     setPasswordClass("input");
     setPasswordConfirmationClass("input");
     setCurrentWeightClass("input");
     setGoalWeightClass("input");
+    setHeightClass("input");
 
     e.preventDefault();
     const params = {
@@ -105,34 +109,40 @@ export default function Form(props) {
     const gender = e.target[8].value;
     const dietaryRestrictions = currentOptionsValue;
 
-    //Check empty Email
+    //Check empty Email input
     if (!checkEmptyInput(email)) {
       setErrorEmail("The field cannot be blank!");
       return setEmailClass("input is-danger");
     }
 
-    //Check empty password
+    //Check empty password input
     if (!checkEmptyInput(password)) {
       setErrorPassword("The field cannot be blank!");
       return setPasswordClass("input is-danger");
     }
 
-    //Check empty username
+    //Check empty username input
     if (!checkEmptyInput(username)) {
       setErrorUsername("The field cannot be blank!");
       return setUsernameClass("input is-danger");
     }
 
-    //Check empty current weight
+    //Check empty current weight input
     if (!checkEmptyInput(currentWeight)) {
       setErrorCurrentWeight("The field cannot be blank!");
       return setCurrentWeightClass("input is-danger");
     }
 
-    //Check empty goal weight
+    //Check empty goal weight input
     if (!checkEmptyInput(goalWeight)) {
       setErrorGoalWeight("The field cannot be blank!");
       return setGoalWeightClass("input is-danger");
+    }
+
+    //Check empty height input
+    if (!checkEmptyInput(height)) {
+      setErrorHeight("The field cannot be blank!");
+      return setHeightClass("input is-danger");
     }
 
     await getUserInformation()
@@ -233,7 +243,8 @@ export default function Form(props) {
       {errorCurrentWeight ? <Error errorMessage={errorCurrentWeight} /> : null}
       <FormCategory name="goalWeight" type="number" class={goalWeightClass} />
       {errorGoalWeight ? <Error errorMessage={errorGoalWeight} /> : null}
-      <FormCategory name="height" type="number" />
+      <FormCategory name="height" type="number" class={heightClass} />
+      {errorHeight ? <Error errorMessage={errorHeight} /> : null}
       <FormCategory name="age" type="number" />
       <FormCategory
         optionsName="gender-choices"
