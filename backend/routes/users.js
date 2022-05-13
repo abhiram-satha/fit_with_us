@@ -41,7 +41,7 @@ module.exports = (db) => {
 
   router.post("/", async (req, res) => {
     const userInfo = req.body;
-    const hashedPassword = await bcrypt.hashSync(userInfo.username, 10);
+    const hashedPassword = await bcrypt.hashSync(userInfo.password, 10);
     const values = [
       userInfo.email,
       hashedPassword,
