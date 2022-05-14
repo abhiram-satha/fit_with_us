@@ -1,19 +1,20 @@
+import React from "react";
 import Button from "./Button";
+import "../helpers/navbarQuery"
 
 export default function TopNav(props) {
   return (
-    <>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <a class="navbar-item" href="https://bulma.io">
-            Fit With Us Logo
-          </a>
+        <a class="navbar-item" href="https://bulma.io">
+      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"/>
+    </a>
       
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <button role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
-          </a>
+          </button>
         </div>
       
         <div id="navbarBasicExample" class="navbar-menu">
@@ -48,23 +49,13 @@ export default function TopNav(props) {
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <a class="button is-primary">
-                  <strong>Sign up</strong>
-                </a>
-                <a class="button is-light">
-                  Log in
-                </a>
+                {props.backButton ? (<Button onClick={props.backButton} className="back" name="Back" />) : null}
+                {props.loggedOutUser ? (<Button onClick={props.loggedOutUser} name="Log out" />) : null}
               </div>
             </div>
           </div>
         </div>
       </nav>
-      {props.backButton ? (
-        <Button onClick={props.backButton} className="back" name="Back" />
-      ) : null}
-      {props.loggedOutUser ? (
-        <Button onClick={props.loggedOutUser} name="Log out" />
-      ) : null}
-    </>
+
   );
 }
