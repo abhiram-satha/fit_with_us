@@ -32,7 +32,7 @@ export default function BottomNav() {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
   const [users, setUsers] = useState([]);
-
+  const [bottomToggleClass, setBottomToggleClass] = useState([]);
   useEffect(() => {
     Promise.all([
       axios.get("https://api.edamam.com/api/recipes/v2?type=public&q=vegan&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc&calories=100-500"),
@@ -205,7 +205,7 @@ export default function BottomNav() {
 
           
         </Routes>
-        <div class="navbar tabs is-centered is-medium is-fullwidth is-fixed-bottom">
+        <div class="navbar tabs is-toggle is-centered is-medium is-fullwidth is-fixed-bottom">
             <ul>
               <li><Link to="/homepage">You</Link></li>
               <li class="is-active"><Link to="/posts">Us</Link></li>
