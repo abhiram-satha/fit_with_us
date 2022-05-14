@@ -39,8 +39,13 @@ function App() {
   }, []);
 
   function loggedInUser(id) {
-    setCookie("id", id, { path: "/" });
-    setLoggedIn(true);
+    if (Number.isInteger(id)) {
+      setCookie("id", id, { path: "/" });
+      setLoggedIn(true);
+    } else {
+      console.log(id);
+      return id;
+    }
   }
 
   function backButton() {
