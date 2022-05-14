@@ -74,6 +74,7 @@ export default function App() {
     setLoggedIn(false);
     setLogin(false);
     setSignUp(false);
+    setUserHasRestrictions(false);
   }
 
   function loggedOutUser() {
@@ -89,6 +90,9 @@ export default function App() {
     setSignUp(true);
   }
 
+  async function getUserRestrictions() {
+    return await axios.get("http://localhost:8080/api/user_restrictions");
+  }
   let string = "";
   const makeArrayOfRestrictions = (apiArray) => {
     if (apiArray.length === 0) {
@@ -139,6 +143,19 @@ export default function App() {
       setLoggedIn(false);
     }
 
+    const fetchUserRestrictionsData = async () => await getUserRestrictions();
+
+    fetchUserRestrictionsData().then((all) => {
+      const found = all.data.user_restrictions.find((restriction, index) => {
+        if (restriction.user_id == userID) {
+          return true;
+        }
+      });
+
+      if (found) {
+        setUserHasRestrictions(true);
+      }
+    });
     // Promise.all([
     //   axios.get(`http://localhost:8080/api/dietary_restrictions/${userID}`),
     // ])
@@ -279,13 +296,13 @@ export default function App() {
     <div className="App">
       {/* {!user_id ? <Form /> :<BottomNav/>} */}
 
-      {!userHasRestrictions ? (
-        <UserDietaryRestrictions userID={userID} />
-      ) : null}
-      {/* {loggedIn ? (
+      {loggedIn ? (
         <>
           <TopNav loggedOutUser={loggedOutUser} />
           <br />
+          {!userHasRestrictions ? (
+            <UserDietaryRestrictions userID={userID} />
+          ) : null}
           <br />
           <BottomNav />
         </>
@@ -342,7 +359,7 @@ export default function App() {
         comments={comments}
         // newPost={newPost}
         // newComment={newComment}
-      /> */}
+      />
     </div>
   );
 }
