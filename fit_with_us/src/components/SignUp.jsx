@@ -269,14 +269,14 @@ export default function Form(props) {
         name="gender"
         options={["-----", "Male", "Female", "Prefer not to disclose"]}
       />
-      <FormCategory
+      {/* <FormCategory
         onChange={addToOptionsList}
         optionsName="dietary-choices"
         name="dietaryRestrictions"
         options={currentDietaryRestrictions}
         size={true}
         value={currentOptionsValue}
-      />
+      /> */}
       <Button name="Submit" />
     </form>
   );

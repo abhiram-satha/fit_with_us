@@ -3,16 +3,21 @@ import Homepage from "./Homepage";
 import Posts from "./Posts";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useAlert } from 'react-alert'
+import { useAlert } from "react-alert";
 
-export default function BottomNav({users, updateWeight, weight, recipes, posts, comments, newPost, newComment}) {
-
- 
+export default function BottomNav({
+  users,
+  updateWeight,
+  weight,
+  recipes,
+  posts,
+  comments,
+  newPost,
+  newComment,
+}) {
   return (
     <>
       <Router>
-        
-
         <Routes>
           <Route
             path={`/homepage`}
@@ -25,7 +30,7 @@ export default function BottomNav({users, updateWeight, weight, recipes, posts, 
               />
             }
           />
-          <Route
+          {/* <Route
             path="/posts"
             element={
               posts.length === 0 ? (
@@ -34,11 +39,11 @@ export default function BottomNav({users, updateWeight, weight, recipes, posts, 
                 <Posts posts={posts} users={users} comments={comments} newPost={newPost} newComment={newComment}/>
               )
             }
-          />
+          /> */}
         </Routes>
 
         <nav>
-          <Link to='/posts/'>Community</Link>
+          <Link to="/posts/">Community</Link>
           <Link to="/homepage">Your Profile</Link>
         </nav>
       </Router>
