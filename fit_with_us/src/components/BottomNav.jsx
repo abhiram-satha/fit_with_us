@@ -32,8 +32,9 @@ export default function BottomNav() {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
   const [users, setUsers] = useState([]);
-  const [bottomToggleClass, setBottomToggleClass] = useState([]);
-  
+  const [youToggle, setYouToggle] = useState([]);
+  const [usToggle, setUsToggle] = useState([]);
+
   useEffect(() => {
     Promise.all([
       axios.get("https://api.edamam.com/api/recipes/v2?type=public&q=vegan&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc&calories=100-500"),
@@ -119,6 +120,17 @@ export default function BottomNav() {
       .catch(error => console.log(error))
     }
   }
+
+  const toggleYou = () => {
+    setUsToggle([]);
+    setYouToggle("is-active");
+  }
+
+  const toggleUs = () => {
+    setYouToggle([]);
+    setUsToggle("is-active");
+  }
+
 
   const caloriesPerGender = (gender, age, goalPlan) => {
     if(gender === "male" && age >= 20 && age < 30 && goalPlan > "Increase Weight") {
@@ -208,8 +220,8 @@ export default function BottomNav() {
         </Routes>
         <div class="navbar tabs is-toggle is-centered is-medium is-fullwidth is-fixed-bottom">
             <ul>
-              <li><Link to="/homepage">You</Link></li>
-              <li class="is-active"><Link to="/posts">Us</Link></li>
+              <li onClick={toggleYou} class={youToggle} id="you"><Link to="/homepage">You</Link></li>
+              <li onClick={toggleUs} class={usToggle} id="us"><Link to="/posts">Us</Link></li>
             </ul>
        </div>
       </Router>
