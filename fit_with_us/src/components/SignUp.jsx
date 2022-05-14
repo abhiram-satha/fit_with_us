@@ -202,7 +202,7 @@ export default function Form(props) {
       .then(async (all) => {
         //Makes entry into database
         Promise.all([
-          axios.post("http://localhost:8080/api/user", {
+          axios.post("http://localhost:8080/api/users", {
             email,
             password,
             username,
@@ -218,7 +218,7 @@ export default function Form(props) {
       .then((all) => {
         setTimeout(() => {
           Promise.all([
-            axios.get("http://localhost:8080/api/user", { params }),
+            axios.get("http://localhost:8080/api/users", { params }),
             axios.get("http://localhost:8080/api/allUsers"),
           ]).then((all) => {
             //Returns user ID
@@ -238,7 +238,7 @@ export default function Form(props) {
   return (
     <form
       onSubmit={submitUserInformation}
-      action="http://localhost:8080/api/user"
+      action="http://localhost:8080/api/users"
       method="POST"
     >
       <FormCategory name="email" type="email" class={emailClass} />
