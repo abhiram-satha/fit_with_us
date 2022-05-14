@@ -6,7 +6,7 @@ export default function Input(props) {
 
   switch (props.inputType) {
     case "input":
-      inputTypeElement = <input class={props.class} type={props.type} placeholder={props.placeholder} />
+      inputTypeElement = <input class={props.inputType} type={props.type} placeholder={props.placeholder} />
       break;
     case "textarea":
       inputTypeElement = <textarea class="textarea" type={props.type} placeholder={props.placeholder} />

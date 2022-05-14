@@ -32,7 +32,7 @@ export default function BottomNav() {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
   const [users, setUsers] = useState([]);
-  const [youToggle, setYouToggle] = useState([]);
+  const [youToggle, setYouToggle] = useState(["is-active"]);
   const [usToggle, setUsToggle] = useState([]);
 
   useEffect(() => {
