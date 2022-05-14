@@ -19,7 +19,7 @@ export default function UserDietaryRestrictions(props) {
   }
 
   async function createUsersDietaryRestrictions(string) {
-    const params = { restriction: string[0] };
+    const params = { user_id: props.userID, restriction: string[0] };
 
     await axios.post("http://localhost:8080/api/dietary_restrictions", params);
   }
