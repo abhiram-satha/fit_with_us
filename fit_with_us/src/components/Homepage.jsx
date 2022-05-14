@@ -50,22 +50,34 @@
 import RecipeCard from "./RecipeCard";
 import Weighthistorygraph from "./Weighthistorygraph";
 
-export default function Homepage({ users, recipes, userWeight, updateWeight}) {
-  console.log(recipes)
+export default function Homepage({ users, recipes, userWeight, updateWeight }) {
   return (
     <section class="section">
       <div class="columns is-two-thirds">
-      {recipes[0].length === 1 ? (
-        <progress class="progress is-small is-primary" max="100">15%</progress>
-      ) : (
-        <RecipeCard recipes={recipes} className="card" />
-      )}
-      {userWeight.length === 0 ? (
-        <progress class="progress is-small is-primary" max="100">15%</progress>
-      ) : (
-        <Weighthistorygraph weights={userWeight} className="card" updateWeight={updateWeight}/>
-      )}
-    </div>
+        {recipes[0].length === 1 ? (
+          <progress class="progress is-small is-primary" max="100">
+            15%
+          </progress>
+        ) : (
+          <RecipeCard
+            key={users.id}
+            users={users}
+            recipes={recipes}
+            className="card"
+          />
+        )}
+        {userWeight.length === 0 ? (
+          <progress class="progress is-small is-primary" max="100">
+            15%
+          </progress>
+        ) : (
+          <Weighthistorygraph
+            weights={userWeight}
+            className="card"
+            updateWeight={updateWeight}
+          />
+        )}
+      </div>
     </section>
   );
 }
