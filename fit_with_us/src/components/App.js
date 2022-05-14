@@ -20,6 +20,7 @@ export default function App() {
   //User States
   const [loggedIn, setLoggedIn] = useState(false);
   const [userID, setUserID] = useState(null);
+  const [userHasRestrictions, setUserHasRestrictions] = useState(false);
   const [login, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false);
   const [recipes, setRecipes] = useState([
@@ -278,7 +279,9 @@ export default function App() {
     <div className="App">
       {/* {!user_id ? <Form /> :<BottomNav/>} */}
 
-      <UserDietaryRestrictions userID={userID} />
+      {!userHasRestrictions ? (
+        <UserDietaryRestrictions userID={userID} />
+      ) : null}
       {/* {loggedIn ? (
         <>
           <TopNav loggedOutUser={loggedOutUser} />
