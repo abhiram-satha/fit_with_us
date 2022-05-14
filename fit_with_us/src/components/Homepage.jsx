@@ -46,11 +46,12 @@
 //   );
 // }
 
+//import { filterProps } from "recharts/types/util/types";
 import RecipeCard from "./RecipeCard";
 import Weighthistorygraph from "./Weighthistorygraph";
 
-export default function Homepage({ users, recipes, userWeight, updateWeight }) {
-
+export default function Homepage({ users, recipes, userWeight, updateWeight}) {
+  console.log(recipes)
   return (
     <section class="section">
       <div class="columns is-two-thirds">
