@@ -1,14 +1,18 @@
-export default function UpdateCategoryPref ({categoryArray}) {
+export default function UpdateCategoryPref ({categoryArray, categories, setCategories}) {
 
-  console.log(categoryArray)
+  let unique_categories = [];
+  categories.forEach((c) => {
+    if (!unique_categories.includes(c)) {
+      unique_categories.push(c);
+    }
+  });
+  
+  // Printing the unique categories
+  setCategories(unique_categories);
 
   return (
     <>
-    <form>
-    <input type="checkbox" value="1" checked/><label for="1" >Chicken</label>
 
-    <input type="submit" name="Update User Preferences"></input>
-    </form>
     </>
   )
 }

@@ -13,7 +13,7 @@ import Settings from "./Settings";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";;
 
 function App() {
-const user_id = localStorage.getItem('user');
+
 
   //User States
   const [loggedIn, setLoggedIn] = useState(false);
@@ -104,6 +104,7 @@ const user_id = localStorage.getItem('user');
 
   }
 
+  const [categories, setCategories] = useState([])
   let categoryArray = [];
   const randomCategorySelector = (apiArray) => {
     // console.log(apiArray)
@@ -122,7 +123,7 @@ const user_id = localStorage.getItem('user');
     // console.log(categoryArray)
 
     let randomNumber = Math.floor(Math.random() * categoryArray.length)
-
+    setCategories(categoryArray);
     return categoryArray[randomNumber]
 
   }
@@ -251,7 +252,7 @@ const user_id = localStorage.getItem('user');
       .then(data => setUsers(prev => {
           return {...prev, goal_weight: data.goal_weight}
           }))
-      .then( window.location.reload(false))
+      .then(window.location.reload(false))
       .then(response => event.target[0].value ="") 
       .catch(error => console.log(error))
     }
@@ -270,6 +271,8 @@ path={`/settings`}
                 users={users}
                 updateGoalWeight={updateGoalWeight}
                 categoryArray={categoryArray}
+                categories={categories}
+                setCategories={setCategories}
               />}
               />
 </Routes>

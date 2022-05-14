@@ -1,10 +1,9 @@
 import UpdateCategoryPref from "./UpdateCategoryPref"
 import UpdateWeightGoal from "./UpdateWeightGoal"
 
-export default function Settings({users, updateGoalWeight, categoryArray}) {
+export default function Settings({users, updateGoalWeight, categoryArray, categories, setCategories}) {
 
-  
-
+ 
   return (
     <>
     This is the settings form
@@ -16,7 +15,7 @@ export default function Settings({users, updateGoalWeight, categoryArray}) {
 
         </details>
     </details>
-        <UpdateCategoryPref categoryArray={categoryArray}/>
+        {/* <UpdateCategoryPref categoryArray={categoryArray} categories={categories} setCategories={setCategories}/> */}
     </>
   )
 }
