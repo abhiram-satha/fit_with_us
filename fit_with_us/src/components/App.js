@@ -46,14 +46,14 @@ export default function App() {
   //Set Cookies
   const [cookies, setCookie, removeCookie] = useCookies();
 
-  useEffect(() => {
-    const userID = cookies.id;
-    if (userID) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const userID = cookies.id;
+  //   if (userID) {
+  //     setLoggedIn(true);
+  //   } else {
+  //     setLoggedIn(false);
+  //   }
+  // }, []);
 
   function loggedInUser(id) {
     if (Number.isInteger(id)) {
@@ -126,6 +126,13 @@ export default function App() {
   };
 
   useEffect(() => {
+    const userID = cookies.id;
+    if (userID) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+
     Promise.all([
       axios.get(`http://localhost:8080/api/dietary_restrictions/${userID}`),
     ])
