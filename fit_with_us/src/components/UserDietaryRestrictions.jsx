@@ -40,9 +40,16 @@ export default function UserDietaryRestrictions(props) {
 
   const submitUserInformation = async (e) => {
     e.preventDefault();
-    currentOptionsValue.map(async (restriction) => {
-      await createUsersDietaryRestrictions(restriction);
-    });
+
+    const checkCurrentOptions = async () => {
+      await currentOptionsValue.map(async (restriction) => {
+        await createUsersDietaryRestrictions(restriction);
+      });
+    };
+
+    checkCurrentOptions()
+      .then(() => props.setUserHasRestrictions(true))
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {

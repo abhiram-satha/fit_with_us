@@ -36,7 +36,13 @@ export default function BottomNav({
               posts.length === 0 ? (
                 ""
               ) : (
-                <Posts posts={posts} users={users} comments={comments} newPost={newPost} newComment={newComment}/>
+                <Posts
+                  posts={posts}
+                  users={users}
+                  comments={comments}
+                  newPost={newPost}
+                  newComment={newComment}
+                />
               )
             }
           /> */}

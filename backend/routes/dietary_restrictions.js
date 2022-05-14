@@ -31,16 +31,12 @@ module.exports = (db) => {
 
   router.post("/", (req, res) => {
     const dietaryRestriction = req.body;
-    const values = [req.body["user_id"], req.body.restriction];
+    const values = [dietaryRestriction.user_id, dietaryRestriction.restriction];
     const query = `INSERT INTO user_restrictions(user_id, dietary_restrictions_id) VALUES ($1, (SELECT id FROM dietary_restrictions WHERE restriction = $2))`;
 
-    db.query(query, values)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
+    db.query(query, values).catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
   });
   return router;
 };

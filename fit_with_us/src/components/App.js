@@ -156,141 +156,141 @@ export default function App() {
         setUserHasRestrictions(true);
       }
     });
-    // Promise.all([
-    //   axios.get(`http://localhost:8080/api/dietary_restrictions/${userID}`),
-    // ])
-    //   .then((result) => {
-    //     // console.log(result[1])
-    //     string += makeArrayOfRestrictions(result[0]["data"]["users"]);
-    //   })
-    //   .then((answer) => {
-    //     return Promise.all([
-    //       axios.get(`http://localhost:8080/api/user_preferences/${userID}`),
-    //     ]);
-    //   })
-    //   .then((response) => randomCategorySelector(response[0]["data"]["users"]))
-    //   .then((categorySelection) => {
-    //     return Promise.all([
-    //       axios.get(
-    //         `https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&calories=300-600`
-    //       ),
-    //       axios.get(`http://localhost:8080/api/weights/${userID}`),
-    //       axios.get(`http://localhost:8080/api/posts/`),
-    //       axios.get("http://localhost:8080/api/comments"),
-    //       axios.get(`http://localhost:8080/api/user/${userID}`),
-    //     ]);
-    //   })
-    //   .then((all) => {
-    //     // console.log(all);
-    //     setRecipes([all[0].data["hits"]]);
-    //     setWeight(all[1].data["weights"]);
-    //     setPosts(all[2].data);
-    //     setComments(all[3].data.posts);
-    //     setUsers(all[4].data);
-    //   })
-    //   .catch((err) => console.log(err.message));
+    Promise.all([
+      axios.get(`http://localhost:8080/api/dietary_restrictions/${userID}`),
+    ])
+      .then((result) => {
+        // console.log(result[1])
+        string += makeArrayOfRestrictions(result[0]["data"]["users"]);
+      })
+      .then((answer) => {
+        return Promise.all([
+          axios.get(`http://localhost:8080/api/user_preferences/${userID}`),
+        ]);
+      })
+      .then((response) => randomCategorySelector(response[0]["data"]["users"]))
+      .then((categorySelection) => {
+        return Promise.all([
+          axios.get(
+            `https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&calories=300-600`
+          ),
+          axios.get(`http://localhost:8080/api/weights/${userID}`),
+          axios.get(`http://localhost:8080/api/posts/`),
+          axios.get("http://localhost:8080/api/comments"),
+          axios.get(`http://localhost:8080/api/user/${userID}`),
+        ]);
+      })
+      .then((all) => {
+        // console.log(all);
+        setRecipes([all[0].data["hits"]]);
+        setWeight(all[1].data["weights"]);
+        setPosts(all[2].data);
+        setComments(all[3].data.posts);
+        setUsers(all[4].data);
+      })
+      .catch((err) => console.log(err.message));
   }, []);
 
-  // const newPost = (event) => {
-  //   if (!event.target[0].value) {
-  //     event.preventDefault();
-  //     console.log(event.target[0].value);
-  //     alert.show("Post can't be empty");
-  //     return;
-  //   } else {
-  //     event.preventDefault();
-  //     // console.log(event.target[0].value)
-  //     const data = {
-  //       message: event.target[0].value,
-  //     };
-  //     axios
-  //       .post(`http://localhost:8080/api/posts/${userID}`, data)
-  //       // .then(response => console.log(response))
-  //       .then((response) => axios.get("http://localhost:8080/api/posts"))
-  //       .then((posts) => setPosts(posts.data))
-  //       .then((response) => (event.target[0].value = ""))
-  //       .catch((error) => console.log(error));
-  //   }
-  // };
-  // const newComment = (event) => {
-  //   if (!event.target[0].value) {
-  //     event.preventDefault();
-  //     console.log(event.target[0].value);
-  //     alert.show("Comment can't be empty");
-  //     return;
-  //   } else {
-  //     event.preventDefault();
-  //     // console.log(event.target[0].attributes.post_id.value)
-  //     const data = {
-  //       message: event.target[0].value,
-  //       post_id: event.target[0].attributes.post_id.value,
-  //     };
-  //     axios
-  //       .post(`http://localhost:8080/api/comments/${userID}`, data)
-  //       .then((response) => axios.get("http://localhost:8080/api/comments"))
-  //       .then((comments) => setComments(comments.data.posts))
-  //       .then((response) => (event.target[0].value = ""))
-  //       .catch((error) => console.log(error));
-  //     // console.log(data)
-  //   }
-  // };
+  const newPost = (event) => {
+    if (!event.target[0].value) {
+      event.preventDefault();
+      console.log(event.target[0].value);
+      alert.show("Post can't be empty");
+      return;
+    } else {
+      event.preventDefault();
+      // console.log(event.target[0].value)
+      const data = {
+        message: event.target[0].value,
+      };
+      axios
+        .post(`http://localhost:8080/api/posts/${userID}`, data)
+        // .then(response => console.log(response))
+        .then((response) => axios.get("http://localhost:8080/api/posts"))
+        .then((posts) => setPosts(posts.data))
+        .then((response) => (event.target[0].value = ""))
+        .catch((error) => console.log(error));
+    }
+  };
+  const newComment = (event) => {
+    if (!event.target[0].value) {
+      event.preventDefault();
+      console.log(event.target[0].value);
+      alert.show("Comment can't be empty");
+      return;
+    } else {
+      event.preventDefault();
+      // console.log(event.target[0].attributes.post_id.value)
+      const data = {
+        message: event.target[0].value,
+        post_id: event.target[0].attributes.post_id.value,
+      };
+      axios
+        .post(`http://localhost:8080/api/comments/${userID}`, data)
+        .then((response) => axios.get("http://localhost:8080/api/comments"))
+        .then((comments) => setComments(comments.data.posts))
+        .then((response) => (event.target[0].value = ""))
+        .catch((error) => console.log(error));
+      // console.log(data)
+    }
+  };
 
-  // const updateWeight = (event) => {
-  //   if (!event.target[0].value) {
-  //     event.preventDefault();
-  //     console.log(event.target[0].value);
-  //     alert.show("Weight can't be empty");
-  //     return;
-  //   } else {
-  //     event.preventDefault();
-  //     // console.log(event.target[0].value)
-  //     const data = {
-  //       newWeight: event.target[0].value,
-  //     };
-  //     axios
-  //       .post(`http://localhost:8080/api/weights/${userID}`, data)
-  //       // .then(response => console.log(response))
-  //       .then((response) =>
-  //         axios.get(`http://localhost:8080/api/weights/${userID}`)
-  //       )
-  //       .then((weights) => setWeight(weights.data.weights))
-  //       .then((response) => (event.target[0].value = ""))
-  //       .catch((error) => console.log(error));
-  //   }
-  // };
+  const updateWeight = (event) => {
+    if (!event.target[0].value) {
+      event.preventDefault();
+      console.log(event.target[0].value);
+      alert.show("Weight can't be empty");
+      return;
+    } else {
+      event.preventDefault();
+      // console.log(event.target[0].value)
+      const data = {
+        newWeight: event.target[0].value,
+      };
+      axios
+        .post(`http://localhost:8080/api/weights/${userID}`, data)
+        // .then(response => console.log(response))
+        .then((response) =>
+          axios.get(`http://localhost:8080/api/weights/${userID}`)
+        )
+        .then((weights) => setWeight(weights.data.weights))
+        .then((response) => (event.target[0].value = ""))
+        .catch((error) => console.log(error));
+    }
+  };
 
-  // const updateGoalWeight = (event) => {
-  //   if (!event.target[0].value) {
-  //     event.preventDefault();
-  //     console.log(event.target[0].value);
-  //     alert.show("Goal Weight can't be empty");
-  //     return;
-  //   } else {
-  //     event.preventDefault();
-  //     // console.log(event.target[0].value)
-  //     const data = {
-  //       goal_weight: event.target[0].value,
-  //     };
+  const updateGoalWeight = (event) => {
+    if (!event.target[0].value) {
+      event.preventDefault();
+      console.log(event.target[0].value);
+      alert.show("Goal Weight can't be empty");
+      return;
+    } else {
+      event.preventDefault();
+      // console.log(event.target[0].value)
+      const data = {
+        goal_weight: event.target[0].value,
+      };
 
-  //     // console.log(data)
-  //     axios
-  //       .put(`http://localhost:8080/api/user/${userID}`, data)
-  //       // .then(response => console.log(response))
-  //       .then((response) =>
-  //         axios.get(`http://localhost:8080/api/user/${userID}`)
-  //       )
-  //       // .then(weights => setWeight(weights.data.weights))
-  //       // .then(users => setUsers(prev => {...prev, goal_weight: data.goal_weight}))
-  //       .then((data) =>
-  //         setUsers((prev) => {
-  //           return { ...prev, goal_weight: data.goal_weight };
-  //         })
-  //       )
-  //       .then(window.location.reload(false))
-  //       .then((response) => (event.target[0].value = ""))
-  //       .catch((error) => console.log(error));
-  //   }
-  // };
+      // console.log(data)
+      axios
+        .put(`http://localhost:8080/api/user/${userID}`, data)
+        // .then(response => console.log(response))
+        .then((response) =>
+          axios.get(`http://localhost:8080/api/user/${userID}`)
+        )
+        // .then(weights => setWeight(weights.data.weights))
+        // .then(users => setUsers(prev => {...prev, goal_weight: data.goal_weight}))
+        .then((data) =>
+          setUsers((prev) => {
+            return { ...prev, goal_weight: data.goal_weight };
+          })
+        )
+        .then(window.location.reload(false))
+        .then((response) => (event.target[0].value = ""))
+        .catch((error) => console.log(error));
+    }
+  };
 
   return (
     <div className="App">
@@ -301,7 +301,10 @@ export default function App() {
           <TopNav loggedOutUser={loggedOutUser} />
           <br />
           {!userHasRestrictions ? (
-            <UserDietaryRestrictions userID={userID} />
+            <UserDietaryRestrictions
+              userID={userID}
+              setUserHasRestrictions={setUserHasRestrictions}
+            />
           ) : null}
           <br />
           <BottomNav />
@@ -338,7 +341,7 @@ export default function App() {
               ) : (
                 <Settings
                   users={users}
-                  // updateGoalWeight={updateGoalWeight}
+                  updateGoalWeight={updateGoalWeight}
                   categoryArray={categoryArray}
                 />
               )
@@ -353,12 +356,12 @@ export default function App() {
       <BottomNav
         weight={weight}
         users={users}
-        // updateWeight={updateWeight}
+        updateWeight={updateWeight}
         recipes={recipes}
         posts={posts}
         comments={comments}
-        // newPost={newPost}
-        // newComment={newComment}
+        newPost={newPost}
+        newComment={newComment}
       />
     </div>
   );
