@@ -1,6 +1,8 @@
 import Button from "./Button"
 import Thread from "./Thread"
 import Input from "./Input"
+import "../styles/Posts.scss"
+
 export default function Posts({posts, comments, newComment, newPost, users}) {
   
   let postsCopy = [...posts.posts]

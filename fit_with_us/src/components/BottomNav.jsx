@@ -33,6 +33,7 @@ export default function BottomNav() {
   const [comments, setComments] = useState([]);
   const [users, setUsers] = useState([]);
   const [bottomToggleClass, setBottomToggleClass] = useState([]);
+  
   useEffect(() => {
     Promise.all([
       axios.get("https://api.edamam.com/api/recipes/v2?type=public&q=vegan&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc&calories=100-500"),
