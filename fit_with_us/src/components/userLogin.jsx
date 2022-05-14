@@ -26,7 +26,7 @@ export default function UserLogin(props) {
       password: e.target[1].value,
     };
 
-    Promise.all([axios.get("http://localhost:8080/api/user", { params })])
+    Promise.all([axios.get("http://localhost:8080/api/users", { params })])
       .then((all) => {
         const userData = all[0].data.users;
         const user = userData[0];
@@ -49,7 +49,7 @@ export default function UserLogin(props) {
   return (
     <form
       onSubmit={submitUserInformation}
-      action="http://localhost:8080/api/user"
+      action="http://localhost:8080/api/users"
       method="GET"
     >
       <FormCategory

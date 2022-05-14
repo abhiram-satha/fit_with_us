@@ -21,40 +21,32 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(cors());
-// app.use(function (req, res, next) {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader("Access-Control-Allow-Credentials", "true");
-//   res.setHeader(
-//     "Access-Control-Allow-Methods",
-//     "GET,HEAD,OPTIONS,POST,PUT,DELETE"
-//   );
-//   res.setHeader(
-//     "Access-Control-Allow-Headers",
-//     "Origin,Cache-Control,Accept,X-Access-Token ,X-Requested-With, Content-Type, Access-Control-Request-Method"
-//   );
-//   if (req.method === "OPTIONS") {
-//     return res.status(200).end();
-//   }
-//   next();
-// });
 
 //Seperated Routes for Resources
-const userRoutes = require("./routes/users");
 const emailCheckRoutes = require("./routes/emailCheck");
 const usernameCheckRoutes = require("./routes/usernameCheck");
 const allUsersRoutes = require("./routes/allUsers");
 const weightRoutes = require("./routes/weights");
 const postRoutes = require("./routes/posts");
 const commentRoutes = require("./routes/comments");
+const userRoutes = require("./routes/user");
+const usersRoutes = require("./routes/users");
+const dietary_restrictions = require("./routes/dietary_restrictions");
+const user_preferences = require("./routes/user_preferences");
+const user_restrictions = require("./routes/user_restrictions");
 
 //Mount all resource routes
 app.use("/api/user", userRoutes(db));
+app.use("/api/users", usersRoutes(db));
 app.use("/api/usernameCheck", usernameCheckRoutes(db));
 app.use("/api/emailCheck", emailCheckRoutes(db));
 app.use("/api/allUsers", allUsersRoutes(db));
 app.use("/api/weights", weightRoutes(db));
 app.use("/api/posts", postRoutes(db));
 app.use("/api/comments", commentRoutes(db));
+app.use("/api/dietary_restrictions", dietary_restrictions(db));
+app.use("/api/user_preferences", user_preferences(db));
+app.use("/api/user_restrictions", user_restrictions(db));
 
 //Routes
 // app.get("/", (req, res) => {
