@@ -1,24 +1,30 @@
 export default function UpdateCategoryPref ({categoryArray, categories, setCategories}) {
 
-  let unique_categories = [];
-  categories.forEach((c) => {
-    if (!unique_categories.includes(c)) {
-      unique_categories.push(c);
-    }
-  });
+  
+  let unique_category = [];
+  const unique_categories = (category) => {
+    category.forEach((c) => {
+      if (!unique_category.includes(c)) {
+        unique_category.push(c);
+      }
+    });
+
+  }
+  unique_categories(categories);
+  console.log(unique_category)
   
   // Printing the unique categories
-  setCategories(unique_categories);
-
+  // setCategories(unique_categories);
+  // console.log(unique_categories)
   return (
     <>
-    {/* <form>
-    {categories.includes('chicken') ? <input type="checkbox" value="1" checked/> : <input type="checkbox" value="1" />}
+    <form>
+    {unique_category.includes('chicken') ? <input type="checkbox" value="1" checked/> : <input type="checkbox" value="1" />}
     <label for="1" >Chicken</label>
-    {categories.includes('fish') ? <input type="checkbox" value="2" checked/> : <input type="checkbox" value="2" />}
+    {unique_category.includes('fish') ? <input type="checkbox" value="2" checked/> : <input type="checkbox" value="2" />}
     <label for="2" >Fish</label>
     <input type="submit" name="Update User Preferences"></input>
-    </form> */}
+    </form>
     </>
   )
 }

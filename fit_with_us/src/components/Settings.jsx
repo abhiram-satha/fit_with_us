@@ -3,6 +3,7 @@ import UpdateWeightGoal from "./UpdateWeightGoal"
 
 export default function Settings({users, updateGoalWeight, categoryArray, categories, setCategories}) {
 
+  // console.log(categories)
  
   return (
     <>
@@ -15,7 +16,7 @@ export default function Settings({users, updateGoalWeight, categoryArray, catego
 
         </details>
     </details>
-        {/* <UpdateCategoryPref categoryArray={categoryArray} categories={categories} setCategories={setCategories}/> */}
+        <UpdateCategoryPref categoryArray={categoryArray} categories={categories} setCategories={setCategories}/>
     </>
   )
 }
