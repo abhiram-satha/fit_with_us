@@ -15,6 +15,7 @@ export default function UserLogin(props) {
   //Function to handle submit
   const submitUserInformation = (e) => {
     e.preventDefault();
+    console.log(e)
 
     //Resets all states before logic
     setErrorEmail(false);
@@ -31,10 +32,10 @@ export default function UserLogin(props) {
     Promise.all([axios.get("http://localhost:8080/api/user", { params })])
       .then((all) => {
         const userData = all[0].data.users;
+        console.log(userData)
         const user = userData[0];
         if (userData.length !== 0) {
           const errorInformation = props.loggedInUser(user.id);
-          console.log(errorInformation)
           if (errorInformation === "The password is incorrect") {
             setPasswordClass("input is-danger");
             setErrorPassword(errorInformation);
@@ -58,7 +59,6 @@ export default function UserLogin(props) {
         <form onSubmit={submitUserInformation} action="http://localhost:8080/api/user" method="GET">
           <Input id="user-email" inputType="input" class={emailClass} name="email" type="email" placeholder="Enter your email" help={errorEmail}/>
           <Input id="user-password" inputType="input" class={passwordClass} name="password" type="password" placeholder="Enter your password" help={errorPassword}/>
-          <br />
           <br />
           <Button  name="Login" />
         </form>

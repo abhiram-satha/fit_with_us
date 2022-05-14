@@ -1,7 +1,6 @@
 import Button from "./Button"
 import Thread from "./Thread"
-import Form from "./Form"
-
+import Input from "./Input"
 export default function Posts({posts, comments, newComment, newPost, users}) {
   
   let postsCopy = [...posts.posts]
@@ -15,7 +14,10 @@ export default function Posts({posts, comments, newComment, newPost, users}) {
     <section class="section">
       <div class="columns is-two-thirds">
         <div class="column ">
-          <Form onSubmit={(newPost)} inputType="textarea" type="text" label="Let us know how you're getting on!" placeholder="Create a New Post" buttonName="Submit" />
+          <form onSubmit={(newPost)} class="mb-4">
+            <Input inputType="textarea" type="text" label="Let us know how you're getting on!" placeholder="Create a New Post" buttonName="Submit" />
+            <Button name="Submit"/>
+          </form>
           {parentPost}
         </div>
       </div>
