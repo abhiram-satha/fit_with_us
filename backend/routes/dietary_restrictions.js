@@ -28,5 +28,9 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
+
+  router.post("/", (req, res) => {
+    console.log(req.body.restriction);
+  });
   return router;
 };

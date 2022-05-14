@@ -16,6 +16,8 @@ INSERT INTO post(user_id, message, date) VALUES (2, 'I need some encouragement',
 INSERT INTO comment(user_id, post_id, message, date) VALUES (2, 1, 'OMG Congrats','2022-05-01');
 INSERT INTO comment(user_id, post_id, message, date) VALUES (1, 2, 'You got this','2022-05-02');
 
+
+INSERT INTO dietary_restrictions(restriction) VALUES ('None');
 INSERT INTO dietary_restrictions(restriction) VALUES ('Dairy-Free');
 INSERT INTO dietary_restrictions(restriction) VALUES ('Egg-Free');
 INSERT INTO dietary_restrictions(restriction) VALUES ('Peanut-Free');

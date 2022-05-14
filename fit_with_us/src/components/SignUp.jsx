@@ -6,17 +6,6 @@ import Error from "./Error";
 import { checkEmptyInput } from "../helpers/signUpHelpers";
 
 export default function Form(props) {
-  //Variables
-  const currentDietaryRestrictions = [
-    "None",
-    "No Eggs",
-    "Vegetarian",
-    "No Dairy",
-  ];
-
-  //Dietary Restrictions Values
-  const [currentOptionsValue, setCurrentOptionsValues] = useState(["None"]);
-
   //Error States
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorUsername, setErrorUsername] = useState(false);
@@ -39,10 +28,6 @@ export default function Form(props) {
 
   useEffect(() => {}, []);
 
-  //Variables
-  const gender = [];
-  const dietaryRestrictions = [];
-
   //Helper Functions
   const checkEqualPasswords = (password, passwordConfirmation) => {
     if (password === passwordConfirmation) {
@@ -63,20 +48,6 @@ export default function Form(props) {
     }
     return false;
   };
-
-  function addToOptionsList(e) {
-    const numberOfOptions = currentDietaryRestrictions
-      ? currentDietaryRestrictions.length
-      : 0;
-    const selectedList = [];
-
-    for (let i = 0; i < numberOfOptions; i++) {
-      if (e.target[i].selected) {
-        selectedList.push(e.target[i].value);
-      }
-    }
-    setCurrentOptionsValues(selectedList);
-  }
 
   const submitUserInformation = async (e) => {
     //Reset States
@@ -112,7 +83,6 @@ export default function Form(props) {
     const height = e.target[6].value;
     const age = e.target[7].value;
     const gender = e.target[8].value;
-    const dietaryRestrictions = currentOptionsValue;
 
     //Check empty Email input
     if (!checkEmptyInput(email)) {
@@ -269,14 +239,6 @@ export default function Form(props) {
         name="gender"
         options={["-----", "Male", "Female", "Prefer not to disclose"]}
       />
-      {/* <FormCategory
-        onChange={addToOptionsList}
-        optionsName="dietary-choices"
-        name="dietaryRestrictions"
-        options={currentDietaryRestrictions}
-        size={true}
-        value={currentOptionsValue}
-      /> */}
       <Button name="Submit" />
     </form>
   );

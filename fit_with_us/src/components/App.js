@@ -19,6 +19,7 @@ export default function App() {
 
   //User States
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userID, setUserID] = useState(null);
   const [login, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false);
   const [recipes, setRecipes] = useState([
@@ -61,6 +62,7 @@ export default function App() {
     if (Number.isInteger(id)) {
       setCookie("id", id, { path: "/" });
       setLoggedIn(true);
+      setUserID(id);
     } else {
       console.log(id);
       return id;
@@ -131,6 +133,7 @@ export default function App() {
     const userID = cookies.id;
     if (userID) {
       setLoggedIn(true);
+      setUserID(userID);
     } else {
       setLoggedIn(false);
     }
@@ -275,7 +278,7 @@ export default function App() {
     <div className="App">
       {/* {!user_id ? <Form /> :<BottomNav/>} */}
 
-      <UserDietaryRestrictions />
+      <UserDietaryRestrictions userID={userID} />
       {/* {loggedIn ? (
         <>
           <TopNav loggedOutUser={loggedOutUser} />
