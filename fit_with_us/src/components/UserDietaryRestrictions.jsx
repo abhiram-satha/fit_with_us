@@ -28,8 +28,6 @@ export default function UserDietaryRestrictions(props) {
     const numberOfOptions = dietaryRestrictions.length;
     const selectedList = [];
 
-    console.log(numberOfOptions);
-
     for (let i = 0; i < numberOfOptions; i++) {
       if (e.target[i].selected) {
         selectedList.push(e.target[i].value);
@@ -49,6 +47,7 @@ export default function UserDietaryRestrictions(props) {
 
     checkCurrentOptions()
       .then(() => props.setUserHasRestrictions(true))
+      .then(() => window.location.reload(false))
       .catch((err) => console.log(err));
   };
 

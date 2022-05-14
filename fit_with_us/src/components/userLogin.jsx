@@ -12,9 +12,8 @@ export default function UserLogin(props) {
   const [passwordClass, setPasswordClass] = useState("input");
 
   //Function to handle submit
-  const submitUserInformation = (e) => {
+  const submitUserInformation = async (e) => {
     e.preventDefault();
-    console.log(e);
 
     //Resets all states before logic
     setErrorEmail(false);
@@ -46,6 +45,7 @@ export default function UserLogin(props) {
           }
         }
       })
+      .then(() => window.location.reload(false))
       .catch((err) => console.log(err.message));
   };
 
