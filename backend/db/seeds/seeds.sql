@@ -21,6 +21,7 @@ INSERT INTO dietary_restrictions(restriction) VALUES ('None');
 INSERT INTO dietary_restrictions(restriction) VALUES ('Dairy-Free');
 INSERT INTO dietary_restrictions(restriction) VALUES ('Egg-Free');
 INSERT INTO dietary_restrictions(restriction) VALUES ('Peanut-Free');
+INSERT INTO dietary_restrictions(restriction) VALUES ('Fish-Free');
 
 INSERT INTO user_restrictions(user_id, dietary_restrictions_id) VALUES (1,1);
 INSERT INTO user_restrictions(user_id, dietary_restrictions_id) VALUES (1,2);

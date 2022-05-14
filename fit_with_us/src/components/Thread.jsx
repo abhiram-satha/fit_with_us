@@ -19,12 +19,12 @@ export default function Thread({newComment, users,username, message, comments, p
     // </div>
     <div class="card mb-2">
       <div class="card-content mb-0">
-        <div class="media">
+        <div class="media mb-0">
           <div class="media-content">
-            <p class="title is-6">{username}</p>
+            <p class="username title is-6">{username}</p>
           </div>
         </div>
-          <div class="content">
+          <div class="content mb-2">
            {message}
           </div>
           <CommentReply post_id={postID} newComment={newComment}/>

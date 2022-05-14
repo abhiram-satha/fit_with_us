@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Button from "./Button";
-import FormCategory from "./FormCategory";
+import Input from "./Input";
 import axios from "axios";
+import "../styles/UserLogin.scss";
 import Error from "./Error";
 
 export default function UserLogin(props) {
@@ -13,6 +14,7 @@ export default function UserLogin(props) {
   //Function to handle submit
   const submitUserInformation = (e) => {
     e.preventDefault();
+    console.log(e);
 
     //Resets all states before logic
     setErrorEmail(false);
@@ -29,6 +31,7 @@ export default function UserLogin(props) {
     Promise.all([axios.get("http://localhost:8080/api/users", { params })])
       .then((all) => {
         const userData = all[0].data.users;
+        console.log(userData);
         const user = userData[0];
         if (userData.length !== 0) {
           const errorInformation = props.loggedInUser(user.id);
@@ -47,28 +50,38 @@ export default function UserLogin(props) {
   };
 
   return (
-    <form
-      onSubmit={submitUserInformation}
-      action="http://localhost:8080/api/users"
-      method="GET"
-    >
-      <FormCategory
-        class={emailClass}
-        id="user-email"
-        name="email"
-        type="email"
-      />
-
-      {errorEmail ? <Error errorMessage="Email is incorrect" /> : null}
-
-      <FormCategory
-        class={passwordClass}
-        id="user-password"
-        name="password"
-        type="password"
-      />
-      {errorPassword ? <Error errorMessage="Password is incorrect" /> : null}
-      <Button name="Login" />
-    </form>
+    <div class="columns is-mobile is-centered login-panel">
+      <div class="column is-four-fifths">
+        <figure class="image is-square">
+          <img src="https://i.imgur.com/1EehYbk.png"></img>
+        </figure>
+        <form
+          onSubmit={submitUserInformation}
+          action="http://localhost:8080/api/user"
+          method="GET"
+        >
+          <Input
+            id="user-email"
+            inputType="input"
+            class={emailClass}
+            name="email"
+            type="email"
+            placeholder="Enter your email"
+            help={errorEmail}
+          />
+          <Input
+            id="user-password"
+            inputType="input"
+            class={passwordClass}
+            name="password"
+            type="password"
+            placeholder="Enter your password"
+            help={errorPassword}
+          />
+          <br />
+          <Button name="Login" />
+        </form>
+      </div>
+    </div>
   );
 }

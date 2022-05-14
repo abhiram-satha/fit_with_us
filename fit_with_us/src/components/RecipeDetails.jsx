@@ -2,19 +2,21 @@ import React from "react";
 import RecipeIngredients from "./RecipeIngredients"
 
 
-export default function RecipeDetails(props) {
+export default function RecipeDetails({ingredients, calories, serving, url}) {
 
-  const RecipeIngredientsArray = props.info.ingredients.map(ingredient => {
-    return <RecipeIngredients ingredient={ingredient} size={props.info.yield}/>
+  console.log([ingredients, calories, serving, url])
+
+  const RecipeIngredientsArray = ingredients.map(ingredient => {
+    return <RecipeIngredients ingredient={ingredient} size={serving}/>
   })
 
 return (
   <div>
-  <p>Calories Per Serving: {Math.floor(props.info.calories / props.info.yield)}</p>
+  <p>Calories Per Serving: {Math.floor(calories / serving)}</p>
   <ul>
   {RecipeIngredientsArray}
   </ul>
-  <a href={props.info.url} target="_blank"><button>Instructions</button></a>
+  <a href={url} target="_blank"><button>Instructions</button></a>
   
   </div> )
 }

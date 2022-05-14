@@ -1,6 +1,7 @@
 import Button from "./Button"
 import Thread from "./Thread"
-import Form from "./Form"
+import Input from "./Input"
+import "../styles/Posts.scss"
 
 export default function Posts({posts, comments, newComment, newPost, users}) {
   
@@ -12,16 +13,16 @@ export default function Posts({posts, comments, newComment, newPost, users}) {
 
   
   return (
-    // <>
-    // <form onSubmit={(newPost)}>
-    // <input type="text" placeholder="Create a New Post" name="message"/>
-    // <input type="submit" name="Create Post"/>
-    // </form>
-    // {parentPost}
-    // </>
-      <>
-        <Form onSubmit={(newPost)} inputType="textarea" type="text" label="Let us know how you're getting on!" placeholder="Create a New Post" buttonName="Submit" />
-        {parentPost}
-      </>
+    <section class="section">
+      <div class="columns is-two-thirds">
+        <div class="column ">
+          <form onSubmit={(newPost)} class="mb-4">
+            <Input inputType="textarea" type="text" label="Let us know how you're getting on!" placeholder="Create a New Post" buttonName="Submit" />
+            <Button name="Submit"/>
+          </form>
+          {parentPost}
+        </div>
+      </div>
+    </section>
   );
 }

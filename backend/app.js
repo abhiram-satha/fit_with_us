@@ -48,7 +48,7 @@ app.use("/api/dietary_restrictions", dietary_restrictions(db));
 app.use("/api/user_preferences", user_preferences(db));
 app.use("/api/user_restrictions", user_restrictions(db));
 
-//Routes
+// Routes;
 // app.get("/", (req, res) => {
 //   axios
 //     .get(

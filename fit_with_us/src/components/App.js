@@ -105,8 +105,10 @@ export default function App() {
 
     for (let i = 0; i < apiArray.length; i++) {
       // arrayOfRestrictions.push(apiArray[i]['restriction'])
-      let lowerCaseRestriction = apiArray[i]["restriction"].toLowerCase();
-      dietRestrictionString += `&health=${lowerCaseRestriction}`;
+      if (apiArray[i]["restriction"] !== "None") {
+        let lowerCaseRestriction = apiArray[i]["restriction"].toLowerCase();
+        dietRestrictionString += `&health=${lowerCaseRestriction}`;
+      }
     }
     // console.log(dietRestrictionString)
     return dietRestrictionString;
