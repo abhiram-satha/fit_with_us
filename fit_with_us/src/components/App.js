@@ -130,10 +130,7 @@ const user_id = localStorage.getItem('user');
   useEffect(() => {
     Promise.all([
       axios.get(`http://localhost:8080/api/dietary_restrictions/${userID}`),
-      axios.get(`http://localhost:8080/api/user_preferences/${userID}`)
   ])
-    // .then(response =>  response[0]['data']['users'])
-    // .then(result => console.log(result[0]['data']['users']))
     .then(result => {
       // console.log(result[1])
       string  += makeArrayOfRestrictions(result[0]['data']['users'])
@@ -146,7 +143,7 @@ const user_id = localStorage.getItem('user');
     .then(response => randomCategorySelector(response[0]['data']['users']))
     .then(categorySelection => {
       return Promise.all([
-        axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&calories=300-600`),
+        axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&calories=300-600`),
         axios.get(`http://localhost:8080/api/weights/${userID}`),
         axios.get(`http://localhost:8080/api/posts/`),
         axios.get("http://localhost:8080/api/comments"),
