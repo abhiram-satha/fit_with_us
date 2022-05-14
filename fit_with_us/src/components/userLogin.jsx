@@ -44,24 +44,8 @@ export default function UserLogin(props) {
             setErrorEmail(errorInformation);
           }
         }
-
-        return user.id;
       })
-      .then(async (id) => {
-        await props.getUserRestrictions().then((all) => {
-          const found = all.data.user_restrictions.find(
-            (restriction, index) => {
-              if (restriction.user_id == id) {
-                return true;
-              }
-            }
-          );
-
-          if (found) {
-            props.setUserHasRestrictions(true);
-          }
-        });
-      })
+      .then(() => window.location.reload(false))
       .catch((err) => console.log(err.message));
   };
 

@@ -322,8 +322,6 @@ export default function App() {
             loggedInUser={loggedInUser}
             setSignUp={setSignUp}
             signUserUp={signUserUp}
-            getUserRestrictions={getUserRestrictions}
-            setUserHasRestrictions={setUserHasRestrictions}
           />
         </>
       ) : signUp ? (
