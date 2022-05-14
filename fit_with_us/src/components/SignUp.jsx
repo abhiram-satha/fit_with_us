@@ -135,7 +135,6 @@ export default function Form(props) {
     await getUserInformation()
       .then(async (response) => {
         const userDatabase = response.data.users;
-        console.log(userDatabase);
         const emailExists = checkForInformation(userDatabase, email, "email");
         const usernameExists = checkForInformation(
           userDatabase,
@@ -146,8 +145,6 @@ export default function Form(props) {
           password,
           passwordConfirmation
         );
-
-        console.log("Values", emailExists, usernameExists, equalPasswords);
 
         if (emailExists) {
           setErrorEmail("The email exists");
@@ -181,11 +178,9 @@ export default function Form(props) {
             height,
             age,
           }),
-        ]).then((all) => {
-          console.log(all);
-        });
+        ]);
       })
-      .then((all) => {
+      .then(() => {
         setTimeout(() => {
           Promise.all([
             axios.get("http://localhost:8080/api/users", { params }),
@@ -194,8 +189,6 @@ export default function Form(props) {
             //Returns user ID
             const userData = all[0].data.users;
             const user = userData[0];
-            const test = all[1].data;
-            console.log(test);
             if (userData.length !== 0) {
               props.loggedInUser(user.id);
             }

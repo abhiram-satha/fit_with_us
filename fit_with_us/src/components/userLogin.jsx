@@ -12,9 +12,8 @@ export default function UserLogin(props) {
   const [passwordClass, setPasswordClass] = useState("input");
 
   //Function to handle submit
-  const submitUserInformation = (e) => {
+  const submitUserInformation = async (e) => {
     e.preventDefault();
-    console.log(e);
 
     //Resets all states before logic
     setErrorEmail(false);
@@ -45,6 +44,23 @@ export default function UserLogin(props) {
             setErrorEmail(errorInformation);
           }
         }
+
+        return user.id;
+      })
+      .then(async (id) => {
+        await props.getUserRestrictions().then((all) => {
+          const found = all.data.user_restrictions.find(
+            (restriction, index) => {
+              if (restriction.user_id == id) {
+                return true;
+              }
+            }
+          );
+
+          if (found) {
+            props.setUserHasRestrictions(true);
+          }
+        });
       })
       .catch((err) => console.log(err.message));
   };

@@ -62,7 +62,6 @@ export default function App() {
       setLoggedIn(true);
       setUserID(id);
     } else {
-      console.log(id);
       return id;
     }
   }
@@ -323,6 +322,8 @@ export default function App() {
             loggedInUser={loggedInUser}
             setSignUp={setSignUp}
             signUserUp={signUserUp}
+            getUserRestrictions={getUserRestrictions}
+            setUserHasRestrictions={setUserHasRestrictions}
           />
         </>
       ) : signUp ? (
