@@ -1,6 +1,5 @@
 import { LineChart, Line, CartesianGrid, YAxis, XAxis, Tooltip, ResponsiveContainer} from 'recharts';
-import Form from './Form';
-
+import Input from './Input';
 export default function Weighthistorygraph({weights, updateWeight}) {
   // console.log(weight)
 
@@ -23,7 +22,9 @@ export default function Weighthistorygraph({weights, updateWeight}) {
             <Tooltip />
           </LineChart>
           </ResponsiveContainer> 
-          <Form onSubmit={updateWeight} placeholder="Enter Current Weight" type="number"/>
+          <form onSubmit= {updateWeight} >
+            <Input inputType="input" placeholder="Enter Current Weight" type="number"/>
+          </form>
       </div>
     </div>
   )

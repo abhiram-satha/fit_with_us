@@ -505,8 +505,8 @@ function addToOptionsList(e) {
   );
 }
 
-{/* <div class="column is-two-thirds">
-//     {/* <form onSubmit={submitUserInformation} action="http://localhost:8080/api/user" method="POST"> */}
+/* <div class="column is-two-thirds">
+//     {/* <form onSubmit={submitUserInformation} action="http://localhost:8080/api/user" method="POST"> */
 //     <form action="http://localhost:8080/api/user" method="POST">
 //       <div class="field">
 //             <label htmlFor="email" class="label">Email</label>
@@ -647,4 +647,4 @@ function addToOptionsList(e) {
 //             </div>
 //           </div>
 //       </form>
-//       </div> */}
+//       </div> 
