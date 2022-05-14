@@ -15,6 +15,8 @@ export default function BottomNav({
   newPost,
   newComment,
 }) {
+  console.log(weight);
+  // console.log(posts.length);
   return (
     <>
       <Router>
@@ -30,7 +32,7 @@ export default function BottomNav({
               />
             }
           />
-          {/* <Route
+          <Route
             path="/posts"
             element={
               posts.length === 0 ? (
@@ -45,7 +47,7 @@ export default function BottomNav({
                 />
               )
             }
-          /> */}
+          />
         </Routes>
 
         <nav>

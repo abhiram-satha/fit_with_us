@@ -181,12 +181,12 @@ export default function App() {
         ]);
       })
       .then((all) => {
-        // console.log(all);
         setRecipes([all[0].data["hits"]]);
         setWeight(all[1].data["weights"]);
         setPosts(all[2].data);
         setComments(all[3].data.posts);
         setUsers(all[4].data);
+        console.log(all[1].data["weights"]);
       })
       .catch((err) => console.log(err.message));
   }, []);
@@ -307,7 +307,16 @@ export default function App() {
             />
           ) : null}
           <br />
-          <BottomNav />
+          <BottomNav
+            weight={weight}
+            users={users}
+            updateWeight={updateWeight}
+            recipes={recipes}
+            posts={posts}
+            comments={comments}
+            newPost={newPost}
+            newComment={newComment}
+          />
         </>
       ) : login ? (
         <>
@@ -352,17 +361,6 @@ export default function App() {
           <Link to="/settings">Setting</Link>
         </nav>
       </Router>
-
-      <BottomNav
-        weight={weight}
-        users={users}
-        updateWeight={updateWeight}
-        recipes={recipes}
-        posts={posts}
-        comments={comments}
-        newPost={newPost}
-        newComment={newComment}
-      />
     </div>
   );
 }
