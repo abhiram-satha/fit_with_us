@@ -294,27 +294,29 @@ export default function App() {
       {/* {!user_id ? <Form /> :<BottomNav/>} */}
 
       {loggedIn ? (
-        <>
-          <TopNav loggedOutUser={loggedOutUser} />
-          <br />
-          {!userHasRestrictions ? (
+        !userHasRestrictions ? (
+          <>
+            <TopNav loggedOutUser={loggedOutUser} />
             <UserDietaryRestrictions
               userID={userID}
               setUserHasRestrictions={setUserHasRestrictions}
             />
-          ) : null}
-          <br />
-          <BottomNav
-            weight={weight}
-            users={users}
-            updateWeight={updateWeight}
-            recipes={recipes}
-            posts={posts}
-            comments={comments}
-            newPost={newPost}
-            newComment={newComment}
-          />
-        </>
+          </>
+        ) : (
+          <>
+            <TopNav loggedOutUser={loggedOutUser} />
+            <BottomNav
+              weight={weight}
+              users={users}
+              updateWeight={updateWeight}
+              recipes={recipes}
+              posts={posts}
+              comments={comments}
+              newPost={newPost}
+              newComment={newComment}
+            />
+          </>
+        )
       ) : login ? (
         <>
           <TopNav backButton={backButton} />
