@@ -1,22 +1,24 @@
-export default function UpdateCategoryPref ({categoryArray}) {
+export default function UpdateCategoryPref({
+  categoryArray,
+  categories,
+  setCategories,
+}) {
+  let unique_categories = [];
+  categories.forEach((c) => {
+    if (!unique_categories.includes(c)) {
+      unique_categories.push(c);
+    }
+  });
 
-  console.log(categoryArray)
+  // Printing the unique categories
+  setCategories(unique_categories);
 
-  return (
-    <>
-    <form>
-    <input type="checkbox" value="1" checked/><label for="1" >Chicken</label>
-
-    <input type="submit" name="Update User Preferences"></input>
-    </form>
-    </>
-  )
+  return <></>;
 }
-
 
 // INSERT INTO recipe_category(category) VALUES ('chicken'); 1
 // INSERT INTO recipe_category(category) VALUES ('fish'); 2
-// INSERT INTO recipe_category(category) VALUES ('beef'); 3 
-// INSERT INTO recipe_category(category) VALUES ('pork'); 4 
-// INSERT INTO recipe_category(category) VALUES ('vegetarian'); 5 
-// INSERT INTO recipe_category(category) VALUES ('vegan');  6 
+// INSERT INTO recipe_category(category) VALUES ('beef'); 3
+// INSERT INTO recipe_category(category) VALUES ('pork'); 4
+// INSERT INTO recipe_category(category) VALUES ('vegetarian'); 5
+// INSERT INTO recipe_category(category) VALUES ('vegan');  6

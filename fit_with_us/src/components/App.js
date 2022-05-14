@@ -14,9 +14,6 @@ import UserDietaryRestrictions from "./UserDietaryRestrictions";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 
 export default function App() {
-  // localStorage.setItem("user", 1);
-  // let userID = localStorage.getItem("user");
-
   //User States
   const [loggedIn, setLoggedIn] = useState(false);
   const [userID, setUserID] = useState(null);
@@ -188,7 +185,6 @@ export default function App() {
         setPosts(all[2].data);
         setComments(all[3].data.posts);
         setUsers(all[4].data);
-        console.log(all[1].data["weights"]);
       })
       .catch((err) => console.log(err.message));
   }, []);
