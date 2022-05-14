@@ -12,7 +12,13 @@ export default function UpdateCategoryPref ({categoryArray, categories, setCateg
 
   return (
     <>
-
+    {/* <form>
+    {categories.includes('chicken') ? <input type="checkbox" value="1" checked/> : <input type="checkbox" value="1" />}
+    <label for="1" >Chicken</label>
+    {categories.includes('fish') ? <input type="checkbox" value="2" checked/> : <input type="checkbox" value="2" />}
+    <label for="2" >Fish</label>
+    <input type="submit" name="Update User Preferences"></input>
+    </form> */}
     </>
   )
 }

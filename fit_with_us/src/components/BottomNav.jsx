@@ -7,7 +7,7 @@ import { useAlert } from 'react-alert'
 
 export default function BottomNav({users, updateWeight, weight, recipes, posts, comments, newPost, newComment}) {
 
- 
+
   return (
     <>
       <Router>
