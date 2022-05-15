@@ -166,7 +166,7 @@ export default function Form(props) {
           throw new Error("Information not correct");
         }
       })
-      .then(async (all) => {
+      .then(async () => {
         //Makes entry into database
         Promise.all([
           axios.post("http://localhost:8080/api/users", {
@@ -189,6 +189,12 @@ export default function Form(props) {
             //Returns user ID
             const userData = all[0].data.users;
             const user = userData[0];
+
+            axios.post(`http://localhost:8080/api/weights`, {
+              user_id: user.id,
+              weight: currentWeight,
+            });
+
             if (userData.length !== 0) {
               props.loggedInUser(user.id);
             }

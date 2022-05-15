@@ -4,9 +4,11 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get("/:id", (req, res) => {
-    db.query(`SELECT * FROM weights
+    db.query(
+      `SELECT * FROM weights
             WHERE user_id = ${req.params.id}
-    ;`)
+    ;`
+    )
       .then((data) => {
         const weights = data.rows;
         res.send({ weights });
@@ -15,26 +17,32 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
 
-      router.post("/:id", (req, res) => {
-        const updatedWeight = req.body;
-        console.log(req.body)
-        const values = [
-          req.params.id,
-          new Date(),
-          updatedWeight.newWeight
-        ];
-    
-        const query = `INSERT INTO weights(user_id, date, weight) VALUES ($1, $2, $3)`;
-    
-        console.log(query);
-        db.query(query, values)
-          .then((data) => {
-            res.send("Weight added");
-          })
-          .catch((err) => {
-            res.status(500).json({ error: err.message });
-          });
-      });
+    router.post("/:id", (req, res) => {
+      const updatedWeight = req.body;
+      console.log(req.body);
+      const values = [req.params.id, new Date(), updatedWeight.newWeight];
+
+      const query = `INSERT INTO weights(user_id, date, weight) VALUES ($1, $2, $3)`;
+
+      console.log(query);
+      db.query(query, values)
+        .then((data) => {
+          res.send("Weight added");
+        })
+        .catch((err) => {
+          res.status(500).json({ error: err.message });
+        });
+    });
+  });
+
+  router.post("/", (req, res) => {
+    const userData = req.body;
+    const values = [userData.user_id, new Date(), userData.weight];
+    const query = `INSERT INTO weights(user_id, date, weight) VALUES ($1, $2, $3)`;
+    console.log(userData, values);
+    db.query(query, values).then((data) => {
+      console.log(data);
+    });
   });
 
   return router;
