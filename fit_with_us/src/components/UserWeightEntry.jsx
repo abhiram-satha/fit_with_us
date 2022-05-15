@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FormCategory from "./FormCategory";
-import ErrorMessage from "./ErrorMessage";
+import Error from "./Error";
 import Button from "./Button";
 
 export default function UserWeightEntry({ userID }) {
@@ -24,7 +24,9 @@ export default function UserWeightEntry({ userID }) {
   const checkWeightEntry = (weight) => {
     if (weight === "") {
       setErrorWeight("Input cannot be blank");
+      return false;
     }
+    return true;
   };
 
   const submitNewWeight = async (e) => {
@@ -36,16 +38,18 @@ export default function UserWeightEntry({ userID }) {
     e.preventDefault();
 
     const userWeightEntry = e.target[0].value;
-    console.log(userWeightEntry);
-    console.log(userID);
 
-    await postUserWeight(userID, userWeightEntry).catch((err) =>
-      console.log(err)
-    );
+    if (checkWeightEntry(userWeightEntry)) {
+      postUserWeight(userID, userWeightEntry)
+        .then(() => setSuccessPost("SUCCESSFULLY POSTED!"))
+        .catch((err) => console.log(err));
+    }
   };
   return (
     <form onSubmit={submitNewWeight}>
+      {successPost ? `${successPost}` : null}
       <FormCategory name="currentWeight" type="number" class={weightClass} />
+      {errorWeight ? <Error errorMessage={errorWeight} /> : null}
       <Button name="Submit" />
     </form>
   );
