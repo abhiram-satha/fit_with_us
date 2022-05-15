@@ -49,11 +49,13 @@
 //import { filterProps } from "recharts/types/util/types";
 import RecipeCard from "./RecipeCard";
 import Weighthistorygraph from "./Weighthistorygraph";
+import UserWeightEntry from "./UserWeightEntry";
 
 export default function Homepage({ users, recipes, userWeight, updateWeight }) {
   return (
     <section class="section">
       <div class="columns is-two-thirds">
+        <UserWeightEntry />
         {recipes[0].length === 1 ? (
           <progress class="progress is-small is-primary" max="100">
             15%

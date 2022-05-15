@@ -8,8 +8,8 @@ export default function UserWeightEntry(props) {
   };
   return (
     <form onSubmit={submitNewWeight}>
-      <FormCategory type="number" />
-      <Button />
+      <FormCategory name="currentWeight" type="number" />
+      <Button name="Submit" />
     </form>
   );
 }
