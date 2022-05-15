@@ -1,10 +1,4 @@
-import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
-import Homepage from "./Homepage";
-import Posts from "./Posts";
-import axios from "axios";
-import RecipeDetails from "./RecipeDetails";
-import { useState, useEffect } from "react";
-import { useAlert } from "react-alert";
+import React from "react";
 
 export default function BottomNav(props) {
   console.log(props.usClass)
