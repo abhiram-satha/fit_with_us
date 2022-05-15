@@ -51,11 +51,17 @@ import RecipeCard from "./RecipeCard";
 import Weighthistorygraph from "./Weighthistorygraph";
 import UserWeightEntry from "./UserWeightEntry";
 
-export default function Homepage({ users, recipes, userWeight, updateWeight }) {
+export default function Homepage({
+  userID,
+  users,
+  recipes,
+  userWeight,
+  updateWeight,
+}) {
   return (
     <section class="section">
       <div class="columns is-two-thirds">
-        <UserWeightEntry />
+        <UserWeightEntry userID={userID} />
         {recipes[0].length === 1 ? (
           <progress class="progress is-small is-primary" max="100">
             15%

@@ -306,6 +306,7 @@ export default function App() {
           <>
             <TopNav loggedOutUser={loggedOutUser} />
             <BottomNav
+              userID={userID}
               weight={weight}
               users={users}
               updateWeight={updateWeight}

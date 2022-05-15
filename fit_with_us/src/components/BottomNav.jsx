@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useAlert } from "react-alert";
 
 export default function BottomNav({
+  userID,
   users,
   updateWeight,
   weight,
@@ -37,6 +38,7 @@ export default function BottomNav({
             path={`/homepage`}
             element={
               <Homepage
+                userID={userID}
                 users={users}
                 userWeight={weight}
                 updateWeight={updateWeight}
