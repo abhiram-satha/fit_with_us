@@ -39,9 +39,8 @@ module.exports = (db) => {
     const userData = req.body;
     const values = [userData.user_id, new Date(), userData.weight];
     const query = `INSERT INTO weights(user_id, date, weight) VALUES ($1, $2, $3)`;
-    console.log(userData, values);
-    db.query(query, values).then((data) => {
-      console.log(data);
+    db.query(query, values).then(() => {
+      console.log("Successfully created!");
     });
   });
 
