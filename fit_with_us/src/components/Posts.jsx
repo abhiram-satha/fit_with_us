@@ -2,6 +2,7 @@ import Button from "./Button"
 import Thread from "./Thread"
 import Input from "./Input"
 import "../styles/Posts.scss"
+import BottomNav from "./BottomNav"
 
 export default function Posts({posts, comments, newComment, newPost, users}) {
   
@@ -13,6 +14,7 @@ export default function Posts({posts, comments, newComment, newPost, users}) {
 
   
   return (
+    <div>
     <section class="section">
       <div class="columns is-two-thirds">
         <div class="column ">
@@ -24,5 +26,7 @@ export default function Posts({posts, comments, newComment, newPost, users}) {
         </div>
       </div>
     </section>
-  );
+    <BottomNav usClass="is-active"/>
+  </div>
+  )
 }

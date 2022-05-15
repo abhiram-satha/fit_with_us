@@ -8,6 +8,9 @@ import SignUp from "./SignUp";
 import TopNav from "./TopNav";
 import BottomNav from "./BottomNav";
 import Button from "./Button";
+import Homepage from "./Homepage";
+import Posts from "./Posts";
+import RecipeDetails from "./RecipeDetails";
 import { useAlert } from "react-alert";
 import Settings from "./Settings";
 import UserDietaryRestrictions from "./UserDietaryRestrictions";
@@ -36,7 +39,8 @@ export default function App() {
       },
     ],
   ]);
-
+  const [youToggle, setYouToggle] = useState([]);
+  const [usToggle, setUsToggle] = useState([]);
   const alert = useAlert();
   const [weight, setWeight] = useState([]);
   const [posts, setPosts] = useState([]);
@@ -55,6 +59,16 @@ export default function App() {
   //     setLoggedIn(false);
   //   }
   // }, []);
+
+  const toggleYou = () => {
+    setUsToggle([]);
+    setYouToggle("is-active");
+  };
+
+  const toggleUs = () => {
+    setYouToggle([]);
+    setUsToggle("is-active");
+  };
 
   function loggedInUser(id) {
     if (Number.isInteger(id)) {
@@ -305,16 +319,7 @@ export default function App() {
         ) : (
           <>
             <TopNav loggedOutUser={loggedOutUser} />
-            <BottomNav
-              weight={weight}
-              users={users}
-              updateWeight={updateWeight}
-              recipes={recipes}
-              posts={posts}
-              comments={comments}
-              newPost={newPost}
-              newComment={newComment}
-            />
+
           </>
         )
       ) : login ? (
@@ -353,6 +358,48 @@ export default function App() {
                   categoryArray={categoryArray}
                 />
               )
+            }
+          />
+          <Route
+            path={`/homepage`}
+            element={
+
+              <Homepage
+                users={users}
+                userWeight={weight}
+                updateWeight={updateWeight}
+                recipes={recipes}
+              />
+            }
+          />
+          <Route
+            path="/posts"
+            element={
+              posts.length === 0 ? (
+                <progress class="progress is-small is-primary" max="100">
+                  15%
+                </progress>
+              ) : (
+                <Posts
+                  posts={posts}
+                  users={users}
+                  comments={comments}
+                  newPost={newPost}
+                  newComment={newComment}
+                />
+                // <Posts posts={posts} comments={comments} onClick={createPost}/>
+              )
+            }
+          />
+          <Route
+            path="recipe-details"
+            element={
+              <RecipeDetails
+                ingredients={recipes[0][0].recipe.ingredients}
+                calories={recipes[0][0].recipe.calories}
+                url={recipes[0][0].recipe.url}
+                servings={recipes[0][0].recipe.yield}
+              />
             }
           />
         </Routes>
