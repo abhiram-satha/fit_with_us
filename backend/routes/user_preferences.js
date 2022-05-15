@@ -16,5 +16,24 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
+
+  router.delete('/:id', (req, res)=> {
+
+    const values = [
+      req.params.id,
+      req.body.category_value
+    ]
+    db.query(`DELETE FROM user_preferences
+    WHERE user_id = $1 AND recipe_category_id = $2;`, values)
+    .then((data) => {
+      const users = data.rows;
+      res.send({ users });
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+  })
+  
+
   return router;
 };
