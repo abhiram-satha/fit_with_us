@@ -24,6 +24,7 @@ export default function UserWeightEntry({ userID }) {
   const checkWeightEntry = (weight) => {
     if (weight === "") {
       setErrorWeight("Input cannot be blank");
+      setWeightClass("input is-danger");
       return false;
     }
     return true;
@@ -40,7 +41,7 @@ export default function UserWeightEntry({ userID }) {
     const userWeightEntry = e.target[0].value;
 
     if (checkWeightEntry(userWeightEntry)) {
-      postUserWeight(userID, userWeightEntry)
+      await postUserWeight(userID, userWeightEntry)
         .then(() => setSuccessPost("SUCCESSFULLY POSTED!"))
         .catch((err) => console.log(err));
     }
