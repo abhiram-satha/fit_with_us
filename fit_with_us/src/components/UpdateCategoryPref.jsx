@@ -1,4 +1,4 @@
-export default function UpdateCategoryPref ({categoryArray, categories, setCategories, deleteCategory}) {
+export default function UpdateCategoryPref ({categoryArray, categories, setCategories, deleteCategory, addCategory}) {
 
   
   let unique_category = [];
@@ -11,7 +11,7 @@ export default function UpdateCategoryPref ({categoryArray, categories, setCateg
 
   }
   unique_categories(categories);
-  // console.log(unique_category)
+  console.log(unique_category)
   
   // Printing the unique categories
   // setCategories(unique_categories);
@@ -19,9 +19,9 @@ export default function UpdateCategoryPref ({categoryArray, categories, setCateg
   return (
     <>
     <form>
-    {unique_category.includes('chicken') ? <input type="checkbox" value="1" checked onChange={deleteCategory}/> : <input type="checkbox" value="1" />}
+    {unique_category.includes('chicken') ? <input type="checkbox" value="1" checked onChange={deleteCategory}/> : <input type="checkbox" value="1" onChange={addCategory}/>}
     <label for="1" >Chicken</label>
-    {unique_category.includes('fish') ? <input type="checkbox" value="2" checked onChange={deleteCategory}/> : <input type="checkbox" value="2" />}
+    {unique_category.includes('fish') ? <input type="checkbox" value="2" checked onChange={deleteCategory}/> : <input type="checkbox" value="2" onChange={addCategory}/>}
     <label for="2" >Fish</label>
     <input type="submit" name="Update User Preferences"></input>
     </form>

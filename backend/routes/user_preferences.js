@@ -23,6 +23,7 @@ module.exports = (db) => {
       req.params.id,
       req.body.category_value
     ]
+    console.log(req.body)
     db.query(`DELETE FROM user_preferences
     WHERE user_id = $1 AND recipe_category_id = $2;`, values)
     .then((data) => {
@@ -34,6 +35,21 @@ module.exports = (db) => {
     });
   })
   
+  router.post('/:id', (req, res)=> {
 
+    const values = [
+      req.params.id,
+      req.body.category_value
+    ]
+    console.log(req.body)
+    db.query(`INSERT INTO user_preferences(user_id, recipe_category_id) VALUES ($1, $2)`, values)
+    .then((data) => {
+      const users = data.rows;
+      res.send({ users });
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+  })
   return router;
 };

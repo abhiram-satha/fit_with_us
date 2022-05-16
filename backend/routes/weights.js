@@ -17,7 +17,7 @@ module.exports = (db) => {
 
       router.post("/:id", (req, res) => {
         const updatedWeight = req.body;
-        console.log(req.body)
+        // console.log(req.body)
         const values = [
           req.params.id,
           new Date(),

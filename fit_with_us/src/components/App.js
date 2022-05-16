@@ -258,13 +258,13 @@ function App() {
     }
   }
 
-  const deleteCategory = (event) => {
+const deleteCategory = (event) => {
 
 const data = {
   category_value: event.target.value
 }
-
-    axios.delete(`http://localhost:8080/api/user_preferences/${userID}`, data)
+// console.log(data)
+    axios.delete(`http://localhost:8080/api/user_preferences/${userID}`, {data})
     .then(answer => {
       return Promise.all([
         axios.get(`http://localhost:8080/api/user_preferences/${userID}`)
@@ -275,10 +275,46 @@ const data = {
       return Promise.all([
         axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&calories=300-600`),
       ])
+    }).
+    then((all) => {
+      // console.log(all);
+      setRecipes([all[0].data["hits"]]);
+    }).then(()=> {
+      setTimeout(()=> {
+        window.location.reload(false)
+      }, 3000)
     })
+    .catch((err) => console.log(err.message));
   }
 
-  // console.log(users)
+  const addCategory = (event) => {
+
+    const data = {
+      category_value: event.target.value
+    }
+    // console.log(data)
+        axios.post(`http://localhost:8080/api/user_preferences/${userID}`, {data})
+        .then(answer => {
+          return Promise.all([
+            axios.get(`http://localhost:8080/api/user_preferences/${userID}`)
+        ])
+        })
+        .then(response => randomCategorySelector(response[0]['data']['users']))
+        .then(categorySelection => {
+          return Promise.all([
+            axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&calories=300-600`),
+          ])
+        }).
+        then((all) => {
+          // console.log(all);
+          setRecipes([all[0].data["hits"]]);
+        }).then(()=> {
+          setTimeout(()=> {
+            window.location.reload(false)
+          }, 3000)
+        })
+        .catch((err) => console.log(err.message));
+      }
 
   return (
     <div className="App">
@@ -294,6 +330,7 @@ path={`/settings`}
                 categories={categories}
                 setCategories={setCategories}
                 deleteCategory={deleteCategory}
+                addCategory={addCategory}
               />}
               />
 </Routes>
