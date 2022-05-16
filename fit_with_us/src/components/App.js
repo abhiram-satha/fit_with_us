@@ -292,7 +292,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <UserProfile />
+      <UserProfile user={users} weight={weight} />
 
       {loggedIn ? (
         !userHasRestrictions ? (

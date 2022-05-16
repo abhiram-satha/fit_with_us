@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Badge from "./Badge";
 
-export default function UserProfile(props) {
+export default function UserProfile({ user, weight }) {
   const [badges, setBadges] = useState([]);
 
   //Helper Function
@@ -22,5 +22,10 @@ export default function UserProfile(props) {
       .catch((err) => console.log(err));
   }, []);
 
-  return <>{createBadgesIconsArray}</>;
+  return (
+    <>
+      <h1>{`User Profile for ${user.users[0].username}, they weigh ${weight[0].weight} lbs`}</h1>
+      {createBadgesIconsArray}
+    </>
+  );
 }
