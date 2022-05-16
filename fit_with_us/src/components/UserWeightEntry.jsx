@@ -12,8 +12,8 @@ export default function UserWeightEntry({ userID }) {
   //Helper Functions
 
   //Enter user weight into database
-  const postUserWeight = async (id, weight) => {
-    await axios
+  const postUserWeight = (id, weight) => {
+    return axios
       .post(`http://localhost:8080/api/weights`, {
         user_id: id,
         weight: weight,
@@ -30,7 +30,7 @@ export default function UserWeightEntry({ userID }) {
     return true;
   };
 
-  const submitNewWeight = async (e) => {
+  const submitNewWeight = (e) => {
     //Reset states
     setErrorWeight(false);
     setSuccessPost(false);
@@ -41,9 +41,9 @@ export default function UserWeightEntry({ userID }) {
     const userWeightEntry = e.target[0].value;
 
     if (checkWeightEntry(userWeightEntry)) {
-      await postUserWeight(userID, userWeightEntry)
-        .then(() => setSuccessPost("SUCCESSFULLY POSTED!"))
-        .catch((err) => console.log(err));
+      postUserWeight(userID, userWeightEntry).catch((err) => console.log(err));
+
+      window.location.reload(false);
     }
   };
   return (
