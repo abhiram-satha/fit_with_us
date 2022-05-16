@@ -39,8 +39,7 @@ export default function App() {
       },
     ],
   ]);
-  const [youToggle, setYouToggle] = useState([]);
-  const [usToggle, setUsToggle] = useState([]);
+  const [bottomNavClass, setBottomNavClass] = useState("is-active");
   const alert = useAlert();
   const [weight, setWeight] = useState([]);
   const [posts, setPosts] = useState([]);
@@ -59,17 +58,6 @@ export default function App() {
   //     setLoggedIn(false);
   //   }
   // }, []);
-
-  const toggleYou = () => {
-    setUsToggle([]);
-    setYouToggle("is-active");
-  };
-
-  const toggleUs = () => {
-    setYouToggle([]);
-    setUsToggle("is-active");
-  };
-
   function loggedInUser(id) {
     if (Number.isInteger(id)) {
       setCookie("id", id, { path: "/" });
@@ -407,6 +395,7 @@ export default function App() {
           <Link to="/settings">Setting</Link>
         </nav>
       </Router>
+      <BottomNav />
     </div>
   );
 }

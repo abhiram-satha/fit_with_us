@@ -53,7 +53,6 @@ import BottomNav from "./BottomNav";
 
 export default function Homepage({ users, recipes, userWeight, updateWeight }) {
   return (
-    <div>
       <section class="section">
         <div class="columns is-two-thirds">
           {recipes[0].length === 1 ? (
@@ -81,7 +80,5 @@ export default function Homepage({ users, recipes, userWeight, updateWeight }) {
           )}
         </div>
       </section>
-      <BottomNav youClass="is-active"/>
-    </div>
   );
 }
