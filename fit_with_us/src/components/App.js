@@ -12,6 +12,7 @@ import { useAlert } from "react-alert";
 import Settings from "./Settings";
 import UserDietaryRestrictions from "./UserDietaryRestrictions";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import UserProfile from "./UserProfile";
 
 export default function App() {
   //User States
@@ -291,7 +292,7 @@ export default function App() {
 
   return (
     <div className="App">
-      {/* {!user_id ? <Form /> :<BottomNav/>} */}
+      <UserProfile />
 
       {loggedIn ? (
         !userHasRestrictions ? (

@@ -39,6 +39,6 @@ INSERT INTO user_preferences(user_id, recipe_category_id) VALUES (1, 2);
 INSERT INTO user_preferences(user_id, recipe_category_id) VALUES (1, 4);
 
 
-INSERT INTO badges(name, img_url) VALUES ('High Fiver', 'https://cdn-icons.flaticon.com/png/512/676/premium/676066.png?token=exp=1652664042~hmac=c0796700b96bbb147fc882b76ed7edf8');
-INSERT INTO badges(name, img_url) VALUES ('Tens!', 'https://cdn-icons.flaticon.com/png/512/6198/premium/6198527.png?token=exp=1652664108~hmac=06da73e75a1f0baaf7561042d314418a');
+INSERT INTO badges(name, img_url) VALUES ('High Fiver', 'https://icon-library.com/images/5-icon/5-icon-7.jpg');
+INSERT INTO badges(name, img_url) VALUES ('Tens!', 'https://icon-library.com/images/number-10-icon/number-10-icon-26.jpg');
 INSERT INTO badges(name, img_url) VALUES ('Chatter', 'https://cdn-icons-png.flaticon.com/512/953/953810.png');

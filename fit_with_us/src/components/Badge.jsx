@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function Badge(props) {
-  return <image className="image is-32x32" src={props.img_url} />;
+export default function Badge({ img_url, name }) {
+  return <img className="image is-32x32" src={img_url} alt={name} />;
 }

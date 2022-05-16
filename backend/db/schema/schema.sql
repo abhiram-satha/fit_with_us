@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS dietary_restrictions CASCADE;
 DROP TABLE IF EXISTS user_restrictions CASCADE;
 DROP TABLE IF EXISTS recipe_category CASCADE;
 DROP TABLE IF EXISTS user_preferences CASCADE;
+DROP TABLE IF EXISTS badges CASCADE;
 
 
 CREATE TABLE users (
