@@ -302,7 +302,7 @@ const data = {
         .then(()=> {
           setTimeout(()=> {
             window.location.reload(false)
-          }, 3000)
+          }, 0)
         })
         .then(response => randomCategorySelector(response[0]['data']['users']))
         .then(categorySelection => {
