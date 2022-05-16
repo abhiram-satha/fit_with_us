@@ -1,7 +1,7 @@
 import UpdateCategoryPref from "./UpdateCategoryPref"
 import UpdateWeightGoal from "./UpdateWeightGoal"
 
-export default function Settings({users, updateGoalWeight, categoryArray, categories, setCategories, deleteCategory, addCategory}) {
+export default function Settings({users, updateGoalWeight, selectedCategories, deleteCategory, addCategory}) {
 
   // console.log(categories)
  
@@ -16,7 +16,7 @@ export default function Settings({users, updateGoalWeight, categoryArray, catego
 
         </details>
     </details>
-        <UpdateCategoryPref categoryArray={categoryArray} deleteCategory={deleteCategory} categories={categories} setCategories={setCategories} addCategory={addCategory}/>
+        <UpdateCategoryPref deleteCategory={deleteCategory} selectedCategories={selectedCategories} addCategory={addCategory}/>
     </>
   )
 }

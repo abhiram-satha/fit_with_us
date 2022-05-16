@@ -104,27 +104,20 @@ function App() {
 
   }
 
-  const [categories, setCategories] = useState([])
-  let categoryArray = [];
-  const randomCategorySelector = (apiArray) => {
-    // console.log(apiArray)
-    if (apiArray.length === 0) {
+  const [selectedCategories, setSelectedCategories] = useState([])
+  const randomCategorySelector = (categories) => {
+   
+    if (categories.length === 0) {
       return "";
     }
-    // &health=dairy-free&health=egg-free
+    
 
-    let categoryString = ''
 
-    for (let i = 0; i < apiArray.length; i++) {
-      // arrayOfRestrictions.push(apiArray[i]['restriction'])
-      categoryArray.push(apiArray[i]['category'].toLowerCase())
-    }
-    // console.log(dietRestrictionString)
-    // console.log(categoryArray)
-
-    let randomNumber = Math.floor(Math.random() * categoryArray.length)
-    setCategories(categoryArray);
-    return categoryArray[randomNumber]
+    
+    
+    const randomNumber = Math.floor(Math.random() * categories.length)
+    
+    return categories[randomNumber]
 
   }
 
@@ -133,7 +126,7 @@ function App() {
       axios.get(`http://localhost:8080/api/dietary_restrictions/${userID}`),
   ])
     .then(result => {
-      // console.log(result[1])
+      
       string  += makeArrayOfRestrictions(result[0]['data']['users'])
     })
     .then(answer => {
@@ -141,7 +134,12 @@ function App() {
         axios.get(`http://localhost:8080/api/user_preferences/${userID}`)
     ])
     })
-    .then(response => randomCategorySelector(response[0]['data']['users']))
+    .then(response => {
+      const userPreferences = response[0]['data']['users']
+      const categories = userPreferences.map(userPreference => userPreference.category.toLowerCase())
+      setSelectedCategories(categories);
+      return randomCategorySelector(categories)
+    })
     .then(categorySelection => {
       return Promise.all([
         axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&calories=300-600`),
@@ -258,19 +256,26 @@ function App() {
     }
   }
 
-const deleteCategory = (event) => {
+const deleteCategory = (event, categoryToRemove) => {
 
 const data = {
   category_value: event.target.value
 }
 // console.log(data)
     axios.delete(`http://localhost:8080/api/user_preferences/${userID}`, {data})
+    
     .then(answer => {
+      
       return Promise.all([
         axios.get(`http://localhost:8080/api/user_preferences/${userID}`)
     ])
     })
-    .then(response => randomCategorySelector(response[0]['data']['users']))
+    .then(response => {
+      const userPreferences = response[0]['data']['users']
+      const categories = userPreferences.map(userPreference => userPreference.category.toLowerCase())
+      setSelectedCategories(selectedCategories.filter(selectedCategory => selectedCategory !== categoryToRemove))
+      return randomCategorySelector(categories)
+    })
     .then(categorySelection => {
       return Promise.all([
         axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&calories=300-600`),
@@ -287,7 +292,7 @@ const data = {
     .catch((err) => console.log(err.message));
   }
 
-  const addCategory = (event) => {
+  const addCategory = (event, categoryToAdd) => {
 
     const data = {
       category_value: event.target.value
@@ -295,16 +300,18 @@ const data = {
     // console.log(data)
         axios.post(`http://localhost:8080/api/user_preferences/${userID}`, data)
         .then(answer => {
+          
           return Promise.all([
             axios.get(`http://localhost:8080/api/user_preferences/${userID}`)
         ])
         })
-        .then(()=> {
-          setTimeout(()=> {
-            window.location.reload(false)
-          }, 0)
-        })
-        .then(response => randomCategorySelector(response[0]['data']['users']))
+      
+        .then(response => {
+            const userPreferences = response[0]['data']['users']
+            const categories = userPreferences.map(userPreference => userPreference.category.toLowerCase())
+            setSelectedCategories([...selectedCategories, categoryToAdd])
+            return randomCategorySelector(categories)
+          })
         .then(categorySelection => {
           return Promise.all([
             axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&calories=300-600`),
@@ -327,9 +334,9 @@ path={`/settings`}
               users.users === undefined ? "Loading" : <Settings
                 users={users}
                 updateGoalWeight={updateGoalWeight}
-                categoryArray={categoryArray}
-                categories={categories}
-                setCategories={setCategories}
+                // categoryArray={categoryArray}
+                selectedCategories={selectedCategories}
+                setSelectedCategories={setSelectedCategories}
                 deleteCategory={deleteCategory}
                 addCategory={addCategory}
               />}
