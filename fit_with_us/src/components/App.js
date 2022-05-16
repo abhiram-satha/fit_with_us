@@ -282,7 +282,7 @@ const data = {
     }).then(()=> {
       setTimeout(()=> {
         window.location.reload(false)
-      }, 3000)
+      }, 300)
     })
     .catch((err) => console.log(err.message));
   }
