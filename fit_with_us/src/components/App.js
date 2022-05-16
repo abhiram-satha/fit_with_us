@@ -293,11 +293,16 @@ const data = {
       category_value: event.target.value
     }
     // console.log(data)
-        axios.post(`http://localhost:8080/api/user_preferences/${userID}`, {data})
+        axios.post(`http://localhost:8080/api/user_preferences/${userID}`, data)
         .then(answer => {
           return Promise.all([
             axios.get(`http://localhost:8080/api/user_preferences/${userID}`)
         ])
+        })
+        .then(()=> {
+          setTimeout(()=> {
+            window.location.reload(false)
+          }, 3000)
         })
         .then(response => randomCategorySelector(response[0]['data']['users']))
         .then(categorySelection => {
@@ -308,10 +313,6 @@ const data = {
         then((all) => {
           // console.log(all);
           setRecipes([all[0].data["hits"]]);
-        }).then(()=> {
-          setTimeout(()=> {
-            window.location.reload(false)
-          }, 3000)
         })
         .catch((err) => console.log(err.message));
       }

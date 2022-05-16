@@ -23,7 +23,14 @@ export default function UpdateCategoryPref ({categoryArray, categories, setCateg
     <label for="1" >Chicken</label>
     {unique_category.includes('fish') ? <input type="checkbox" value="2" checked onChange={deleteCategory}/> : <input type="checkbox" value="2" onChange={addCategory}/>}
     <label for="2" >Fish</label>
-    <input type="submit" name="Update User Preferences"></input>
+    {unique_category.includes('beef') ? <input type="checkbox" value="3" checked onChange={deleteCategory}/> : <input type="checkbox" value="3" onChange={addCategory}/>}
+    <label for="2" >Beef</label>
+    {unique_category.includes('pork') ? <input type="checkbox" value="4" checked onChange={deleteCategory}/> : <input type="checkbox" value="4" onChange={addCategory}/>}
+    <label for="4" >Fish</label>
+    {unique_category.includes('vegetarian') ? <input type="checkbox" value="5" checked onChange={deleteCategory}/> : <input type="checkbox" value="5" onChange={addCategory}/>}
+    <label for="5" >Vegetarian</label>
+    {unique_category.includes('vegan') ? <input type="checkbox" value="6" checked onChange={deleteCategory}/> : <input type="checkbox" value="6" onChange={addCategory}/>}
+    <label for="2" >Vegan</label>
     </form>
     </>
   )
