@@ -77,3 +77,9 @@ CREATE TABLE user_preferences (
    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
    recipe_category_id INTEGER REFERENCES recipe_category(id) ON DELETE CASCADE
 );
+
+CREATE TABLE badges (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(30) NOT NULL,
+    img_url VARCHAR(500) NOT NULL
+);
