@@ -274,20 +274,18 @@ const data = {
       const userPreferences = response[0]['data']['users']
       const categories = userPreferences.map(userPreference => userPreference.category.toLowerCase())
       setSelectedCategories(selectedCategories.filter(selectedCategory => selectedCategory !== categoryToRemove))
-      return randomCategorySelector(categories)
     })
-    .then(categorySelection => {
+   
+  }
+
+  const reloadRecipes = () => {
+    const categorySelection = randomCategorySelector(selectedCategories)
       return Promise.all([
         axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&calories=300-600`),
       ])
-    }).
-    then((all) => {
+      .then((all) => {
       // console.log(all);
       setRecipes([all[0].data["hits"]]);
-    }).then(()=> {
-      setTimeout(()=> {
-        window.location.reload(false)
-      }, 300)
     })
     .catch((err) => console.log(err.message));
   }
@@ -310,17 +308,8 @@ const data = {
             const userPreferences = response[0]['data']['users']
             const categories = userPreferences.map(userPreference => userPreference.category.toLowerCase())
             setSelectedCategories([...selectedCategories, categoryToAdd])
-            return randomCategorySelector(categories)
+          
           })
-        .then(categorySelection => {
-          return Promise.all([
-            axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&calories=300-600`),
-          ])
-        }).
-        then((all) => {
-          // console.log(all);
-          setRecipes([all[0].data["hits"]]);
-        })
         .catch((err) => console.log(err.message));
       }
 
@@ -339,6 +328,7 @@ path={`/settings`}
                 setSelectedCategories={setSelectedCategories}
                 deleteCategory={deleteCategory}
                 addCategory={addCategory}
+                reloadRecipes={reloadRecipes}
               />}
               />
 </Routes>

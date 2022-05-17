@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-export default function UpdateCategoryPref ({ selectedCategories, deleteCategory, addCategory}) {
+export default function UpdateCategoryPref ({ selectedCategories, deleteCategory, reloadRecipes, addCategory}) {
 const [includeChicken, setIncludeChicken] = useState([])
 
   // console.log(setCategories)
@@ -34,13 +34,14 @@ const [includeChicken, setIncludeChicken] = useState([])
       <input type="checkbox" value="4" checked={selectedCategories.includes('pork')} onChange={(event)=> handleSelect(event, 'pork')}/>
       <label for="4" >Pork</label>
 
-      <input type="checkbox" value="5" checked={selectedCategories.includes('vegetarian')} onChange={(event)=> handleSelect(event, 'chicken')}/>
-      <label for="5" >Chicken</label>
+      <input type="checkbox" value="5" checked={selectedCategories.includes('vegetarian')} onChange={(event)=> handleSelect(event, 'vegetarian')}/>
+      <label for="5" >Vegetarian</label>
     
       <input type="checkbox" value="6" checked={selectedCategories.includes('vegan')} onChange={(event)=> handleSelect(event, 'vegan')}/>
-      <label for="6" >Chicken</label>
+      <label for="6" >Vegan</label>
   
     </form>
+    <button onClick={reloadRecipes}>Reload</button>
     </>
   )
   function handleSelect (event, category) {
