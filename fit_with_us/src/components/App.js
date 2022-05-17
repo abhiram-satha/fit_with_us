@@ -15,6 +15,7 @@ import { useAlert } from "react-alert";
 import Settings from "./Settings";
 import UserDietaryRestrictions from "./UserDietaryRestrictions";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function App() {
   //User States
@@ -39,7 +40,6 @@ export default function App() {
       },
     ],
   ]);
-  const [bottomNavClass, setBottomNavClass] = useState("is-active");
   const alert = useAlert();
   const [weight, setWeight] = useState([]);
   const [posts, setPosts] = useState([]);
@@ -291,6 +291,17 @@ export default function App() {
     }
   };
 
+  const [recipeRecord, setRecipeRecord] = useLocalStorage(
+    "recipe",
+    localStorage.getItem("recipe") || 0
+  );
+
+  const userChosenRecipe = recipes[0][recipeRecord]["recipe"];
+  const chooseNextRecipe = () => {setRecipeRecord((prev) => prev + 1)}
+  const choosePreviousRecipe = () => {setRecipeRecord((prev) => prev - 1)}
+  //console.log(recipeRecord);
+  console.log(userChosenRecipe);
+
   return (
     <div className="App">
       {/* {!user_id ? <Form /> :<BottomNav/>} */}
@@ -356,7 +367,7 @@ export default function App() {
                 users={users}
                 userWeight={weight}
                 updateWeight={updateWeight}
-                recipes={recipes}
+                recipe={userChosenRecipe}
               />
             }
           />
@@ -383,10 +394,9 @@ export default function App() {
             path="recipe-details"
             element={
               <RecipeDetails
-                ingredients={recipes[0][0].recipe.ingredients}
-                calories={recipes[0][0].recipe.calories}
-                url={recipes[0][0].recipe.url}
-                servings={recipes[0][0].recipe.yield}
+                users={users}
+                recipe={userChosenRecipe}
+                ingredients={userChosenRecipe.ingredients}
               />
             }
           />
