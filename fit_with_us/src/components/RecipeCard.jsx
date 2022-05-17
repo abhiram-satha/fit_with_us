@@ -5,6 +5,7 @@ import RecipeDetails from "./RecipeDetails";
 import RecipeIngredients from "./RecipeIngredients";
 
 export default function RecipeCard({ users, recipes }) {
+  const [details, setDetails] = useState(false);
   const [recipeRecord, setRecipeRecord] = useLocalStorage(
     "recipe",
     localStorage.getItem("recipe") || 0
@@ -13,7 +14,9 @@ export default function RecipeCard({ users, recipes }) {
   const healthLabel = recipes[0][recipeRecord]["recipe"]["healthLabels"];
   const info = recipes[0][recipeRecord]["recipe"];
   console.log(info);
-
+  const showDetails = () => {
+    setDetails(true);
+  }
   const RecipeIngredientsArray = info.ingredients.map((ingredient) => {
     return (
       <RecipeIngredients
@@ -25,7 +28,7 @@ export default function RecipeCard({ users, recipes }) {
   });
 
   // console.log(info.images.THUMBNAIL.url)
-  return (
+  return ( details ? (
     <div className="row container">
       <h1>Recommended Recipe</h1>
       {recipeRecord !== 0 && (
@@ -45,23 +48,22 @@ export default function RecipeCard({ users, recipes }) {
       <a href={info.url} target="_blank">
         <button>Instructions</button>
       </a>
-    </div>
-    //     <div class="column">
-    //       <div class="card">
-    //         <Link to="/recipe-details">
-    //         <div class="card-image">
-    //             <figure class="image is-square">
-    //               <img src={info.images.REGULAR.url} alt="Placeholder image"/>
-    //             </figure>
-    //           </div>
-    //           <div class="card-content">
-    //               <div class="media-content">
-    //                 <p class="title is-6">Your meal to prep:</p>
-    //                 <p class="title is-4">{info.label}</p>
-    //               </div>
-    //       </div>
-    //       </Link>
-    //     </div>
-    // </div>
+    </div> )
+    : (
+        <div class="column">
+          <div class="card" onClick={showDetails}>
+            <div class="card-image">
+                <figure class="image is-square">
+                  <img src={info.images.REGULAR.url} alt="Placeholder image"/>
+                </figure>
+              </div>
+              <div class="card-content">
+                  <div class="media-content">
+                    <p class="title is-6">Your meal to prep:</p>
+                    <p class="title is-4">{info.label}</p>
+                  </div>
+          </div>
+        </div>
+    </div> )
   );
 }

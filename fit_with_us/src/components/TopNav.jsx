@@ -1,8 +1,20 @@
 import React from "react";
 import Button from "./Button";
-import "../helpers/navbarQuery";
+import { useState } from "react";
 
 export default function TopNav(props) {
+  const [burgerClass, setBurgerClass] = useState("navbar-burger");
+  const [menuClass, setMenuClass] = useState("navbar-menu");
+  const handleBurger = () => {
+    if (burgerClass === "navbar-burger") {
+      setBurgerClass("navbar-burger is-active");
+      setMenuClass("navbar-menu is-active")
+    }
+    else {
+      setBurgerClass("navbar-burger");
+      setMenuClass("navbar-menu");
+    }
+  }
   return (
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
@@ -15,8 +27,9 @@ export default function TopNav(props) {
         </a>
 
         <button
+          onClick={handleBurger}
           role="button"
-          class="navbar-burger"
+          class={burgerClass}
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
@@ -27,7 +40,7 @@ export default function TopNav(props) {
         </button>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
+      <div id="navbarBasicExample" class={menuClass}>
         <div class="navbar-start">
           <a class="navbar-item">Profile</a>
 
