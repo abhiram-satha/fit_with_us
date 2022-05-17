@@ -19,7 +19,8 @@ export default function UserProfile({ user, badges }) {
 
   return (
     <div className="columns is-mobile mt-6">
-      <div className="column">
+      <div className="column"></div>
+      <div className="column is-four-fifths">
         <h1 className="title is-5 has-text-centered">{`User Profile for ${username}`}</h1>
         <h2 className="title is-6">User Information</h2>
         <table class="table is-striped is-fullwidth">
@@ -34,6 +35,7 @@ export default function UserProfile({ user, badges }) {
         <h2 className="title is-6">Badges Earned by User:</h2>
         <p>{createBadgesIconsArray}</p>
       </div>
+      <div className="column"></div>
     </div>
   );
 }
