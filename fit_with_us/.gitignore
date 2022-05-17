@@ -8,6 +8,7 @@
 # testing
 /coverage
 .src/components/BottomNav.md
+/.env
 
 # production
 /build
