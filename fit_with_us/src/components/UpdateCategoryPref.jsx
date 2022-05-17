@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
 export default function UpdateCategoryPref ({ selectedCategories, deleteCategory, reloadRecipes, addCategory}) {
-const [includeChicken, setIncludeChicken] = useState([])
+// const [includeChicken, setIncludeChicken] = useState([])
 
   let unique_category = [];
   const unique_categories = (selectedCategories) => {
