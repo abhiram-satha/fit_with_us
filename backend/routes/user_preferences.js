@@ -23,7 +23,7 @@ module.exports = (db) => {
       req.params.id,
       req.body.category_value
     ]
-    console.log(req.body)
+   
     db.query(`DELETE FROM user_preferences
     WHERE user_id = $1 AND recipe_category_id = $2;`, values)
     .then((data) => {

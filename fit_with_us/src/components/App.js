@@ -95,11 +95,11 @@ function App() {
     let dietRestrictionString = ''
 
     for (let i = 0; i < apiArray.length; i++) {
-      // arrayOfRestrictions.push(apiArray[i]['restriction'])
+
       let lowerCaseRestriction = apiArray[i]['restriction'].toLowerCase()
       dietRestrictionString += `&health=${lowerCaseRestriction}`
     }
-    // console.log(dietRestrictionString)
+
     return dietRestrictionString
 
   }
@@ -150,7 +150,7 @@ function App() {
       ])
     })
       .then((all) => {
-        // console.log(all);
+
         setRecipes([all[0].data["hits"]]);
         setWeight(all[1].data["weights"]);
         setPosts(all[2].data);
@@ -169,12 +169,12 @@ function App() {
 
     } else {
     event.preventDefault();
-    // console.log(event.target[0].value)
+
     const data = {
       message: event.target[0].value
     }
     axios.post(`http://localhost:8080/api/posts/${userID}`, data)
-      // .then(response => console.log(response))
+
       .then(response => axios.get("http://localhost:8080/api/posts"))
       .then(posts => setPosts(posts.data))
       .then(response => event.target[0].value ="") 
@@ -184,13 +184,13 @@ function App() {
   const newComment = (event) => {
     if (!event.target[0].value) {
       event.preventDefault();
-      console.log(event.target[0].value)
+
        alert.show("Comment can't be empty")
        return
 
     } else {
       event.preventDefault();
-      // console.log(event.target[0].attributes.post_id.value)
+
       const data = {
         message: event.target[0].value,
         post_id: event.target[0].attributes.post_id.value
@@ -200,7 +200,7 @@ function App() {
         .then(comments => setComments(comments.data.posts))
         .then(response => event.target[0].value ="") 
         .catch(error => console.log(error))
-      // console.log(data)
+
     }
   }
 
@@ -208,18 +208,18 @@ function App() {
 
     if (!event.target[0].value) {
       event.preventDefault();
-      console.log(event.target[0].value)
+
        alert.show("Weight can't be empty")
        return
 
     } else {
     event.preventDefault();
-    // console.log(event.target[0].value)
+
     const data = {
       newWeight: event.target[0].value
     }
     axios.post(`http://localhost:8080/api/weights/${userID}`, data)
-      // .then(response => console.log(response))
+
       .then(response => axios.get(`http://localhost:8080/api/weights/${userID}`))
       .then(weights => setWeight(weights.data.weights))
       .then(response => event.target[0].value ="") 
@@ -230,23 +230,21 @@ function App() {
   const updateGoalWeight = (event) => {
     if (!event.target[0].value) {
       event.preventDefault();
-      console.log(event.target[0].value)
+
        alert.show("Goal Weight can't be empty")
        return
 
     } else {
     event.preventDefault();
-    // console.log(event.target[0].value)
+
     const data = {
       goal_weight: event.target[0].value
     }
 
-    // console.log(data)
+
     axios.put(`http://localhost:8080/api/user/${userID}`, data)
-      // .then(response => console.log(response))
+
       .then(response => axios.get(`http://localhost:8080/api/user/${userID}`))
-      // .then(weights => setWeight(weights.data.weights))
-      // .then(users => setUsers(prev => {...prev, goal_weight: data.goal_weight}))
       .then(data => setUsers(prev => {
           return {...prev, goal_weight: data.goal_weight}
           }))
@@ -261,7 +259,7 @@ const deleteCategory = (event, categoryToRemove) => {
 const data = {
   category_value: event.target.value
 }
-// console.log(data)
+
     axios.delete(`http://localhost:8080/api/user_preferences/${userID}`, {data})
     
     .then(answer => {
@@ -284,7 +282,7 @@ const data = {
         axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&calories=300-600`),
       ])
       .then((all) => {
-      // console.log(all);
+
       setRecipes([all[0].data["hits"]]);
     })
     .catch((err) => console.log(err.message));
@@ -295,7 +293,7 @@ const data = {
     const data = {
       category_value: event.target.value
     }
-    // console.log(data)
+
         axios.post(`http://localhost:8080/api/user_preferences/${userID}`, data)
         .then(answer => {
           
