@@ -3,7 +3,6 @@ import {useState} from 'react'
 export default function UpdateCategoryPref ({ selectedCategories, deleteCategory, reloadRecipes, addCategory}) {
 const [includeChicken, setIncludeChicken] = useState([])
 
-  // console.log(setCategories)
   let unique_category = [];
   const unique_categories = (selectedCategories) => {
     selectedCategories.forEach((c) => {
@@ -14,11 +13,7 @@ const [includeChicken, setIncludeChicken] = useState([])
 
   }
   unique_categories(selectedCategories);
-  console.log(selectedCategories)
-  
-  // Printing the unique categories
-  // setCategories(unique_categories);
-  // console.log(unique_categories)
+
   return (
     <>
     <form>
@@ -52,11 +47,3 @@ const [includeChicken, setIncludeChicken] = useState([])
     }
   }
 }
-
-
-// INSERT INTO recipe_category(category) VALUES ('chicken'); 1
-// INSERT INTO recipe_category(category) VALUES ('fish'); 2
-// INSERT INTO recipe_category(category) VALUES ('beef'); 3 
-// INSERT INTO recipe_category(category) VALUES ('pork'); 4 
-// INSERT INTO recipe_category(category) VALUES ('vegetarian'); 5 
-// INSERT INTO recipe_category(category) VALUES ('vegan');  6 

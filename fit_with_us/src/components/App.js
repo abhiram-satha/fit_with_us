@@ -163,7 +163,7 @@ function App() {
   const newPost = (event) => {
     if (!event.target[0].value) {
       event.preventDefault();
-      console.log(event.target[0].value)
+
        alert.show("Post can't be empty")
        return
 

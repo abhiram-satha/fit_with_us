@@ -1,5 +1,5 @@
 export default function CommentReply ({newComment, post_id}) {
-  // console.log(post_id)
+
   return (
     <div>
       <details>

@@ -2,8 +2,6 @@ import UpdateCategoryPref from "./UpdateCategoryPref"
 import UpdateWeightGoal from "./UpdateWeightGoal"
 
 export default function Settings({users, updateGoalWeight, reloadRecipes, selectedCategories, deleteCategory, addCategory}) {
-
-  // console.log(categories)
  
   return (
     <>

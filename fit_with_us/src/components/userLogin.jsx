@@ -15,8 +15,6 @@ export default function UserLogin(props) {
       .then((all) => {
         const userData = all[0].data.users;
         const user = userData[0];
-        console.log(user);
-        console.log(all[0].data);
         if (userData.length !== 0) {
           props.loggedInUser(user.id);
         }

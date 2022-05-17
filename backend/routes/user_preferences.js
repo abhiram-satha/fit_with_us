@@ -41,7 +41,6 @@ module.exports = (db) => {
       req.params.id,
       req.body.category_value
     ]
-    console.log(values)
     db.query(`INSERT INTO user_preferences(user_id, recipe_category_id) VALUES ($1, $2)`, values)
     .then((data) => {
       const users = data.rows;
