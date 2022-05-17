@@ -22,20 +22,24 @@ const [includeChicken, setIncludeChicken] = useState([])
   return (
     <>
     <form>
-    <input type="checkbox" value="1" checked={selectedCategories.includes('chicken')} onChange={(event)=> handleSelect(event, 'chicken')}/>
-    <label for="1" >Chicken</label>
+      <input type="checkbox" value="1" checked={selectedCategories.includes('chicken')} onChange={(event)=> handleSelect(event, 'chicken')}/>
+      <label for="1" >Chicken</label>
 
+      <input type="checkbox" value="2" checked={selectedCategories.includes('fish')} onChange={(event)=> handleSelect(event, 'fish')}/>
+      <label for="2" >Fish</label>
 
-    {unique_category.includes('fish') ? <input type="checkbox" value="2" checked onChange={deleteCategory}/> : <input type="checkbox" value="2" onChange={addCategory}/>}
-    <label for="2" >Fish</label>
-    {unique_category.includes('beef') ? <input type="checkbox" value="3" checked onChange={deleteCategory}/> : <input type="checkbox" value="3" onChange={addCategory}/>}
-    <label for="2" >Beef</label>
-    {unique_category.includes('pork') ? <input type="checkbox" value="4" checked onChange={deleteCategory}/> : <input type="checkbox" value="4" onChange={addCategory}/>}
-    <label for="4" >Pork</label>
-    {unique_category.includes('vegetarian') ? <input type="checkbox" value="5" checked onChange={deleteCategory}/> : <input type="checkbox" value="5" onChange={addCategory}/>}
-    <label for="5" >Vegetarian</label>
-    {unique_category.includes('vegan') ? <input type="checkbox" value="6" checked onChange={deleteCategory}/> : <input type="checkbox" value="6" onChange={addCategory}/>}
-    <label for="2" >Vegan</label>
+      <input type="checkbox" value="3" checked={selectedCategories.includes('beef')} onChange={(event)=> handleSelect(event, 'beef')}/>
+      <label for="3" >Beef</label>
+
+      <input type="checkbox" value="4" checked={selectedCategories.includes('pork')} onChange={(event)=> handleSelect(event, 'pork')}/>
+      <label for="4" >Pork</label>
+
+      <input type="checkbox" value="5" checked={selectedCategories.includes('vegetarian')} onChange={(event)=> handleSelect(event, 'chicken')}/>
+      <label for="5" >Chicken</label>
+    
+      <input type="checkbox" value="6" checked={selectedCategories.includes('vegan')} onChange={(event)=> handleSelect(event, 'vegan')}/>
+      <label for="6" >Chicken</label>
+  
     </form>
     </>
   )
