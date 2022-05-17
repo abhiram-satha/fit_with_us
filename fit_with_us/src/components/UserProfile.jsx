@@ -18,7 +18,7 @@ export default function UserProfile({ user, badges }) {
   });
 
   return (
-    <div className="columns is-mobile">
+    <div className="columns is-mobile mt-6">
       <div className="column">
         <h1 className="title is-5 has-text-centered">{`User Profile for ${username}`}</h1>
         <h2 className="title is-6">User Information</h2>

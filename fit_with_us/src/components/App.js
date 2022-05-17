@@ -314,8 +314,12 @@ export default function App() {
           </>
         ) : (
           <>
-            <TopNav loggedOutUser={loggedOutUser} />
-            <UserProfile badges={badges} user={users} weight={weight} />
+            <TopNav
+              badges={badges}
+              user={users}
+              weight={weight}
+              loggedOutUser={loggedOutUser}
+            />
             <BottomNav
               weight={weight}
               users={users}
