@@ -44,6 +44,7 @@ export default function App() {
   const [comments, setComments] = useState([]);
   const [users, setUsers] = useState([]);
   const [dietaryRestrictions, setDietaryRestrictions] = useState(false);
+  const [badges, setBadges] = useState([]);
 
   //Set Cookies
   const [cookies, setCookie, removeCookie] = useCookies();
@@ -66,6 +67,10 @@ export default function App() {
       return id;
     }
   }
+
+  const getBadges = async () => {
+    return await axios.get("http://localhost:8080/api/badges");
+  };
 
   function backButton() {
     setLoggedIn(false);
@@ -141,6 +146,12 @@ export default function App() {
     } else {
       setLoggedIn(false);
     }
+
+    const fetchBadgeData = async () => await getBadges();
+
+    fetchBadgeData()
+      .then((all) => setBadges(all.data.badges))
+      .catch((err) => console.log(err));
 
     const fetchUserRestrictionsData = async () => await getUserRestrictions();
 
@@ -304,7 +315,7 @@ export default function App() {
         ) : (
           <>
             <TopNav loggedOutUser={loggedOutUser} />
-            <UserProfile user={users} weight={weight} />
+            <UserProfile badges={badges} user={users} weight={weight} />
             <BottomNav
               weight={weight}
               users={users}
