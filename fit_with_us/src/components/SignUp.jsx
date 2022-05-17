@@ -177,6 +177,7 @@ export default function Form(props) {
             goalWeight,
             height,
             age,
+            gender,
           }),
         ]);
       })
