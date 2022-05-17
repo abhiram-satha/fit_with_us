@@ -29,8 +29,6 @@ export default function BottomNav({
     setUsToggle("is-active");
   };
 
-  console.log(weight);
-  // console.log(posts.length);
   return (
     <>
       <Routes>

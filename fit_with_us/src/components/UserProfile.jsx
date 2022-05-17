@@ -4,6 +4,7 @@ import Badge from "./Badge";
 
 export default function UserProfile({ user, weight }) {
   const [badges, setBadges] = useState([]);
+  const username = user.users[0].username;
 
   //Helper Function
   const getBadges = async () => {
@@ -24,7 +25,7 @@ export default function UserProfile({ user, weight }) {
 
   return (
     <>
-      <h1>{`User Profile for ${user.users[0].username}, they weigh ${weight[0].weight} lbs`}</h1>
+      <h1>{`User Profile for ${username}`}</h1>
       {createBadgesIconsArray}
     </>
   );

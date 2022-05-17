@@ -292,8 +292,6 @@ export default function App() {
 
   return (
     <div className="App">
-      <UserProfile user={users} weight={weight} />
-
       {loggedIn ? (
         !userHasRestrictions ? (
           <>
@@ -306,6 +304,7 @@ export default function App() {
         ) : (
           <>
             <TopNav loggedOutUser={loggedOutUser} />
+            <UserProfile user={users} weight={weight} />
             <BottomNav
               weight={weight}
               users={users}
