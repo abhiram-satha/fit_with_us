@@ -33,61 +33,59 @@ export default function BottomNav({
   // console.log(posts.length);
   return (
     <>
-      <Router>
-        <Routes>
-          <Route
-            path={`/homepage`}
-            element={
-              <Homepage
+      <Routes>
+        <Route
+          path={`/homepage`}
+          element={
+            <Homepage
+              users={users}
+              userWeight={weight}
+              updateWeight={updateWeight}
+              recipes={recipes}
+            />
+          }
+        />
+        <Route
+          path="/posts"
+          element={
+            posts.length === 0 ? (
+              <progress class="progress is-small is-primary" max="100">
+                15%
+              </progress>
+            ) : (
+              <Posts
+                posts={posts}
                 users={users}
-                userWeight={weight}
-                updateWeight={updateWeight}
-                recipes={recipes}
+                comments={comments}
+                newPost={newPost}
+                newComment={newComment}
               />
-            }
-          />
-          <Route
-            path="/posts"
-            element={
-              posts.length === 0 ? (
-                <progress class="progress is-small is-primary" max="100">
-                  15%
-                </progress>
-              ) : (
-                <Posts
-                  posts={posts}
-                  users={users}
-                  comments={comments}
-                  newPost={newPost}
-                  newComment={newComment}
-                />
-                // <Posts posts={posts} comments={comments} onClick={createPost}/>
-              )
-            }
-          />
-          <Route
-            path="recipe-details"
-            element={
-              <RecipeDetails
-                ingredients={recipes[0][0].recipe.ingredients}
-                calories={recipes[0][0].recipe.calories}
-                url={recipes[0][0].recipe.url}
-                servings={recipes[0][0].recipe.yield}
-              />
-            }
-          />
-        </Routes>
-        <div class="navbar tabs is-toggle is-centered is-medium is-fullwidth is-fixed-bottom mb-0">
-          <ul>
-            <li onClick={toggleYou} class={youToggle} id="you">
-              <Link to="/homepage">You</Link>
-            </li>
-            <li onClick={toggleUs} class={usToggle} id="us">
-              <Link to="/posts">Us</Link>
-            </li>
-          </ul>
-        </div>
-      </Router>
+              // <Posts posts={posts} comments={comments} onClick={createPost}/>
+            )
+          }
+        />
+        <Route
+          path="recipe-details"
+          element={
+            <RecipeDetails
+              ingredients={recipes[0][0].recipe.ingredients}
+              calories={recipes[0][0].recipe.calories}
+              url={recipes[0][0].recipe.url}
+              servings={recipes[0][0].recipe.yield}
+            />
+          }
+        />
+      </Routes>
+      <div class="navbar tabs is-toggle is-centered is-medium is-fullwidth is-fixed-bottom mb-0">
+        <ul>
+          <li onClick={toggleYou} class={youToggle} id="you">
+            <Link to="/homepage">You</Link>
+          </li>
+          <li onClick={toggleUs} class={usToggle} id="us">
+            <Link to="/posts">Us</Link>
+          </li>
+        </ul>
+      </div>
     </>
   );
 }

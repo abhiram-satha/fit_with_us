@@ -1,6 +1,6 @@
-INSERT INTO users(email, password, username, current_weight, goal_weight, height, age, gender) VALUES ('test123@123.com', 'test123', 'LoseWeightWithMe', 200, 150, 180, 25,null);
-INSERT INTO users(email, password, username, current_weight, goal_weight, height, age, gender) VALUES ('test123@1234.com', 'test123', 'Foodie', 200, 150, 180, 25,null);
-INSERT INTO users(email, password, username, current_weight, goal_weight, height, age, gender) VALUES ('test123@12345.com', 'test123', 'Luv2Eat', 120, 150, 180, 25,null);
+INSERT INTO users(email, password, username, current_weight, goal_weight, height, age, gender) VALUES ('test123@123.com', '$2a$10$6/gff9POlthCUx.E3wXtm.uQYRhUplOeoi7uKk52ga8qD3VE6WPvS', 'LoseWeightWithMe', 200, 150, 180, 25,null);
+INSERT INTO users(email, password, username, current_weight, goal_weight, height, age, gender) VALUES ('test123@1234.com', '$2a$10$6/gff9POlthCUx.E3wXtm.uQYRhUplOeoi7uKk52ga8qD3VE6WPvS', 'Foodie', 200, 150, 180, 25,null);
+INSERT INTO users(email, password, username, current_weight, goal_weight, height, age, gender) VALUES ('test123@12345.com', '$2a$10$6/gff9POlthCUx.E3wXtm.uQYRhUplOeoi7uKk52ga8qD3VE6WPvS', 'Luv2Eat', 120, 150, 180, 25,null);
 
 
 INSERT INTO weights(user_id, date, weight) VALUES (1, '2022-04-21', 135);

@@ -325,6 +325,7 @@ export default function App() {
             loggedInUser={loggedInUser}
             setSignUp={setSignUp}
             signUserUp={signUserUp}
+            setUserHasRestrictions={setUserHasRestrictions}
           />
         </>
       ) : signUp ? (
@@ -340,27 +341,25 @@ export default function App() {
         </>
       )}
 
-      <Router>
-        <Routes>
-          <Route
-            path={`/settings`}
-            element={
-              users.users === undefined ? (
-                "Loading"
-              ) : (
-                <Settings
-                  users={users}
-                  updateGoalWeight={updateGoalWeight}
-                  categoryArray={categoryArray}
-                />
-              )
-            }
-          />
-        </Routes>
-        <nav>
-          <Link to="/settings">Setting</Link>
-        </nav>
-      </Router>
+      <Routes>
+        <Route
+          path={`/settings`}
+          element={
+            users.users === undefined ? (
+              "Loading"
+            ) : (
+              <Settings
+                users={users}
+                updateGoalWeight={updateGoalWeight}
+                categoryArray={categoryArray}
+              />
+            )
+          }
+        />
+      </Routes>
+      <nav>
+        <Link to="/settings">Setting</Link>
+      </nav>
     </div>
   );
 }

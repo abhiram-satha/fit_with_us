@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./Button";
 import "../helpers/navbarQuery";
+import UserProfile from "./UserProfile";
 
 export default function TopNav(props) {
   return (

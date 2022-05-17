@@ -7,6 +7,7 @@ import { render } from "react-dom";
 import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 import { CookiesProvider } from "react-cookie";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const options = {
   position: "bottom center",
@@ -18,11 +19,13 @@ const options = {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AlertProvider template={AlertTemplate} {...options}>
-      <CookiesProvider>
-        <App />
-      </CookiesProvider>
-    </AlertProvider>
+    <Router>
+      <AlertProvider template={AlertTemplate} {...options}>
+        <CookiesProvider>
+          <App />
+        </CookiesProvider>
+      </AlertProvider>
+    </Router>
   </React.StrictMode>
 );
 

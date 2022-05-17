@@ -3,6 +3,7 @@ import Button from "./Button";
 import Input from "./Input";
 import axios from "axios";
 import "../styles/UserLogin.scss";
+import { useNavigate } from "react-router-dom";
 import Error from "./Error";
 
 export default function UserLogin(props) {
@@ -10,6 +11,8 @@ export default function UserLogin(props) {
   const [errorPassword, setErrorPassword] = useState(false);
   const [emailClass, setEmailClass] = useState("input");
   const [passwordClass, setPasswordClass] = useState("input");
+
+  const navigate = useNavigate();
 
   //Function to handle submit
   const submitUserInformation = async (e) => {
@@ -45,7 +48,10 @@ export default function UserLogin(props) {
           }
         }
       })
-      .then(() => window.location.reload(false))
+      .then(() => {
+        props.setUserHasRestrictions(true);
+        navigate("/homepage");
+      })
       .catch((err) => console.log(err.message));
   };
 
