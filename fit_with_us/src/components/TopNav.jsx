@@ -20,9 +20,7 @@ export default function TopNav(props) {
       <div class="navbar-brand">
         <a class="navbar-item" href="https://bulma.io">
           <img
-            src="https://bulma.io/images/bulma-logo.png"
-            width="112"
-            height="28"
+            src="https://i.imgur.com/cBZaCDn.png"
           />
         </a>
 
