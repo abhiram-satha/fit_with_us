@@ -10,6 +10,7 @@
     "bulma": "^0.9.3",
     "jquery": "^3.6.0",
     "node-sass": "^7.0.1",
+    "env-cmd": "^10.1.0",
     "react": "^18.1.0",
     "react-alert": "^7.0.3",
     "react-alert-template-basic": "^1.0.2",
@@ -21,8 +22,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "env-cmd -f .env react-scripts start",
+    "build": "env-cmd -f .env react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "css-build": "node-sass --omit-source-map-url public/sass/mystyles.scss public/css/mystyles.css",

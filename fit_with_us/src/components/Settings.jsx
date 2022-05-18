@@ -4,10 +4,11 @@ import UpdateWeightGoal from "./UpdateWeightGoal";
 export default function Settings({
   users,
   updateGoalWeight,
-  categoryArray,
-  categories,
-  setCategories,
-}) {
+  selectedCategories,
+                deleteCategory,
+                addCategory,
+                reloadRecipes}) {
+
   return (
     <>
       This is the settings form
@@ -18,7 +19,7 @@ export default function Settings({
           <UpdateWeightGoal users={users} updateGoalWeight={updateGoalWeight} />
         </details>
       </details>
-      {/* <UpdateCategoryPref categoryArray={categoryArray} categories={categories} setCategories={setCategories}/> */}
+      <UpdateCategoryPref deleteCategory={deleteCategory} selectedCategories={selectedCategories} addCategory={addCategory} reloadRecipes={reloadRecipes}/>
     </>
-  );
+  )
 }
