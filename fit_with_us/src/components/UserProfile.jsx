@@ -3,10 +3,13 @@ import axios from "axios";
 import Badge from "./Badge";
 import TableRow from "./TableRow";
 
-export default function UserProfile({ user, badges }) {
+export default function UserProfile({ user, badges, weight }) {
   //States
   const [totalPosts, setTotalPosts] = useState(0);
   const [totalComments, setTotalComments] = useState(0);
+  const [totalWeight, setTotal] = useState(
+    weight.length !== 0 ? weight.length : 0
+  );
 
   //User Information
   const userID = user.users ? user.users[0].id : null;
