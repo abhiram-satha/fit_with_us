@@ -302,7 +302,43 @@ export default function App() {
 
   return (
     <div className="App">
-      {loggedIn ? <TopNav loggedOutUser={loggedOutUser} /> : <UserLogin loggedInUser={loggedInUser} />}
+      {/* {!user_id ? <Form /> :<BottomNav/>} */}
+
+      {loggedIn ? (
+        !userHasRestrictions ? (
+          <>
+            <TopNav loggedOutUser={loggedOutUser} />
+            <UserDietaryRestrictions
+              userID={userID}
+              setUserHasRestrictions={setUserHasRestrictions}
+            />
+          </>
+        ) : (
+          <>
+            <TopNav loggedOutUser={loggedOutUser} />
+
+          </>
+        )
+      ) : login ? (
+        <>
+          <UserLogin
+            loggedInUser={loggedInUser}
+            setSignUp={setSignUp}
+            signUserUp={signUserUp}
+          />
+        </>
+      ) : signUp ? (
+        <>
+          <SignUp loggedInUser={loggedInUser} />
+        </>
+      ) : (
+        <>
+          <h1>Welcome to Fit with Us!</h1>
+          <Button onClick={loginUser} name="Login" />
+          <Button onClick={signUserUp} name="Sign Up!" />
+        </>
+      )}
+
       <Router>
         <Routes>
           <Route
