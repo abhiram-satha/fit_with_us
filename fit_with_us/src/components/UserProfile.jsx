@@ -4,6 +4,11 @@ import Badge from "./Badge";
 import TableRow from "./TableRow";
 
 export default function UserProfile({ user, badges }) {
+  //States
+  const [totalComments, setTotalComments] = useState(0);
+  const [totalPosts, setTotalPosts] = useState(0);
+  //User Information
+  const userID = user.users ? user.users[0].id : null;
   const username = user.users ? user.users[0].username : null;
   const age = user.users ? user.users[0].age : null;
   const gender = user.users ? user.users[0].gender : null;
@@ -16,11 +21,26 @@ export default function UserProfile({ user, badges }) {
     return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
   });
 
+  const getTotalComments = async () => {
+    return await axios.get(`http://localhost:8080/api/posts/${userID}/all`, {
+      userID,
+    });
+  };
+
+  useEffect(() => {
+    //Fetch Total Comments for Users
+    const fetchTotalComents = async () => await getTotalComments();
+    fetchTotalComents()
+      .then((response) => setTotalComments(parseInt(response.data.total.count)))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className="columns is-mobile mt-6">
       <div className="column"></div>
       <div className="column is-four-fifths">
         <h1 className="title is-5 has-text-centered">{`User Profile for ${username}`}</h1>
+        <p>{`${totalComments + totalPosts}`}</p>
         <h2 className="title is-6">User Information</h2>
         <table class="table is-striped is-fullwidth">
           <tbody>
