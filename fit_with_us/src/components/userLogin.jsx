@@ -49,8 +49,9 @@ export default function UserLogin(props) {
         }
       })
       .then(() => {
-        props.setUserHasRestrictions(true);
         navigate("/homepage");
+        window.location.reload(false);
+        props.setUserHasRestrictions(true);
       })
       .catch((err) => console.log(err.message));
   };
