@@ -5,8 +5,9 @@ import TableRow from "./TableRow";
 
 export default function UserProfile({ user, badges }) {
   //States
-  const [totalComments, setTotalComments] = useState(0);
   const [totalPosts, setTotalPosts] = useState(0);
+  const [totalComments, setTotalComments] = useState(0);
+
   //User Information
   const userID = user.users ? user.users[0].id : null;
   const username = user.users ? user.users[0].username : null;
@@ -21,13 +22,25 @@ export default function UserProfile({ user, badges }) {
     return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
   });
 
-  const getTotalComments = async () => {
+  const getTotalPosts = async () => {
     return await axios.get(`http://localhost:8080/api/posts/${userID}/all`, {
       userID,
     });
   };
 
+  const getTotalComments = async () => {
+    return await axios.get(`http://localhost:8080/api/comments/${userID}/all`, {
+      userID,
+    });
+  };
+
   useEffect(() => {
+    //Fetch Total Posts for Users
+    const fetchTotalPosts = async () => await getTotalPosts();
+    fetchTotalPosts()
+      .then((response) => setTotalPosts(parseInt(response.data.total.count)))
+      .catch((err) => console.log(err));
+
     //Fetch Total Comments for Users
     const fetchTotalComents = async () => await getTotalComments();
     fetchTotalComents()
@@ -40,7 +53,6 @@ export default function UserProfile({ user, badges }) {
       <div className="column"></div>
       <div className="column is-four-fifths">
         <h1 className="title is-5 has-text-centered">{`User Profile for ${username}`}</h1>
-        <p>{`${totalComments + totalPosts}`}</p>
         <h2 className="title is-6">User Information</h2>
         <table class="table is-striped is-fullwidth">
           <tbody>
