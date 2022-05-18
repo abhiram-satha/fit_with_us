@@ -302,45 +302,7 @@ export default function App() {
 
   return (
     <div className="App">
-      {/* {!user_id ? <Form /> :<BottomNav/>} */}
-
-      {loggedIn ? (
-        !userHasRestrictions ? (
-          <>
-            <TopNav loggedOutUser={loggedOutUser} />
-            <UserDietaryRestrictions
-              userID={userID}
-              setUserHasRestrictions={setUserHasRestrictions}
-            />
-          </>
-        ) : (
-          <>
-            <TopNav loggedOutUser={loggedOutUser} />
-
-          </>
-        )
-      ) : login ? (
-        <>
-          <TopNav backButton={backButton} />
-          <UserLogin
-            loggedInUser={loggedInUser}
-            setSignUp={setSignUp}
-            signUserUp={signUserUp}
-          />
-        </>
-      ) : signUp ? (
-        <>
-          <TopNav backButton={backButton} />
-          <SignUp loggedInUser={loggedInUser} />
-        </>
-      ) : (
-        <>
-          <h1>Welcome to Fit with Us!</h1>
-          <Button onClick={loginUser} name="Login" />
-          <Button onClick={signUserUp} name="Sign Up!" />
-        </>
-      )}
-
+      {loggedIn ? <TopNav loggedOutUser={loggedOutUser} /> : <UserLogin loggedInUser={loggedInUser} />}
       <Router>
         <Routes>
           <Route
@@ -400,10 +362,15 @@ export default function App() {
               />
             }
           />
+          <Route
+            path="/signup"
+            element={
+              <SignUp
+              loggedInUser={loggedInUser}
+              />
+            }
+          />
         </Routes>
-        <nav>
-          <Link to="/settings">Setting</Link>
-        </nav>
       </Router>
       <BottomNav />
     </div>

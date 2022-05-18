@@ -79,8 +79,10 @@ export default function UserLogin(props) {
             help={errorPassword}
           />
           <br />
-          <Button name="Login" />
+          <Button fw="is-fullwidth" name="Login" />
         </form>
+        <br />
+        <a href="/signup" class="is-pulled-right">Don't have an account? Click here</a>
       </div>
     </div>
   );
