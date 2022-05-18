@@ -297,8 +297,6 @@ export default function App() {
   );
 
   const userChosenRecipe = recipes[0][recipeRecord]["recipe"];
-  const chooseNextRecipe = () => {setRecipeRecord((prev) => prev + 1)}
-  const choosePreviousRecipe = () => {setRecipeRecord((prev) => prev - 1)}
   //console.log(recipeRecord);
   console.log(userChosenRecipe);
 
@@ -397,6 +395,8 @@ export default function App() {
                 users={users}
                 recipe={userChosenRecipe}
                 ingredients={userChosenRecipe.ingredients}
+                setRecipeRecord={setRecipeRecord}
+                newPost={newPost}
               />
             }
           />
