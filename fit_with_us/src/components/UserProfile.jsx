@@ -4,7 +4,6 @@ import Badge from "./Badge";
 import TableRow from "./TableRow";
 
 export default function UserProfile({ user, badges }) {
-  console.log(user);
   const username = user.users ? user.users[0].username : null;
   const age = user.users ? user.users[0].age : null;
   const gender = user.users ? user.users[0].gender : null;
@@ -33,7 +32,9 @@ export default function UserProfile({ user, badges }) {
           </tbody>
         </table>
         <h2 className="title is-6">Badges Earned by User:</h2>
-        <p>{createBadgesIconsArray}</p>
+        <div className="columns is-mobile is-centered">
+          {createBadgesIconsArray}
+        </div>
       </div>
       <div className="column"></div>
     </div>
