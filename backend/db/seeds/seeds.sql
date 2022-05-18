@@ -39,6 +39,6 @@ INSERT INTO user_preferences(user_id, recipe_category_id) VALUES (1, 2);
 INSERT INTO user_preferences(user_id, recipe_category_id) VALUES (1, 4);
 
 
-INSERT INTO badges(name, img_url) VALUES ('High Fiver', 'https://icon-library.com/images/5-icon/5-icon-7.jpg');
-INSERT INTO badges(name, img_url) VALUES ('Tens!', 'https://icon-library.com/images/number-10-icon/number-10-icon-26.jpg');
-INSERT INTO badges(name, img_url) VALUES ('Chatter', 'https://cdn-icons-png.flaticon.com/512/953/953810.png');
+INSERT INTO badges(name, img_url, description) VALUES ('High Fiver', 'https://icon-library.com/images/5-icon/5-icon-7.jpg', 'This badge is earned by logging in a total of 5 weights! Hoping you keep up your journey with Fit With Us!');
+INSERT INTO badges(name, img_url, description) VALUES ('Tens!', 'https://icon-library.com/images/number-10-icon/number-10-icon-26.jpg', 'This badge is earned by logging in a total of 10 weights! Thank you for your commitment with Fit With Us! We are excited for your journey and hope you reach your goal!');
+INSERT INTO badges(name, img_url, description) VALUES ('Chatter', 'https://cdn-icons-png.flaticon.com/512/953/953810.png', 'This badge is earned by making a total of 20 comments or posts. Thank you for being an active member of the community! Sharing your journey or showing support within the community is always a great feeling!');

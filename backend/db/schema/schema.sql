@@ -82,5 +82,6 @@ CREATE TABLE user_preferences (
 CREATE TABLE badges (
     id SERIAL PRIMARY KEY NOT NULL,
     name VARCHAR(30) NOT NULL,
-    img_url VARCHAR(500) NOT NULL
+    img_url VARCHAR(500) NOT NULL,
+    description VARCHAR(500) NOT NULL
 );
