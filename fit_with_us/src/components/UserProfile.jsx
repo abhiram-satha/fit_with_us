@@ -21,9 +21,25 @@ export default function UserProfile({ user, badges, weight }) {
   const height = user.users ? user.users[0].height : null;
 
   //Helper Function
-  const createBadgesIconsArray = badges.map((badge) => {
-    return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
-  });
+  const achievedHighFiver = totalWeight >= 5;
+  const achievedTens = totalWeight >= 10;
+  const achievedChatter = totalPosts + totalComments >= 5;
+
+  const createBadgesIconsArray = badges
+    .map((badge) => {
+      return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
+    })
+    .filter((badge) => {
+      if (badge.props.name === "High Fiver" && achievedHighFiver) {
+        return badge;
+      }
+      if (badge.props.name === "Tens!" && achievedTens) {
+        return badge;
+      }
+      if (badge.props.name === "Chatter" && achievedChatter) {
+        return badge;
+      }
+    });
 
   console.log(createBadgesIconsArray);
   const getTotalPosts = async () => {
