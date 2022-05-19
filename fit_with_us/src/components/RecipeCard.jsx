@@ -35,7 +35,9 @@ export default function RecipeCard({ users, recipes }) {
       )}
       <img src={info.images.THUMBNAIL.url} />
       {recipeRecord !== 19 && (
-        <button onClick={() => setRecipeRecord((prev) => prev + 1)}>
+        <button
+          onClick={() => setRecipeRecord((prev) => Number.parseInt(prev) + 1)}
+        >
           Next
         </button>
       )}
