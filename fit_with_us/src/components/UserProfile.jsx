@@ -25,6 +25,7 @@ export default function UserProfile({ user, badges, weight }) {
     return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
   });
 
+  console.log(createBadgesIconsArray);
   const getTotalPosts = async () => {
     return await axios.get(`http://localhost:8080/api/posts/${userID}/all`, {
       userID,
@@ -66,10 +67,14 @@ export default function UserProfile({ user, badges, weight }) {
             <TableRow name="Height (cm):" value={height} />
           </tbody>
         </table>
-        <h2 className="title is-6">Badges Earned by User:</h2>
-        <div className="columns is-mobile is-centered">
-          {createBadgesIconsArray}
-        </div>
+        {createBadgesIconsArray.length !== 0 ? (
+          <>
+            <h2 className="title is-6">Badges Earned by User:</h2>
+            <div className="columns is-mobile is-centered">
+              {createBadgesIconsArray}
+            </div>
+          </>
+        ) : null}
       </div>
       <div className="column"></div>
     </div>
