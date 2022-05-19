@@ -96,42 +96,34 @@ export default function App() {
     if (apiArray.length === 0) {
       return "";
     }
-    let arrayOfRestrictions = [];
-    // &health=dairy-free&health=egg-free
+       let dietRestrictionString = "";
 
-    let dietRestrictionString = "";
-
-    for (let i = 0; i < apiArray.length; i++) {
-      // arrayOfRestrictions.push(apiArray[i]['restriction'])
-      if (apiArray[i]["restriction"] !== "None") {
-        let lowerCaseRestriction = apiArray[i]["restriction"].toLowerCase();
-        dietRestrictionString += `&health=${lowerCaseRestriction}`;
+       for (let i = 0; i < apiArray.length; i++) {
+        // arrayOfRestrictions.push(apiArray[i]['restriction'])
+        if (apiArray[i]["restriction"] !== "None") {
+          let lowerCaseRestriction = apiArray[i]["restriction"].toLowerCase();
+          dietRestrictionString += `&health=${lowerCaseRestriction}`;
+        }
       }
-    }
-    // console.log(dietRestrictionString)
-    return dietRestrictionString;
-  };
 
-  let categoryArray = [];
-  const randomCategorySelector = (apiArray) => {
-    // console.log(apiArray)
-    if (apiArray.length === 0) {
+    return dietRestrictionString
+
+  }
+
+  const [selectedCategories, setSelectedCategories] = useState([])
+  const randomCategorySelector = (categories) => {
+   
+    if (categories.length === 0) {
       return "";
     }
-    // &health=dairy-free&health=egg-free
+    
+   
+    
+    const randomNumber = Math.floor(Math.random() * categories.length)
+    
+    return categories[randomNumber]
 
-    let categoryString = "";
 
-    for (let i = 0; i < apiArray.length; i++) {
-      // arrayOfRestrictions.push(apiArray[i]['restriction'])
-      categoryArray.push(apiArray[i]["category"].toLowerCase());
-    }
-    // console.log(dietRestrictionString)
-    // console.log(categoryArray)
-
-    let randomNumber = Math.floor(Math.random() * categoryArray.length);
-
-    return categoryArray[randomNumber];
   };
 
   useEffect(() => {
@@ -158,29 +150,35 @@ export default function App() {
     });
     Promise.all([
       axios.get(`http://localhost:8080/api/dietary_restrictions/${userID}`),
+  ])
+    .then(result => {
+      
+      string  += makeArrayOfRestrictions(result[0]['data']['users'])
+    })
+    .then(answer => {
+      return Promise.all([
+        axios.get(`http://localhost:8080/api/user_preferences/${userID}`)
     ])
-      .then((result) => {
-        // console.log(result[1])
-        string += makeArrayOfRestrictions(result[0]["data"]["users"]);
-      })
-      .then((answer) => {
-        return Promise.all([
-          axios.get(`http://localhost:8080/api/user_preferences/${userID}`),
-        ]);
-      })
-      .then((response) => randomCategorySelector(response[0]["data"]["users"]))
-      .then((categorySelection) => {
-        return Promise.all([
-          axios.get(
-            `https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&calories=300-600`
-          ),
-          axios.get(`http://localhost:8080/api/weights/${userID}`),
-          axios.get(`http://localhost:8080/api/posts/`),
-          axios.get("http://localhost:8080/api/comments"),
-          axios.get(`http://localhost:8080/api/user/${userID}`),
-        ]);
-      })
+    })
+    .then(response => {
+      const userPreferences = response[0]['data']['users']
+      const categories = userPreferences.map(userPreference => userPreference.category.toLowerCase())
+      setSelectedCategories(categories);
+      return randomCategorySelector(categories)
+    })
+    .then(categorySelection => {
+      return Promise.all([
+        axios.get(
+          `https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&calories=300-600`
+        ),
+        axios.get(`http://localhost:8080/api/weights/${userID}`),
+        axios.get(`http://localhost:8080/api/posts/`),
+        axios.get("http://localhost:8080/api/comments"),
+        axios.get(`http://localhost:8080/api/user/${userID}`),
+      ])
+    })
       .then((all) => {
+
         setRecipes([all[0].data["hits"]]);
         setWeight(all[1].data["weights"]);
         setPosts(all[2].data);
@@ -193,103 +191,152 @@ export default function App() {
   const newPost = (event) => {
     if (!event.target[0].value) {
       event.preventDefault();
-      console.log(event.target[0].value);
-      alert.show("Post can't be empty");
-      return;
+
+       alert.show("Post can't be empty")
+       return
+
     } else {
-      event.preventDefault();
-      // console.log(event.target[0].value)
-      const data = {
-        message: event.target[0].value,
-      };
-      axios
-        .post(`http://localhost:8080/api/posts/${userID}`, data)
-        // .then(response => console.log(response))
-        .then((response) => axios.get("http://localhost:8080/api/posts"))
-        .then((posts) => setPosts(posts.data))
-        .then((response) => (event.target[0].value = ""))
-        .catch((error) => console.log(error));
+    event.preventDefault();
+
+    const data = {
+      message: event.target[0].value
+    }
+    axios.post(`http://localhost:8080/api/posts/${userID}`, data)
+
+      .then(response => axios.get("http://localhost:8080/api/posts"))
+      .then(posts => setPosts(posts.data))
+      .then(response => event.target[0].value ="") 
+      .catch(error => console.log(error))
     }
   };
   const newComment = (event) => {
     if (!event.target[0].value) {
       event.preventDefault();
-      console.log(event.target[0].value);
-      alert.show("Comment can't be empty");
-      return;
+
+       alert.show("Comment can't be empty")
+       return
+
     } else {
       event.preventDefault();
-      // console.log(event.target[0].attributes.post_id.value)
+
       const data = {
         message: event.target[0].value,
-        post_id: event.target[0].attributes.post_id.value,
-      };
-      axios
-        .post(`http://localhost:8080/api/comments/${userID}`, data)
-        .then((response) => axios.get("http://localhost:8080/api/comments"))
-        .then((comments) => setComments(comments.data.posts))
-        .then((response) => (event.target[0].value = ""))
-        .catch((error) => console.log(error));
-      // console.log(data)
+        post_id: event.target[0].attributes.post_id.value
+      }
+      axios.post(`http://localhost:8080/api/comments/${userID}`, data)
+        .then(response => axios.get("http://localhost:8080/api/comments"))
+        .then(comments => setComments(comments.data.posts))
+        .then(response => event.target[0].value ="") 
+        .catch(error => console.log(error))
+
     }
   };
 
   const updateWeight = (event) => {
     if (!event.target[0].value) {
       event.preventDefault();
-      console.log(event.target[0].value);
-      alert.show("Weight can't be empty");
-      return;
+
+       alert.show("Weight can't be empty")
+       return
+
     } else {
-      event.preventDefault();
-      // console.log(event.target[0].value)
-      const data = {
-        newWeight: event.target[0].value,
-      };
-      axios
-        .post(`http://localhost:8080/api/weights/${userID}`, data)
-        // .then(response => console.log(response))
-        .then((response) =>
-          axios.get(`http://localhost:8080/api/weights/${userID}`)
-        )
-        .then((weights) => setWeight(weights.data.weights))
-        .then((response) => (event.target[0].value = ""))
-        .catch((error) => console.log(error));
+    event.preventDefault();
+
+    const data = {
+      newWeight: event.target[0].value
+    }
+    axios.post(`http://localhost:8080/api/weights/${userID}`, data)
+
+      .then(response => axios.get(`http://localhost:8080/api/weights/${userID}`))
+      .then(weights => setWeight(weights.data.weights))
+      .then(response => event.target[0].value ="") 
+      .catch(error => console.log(error))
     }
   };
 
   const updateGoalWeight = (event) => {
     if (!event.target[0].value) {
       event.preventDefault();
-      console.log(event.target[0].value);
-      alert.show("Goal Weight can't be empty");
-      return;
-    } else {
-      event.preventDefault();
-      // console.log(event.target[0].value)
-      const data = {
-        goal_weight: event.target[0].value,
-      };
 
-      // console.log(data)
-      axios
-        .put(`http://localhost:8080/api/user/${userID}`, data)
-        // .then(response => console.log(response))
-        .then((response) =>
-          axios.get(`http://localhost:8080/api/user/${userID}`)
-        )
-        // .then(weights => setWeight(weights.data.weights))
-        // .then(users => setUsers(prev => {...prev, goal_weight: data.goal_weight}))
-        .then((data) =>
-          setUsers((prev) => {
-            return { ...prev, goal_weight: data.goal_weight };
-          })
-        )
-        .then(window.location.reload(false))
-        .then((response) => (event.target[0].value = ""))
-        .catch((error) => console.log(error));
+       alert.show("Goal Weight can't be empty")
+       return
+
+    } else {
+    event.preventDefault();
+
+    const data = {
+      goal_weight: event.target[0].value
     }
-  };
+
+
+    axios.put(`http://localhost:8080/api/user/${userID}`, data)
+
+      .then(response => axios.get(`http://localhost:8080/api/user/${userID}`))
+      .then(data => setUsers(prev => {
+          return {...prev, goal_weight: data.goal_weight}
+          }))
+      .then(window.location.reload(false))
+      .then(response => event.target[0].value ="") 
+      .catch(error => console.log(error))
+    }
+  }
+
+const deleteCategory = (event, categoryToRemove) => {
+
+const data = {
+  category_value: event.target.value
+}
+
+    axios.delete(`http://localhost:8080/api/user_preferences/${userID}`, {data})
+    
+    .then(answer => {
+      
+      return Promise.all([
+        axios.get(`http://localhost:8080/api/user_preferences/${userID}`)
+    ])
+    })
+    .then(response => {
+      const userPreferences = response[0]['data']['users']
+      const categories = userPreferences.map(userPreference => userPreference.category.toLowerCase())
+      setSelectedCategories(selectedCategories.filter(selectedCategory => selectedCategory !== categoryToRemove))
+    })
+   
+  }
+
+  const reloadRecipes = () => {
+    const categorySelection = randomCategorySelector(selectedCategories)
+      return Promise.all([
+        axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=${process.env.REACT_APP_ID}&app_key=${process.env.REACT_APP_KEY}${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&excluded=broth&excluded=Homemade%20Essence%20of%20Chicken&calories=300-600`),
+      ])
+      .then((all) => {
+
+      setRecipes([all[0].data["hits"]]);
+    })
+    .catch((err) => console.log(err.message));
+  }
+
+  const addCategory = (event, categoryToAdd) => {
+
+    const data = {
+      category_value: event.target.value
+    }
+
+        axios.post(`http://localhost:8080/api/user_preferences/${userID}`, data)
+        .then(answer => {
+          
+          return Promise.all([
+            axios.get(`http://localhost:8080/api/user_preferences/${userID}`)
+        ])
+        })
+      
+        .then(response => {
+            const userPreferences = response[0]['data']['users']
+            const categories = userPreferences.map(userPreference => userPreference.category.toLowerCase())
+            setSelectedCategories([...selectedCategories, categoryToAdd])
+          
+          })
+        .catch((err) => console.log(err.message));
+      }
 
   const [recipeRecord, setRecipeRecord] = useLocalStorage(
     "recipe",
@@ -302,9 +349,41 @@ export default function App() {
 
   return (
     <div className="App">
+{/* <Router>
+<Routes >
+  <Route 
+path={`/settings`}
+            element={
+              users.users === undefined ? "Loading" : <Settings
+                users={users}
+                updateGoalWeight={updateGoalWeight}
+                // categoryArray={categoryArray}
+                selectedCategories={selectedCategories}
+                setSelectedCategories={setSelectedCategories}
+                deleteCategory={deleteCategory}
+                addCategory={addCategory}
+                reloadRecipes={reloadRecipes}
+              />}
+              />
+</Routes>
+<nav>
+          <Link to='/settings'>Setting</Link>
+        </nav>
+</Router>
+      
+      <BottomNav weight={weight}
+                users = {users}
+                updateWeight = {updateWeight}
+                recipes = {recipes}
+                posts={posts}
+                comments={comments}
+                newPost={newPost}
+                newComment={newComment}
+                  /> */}
+ 
       {/* {!user_id ? <Form /> :<BottomNav/>} */}
-
-      {loggedIn ? (
+      
+      {/* {loggedIn ? (
         !userHasRestrictions ? (
           <>
             <TopNav loggedOutUser={loggedOutUser} />
@@ -337,8 +416,11 @@ export default function App() {
           <Button onClick={loginUser} name="Login" />
           <Button onClick={signUserUp} name="Sign Up!" />
         </>
-      )}
+      )} */}
 
+      {loggedIn ? 
+      <>
+      <TopNav loggedOutUser={loggedOutUser}/>
       <Router>
         <Routes>
           <Route
@@ -347,10 +429,15 @@ export default function App() {
               users.users === undefined ? (
                 "Loading"
               ) : (
-                <Settings
-                  users={users}
-                  updateGoalWeight={updateGoalWeight}
-                  categoryArray={categoryArray}
+                <Settings 
+                users={users}
+                updateGoalWeight={updateGoalWeight}
+                // categoryArray={categoryArray}
+                selectedCategories={selectedCategories}
+                setSelectedCategories={setSelectedCategories}
+                deleteCategory={deleteCategory}
+                addCategory={addCategory}
+                reloadRecipes={reloadRecipes}
                 />
               )
             }
@@ -382,7 +469,6 @@ export default function App() {
                   newPost={newPost}
                   newComment={newComment}
                 />
-                // <Posts posts={posts} comments={comments} onClick={createPost}/>
               )
             }
           />
@@ -398,17 +484,14 @@ export default function App() {
               />
             }
           />
-          <Route
-            path="/signup"
-            element={
-              <SignUp
-              loggedInUser={loggedInUser}
-              />
-            }
-          />
         </Routes>
       </Router>
       <BottomNav />
+      </> : (!signUp ? <UserLogin signUserUp={signUserUp} /> : <SignUp loggedInUser={loggedInUser}/>)
+    }
+
+      
+
     </div>
   );
 }

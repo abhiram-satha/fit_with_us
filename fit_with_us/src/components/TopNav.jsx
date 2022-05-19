@@ -52,7 +52,7 @@ export default function TopNav(props) {
               <a class="navbar-item">Change recipe</a>
             </div>
           </div>
-          <a class="navbar-item">Settings</a>
+          <a href="/settings" class="navbar-item">Settings</a>
         </div>
 
         <div class="navbar-end">

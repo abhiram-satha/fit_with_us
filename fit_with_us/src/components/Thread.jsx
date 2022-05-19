@@ -8,7 +8,7 @@ export default function Thread({newComment, users,username, message, comments, p
   } ).map(comment => {
     return <Comment comment={comment} />
   })
-  // console.log(commentArray)
+
   return (
     // <div>
     // {username}<br/>

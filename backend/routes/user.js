@@ -15,7 +15,6 @@ module.exports = (db) => {
   });
   
   router.put("/:id", (req, res) => {
-    // console.log(req.body.goal_weight)
 
     const values = [
       req.body.goal_weight,

@@ -2,14 +2,12 @@ import { LineChart, Line, CartesianGrid, YAxis, XAxis, Tooltip, ResponsiveContai
 import Input from './Input';
 import Button from './Button';
 export default function Weighthistorygraph({weights, updateWeight}) {
-  // console.log(weight)
 
   let data = weights.map(weight => {
     let date = weight.date.slice(5,10)
     return {name: date, lbs: weight.weight}
   })
-  // console.log(data)
-  // const data = [{name: 'Page A', uv: 400}, {name: 'Page B', uv: 300}, {name: 'Page C', uv: 250}];
+
   return (
     <div class="column">
       <div class="card">

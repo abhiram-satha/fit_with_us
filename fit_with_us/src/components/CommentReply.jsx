@@ -3,7 +3,7 @@ import Button from "./Button"
 import Input from "./Input"
 
 export default function CommentReply ({newComment, post_id}) {
-  // console.log(post_id)
+
   return (
     <div>
       <a>

@@ -26,7 +26,6 @@ module.exports = (db) => {
 
     const query = `INSERT INTO post(user_id, message, date) VALUES ($1, $2, $3)`;
 
-    console.log(query);
     db.query(query, values)
       .then((data) => {
         res.send("Post added");
