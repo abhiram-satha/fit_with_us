@@ -3,13 +3,20 @@ import Button from "./Button";
 import Input from "./Input";
 import axios from "axios";
 import "../styles/UserLogin.scss";
+import { useNavigate } from "react-router-dom";
 import Error from "./Error";
 
-export default function UserLogin({ loggedInUser, signUserUp }) {
+export default function UserLogin({
+  loggedInUser,
+  signUserUp,
+  setUserHasRestrictions,
+}) {
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [emailClass, setEmailClass] = useState("input");
   const [passwordClass, setPasswordClass] = useState("input");
+
+  const navigate = useNavigate();
 
   //Function to handle submit
   const submitUserInformation = async (e) => {
@@ -43,9 +50,22 @@ export default function UserLogin({ loggedInUser, signUserUp }) {
             setEmailClass("input is-danger");
             setErrorEmail(errorInformation);
           }
+
+          return errorInformation;
         }
       })
-      .then(() => window.location.reload(false))
+      .then((response) => {
+        console.log(response);
+
+        if (
+          response !== "The email is incorrect" &&
+          response !== "The password is incorrect"
+        ) {
+          navigate("/homepage");
+          window.location.reload(false);
+          setUserHasRestrictions(true);
+        }
+      })
       .catch((err) => console.log(err.message));
   };
 
