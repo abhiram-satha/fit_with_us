@@ -141,3 +141,15 @@
            </div>
        </form>
        </div> 
+
+
+        <div class="navbar tabs is-toggle is-centered is-medium is-fullwidth is-fixed-bottom mb-0">
+          <ul>
+            <li onClick={toggleYou} class={youToggle} id="you">
+              <Link to="/homepage">You</Link>
+            </li>
+            <li onClick={toggleUs} class={usToggle} id="us">
+              <Link to="/posts">Us</Link>
+            </li>
+          </ul>
+        </div> 

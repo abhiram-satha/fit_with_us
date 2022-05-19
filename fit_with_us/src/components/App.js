@@ -8,10 +8,14 @@ import SignUp from "./SignUp";
 import TopNav from "./TopNav";
 import BottomNav from "./BottomNav";
 import Button from "./Button";
+import Homepage from "./Homepage";
+import Posts from "./Posts";
+import RecipeDetails from "./RecipeDetails";
 import { useAlert } from "react-alert";
 import Settings from "./Settings";
 import UserDietaryRestrictions from "./UserDietaryRestrictions";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function App() {
   //User States
@@ -36,7 +40,6 @@ export default function App() {
       },
     ],
   ]);
-
   const alert = useAlert();
   const [weight, setWeight] = useState([]);
   const [posts, setPosts] = useState([]);
@@ -55,7 +58,6 @@ export default function App() {
   //     setLoggedIn(false);
   //   }
   // }, []);
-
   function loggedInUser(id) {
     if (Number.isInteger(id)) {
       setCookie("id", id, { path: "/" });
@@ -340,6 +342,17 @@ export default function App() {
       .catch((err) => console.log(err.message));
   };
 
+  const [recipeRecord, setRecipeRecord] = useLocalStorage(
+    "recipe",
+    localStorage.getItem("recipe") || 0
+  );
+
+  const userChosenRecipe = recipes[0][recipeRecord]
+    ? recipes[0][recipeRecord]["recipe"]
+    : null;
+  //console.log(recipeRecord);
+  console.log(userChosenRecipe);
+
   return (
     <div className="App">
       {/* <Router>
@@ -376,7 +389,7 @@ path={`/settings`}
 
       {/* {!user_id ? <Form /> :<BottomNav/>} */}
 
-      {loggedIn ? (
+      {/* {loggedIn ? (
         !userHasRestrictions ? (
           <>
             <TopNav loggedOutUser={loggedOutUser} />
@@ -388,21 +401,11 @@ path={`/settings`}
         ) : (
           <>
             <TopNav loggedOutUser={loggedOutUser} />
-            <BottomNav
-              weight={weight}
-              users={users}
-              updateWeight={updateWeight}
-              recipes={recipes}
-              posts={posts}
-              comments={comments}
-              newPost={newPost}
-              newComment={newComment}
-            />
+
           </>
         )
       ) : login ? (
         <>
-          <TopNav backButton={backButton} />
           <UserLogin
             loggedInUser={loggedInUser}
             setSignUp={setSignUp}
@@ -411,7 +414,6 @@ path={`/settings`}
         </>
       ) : signUp ? (
         <>
-          <TopNav backButton={backButton} />
           <SignUp loggedInUser={loggedInUser} />
         </>
       ) : (
@@ -420,34 +422,84 @@ path={`/settings`}
           <Button onClick={loginUser} name="Login" />
           <Button onClick={signUserUp} name="Sign Up!" />
         </>
-      )}
+      )} */}
 
-      <Router>
-        <Routes>
-          <Route
-            path={`/settings`}
-            element={
-              users.users === undefined ? (
-                "Loading"
-              ) : (
-                <Settings
-                  users={users}
-                  updateGoalWeight={updateGoalWeight}
-                  // categoryArray={categoryArray}
-                  selectedCategories={selectedCategories}
-                  setSelectedCategories={setSelectedCategories}
-                  deleteCategory={deleteCategory}
-                  addCategory={addCategory}
-                  reloadRecipes={reloadRecipes}
-                />
-              )
-            }
-          />
-        </Routes>
-        <nav>
-          <Link to="/settings">Setting</Link>
-        </nav>
-      </Router>
+      {loggedIn ? (
+        <>
+          <TopNav loggedOutUser={loggedOutUser} />
+          <Router>
+            <Routes>
+              <Route
+                path={`/settings`}
+                element={
+                  users.users === undefined ? (
+                    "Loading"
+                  ) : (
+                    <Settings
+                      users={users}
+                      updateGoalWeight={updateGoalWeight}
+                      // categoryArray={categoryArray}
+                      selectedCategories={selectedCategories}
+                      setSelectedCategories={setSelectedCategories}
+                      deleteCategory={deleteCategory}
+                      addCategory={addCategory}
+                      reloadRecipes={reloadRecipes}
+                    />
+                  )
+                }
+              />
+              <Route
+                path={`/homepage`}
+                element={
+                  <Homepage
+                    users={users}
+                    userWeight={weight}
+                    updateWeight={updateWeight}
+                    recipe={userChosenRecipe}
+                  />
+                }
+              />
+              <Route
+                path="/posts"
+                element={
+                  posts.length === 0 ? (
+                    <progress class="progress is-small is-primary" max="100">
+                      15%
+                    </progress>
+                  ) : (
+                    <Posts
+                      posts={posts}
+                      users={users}
+                      comments={comments}
+                      newPost={newPost}
+                      newComment={newComment}
+                    />
+                  )
+                }
+              />
+              <Route
+                path="recipe-details"
+                element={
+                  <RecipeDetails
+                    users={users}
+                    recipe={userChosenRecipe}
+                    ingredients={
+                      userChosenRecipe ? userChosenRecipe.ingredients : null
+                    }
+                    setRecipeRecord={setRecipeRecord}
+                    newPost={newPost}
+                  />
+                }
+              />
+            </Routes>
+          </Router>
+          <BottomNav />
+        </>
+      ) : !signUp ? (
+        <UserLogin signUserUp={signUserUp} />
+      ) : (
+        <SignUp loggedInUser={loggedInUser} />
+      )}
     </div>
   );
 }
