@@ -347,12 +347,6 @@ export default function App() {
     localStorage.getItem("recipe") || 0
   );
 
-  const userChosenRecipe = recipes[0][recipeRecord]
-    ? recipes[0][recipeRecord]["recipe"]
-    : null;
-  //console.log(recipeRecord);
-  console.log(userChosenRecipe);
-
   return (
     <div className="App">
       {/* <Router>
@@ -427,72 +421,70 @@ path={`/settings`}
       {loggedIn ? (
         <>
           <TopNav loggedOutUser={loggedOutUser} />
-          <Router>
-            <Routes>
-              <Route
-                path={`/settings`}
-                element={
-                  users.users === undefined ? (
-                    "Loading"
-                  ) : (
-                    <Settings
-                      users={users}
-                      updateGoalWeight={updateGoalWeight}
-                      // categoryArray={categoryArray}
-                      selectedCategories={selectedCategories}
-                      setSelectedCategories={setSelectedCategories}
-                      deleteCategory={deleteCategory}
-                      addCategory={addCategory}
-                      reloadRecipes={reloadRecipes}
-                    />
-                  )
-                }
-              />
-              <Route
-                path={`/homepage`}
-                element={
-                  <Homepage
+          <Routes>
+            <Route
+              path={`/settings`}
+              element={
+                users.users === undefined ? (
+                  "Loading"
+                ) : (
+                  <Settings
                     users={users}
-                    userWeight={weight}
-                    updateWeight={updateWeight}
-                    recipe={userChosenRecipe}
+                    updateGoalWeight={updateGoalWeight}
+                    // categoryArray={categoryArray}
+                    selectedCategories={selectedCategories}
+                    setSelectedCategories={setSelectedCategories}
+                    deleteCategory={deleteCategory}
+                    addCategory={addCategory}
+                    reloadRecipes={reloadRecipes}
                   />
-                }
-              />
-              <Route
-                path="/posts"
-                element={
-                  posts.length === 0 ? (
-                    <progress class="progress is-small is-primary" max="100">
-                      15%
-                    </progress>
-                  ) : (
-                    <Posts
-                      posts={posts}
-                      users={users}
-                      comments={comments}
-                      newPost={newPost}
-                      newComment={newComment}
-                    />
-                  )
-                }
-              />
-              <Route
-                path="recipe-details"
-                element={
-                  <RecipeDetails
+                )
+              }
+            />
+            <Route
+              path={`/homepage`}
+              element={
+                <Homepage
+                  users={users}
+                  userWeight={weight}
+                  updateWeight={updateWeight}
+                  // recipe={userChosenRecipe}
+                  recipeRecord={recipeRecord}
+                  recipes={recipes}
+                />
+              }
+            />
+            <Route
+              path="/posts"
+              element={
+                posts.length === 0 ? (
+                  <progress class="progress is-small is-primary" max="100">
+                    15%
+                  </progress>
+                ) : (
+                  <Posts
+                    posts={posts}
                     users={users}
-                    recipe={userChosenRecipe}
-                    ingredients={
-                      userChosenRecipe ? userChosenRecipe.ingredients : null
-                    }
-                    setRecipeRecord={setRecipeRecord}
+                    comments={comments}
                     newPost={newPost}
+                    newComment={newComment}
                   />
-                }
-              />
-            </Routes>
-          </Router>
+                )
+              }
+            />
+            <Route
+              path="recipe-details"
+              element={
+                <RecipeDetails
+                  users={users}
+                  recipeRecord={recipeRecord}
+                  recipes={recipes}
+                  setRecipeRecord={setRecipeRecord}
+                  newPost={newPost}
+                />
+              }
+            />
+          </Routes>
           <BottomNav />
         </>
       ) : !signUp ? (

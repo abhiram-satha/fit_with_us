@@ -69,8 +69,11 @@
 // }
 
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
-export default function RecipeCard({ recipe }) {
-  // console.log(info.images.THUMBNAIL.url)
+export default function RecipeCard({ recipeRecord, recipes }) {
+  const recipe = recipes[0][recipeRecord]
+    ? recipes[0][recipeRecord]["recipe"]
+    : null;
+
   return (
     <div class="column">
       <div class="card">
