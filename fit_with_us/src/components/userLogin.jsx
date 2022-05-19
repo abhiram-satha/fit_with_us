@@ -5,8 +5,7 @@ import axios from "axios";
 import "../styles/UserLogin.scss";
 import Error from "./Error";
 
-export default function UserLogin({loggedInUser, signUserUp}) {
-
+export default function UserLogin({ loggedInUser, signUserUp }) {
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [emailClass, setEmailClass] = useState("input");
@@ -51,10 +50,6 @@ export default function UserLogin({loggedInUser, signUserUp}) {
   };
 
   return (
-    !signUserUp === false ? (
-      <progress class="progress is-small is-primary" max="100">
-        15%
-      </progress>) :
     <div class="columns is-mobile is-centered login-panel">
       <div class="column is-four-fifths">
         <figure class="image is-square">
@@ -87,8 +82,9 @@ export default function UserLogin({loggedInUser, signUserUp}) {
           <Button fw="is-fullwidth" name="Login" />
         </form>
         <br />
-        <a onClick={signUserUp} class="is-pulled-right">Don't have an account? Click here</a>
-      
+        <a onClick={signUserUp} class="is-pulled-right">
+          Don't have an account? Click here
+        </a>
       </div>
     </div>
   );
