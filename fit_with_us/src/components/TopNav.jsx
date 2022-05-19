@@ -1,22 +1,33 @@
 import React from "react";
 import Button from "./Button";
-import "../helpers/navbarQuery";
+import { useState } from "react";
 
 export default function TopNav(props) {
+  const [burgerClass, setBurgerClass] = useState("navbar-burger");
+  const [menuClass, setMenuClass] = useState("navbar-menu");
+  const handleBurger = () => {
+    if (burgerClass === "navbar-burger") {
+      setBurgerClass("navbar-burger is-active");
+      setMenuClass("navbar-menu is-active")
+    }
+    else {
+      setBurgerClass("navbar-burger");
+      setMenuClass("navbar-menu");
+    }
+  }
   return (
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="https://bulma.io">
           <img
-            src="https://bulma.io/images/bulma-logo.png"
-            width="112"
-            height="28"
+            src="https://i.imgur.com/cBZaCDn.png"
           />
         </a>
 
         <button
+          onClick={handleBurger}
           role="button"
-          class="navbar-burger"
+          class={burgerClass}
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
@@ -27,7 +38,7 @@ export default function TopNav(props) {
         </button>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
+      <div id="navbarBasicExample" class={menuClass}>
         <div class="navbar-start">
           <a class="navbar-item">Profile</a>
 
@@ -41,7 +52,7 @@ export default function TopNav(props) {
               <a class="navbar-item">Change recipe</a>
             </div>
           </div>
-          <a class="navbar-item">Settings</a>
+          <a href="/settings" class="navbar-item">Settings</a>
         </div>
 
         <div class="navbar-end">

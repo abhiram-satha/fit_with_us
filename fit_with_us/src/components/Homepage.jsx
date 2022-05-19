@@ -49,35 +49,29 @@
 //import { filterProps } from "recharts/types/util/types";
 import RecipeCard from "./RecipeCard";
 import Weighthistorygraph from "./Weighthistorygraph";
+import BottomNav from "./BottomNav";
 
-export default function Homepage({ users, recipes, userWeight, updateWeight }) {
+export default function Homepage({ users, recipe, userWeight, updateWeight }) {
   return (
-    <section class="section">
-      <div class="columns is-two-thirds">
-        {recipes[0].length === 1 ? (
-          <progress class="progress is-small is-primary" max="100">
-            15%
-          </progress>
-        ) : (
-          <RecipeCard
-            key={users.id}
-            users={users}
-            recipes={recipes}
-            className="card"
-          />
-        )}
-        {userWeight.length === 0 ? (
-          <progress class="progress is-small is-primary" max="100">
-            15%
-          </progress>
-        ) : (
-          <Weighthistorygraph
-            weights={userWeight}
-            className="card"
-            updateWeight={updateWeight}
-          />
-        )}
-      </div>
-    </section>
+      <section class="section">
+        <div class="columns is-two-thirds">
+            <RecipeCard
+              key={users.id}
+              recipe={recipe}
+              className="card"
+            />
+          {userWeight.length === 0 ? (
+            <progress class="progress is-small is-primary" max="100">
+              15%
+            </progress>
+          ) : (
+            <Weighthistorygraph
+              weights={userWeight}
+              className="card"
+              updateWeight={updateWeight}
+            />
+          )}
+        </div>
+      </section>
   );
 }
