@@ -51,10 +51,6 @@ export default function UserLogin({loggedInUser, signUserUp}) {
   };
 
   return (
-    !signUserUp === false ? (
-      <progress class="progress is-small is-primary" max="100">
-        15%
-      </progress>) :
     <div class="columns is-mobile is-centered login-panel">
       <div class="column is-four-fifths">
         <figure class="image is-square">

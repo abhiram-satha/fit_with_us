@@ -2348,7 +2348,7 @@ a.tag:hover {
   .select:not(.is-multiple) {
     height: 2.5em; }
   .select:not(.is-multiple):not(.is-loading)::after {
-    border-color: #485fc7;
+    border-color: #23b574;
     right: 1.125em;
     z-index: 4; }
   .select.is-rounded select {

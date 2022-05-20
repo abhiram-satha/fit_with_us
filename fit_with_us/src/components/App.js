@@ -88,6 +88,10 @@ export default function App() {
     setSignUp(true);
   }
 
+  function returnToLogin() {
+    setSignUp(false);
+  }
+
   async function getUserRestrictions() {
     return await axios.get("http://localhost:8080/api/user_restrictions");
   }
@@ -498,7 +502,7 @@ path={`/settings`}
       ) : !signUp ? (
         <UserLogin signUserUp={signUserUp} />
       ) : (
-        <SignUp loggedInUser={loggedInUser} />
+        <SignUp loggedInUser={loggedInUser} returnToLogin={returnToLogin} />
       )}
     </div>
   );
