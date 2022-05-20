@@ -11,18 +11,14 @@ export default function Settings({
 
   return (
     <>
-      This is the settings form
-      <details>
-        <summary>Update Settings</summary>
         <details>
-          <summary>Update Weight Settings</summary>
+          <summary>Update Goal Weight</summary>
           <UpdateWeightGoal users={users} updateGoalWeight={updateGoalWeight} />
         </details>
         <details>
-      <summary>Category Preferences:</summary>
+      <summary>Update Category Preferences</summary>
       <UpdateCategoryPref deleteCategory={deleteCategory} selectedCategories={selectedCategories} addCategory={addCategory} reloadRecipes={reloadRecipes}/>
         </details>
-      </details>
     </>
   )
 }
