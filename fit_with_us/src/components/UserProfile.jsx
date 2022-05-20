@@ -21,12 +21,28 @@ export default function UserProfile({ user, badges, weight }) {
   const goalWeight = user.users ? user.users[0].goal_weight : null;
   const height = user.users ? user.users[0].height : null;
 
-  //Helper Function
+  //Goal Achievement Variables
   const achievedHighFiver = totalWeight >= 5;
   const achievedTens = totalWeight >= 10;
   const achievedChatter = totalPosts + totalComments >= 5;
+  const userWeightType = currentWeight > goalWeight ? "loss" : "gain";
+  const latestWeight = weight[weight.length - 1]
+    ? weight[weight.length - 1].weight
+    : null;
 
+  const achievedGoal =
+    userWeightType === "loss" && latestWeight <= goalWeight
+      ? true
+      : userWeightType === "gain" && latestWeight >= goalWeight
+      ? true
+      : false;
+
+  //Helper Function
   const createBadgesIconsArray = badges.map((badge) => {
+    if (badge.name === "What a star!" && achievedGoal) {
+      return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
+    }
+
     if (badge.name === "High Fiver" && achievedHighFiver) {
       return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
     }
@@ -48,19 +64,7 @@ export default function UserProfile({ user, badges, weight }) {
       />
     );
   });
-  // .filter((badge) => {
-  //   if (badge.props.name === "High Fiver" && achievedHighFiver) {
-  //     return badge;
-  //   }
-  //   if (badge.props.name === "Tens!" && achievedTens) {
-  //     return badge;
-  //   }
-  //   if (badge.props.name === "Chatter" && achievedChatter) {
-  //     return badge;
-  //   }
-  // });
 
-  console.log(createBadgesIconsArray);
   const getTotalPosts = async () => {
     return await axios.get(`http://localhost:8080/api/posts/${userID}/all`, {
       userID,
