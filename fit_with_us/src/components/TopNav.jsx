@@ -18,18 +18,6 @@ export default function TopNav(props) {
   };
   return (
     <>
-      <Routes>
-        <Route
-          path={`/profile`}
-          element={
-            <UserProfile
-              badges={props.badges}
-              user={props.user}
-              weight={props.weight}
-            />
-          }
-        />
-      </Routes>
       <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item" href="https://bulma.io">

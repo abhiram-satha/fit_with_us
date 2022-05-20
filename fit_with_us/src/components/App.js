@@ -427,6 +427,12 @@ export default function App() {
                 />
               }
             />
+            <Route
+              path={`/profile`}
+              element={
+                <UserProfile badges={badges} user={users} weight={weight} />
+              }
+            />
           </Routes>
           <BottomNav />
         </>
