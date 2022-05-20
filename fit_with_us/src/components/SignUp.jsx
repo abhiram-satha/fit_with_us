@@ -85,6 +85,9 @@ export default function Form(props) {
     const height = e.target[13].value;
     const age = e.target[4].value;
     const gender = e.target[7].value;
+    const currentWeightUnit = e.target[10].value;
+    const goalWeightUnit = e.target[12].value;
+    const heightUnit = e.target[14].value;
 
     //Check empty Email input
     if (!checkEmptyInput(email)) {
@@ -179,7 +182,10 @@ export default function Form(props) {
             goalWeight,
             height,
             age,
-            gender
+            gender,
+            currentWeightUnit,
+            goalWeightUnit,
+            heightUnit
           }),
         ]);
       })
