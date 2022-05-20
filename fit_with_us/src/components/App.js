@@ -16,6 +16,7 @@ import Settings from "./Settings";
 import UserDietaryRestrictions from "./UserDietaryRestrictions";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
+import UserProfile from "./UserProfile";
 
 export default function App() {
   //User States
@@ -46,6 +47,7 @@ export default function App() {
   const [comments, setComments] = useState([]);
   const [users, setUsers] = useState([]);
   const [dietaryRestrictions, setDietaryRestrictions] = useState(false);
+  const [badges, setBadges] = useState([]);
 
   //Set Cookies
   const [cookies, setCookie, removeCookie] = useCookies();
@@ -67,6 +69,10 @@ export default function App() {
       return id;
     }
   }
+
+  const getBadges = async () => {
+    return await axios.get("http://localhost:8080/api/badges");
+  };
 
   function backButton() {
     setLoggedIn(false);
@@ -132,6 +138,12 @@ export default function App() {
     } else {
       setLoggedIn(false);
     }
+
+    const fetchBadgeData = async () => await getBadges();
+
+    fetchBadgeData()
+      .then((all) => setBadges(all.data.badges))
+      .catch((err) => console.log(err));
 
     const fetchUserRestrictionsData = async () => await getUserRestrictions();
 
@@ -351,156 +363,89 @@ export default function App() {
     localStorage.getItem("recipe") || 0
   );
 
-  const userChosenRecipe = recipes[0][recipeRecord]
-    ? recipes[0][recipeRecord]["recipe"]
-    : null;
-  //console.log(recipeRecord);
-  console.log(userChosenRecipe);
-
   return (
     <div className="App">
-      {/* <Router>
-<Routes >
-  <Route 
-path={`/settings`}
-            element={
-              users.users === undefined ? "Loading" : <Settings
-                users={users}
-                updateGoalWeight={updateGoalWeight}
-                // categoryArray={categoryArray}
-                selectedCategories={selectedCategories}
-                setSelectedCategories={setSelectedCategories}
-                deleteCategory={deleteCategory}
-                addCategory={addCategory}
-                reloadRecipes={reloadRecipes}
-              />}
-              />
-</Routes>
-<nav>
-          <Link to='/settings'>Setting</Link>
-        </nav>
-</Router>
-      
-      <BottomNav weight={weight}
-                users = {users}
-                updateWeight = {updateWeight}
-                recipes = {recipes}
-                posts={posts}
-                comments={comments}
-                newPost={newPost}
-                newComment={newComment}
-                  /> */}
-
-      {/* {!user_id ? <Form /> :<BottomNav/>} */}
-
-      {/* {loggedIn ? (
-        !userHasRestrictions ? (
-          <>
-            <TopNav loggedOutUser={loggedOutUser} />
-            <UserDietaryRestrictions
-              userID={userID}
-              setUserHasRestrictions={setUserHasRestrictions}
-            />
-          </>
-        ) : (
-          <>
-            <TopNav loggedOutUser={loggedOutUser} />
-
-          </>
-        )
-      ) : login ? (
-        <>
-          <UserLogin
-            loggedInUser={loggedInUser}
-            setSignUp={setSignUp}
-            signUserUp={signUserUp}
-          />
-        </>
-      ) : signUp ? (
-        <>
-          <SignUp loggedInUser={loggedInUser} />
-        </>
-      ) : (
-        <>
-          <h1>Welcome to Fit with Us!</h1>
-          <Button onClick={loginUser} name="Login" />
-          <Button onClick={signUserUp} name="Sign Up!" />
-        </>
-      )} */}
-
       {loggedIn ? (
         <>
           <TopNav loggedOutUser={loggedOutUser} />
-          <Router>
-            <Routes>
-              <Route
-                path={`/settings`}
-                element={
-                  users.users === undefined ? (
-                    "Loading"
-                  ) : (
-                    <Settings
-                      users={users}
-                      updateGoalWeight={updateGoalWeight}
-                      // categoryArray={categoryArray}
-                      selectedCategories={selectedCategories}
-                      setSelectedCategories={setSelectedCategories}
-                      deleteCategory={deleteCategory}
-                      addCategory={addCategory}
-                      reloadRecipes={reloadRecipes}
-                    />
-                  )
-                }
-              />
-              <Route
-                path={`/homepage`}
-                element={
-                  <Homepage
+          <Routes>
+            <Route
+              path={`/settings`}
+              element={
+                users.users === undefined ? (
+                  "Loading"
+                ) : (
+                  <Settings
                     users={users}
-                    userWeight={weight}
-                    updateWeight={updateWeight}
-                    recipe={userChosenRecipe}
+                    updateGoalWeight={updateGoalWeight}
+                    // categoryArray={categoryArray}
+                    selectedCategories={selectedCategories}
+                    setSelectedCategories={setSelectedCategories}
+                    deleteCategory={deleteCategory}
+                    addCategory={addCategory}
+                    reloadRecipes={reloadRecipes}
                   />
-                }
-              />
-              <Route
-                path="/posts"
-                element={
-                  posts.length === 0 ? (
-                    <progress class="progress is-small is-primary" max="100">
-                      15%
-                    </progress>
-                  ) : (
-                    <Posts
-                      posts={posts}
-                      users={users}
-                      comments={comments}
-                      newPost={newPost}
-                      newComment={newComment}
-                    />
-                  )
-                }
-              />
-              <Route
-                path="recipe-details"
-                element={
-                  <RecipeDetails
+                )
+              }
+            />
+            <Route
+              path={`/homepage`}
+              element={
+                <Homepage
+                  users={users}
+                  userWeight={weight}
+                  updateWeight={updateWeight}
+                  // recipe={userChosenRecipe}
+                  recipeRecord={recipeRecord}
+                  recipes={recipes}
+                />
+              }
+            />
+            <Route
+              path="/posts"
+              element={
+                posts.length === 0 ? (
+                  <progress class="progress is-small is-primary" max="100">
+                    15%
+                  </progress>
+                ) : (
+                  <Posts
+                    posts={posts}
                     users={users}
-                    recipe={userChosenRecipe}
-                    ingredients={
-                      userChosenRecipe ? userChosenRecipe.ingredients : null
-                    }
-                    setRecipeRecord={setRecipeRecord}
+                    comments={comments}
                     newPost={newPost}
+                    newComment={newComment}
                   />
-                }
-              />
-            </Routes>
-          </Router>
+                )
+              }
+            />
+            <Route
+              path="recipe-details"
+              element={
+                <RecipeDetails
+                  users={users}
+                  recipeRecord={recipeRecord}
+                  recipes={recipes}
+                  setRecipeRecord={setRecipeRecord}
+                  newPost={newPost}
+                />
+              }
+            />
+            <Route
+              path={`/profile`}
+              element={
+                <UserProfile badges={badges} user={users} weight={weight} />
+              }
+            />
+          </Routes>
           <BottomNav />
         </>
       ) : !signUp ? (
-        <UserLogin signUserUp={signUserUp} />
+        <UserLogin
+          loggedInUser={loggedInUser}
+          signUserUp={signUserUp}
+          setUserHasRestrictions={setUserHasRestrictions}
+        />
       ) : (
         <SignUp loggedInUser={loggedInUser} returnToLogin={returnToLogin} />
       )}

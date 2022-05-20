@@ -349,7 +349,7 @@ export default function Form(props) {
           </form>
           <br />
           <br />
-          <a onClick={props.returnToLogin} class="is-pulled-right">Don't have an account? Click here</a>
+          <a onClick={props.returnToLogin} class="is-pulled-right">Already have an account? Click here</a>
         </div>
       </div>
 

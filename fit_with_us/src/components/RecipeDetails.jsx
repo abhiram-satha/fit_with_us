@@ -5,11 +5,15 @@ import Button from "./Button";
 import "../styles/RecipeDetails.scss";
 export default function RecipeDetails({
   users,
-  recipe,
-  ingredients,
+  recipeRecord,
+  recipes,
   setRecipeRecord,
   newPost,
 }) {
+  const recipe = recipes[0][recipeRecord]
+    ? recipes[0][recipeRecord]["recipe"]
+    : null;
+  const ingredients = recipe.ingredients;
   const sliceRecipe = (recipeName) => {
     return recipeName.endsWith("ecipe") ? recipeName.slice(0, -6) : recipeName;
   };
@@ -91,7 +95,11 @@ export default function RecipeDetails({
             <button onClick={() => setRecipeRecord((prev) => prev - 1)}>
               Prev
             </button>
-            <button onClick={() => setRecipeRecord((prev) => prev + 1)}>
+            <button
+              onClick={() =>
+                setRecipeRecord((prev) => Number.parseInt(prev) + 1)
+              }
+            >
               Next
             </button>
           </div>

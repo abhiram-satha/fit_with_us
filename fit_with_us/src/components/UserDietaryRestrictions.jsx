@@ -47,7 +47,7 @@ export default function UserDietaryRestrictions(props) {
 
     checkCurrentOptions()
       .then(() => props.setUserHasRestrictions(true))
-      .then(() => window.location.reload(false))
+      // .then(() => window.location.reload(false))
       .catch((err) => console.log(err));
   };
 

@@ -34,6 +34,7 @@ const usersRoutes = require("./routes/users");
 const dietary_restrictions = require("./routes/dietary_restrictions");
 const user_preferences = require("./routes/user_preferences");
 const user_restrictions = require("./routes/user_restrictions");
+const badges = require("./routes/badges");
 
 //Mount all resource routes
 app.use("/api/user", userRoutes(db));
@@ -47,6 +48,7 @@ app.use("/api/comments", commentRoutes(db));
 app.use("/api/dietary_restrictions", dietary_restrictions(db));
 app.use("/api/user_preferences", user_preferences(db));
 app.use("/api/user_restrictions", user_restrictions(db));
+app.use("/api/badges", badges(db));
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
