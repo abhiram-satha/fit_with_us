@@ -263,6 +263,8 @@ export default function App() {
   };
 
   const updateGoalWeight = (event) => {
+    console.log(event.target[0].value)
+    console.log(userID)
     if (!event.target[0].value) {
       event.preventDefault();
 
@@ -272,9 +274,9 @@ export default function App() {
       event.preventDefault();
 
       const data = {
-        goal_weight: event.target[0].value,
+        goal_weight: event.target[0].value
       };
-
+  
       axios
         .put(`http://localhost:8080/api/user/${userID}`, data)
 
@@ -285,7 +287,13 @@ export default function App() {
       })
         .then((data) =>
           setUsers((prev) => {
-            return { ...prev, goal_weight: data.goal_weight };
+            // console.log(prev.users)
+            const copyUser = [...prev.users[0]]
+            // console.log("data", data[0].data.users[0].goal_weight)
+            const copyUserObject = {...copyUser, goal_weight: data[0].data.users[0].goal_weight}
+            // const updatedcopyUserObject = {copyUserObject, goal_weight: data.goal_weight}
+            console.log(copyUserObject)
+            return { ...prev, users: copyUserObject };
           })
         )
         // .then(window.location.reload(false))
