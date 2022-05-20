@@ -175,10 +175,10 @@ export default function App() {
       })
       .then((categorySelection) => {
         return Promise.all([
-          // axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=${process.env.REACT_APP_ID}&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&excluded=broth&excluded=Homemade%20Essence%20of%20Chicken&calories=300-600`),
-          axios.get(
-            `https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&calories=300-600`
-          ),
+          axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=${process.env.REACT_APP_ID}&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&excluded=broth&excluded=Homemade%20Essence%20of%20Chicken&calories=300-600`),
+          // axios.get(
+          //   `https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=d44a082f&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&calories=300-600`
+          // ),
           axios.get(`http://localhost:8080/api/weights/${userID}`),
           axios.get(`http://localhost:8080/api/posts/`),
           axios.get("http://localhost:8080/api/comments"),
@@ -257,7 +257,7 @@ export default function App() {
           axios.get(`http://localhost:8080/api/weights/${userID}`)
         )
         .then((weights) => setWeight(weights.data.weights))
-        .then((response) => (event.target[0].value = ""))
+        // .then((response) => (event.target[0].value = ""))
         .catch((error) => console.log(error));
     }
   };
@@ -278,15 +278,17 @@ export default function App() {
       axios
         .put(`http://localhost:8080/api/user/${userID}`, data)
 
-        .then((response) =>
+        .then((response) =>{
+        return Promise.all([
           axios.get(`http://localhost:8080/api/user/${userID}`)
-        )
+        ])
+      })
         .then((data) =>
           setUsers((prev) => {
             return { ...prev, goal_weight: data.goal_weight };
           })
         )
-        .then(window.location.reload(false))
+        // .then(window.location.reload(false))
         .then((response) => (event.target[0].value = ""))
         .catch((error) => console.log(error));
     }
