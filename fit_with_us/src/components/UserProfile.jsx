@@ -31,13 +31,13 @@ export default function UserProfile({ user, badges, weight }) {
       return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
     }
 
-    // if (badge.name === "High Fiver" && achievedHighFiver) {
-    //   return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
-    // }
+    if (badge.name === "Tens!" && achievedTens) {
+      return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
+    }
 
-    // if (badge.name === "High Fiver" && achievedHighFiver) {
-    //   return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
-    // }
+    if (badge.name === "Chatter" && achievedChatter) {
+      return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
+    }
 
     return (
       <Badge
