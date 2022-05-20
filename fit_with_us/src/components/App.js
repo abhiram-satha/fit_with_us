@@ -285,17 +285,12 @@ export default function App() {
           axios.get(`http://localhost:8080/api/user/${userID}`)
         ])
       })
-        .then((data) =>
-          setUsers((prev) => {
-            // console.log(prev.users)
-            const copyUser = [...prev.users[0]]
-            // console.log("data", data[0].data.users[0].goal_weight)
-            const copyUserObject = {...copyUser, goal_weight: data[0].data.users[0].goal_weight}
-            // const updatedcopyUserObject = {copyUserObject, goal_weight: data.goal_weight}
-            console.log(copyUserObject)
-            return { ...prev, users: copyUserObject };
+        .then((data) => {
+          console.log(data)
+          return setUsers(data[0].data)
+   
           })
-        )
+        
         // .then(window.location.reload(false))
         .then((response) => (event.target[0].value = ""))
         .catch((error) => console.log(error));
