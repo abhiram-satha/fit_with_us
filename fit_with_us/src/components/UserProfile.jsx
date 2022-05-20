@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Badge from "./Badge";
 import TableRow from "./TableRow";
+import "../styles/UserProfile.scss";
 
 export default function UserProfile({ user, badges, weight }) {
   //States
@@ -25,21 +26,39 @@ export default function UserProfile({ user, badges, weight }) {
   const achievedTens = totalWeight >= 10;
   const achievedChatter = totalPosts + totalComments >= 5;
 
-  const createBadgesIconsArray = badges
-    .map((badge) => {
+  const createBadgesIconsArray = badges.map((badge) => {
+    if (badge.name === "High Fiver" && achievedHighFiver) {
       return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
-    })
-    .filter((badge) => {
-      if (badge.props.name === "High Fiver" && achievedHighFiver) {
-        return badge;
-      }
-      if (badge.props.name === "Tens!" && achievedTens) {
-        return badge;
-      }
-      if (badge.props.name === "Chatter" && achievedChatter) {
-        return badge;
-      }
-    });
+    }
+
+    // if (badge.name === "High Fiver" && achievedHighFiver) {
+    //   return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
+    // }
+
+    // if (badge.name === "High Fiver" && achievedHighFiver) {
+    //   return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
+    // }
+
+    return (
+      <Badge
+        key={badge.id}
+        img_url={badge.img_url}
+        name={badge.name}
+        badgeClass="not-achieved"
+      />
+    );
+  });
+  // .filter((badge) => {
+  //   if (badge.props.name === "High Fiver" && achievedHighFiver) {
+  //     return badge;
+  //   }
+  //   if (badge.props.name === "Tens!" && achievedTens) {
+  //     return badge;
+  //   }
+  //   if (badge.props.name === "Chatter" && achievedChatter) {
+  //     return badge;
+  //   }
+  // });
 
   console.log(createBadgesIconsArray);
   const getTotalPosts = async () => {
