@@ -81,8 +81,8 @@ export default function UserProfile({ user, badges, weight }) {
       .catch((err) => console.log(err));
 
     //Fetch Total Comments for Users
-    const fetchTotalComents = async () => await getTotalComments();
-    fetchTotalComents()
+    const fetchTotalComments = async () => await getTotalComments();
+    fetchTotalComments()
       .then((response) => setTotalComments(parseInt(response.data.total.count)))
       .catch((err) => console.log(err));
   }, []);
