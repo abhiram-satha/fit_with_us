@@ -7,7 +7,7 @@ export default function UpdateWeightGoal ({users, updateGoalWeight}) {
   return (
     <>
       <form onSubmit={updateGoalWeight}>
-        <input type="number" placeholder= {goal_weight} />
+        <input className="input is-primary" type="number" placeholder= {goal_weight} />
         {/* <input type="submit" name="Update Goal Weight"></input> */}
         <Button onClick={updateGoalWeight} type="submit" name="Update Goal Weight"/>
       </form>

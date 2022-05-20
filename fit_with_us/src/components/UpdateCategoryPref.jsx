@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import Button from './Button';
 
 export default function UpdateCategoryPref ({ selectedCategories, deleteCategory, reloadRecipes, addCategory}) {
 // const [includeChicken, setIncludeChicken] = useState([])
@@ -37,7 +38,8 @@ export default function UpdateCategoryPref ({ selectedCategories, deleteCategory
       <label for="6" >Vegan</label>
   
     </form>
-    <button onClick={reloadRecipes}>Update Preferences</button>
+    <Button onClick={reloadRecipes} type="submit" name="Update Preferences"/>
+    {/* <button onClick={reloadRecipes}>Update Preferences</button> */}
     </>
   )
   function handleSelect (event, category) {
