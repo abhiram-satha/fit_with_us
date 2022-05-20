@@ -88,49 +88,49 @@ export default function Form(props) {
 
     //Check empty Email input
     if (!checkEmptyInput(email)) {
-      setErrorEmail("The field cannot be blank!");
+      setErrorEmail("This field cannot be blank!");
       return setEmailClass("input is-danger");
     }
 
     //Check empty password input
     if (!checkEmptyInput(password)) {
-      setErrorPassword("The field cannot be blank!");
+      setErrorPassword("This field cannot be blank!");
       return setPasswordClass("input is-danger");
     }
 
     //Check empty password confirmation input
     if (!checkEmptyInput(passwordConfirmation)) {
-      setErrorPassword("The field cannot be blank!");
+      setErrorPassword("This field cannot be blank!");
       return setPasswordConfirmationClass("input is-danger");
     }
 
     //Check empty username input
     if (!checkEmptyInput(username)) {
-      setErrorUsername("The field cannot be blank!");
+      setErrorUsername("This field cannot be blank!");
       return setUsernameClass("input is-danger");
     }
 
     //Check empty current weight input
     if (!checkEmptyInput(currentWeight)) {
-      setErrorCurrentWeight("The field cannot be blank!");
+      setErrorCurrentWeight("This field cannot be blank!");
       return setCurrentWeightClass("input is-danger");
     }
 
     //Check empty goal weight input
     if (!checkEmptyInput(goalWeight)) {
-      setErrorGoalWeight("The field cannot be blank!");
+      setErrorGoalWeight("This field cannot be blank!");
       return setGoalWeightClass("input is-danger");
     }
 
     //Check empty height input
     if (!checkEmptyInput(height)) {
-      setErrorHeight("The field cannot be blank!");
+      setErrorHeight("This field cannot be blank!");
       return setHeightClass("input is-danger");
     }
 
     //Check empty age input
     if (!checkEmptyInput(age)) {
-      setErrorAge("The field cannot be blank!");
+      setErrorAge("Please enter a valid birth date");
       return setAgeClass("input is-danger");
     }
 
@@ -222,7 +222,7 @@ export default function Form(props) {
                     <i class="fas fa-exclamation-triangle"></i>
                   </span>
                 </div>
-                {/* <p class="help is-danger">This email is invalid</p> */}
+                <p class="help is-danger">{errorEmail}</p>
               </div>
               <div class="field">
                 <label class="label" htmlFor="username">Username</label>
@@ -235,7 +235,7 @@ export default function Form(props) {
                     <i class="fas fa-check"></i>
                   </span>
                 </div>
-                {/* <p class="help is-success">This username is available</p> */}
+                <p class="help is-danger">{errorUsername}</p>
               </div>
               <div class="field">
                 <label htmlFor="password" class="label">Password</label>
@@ -248,7 +248,7 @@ export default function Form(props) {
                     <i class="fas fa-check"></i>
                   </span>
                 </div>
-                {/* <p class="help is-danger">Your password must be at least eight characters long</p> */}
+                <p class="help is-danger">{errorPassword}</p>
               </div>
               <div class="field">
                 <label htmlFor="passwordConfirmation" class="label">Re-enter your password</label>
@@ -261,20 +261,21 @@ export default function Form(props) {
                     <i class="fas fa-check"></i>
                   </span>
                 </div>
-                <p class="help is-danger">Your password must be at least eight characters long</p>
+                <p class="help is-danger">{errorPassword}</p>
               </div>
               <label htmlFor="age" class="label">Birth date</label>
               <div class="field is-grouped">
                 <div class="control">
-                  <input class="input" name="age" id="age" type="number" maxlength="4" placeholder="YYYY"/>
+                  <input class={ageClass} name="age" id="age" type="number" maxlength="4" placeholder="YYYY"/>
                 </div>
                 <div class="control">
-                  <input class="input" id="month" type="number" maxlength="2" placeholder="MM"/>
+                  <input class={ageClass} id="month" type="number" maxlength="2" placeholder="MM"/>
                 </div>
                 <div class="control">
-                  <input class="input" id="day" type="number" maxlength="2" placeholder="DD"/>
+                  <input class={ageClass} id="day" type="number" maxlength="2" placeholder="DD"/>
                 </div>
               </div>
+              <p class="help is-danger attaches-to-above-div">{errorAge}</p>
               <div class="field">
                 <label htmlFor= "gender" class="label">Gender</label>
                 <div class="select">
@@ -302,7 +303,7 @@ export default function Form(props) {
               <label class="label" htmlFor="currentWeight">Current weight</label>
               <div class="field has-addons">
                 <p class="control is-expanded">
-                  <input class="input" type="number" name="currentWeight" id="currentWeight" placeholder="Enter your current weight"/>
+                  <input class={currentWeightClass} type="number" name="currentWeight" id="currentWeight" placeholder="Enter your current weight"/>
                 </p>
                 <p class="control">
                     <span class="select">
@@ -313,10 +314,11 @@ export default function Form(props) {
                     </span>
                   </p>
               </div>
+              <p class="help is-danger attaches-to-above-div">{errorCurrentWeight}</p>
               <label htmlFor="goalWeight" class="label">Goal weight</label>
               <div class="field has-addons">
                 <p class="control is-expanded">
-                  <input name="goalWeight" id="goalWeight" class="input" type="number" placeholder="Enter your desired weight"/>
+                  <input name="goalWeight" id="goalWeight" class={goalWeightClass} type="number" placeholder="Enter your desired weight"/>
                 </p>
                 <p class="control">
                     <span class="select">
@@ -327,10 +329,11 @@ export default function Form(props) {
                     </span>
                   </p>
               </div>
+              <p class="help is-danger attaches-to-above-div">{errorGoalWeight}</p>
               <label htmlFor="height" class="label">Height</label>
               <div class="field has-addons">
                 <p class="control is-expanded">
-                  <input class="input" name="height" id="height" type="number" placeholder="Enter your height"/>
+                  <input class={heightClass} name="height" id="height" type="number" placeholder="Enter your height"/>
                 </p>
                 <p class="control">
                     <span class="select">
@@ -341,6 +344,7 @@ export default function Form(props) {
                     </span>
                   </p>
               </div>
+              <p class="help is-danger attaches-to-above-div">{errorHeight}</p>
               <div class="field mt-5">
                 <div class="control">
                   <Button name="Submit" />
