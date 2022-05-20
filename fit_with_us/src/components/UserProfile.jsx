@@ -30,28 +30,44 @@ export default function UserProfile({ user, badges, weight }) {
     ? weight[weight.length - 1].weight
     : null;
 
-  const achievedGoal =
+  const achievedWhatAStar =
     userWeightType === "loss" && latestWeight <= goalWeight
       ? true
       : userWeightType === "gain" && latestWeight >= goalWeight
       ? true
       : false;
 
+  const achievedAlmostThereBud =
+    userWeightType === "loss" && latestWeight - goalWeight <= 10
+      ? true
+      : userWeightType === "gain" && goalWeight - latestWeight <= 10
+      ? true
+      : false;
+
   //Helper Function
   const createBadgesIconsArray = badges.map((badge) => {
-    if (badge.name === "What a star!" && achievedGoal) {
+    //Checks for "What a Star" achievement
+    if (badge.name === "What a star!" && achievedWhatAStar) {
       return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
     }
 
+    //Checks for "High Fiver" achievement
     if (badge.name === "High Fiver" && achievedHighFiver) {
       return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
     }
 
+    //Checks for "Tens!" achievement
     if (badge.name === "Tens!" && achievedTens) {
       return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
     }
 
+    //Checks for "Chatter" achievement
     if (badge.name === "Chatter" && achievedChatter) {
+      return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
+    }
+
+    //Checks for "Chatter" achievement
+    if (badge.name === "Almost there, bud!" && achievedAlmostThereBud) {
       return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
     }
 
