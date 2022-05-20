@@ -105,7 +105,7 @@ export default function UserProfile({ user, badges, weight }) {
         {createBadgesIconsArray.length !== 0 ? (
           <>
             <h2 className="title is-6">Badges Earned by User:</h2>
-            <div className="columns is-mobile is-centered">
+            <div className="columns is-flex is-flex-wrap-wrap is-mobile is-centered">
               {createBadgesIconsArray}
             </div>
           </>
