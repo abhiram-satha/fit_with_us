@@ -18,8 +18,11 @@ export default function Settings({
           <summary>Update Weight Settings</summary>
           <UpdateWeightGoal users={users} updateGoalWeight={updateGoalWeight} />
         </details>
-      </details>
+        <details>
+      <summary>Category Preferences:</summary>
       <UpdateCategoryPref deleteCategory={deleteCategory} selectedCategories={selectedCategories} addCategory={addCategory} reloadRecipes={reloadRecipes}/>
+        </details>
+      </details>
     </>
   )
 }

@@ -16,6 +16,7 @@ export default function UpdateCategoryPref ({ selectedCategories, deleteCategory
 
   return (
     <>
+    
     <form>
       <input type="checkbox" value="1" checked={selectedCategories.includes('chicken')} onChange={(event)=> handleSelect(event, 'chicken')}/>
       <label for="1" >Chicken</label>
@@ -36,7 +37,7 @@ export default function UpdateCategoryPref ({ selectedCategories, deleteCategory
       <label for="6" >Vegan</label>
   
     </form>
-    <button onClick={reloadRecipes}>Reload</button>
+    <button onClick={reloadRecipes}>Update Preferences</button>
     </>
   )
   function handleSelect (event, category) {
