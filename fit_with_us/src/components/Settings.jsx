@@ -11,19 +11,16 @@ export default function Settings({
 }) {
   return (
     <>
-      <details>
-        <summary>Goal Weight</summary>
         <UpdateWeightGoal users={users} updateGoalWeight={updateGoalWeight} />
-      </details>
-      <details>
-        <summary>Category Preferences</summary>
+
+
         <UpdateCategoryPref
           deleteCategory={deleteCategory}
           selectedCategories={selectedCategories}
           addCategory={addCategory}
           reloadRecipes={reloadRecipes}
         />
-      </details>
+
     </>
   );
 }

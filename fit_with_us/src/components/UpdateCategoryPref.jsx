@@ -18,8 +18,11 @@ export default function UpdateCategoryPref ({ selectedCategories, deleteCategory
   return (
     <>
     
+    <div class="column">
+          <div class="card">
+            <div class="card-content">
     <form>
-        Update your current category Preferences:
+        <p className="update-title">Update Your Category Preferences:</p>
         <div className="subcategory-flex">
         <div className="label-flex">
       <input type="checkbox" value="1" checked={selectedCategories.includes('chicken')} onChange={(event)=> handleSelect(event, 'chicken')}/>
@@ -48,11 +51,12 @@ export default function UpdateCategoryPref ({ selectedCategories, deleteCategory
     <div className="label-flex">
       <input type="checkbox" value="6" checked={selectedCategories.includes('vegan')} onChange={(event)=> handleSelect(event, 'vegan')}/>
       <label for="6" >Vegan</label>
-      
       </div>
     </div>
+      
     </form>
     <Button onClick={reloadRecipes} type="submit" name="Update Preferences"/>
+    </div></div></div>
     {/* <button onClick={reloadRecipes}>Update Preferences</button> */}
     </>
   )
