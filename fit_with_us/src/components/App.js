@@ -14,33 +14,42 @@ import RecipeDetails from "./RecipeDetails";
 import { useAlert } from "react-alert";
 import Settings from "./Settings";
 import UserDietaryRestrictions from "./UserDietaryRestrictions";
-import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
 import UserProfile from "./UserProfile";
 
 export default function App() {
+  const location = useLocation();
+
   //User States
   const [loggedIn, setLoggedIn] = useState(false);
   const [userID, setUserID] = useState(null);
   const [userHasRestrictions, setUserHasRestrictions] = useState(false);
   const [login, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false);
-  const [recipes, setRecipes] = useState([
-    [
-      {
-        recipe: {
-          images: {
-            THUMBNAIL: { url: null },
-          },
-          yield: null,
-          calories: null,
-          label: null,
-          ingredients: ["milk"],
-          url: null,
-        },
-      },
-    ],
-  ]);
+  const [recipes, setRecipes] = useState([[]]);
+  // ([
+  //   [
+  //     {
+  //       recipe: {
+  //         images: {
+  //           THUMBNAIL: { url: null },
+  //         },
+  //         yield: null,
+  //         calories: null,
+  //         label: null,
+  //         ingredients: ["milk"],
+  //         url: null,
+  //       },
+  //     },
+  //   ],
+  // ]);
   const alert = useAlert();
   const [weight, setWeight] = useState([]);
   const [posts, setPosts] = useState([]);
@@ -52,14 +61,6 @@ export default function App() {
   //Set Cookies
   const [cookies, setCookie, removeCookie] = useCookies();
 
-  // useEffect(() => {
-  //   const userID = cookies.id;
-  //   if (userID) {
-  //     setLoggedIn(true);
-  //   } else {
-  //     setLoggedIn(false);
-  //   }
-  // }, []);
   function loggedInUser(id) {
     if (Number.isInteger(id)) {
       setCookie("id", id, { path: "/" });
@@ -139,6 +140,8 @@ export default function App() {
       setLoggedIn(false);
     }
 
+    if (recipes[0].length > 0) return;
+
     const fetchBadgeData = async () => await getBadges();
 
     fetchBadgeData()
@@ -158,6 +161,7 @@ export default function App() {
         setUserHasRestrictions(true);
       }
     });
+
     Promise.all([
       axios.get(`http://localhost:8080/api/dietary_restrictions/${userID}`),
     ])
@@ -197,7 +201,7 @@ export default function App() {
         setUsers(all[4].data);
       })
       .catch((err) => console.log(err.message));
-  }, []);
+  }, [location]);
 
   const newPost = (event) => {
     if (!event.target[0].value) {
@@ -290,7 +294,6 @@ export default function App() {
             return { ...prev, goal_weight: data.goal_weight };
           })
         )
-        .then(window.location.reload(false))
         .then((response) => (event.target[0].value = ""))
         .catch((error) => console.log(error));
     }

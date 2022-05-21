@@ -62,7 +62,7 @@ export default function UserLogin({
           response !== "The password is incorrect"
         ) {
           navigate("/homepage");
-          window.location.reload(false);
+          // window.location.reload(false);
           setUserHasRestrictions(true);
         }
       })
