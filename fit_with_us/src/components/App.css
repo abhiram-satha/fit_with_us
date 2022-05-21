@@ -42,3 +42,13 @@ button.full-length {
 a {
   color: white
 }
+
+div.recipe-button {
+  display: flex;
+  justify-content: space-between;
+}
+
+tbody.recipe-ingredients-overflow {
+        height: 150px;
+        overflow: scroll;
+}
