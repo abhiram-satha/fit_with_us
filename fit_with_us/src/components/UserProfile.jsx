@@ -8,11 +8,13 @@ export default function UserProfile({ user, badges, weight }) {
   //States
   const [totalPosts, setTotalPosts] = useState(0);
   const [totalComments, setTotalComments] = useState(0);
-  const [totalWeight, setTotal] = useState(
-    weight.length !== 0 ? weight.length : 0
-  );
+  const [totalWeight, setTotalWeight] = useState(0);
+
+  
+  
 
   //User Information
+
   const userID = user.users ? user.users[0].id : null;
   const username = user.users ? user.users[0].username : null;
   const age = user.users ? user.users[0].age : null;
@@ -198,6 +200,7 @@ export default function UserProfile({ user, badges, weight }) {
   };
 
   useEffect(() => {
+
     //Fetch Total Posts for Users
     const fetchTotalPosts = async () => await getTotalPosts();
     fetchTotalPosts()
@@ -208,8 +211,9 @@ export default function UserProfile({ user, badges, weight }) {
     const fetchTotalComments = async () => await getTotalComments();
     fetchTotalComments()
       .then((response) => setTotalComments(parseInt(response.data.total.count)))
+      .then(()=> setTotalWeight(weight.length))
       .catch((err) => console.log(err));
-  }, []);
+  }, [userID]);
 
   return (
     <div>

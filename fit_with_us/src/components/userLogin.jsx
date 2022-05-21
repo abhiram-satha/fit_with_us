@@ -69,9 +69,9 @@ export default function UserLogin({
   };
 
   return (
-    <div class="columns is-mobile is-centered login-panel">
-      <div class="column is-four-fifths">
-        <figure class="image is-square">
+    <div className="columns is-mobile is-centered login-panel">
+      <div className="column is-four-fifths">
+        <figure className="image is-square">
           <img src="https://i.imgur.com/1EehYbk.png"></img>
         </figure>
         <form
