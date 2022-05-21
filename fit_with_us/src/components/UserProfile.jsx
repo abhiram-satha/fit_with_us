@@ -60,6 +60,7 @@ export default function UserProfile({ user, badges, weight }) {
           img_url={badge.img_url}
           name={badge.name}
           id_name={badge.id_name}
+          description={badge.description}
         />
       );
     }
@@ -72,6 +73,7 @@ export default function UserProfile({ user, badges, weight }) {
           img_url={badge.img_url}
           name={badge.name}
           id_name={badge.id_name}
+          description={badge.description}
         />
       );
     }
@@ -84,6 +86,7 @@ export default function UserProfile({ user, badges, weight }) {
           img_url={badge.img_url}
           name={badge.name}
           id_name={badge.id_name}
+          description={badge.description}
         />
       );
     }
@@ -96,6 +99,7 @@ export default function UserProfile({ user, badges, weight }) {
           img_url={badge.img_url}
           name={badge.name}
           id_name={badge.id_name}
+          description={badge.description}
         />
       );
     }
@@ -108,6 +112,7 @@ export default function UserProfile({ user, badges, weight }) {
           img_url={badge.img_url}
           name={badge.name}
           id_name={badge.id_name}
+          description={badge.description}
         />
       );
     }
@@ -121,6 +126,7 @@ export default function UserProfile({ user, badges, weight }) {
             img_url={badge.img_url}
             name={badge.name}
             id_name={badge.id_name}
+            description={badge.description}
           />
         );
       } else if (userWeightType === "gain") {
@@ -131,6 +137,7 @@ export default function UserProfile({ user, badges, weight }) {
             name={badge.name}
             badgeClass="not-achieved"
             id_name={badge.id_name}
+            description={badge.description}
           />
         );
       } else {
@@ -147,6 +154,7 @@ export default function UserProfile({ user, badges, weight }) {
             img_url={badge.img_url}
             name={badge.name}
             id_name={badge.id_name}
+            description={badge.description}
           />
         );
       } else if (userWeightType === "loss") {
@@ -157,6 +165,7 @@ export default function UserProfile({ user, badges, weight }) {
             name={badge.name}
             badgeClass="not-achieved"
             id_name={badge.id_name}
+            description={badge.description}
           />
         );
       } else {
@@ -171,6 +180,7 @@ export default function UserProfile({ user, badges, weight }) {
         name={badge.name}
         badgeClass="not-achieved"
         id_name={badge.id_name}
+        description={badge.description}
       />
     );
   });

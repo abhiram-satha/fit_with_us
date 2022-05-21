@@ -1,6 +1,12 @@
 import React from "react";
 
-export default function Badge({ img_url, name, badgeClass }) {
+export default function Badge({
+  img_url,
+  id_name,
+  description,
+  name,
+  badgeClass,
+}) {
   return (
     <div
       className={`badge column is-flex is-flex-direction-column is-align-items-center is-one-third ${badgeClass}`}
