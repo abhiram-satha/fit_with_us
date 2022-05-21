@@ -20,11 +20,11 @@ export default function RecipeDetails({
     const ingredients = recipe.ingredients;
     const sliceRecipe = (recipeName) => {
       if (recipeName.includes("ecipes")) {
-        return recipeName.slice(0, -7)
+        return recipeName.slice(0, -7);
       } else if (recipeName.includes("ecipe")) {
-        return recipeName.slice(0, -6)
+        return recipeName.slice(0, -6);
       } else {
-        return recipeName
+        return recipeName;
       }
     };
 
@@ -69,7 +69,11 @@ export default function RecipeDetails({
                       role="menu"
                     >
                       <div class="dropdown-content">
-                        <a href={recipe.url} target="_blank" className="dropdown-item">
+                        <a
+                          href={recipe.url}
+                          target="_blank"
+                          className="dropdown-item"
+                        >
                           <strong>Go to recipe</strong>
                         </a>
                       </div>
@@ -102,16 +106,20 @@ export default function RecipeDetails({
                 </thead>
                 <tbody>{RecipeIngredientsArray}</tbody>
               </table>
-              <button onClick={() => setRecipeRecord((prev) => prev - 1)}>
-                Prev
-              </button>
-              <button
-                onClick={() =>
-                  setRecipeRecord((prev) => Number.parseInt(prev) + 1)
-                }
-              >
-                Next
-              </button>
+              {recipeRecord !== 0 && (
+                <button onClick={() => setRecipeRecord((prev) => prev - 1)}>
+                  Prev
+                </button>
+              )}
+              {recipeRecord !== 19 && (
+                <button
+                  onClick={() =>
+                    setRecipeRecord((prev) => Number.parseInt(prev) + 1)
+                  }
+                >
+                  Next
+                </button>
+              )}
             </div>
           </div>
         </div>

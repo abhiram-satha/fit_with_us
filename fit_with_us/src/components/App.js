@@ -286,7 +286,7 @@ export default function App() {
       axios
         .put(`http://localhost:8080/api/user/${userID}`, data)
 
-        .then((response) => {
+        .then(() => {
           return Promise.all([
             axios.get(`http://localhost:8080/api/user/${userID}`),
           ]);
@@ -295,7 +295,6 @@ export default function App() {
           console.log(data);
           return setUsers(data[0].data);
         })
-        .then((response) => (event.target[0].value = ""))
         .catch((error) => console.log(error));
     
   };
