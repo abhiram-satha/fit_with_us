@@ -19,7 +19,7 @@ export default function UpdateCategoryPref ({ selectedCategories, deleteCategory
     <>
     
     <form>
-      
+        Update your current category Preferences:
         <div className="subcategory-flex">
         <div className="label-flex">
       <input type="checkbox" value="1" checked={selectedCategories.includes('chicken')} onChange={(event)=> handleSelect(event, 'chicken')}/>

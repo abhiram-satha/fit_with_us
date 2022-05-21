@@ -20,3 +20,12 @@
   justify-content: space-around;
   align-items: baseline;
 }
+
+details {
+  margin-left: 1%;
+}
+
+.weight-input {
+  width: 90%;
+  margin-bottom: 3%;
+}
