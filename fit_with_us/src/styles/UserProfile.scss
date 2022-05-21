@@ -1,0 +1,25 @@
+.not-achieved {
+  color: grey;
+  img {
+    opacity: 30%;
+  }
+}
+
+.badge {
+  span {
+    text-align: center;
+  }
+  button {
+    background-color: transparent;
+    border: solid black 0.1em;
+    border-radius: 20%;
+  }
+}
+
+.modal-content,
+.modal-card {
+  width: 80%;
+  h2 {
+    font-weight: bold;
+  }
+}

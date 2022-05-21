@@ -75,33 +75,35 @@ export default function RecipeCard({ recipeRecord, recipes }) {
     ? recipes[0][recipeRecord]["recipe"]
     : null;
 
-    const url = recipe ? recipe.url : "http://localhost:3003/homepage"
+  const url = recipe ? recipe.url : "http://localhost:3003/homepage";
 
-    console.log(recipe)
-    console.log(url)
+  console.log(recipe);
+  console.log(url);
   return (
     <div class="column">
       <div class="card">
         <div>
-        <Link to="/recipe-details">
-          <div class="card-image">
-            <figure class="image is-square">
-              <img src={recipe ? recipe.image : null} alt="Placeholder image" />
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="media-content">
-              <p class="title is-6">Your meal to prep:</p>
-              <p class="title is-4">{recipe ? recipe.label : null}</p>
+          <Link to="/recipe-details">
+            <div class="card-image">
+              <figure class="image is-square">
+                <img
+                  src={recipe ? recipe.image : null}
+                  alt="Placeholder image"
+                />
+              </figure>
             </div>
-          </div>
+            <div class="card-content">
+              <div class="media-content">
+                <p class="title is-6">Your meal to prep:</p>
+                <p class="title is-4">{recipe ? recipe.label : null}</p>
+              </div>
+            </div>
           </Link>
         </div>
-            <a href={url} class="button is-primary is-fullwidth">
-              See full recipe
-              <i class="fa-solid fa-share"></i>
-            </a>
-        
+        <a href={url} class="button is-primary is-fullwidth">
+          See full recipe
+          <i class="fa-solid fa-share"></i>
+        </a>
       </div>
     </div>
   );

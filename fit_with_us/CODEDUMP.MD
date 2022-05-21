@@ -140,8 +140,7 @@
              </div>
            </div>
        </form>
-       </div> 
-
+       </div>
 
         <div class="navbar tabs is-toggle is-centered is-medium is-fullwidth is-fixed-bottom mb-0">
           <ul>
@@ -152,7 +151,7 @@
               <Link to="/posts">Us</Link>
             </li>
           </ul>
-        </div> 
+        </div>
 
           return (
     <div class="columns is-mobile is-centered">
@@ -309,6 +308,6 @@
 // const height = e.target[13].value;
 // const age = e.target[4].value;
 // const gender = e.target[7].value;
-    
-  );
+
+);
 }

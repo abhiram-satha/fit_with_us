@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Badge from "./Badge";
 import TableRow from "./TableRow";
+import "../styles/UserProfile.scss";
 
 export default function UserProfile({ user, badges, weight }) {
   //States
@@ -20,28 +21,170 @@ export default function UserProfile({ user, badges, weight }) {
   const goalWeight = user.users ? user.users[0].goal_weight : null;
   const height = user.users ? user.users[0].height : null;
 
-  //Helper Function
+  //Goal Achievement Variables
   const achievedHighFiver = totalWeight >= 5;
   const achievedTens = totalWeight >= 10;
   const achievedChatter = totalPosts + totalComments >= 5;
+  const userWeightType = currentWeight > goalWeight ? "loss" : "gain";
+  const latestWeight = weight[weight.length - 1]
+    ? weight[weight.length - 1].weight
+    : null;
 
-  const createBadgesIconsArray = badges
-    .map((badge) => {
-      return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
-    })
-    .filter((badge) => {
-      if (badge.props.name === "High Fiver" && achievedHighFiver) {
-        return badge;
-      }
-      if (badge.props.name === "Tens!" && achievedTens) {
-        return badge;
-      }
-      if (badge.props.name === "Chatter" && achievedChatter) {
-        return badge;
-      }
-    });
+  const achievedWhatAStar =
+    userWeightType === "loss" && latestWeight <= goalWeight
+      ? true
+      : userWeightType === "gain" && latestWeight >= goalWeight
+      ? true
+      : false;
 
-  console.log(createBadgesIconsArray);
+  const achievedAlmostThereBud =
+    userWeightType === "loss" && latestWeight - goalWeight <= 10
+      ? true
+      : userWeightType === "gain" && goalWeight - latestWeight <= 10
+      ? true
+      : false;
+
+  const achievedLookAtThoseGains =
+    userWeightType === "gain" && goalWeight - latestWeight <= 10 ? true : false;
+
+  const achievedWhatALoss =
+    userWeightType === "loss" && latestWeight - goalWeight <= 10 ? true : false;
+
+  //Helper Function
+  const createBadgesIconsArray = badges.map((badge) => {
+    //Checks for "What a Star" achievement
+    if (badge.name === "What a star!" && achievedWhatAStar) {
+      return (
+        <Badge
+          key={badge.id}
+          img_url={badge.img_url}
+          name={badge.name}
+          id_name={badge.id_name}
+          description={badge.description}
+        />
+      );
+    }
+
+    //Checks for "High Fiver" achievement
+    if (badge.name === "High Fiver" && achievedHighFiver) {
+      return (
+        <Badge
+          key={badge.id}
+          img_url={badge.img_url}
+          name={badge.name}
+          id_name={badge.id_name}
+          description={badge.description}
+        />
+      );
+    }
+
+    //Checks for "Tens!" achievement
+    if (badge.name === "Tens!" && achievedTens) {
+      return (
+        <Badge
+          key={badge.id}
+          img_url={badge.img_url}
+          name={badge.name}
+          id_name={badge.id_name}
+          description={badge.description}
+        />
+      );
+    }
+
+    //Checks for "Chatter" achievement
+    if (badge.name === "Chatter" && achievedChatter) {
+      return (
+        <Badge
+          key={badge.id}
+          img_url={badge.img_url}
+          name={badge.name}
+          id_name={badge.id_name}
+          description={badge.description}
+        />
+      );
+    }
+
+    //Checks for "Almost there, bud!" achievement
+    if (badge.name === "Almost there, bud!" && achievedAlmostThereBud) {
+      return (
+        <Badge
+          key={badge.id}
+          img_url={badge.img_url}
+          name={badge.name}
+          id_name={badge.id_name}
+          description={badge.description}
+        />
+      );
+    }
+
+    //Checks for "Look at those gains!" achievement
+    if (badge.name === "Look at those gains!") {
+      if (achievedLookAtThoseGains) {
+        return (
+          <Badge
+            key={badge.id}
+            img_url={badge.img_url}
+            name={badge.name}
+            id_name={badge.id_name}
+            description={badge.description}
+          />
+        );
+      } else if (userWeightType === "gain") {
+        return (
+          <Badge
+            key={badge.id}
+            img_url={badge.img_url}
+            name={badge.name}
+            badgeClass="not-achieved"
+            id_name={badge.id_name}
+            description={badge.description}
+          />
+        );
+      } else {
+        return null;
+      }
+    }
+
+    //Checks for "What a loss!" achievement
+    if (badge.name === "What a loss!") {
+      if (achievedWhatALoss) {
+        return (
+          <Badge
+            key={badge.id}
+            img_url={badge.img_url}
+            name={badge.name}
+            id_name={badge.id_name}
+            description={badge.description}
+          />
+        );
+      } else if (userWeightType === "loss") {
+        return (
+          <Badge
+            key={badge.id}
+            img_url={badge.img_url}
+            name={badge.name}
+            badgeClass="not-achieved"
+            id_name={badge.id_name}
+            description={badge.description}
+          />
+        );
+      } else {
+        return null;
+      }
+    }
+
+    return (
+      <Badge
+        key={badge.id}
+        img_url={badge.img_url}
+        name={badge.name}
+        badgeClass="not-achieved"
+        id_name={badge.id_name}
+        description={badge.description}
+      />
+    );
+  });
+
   const getTotalPosts = async () => {
     return await axios.get(`http://localhost:8080/api/posts/${userID}/all`, {
       userID,
@@ -62,14 +205,15 @@ export default function UserProfile({ user, badges, weight }) {
       .catch((err) => console.log(err));
 
     //Fetch Total Comments for Users
-    const fetchTotalComents = async () => await getTotalComments();
-    fetchTotalComents()
+    const fetchTotalComments = async () => await getTotalComments();
+    fetchTotalComments()
       .then((response) => setTotalComments(parseInt(response.data.total.count)))
       .catch((err) => console.log(err));
   }, []);
 
   return (
-    <div className="columns is-mobile mt-6">
+    <div>
+      {/* <div className="columns is-mobile"> */}
       <div className="column"></div>
       <div className="column is-four-fifths">
         <h1 className="title is-5 has-text-centered">{`User Profile for ${username}`}</h1>
@@ -86,7 +230,7 @@ export default function UserProfile({ user, badges, weight }) {
         {createBadgesIconsArray.length !== 0 ? (
           <>
             <h2 className="title is-6">Badges Earned by User:</h2>
-            <div className="columns is-mobile is-centered">
+            <div className="columns is-flex is-flex-wrap-wrap is-mobile is-centered">
               {createBadgesIconsArray}
             </div>
           </>

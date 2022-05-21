@@ -3,7 +3,6 @@ import Button from "./Button";
 import "../helpers/navbarQuery";
 import { Link, Route, Routes } from "react-router-dom";
 import UserProfile from "./UserProfile";
-import "../styles/TopNav.scss"
 
 export default function TopNav(props) {
   const [burgerClass, setBurgerClass] = useState("navbar-burger");
@@ -19,11 +18,10 @@ export default function TopNav(props) {
   };
   return (
     <>
-      <nav class="navbar" id="topnav" role="navigation" aria-label="main navigation">
+      <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item" href="https://bulma.io">
-            {/* <img src="https://i.imgur.com/cBZaCDn.png" /> */}
-            <img src="https://i.imgur.com/yCquLwJ.png" />
+            <img src="https://i.imgur.com/cBZaCDn.png" />
           </a>
 
           <button
@@ -42,8 +40,8 @@ export default function TopNav(props) {
 
         <div id="navbarBasicExample" class={menuClass}>
           <div class="navbar-start">
-            <a class="navbar-item">
-              <Link to="/profile">Profile</Link>
+            <a href="/profile " class="navbar-item">
+              Profile
             </a>
 
             <a class="navbar-item">Messages</a>
