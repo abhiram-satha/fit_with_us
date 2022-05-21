@@ -12,10 +12,7 @@ export default function RecipeDetails({
   setRecipeRecord,
   newPost,
 }) {
-  console.log(recipes);
-
-  if (!recipes[0][0]["recipe"]["calories"]) {
-    return <Navigate to="/homepage" />;
+  if (!recipes[0][0]) {
   } else {
     const recipe = recipes[0][recipeRecord]
       ? recipes[0][recipeRecord]["recipe"]
@@ -39,7 +36,7 @@ export default function RecipeDetails({
       );
     });
 
-    return (
+    return recipes[0][0] ? (
       <section class="section">
         <div class="columns is-two-thirds">
           <div class="column">
@@ -115,6 +112,10 @@ export default function RecipeDetails({
           </div>
         </div>
       </section>
+    ) : (
+      <progress class="progress is-small is-primary" max="100">
+        15%
+      </progress>
     );
   }
 }

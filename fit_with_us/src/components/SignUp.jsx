@@ -186,6 +186,9 @@ export default function Form(props) {
             height,
             age,
             gender,
+            currentWeightUnit,
+            goalWeightUnit,
+            heightUnit,
           }),
         ]);
       })
@@ -451,6 +454,16 @@ export default function Form(props) {
         </a>
       </div>
     </div>
+
+    // const email = e.target[0].value;
+    // const password = e.target[2].value;
+    // const passwordConfirmation = e.target[3].value;
+    // const username = e.target[1].value;
+    // const currentWeight = e.target[9].value;
+    // const goalWeight = e.target[11].value;
+    // const height = e.target[13].value;
+    // const age = e.target[4].value;
+    // const gender = e.target[7].value;
   );
 }
 

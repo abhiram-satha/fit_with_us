@@ -39,6 +39,8 @@ module.exports = (db) => {
       userInfo.currentWeightUnit === "lbs"
         ? Math.round(userInfo.currentWeight)
         : Math.round(userInfo.currentWeight * 2.20462);
+
+    console.log(userInfo.currentWeightUnit);
     const adjustedGoalWeight =
       userInfo.goalWeightUnit === "lbs"
         ? Math.round(userInfo.goalWeight)

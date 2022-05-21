@@ -443,6 +443,15 @@ export default function App() {
                 <UserProfile badges={badges} user={users} weight={weight} />
               }
             />
+            <Route
+              path={`/food-restrictions`}
+              element={
+                <UserDietaryRestrictions
+                  userID={userID}
+                  setUserHasRestrictions={setUserHasRestrictions}
+                />
+              }
+            />
           </Routes>
           <BottomNav />
         </>
