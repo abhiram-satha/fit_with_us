@@ -4,7 +4,14 @@ import FormCategory from "./FormCategory";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 
-export default function UserDietaryRestrictions(props) {
+export default function UserDietaryRestrictions({
+  userID,
+  setUserHasRestrictions,
+  selectedCategories,
+  setSelectedCategories,
+  deleteCategory,
+  addCategory,
+}) {
   //States
   const [currentOptionsValue, setCurrentOptionsValues] = useState(["None"]);
   const [dietaryRestrictions, setDietaryRestrictions] = useState([]);
@@ -22,7 +29,7 @@ export default function UserDietaryRestrictions(props) {
   }
 
   async function createUsersDietaryRestrictions(string) {
-    const params = { user_id: props.userID, restriction: string };
+    const params = { user_id: userID, restriction: string };
 
     await axios.post("http://localhost:8080/api/dietary_restrictions", params);
   }
@@ -50,11 +57,30 @@ export default function UserDietaryRestrictions(props) {
 
     checkCurrentOptions()
       .then(() => {
-        props.setUserHasRestrictions(true);
+        setUserHasRestrictions(true);
         navigate("/homepage");
+        window.location.reload(false);
       })
       .catch((err) => console.log(err));
   };
+
+  let unique_category = [];
+  const unique_categories = (selectedCategories) => {
+    selectedCategories.forEach((c) => {
+      if (!unique_category.includes(c)) {
+        unique_category.push(c);
+      }
+    });
+  };
+  unique_categories(selectedCategories);
+
+  function handleSelect(event, category) {
+    if (selectedCategories.includes(category)) {
+      deleteCategory(event, category);
+    } else {
+      addCategory(event, category);
+    }
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,6 +100,54 @@ export default function UserDietaryRestrictions(props) {
       action="http://localhost:8080/api/dietary_restrictions"
       method="POST"
     >
+      <input
+        type="checkbox"
+        value="1"
+        checked={selectedCategories.includes("chicken")}
+        onChange={(event) => handleSelect(event, "chicken")}
+      />
+      <label for="1">Chicken</label>
+
+      <input
+        type="checkbox"
+        value="2"
+        checked={selectedCategories.includes("fish")}
+        onChange={(event) => handleSelect(event, "fish")}
+      />
+      <label for="2">Fish</label>
+
+      <input
+        type="checkbox"
+        value="3"
+        checked={selectedCategories.includes("beef")}
+        onChange={(event) => handleSelect(event, "beef")}
+      />
+      <label for="3">Beef</label>
+
+      <input
+        type="checkbox"
+        value="4"
+        checked={selectedCategories.includes("pork")}
+        onChange={(event) => handleSelect(event, "pork")}
+      />
+      <label for="4">Pork</label>
+
+      <input
+        type="checkbox"
+        value="5"
+        checked={selectedCategories.includes("vegetarian")}
+        onChange={(event) => handleSelect(event, "vegetarian")}
+      />
+      <label for="5">Vegetarian</label>
+
+      <input
+        type="checkbox"
+        value="6"
+        checked={selectedCategories.includes("vegan")}
+        onChange={(event) => handleSelect(event, "vegan")}
+      />
+      <label for="6">Vegan</label>
+
       <FormCategory
         onChange={addToOptionsList}
         optionsName="dietary-choices"

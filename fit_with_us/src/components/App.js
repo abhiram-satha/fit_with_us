@@ -85,6 +85,7 @@ export default function App() {
   function loggedOutUser() {
     removeCookie("id", { path: "/" });
     backButton();
+    window.location.reload(false);
   }
 
   function loginUser() {
@@ -448,6 +449,10 @@ export default function App() {
                 <UserDietaryRestrictions
                   userID={userID}
                   setUserHasRestrictions={setUserHasRestrictions}
+                  selectedCategories={selectedCategories}
+                  setSelectedCategories={setSelectedCategories}
+                  deleteCategory={deleteCategory}
+                  addCategory={addCategory}
                 />
               }
             />

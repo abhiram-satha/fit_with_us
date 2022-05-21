@@ -3,10 +3,10 @@ import { useState } from "react";
 
 export default function BottomNav(props) {
   const [youClass, setYouClass] = useState(
-    window.location.href === "http://localhost:3003/homepage" ? "is-active" : ""
+    window.location.href === "http://localhost:3002/homepage" ? "is-active" : ""
   );
   const [usClass, setUsClass] = useState(
-    window.location.href === "http://localhost:3003/posts" ? "is-active" : ""
+    window.location.href === "http://localhost:3002/posts" ? "is-active" : ""
   );
 
   const handleYouClick = () => {

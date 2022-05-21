@@ -98,7 +98,7 @@ export default function UserLogin({
             help={errorPassword}
           />
           <br />
-          <Button fw="is-fullwidth" name="Login" />
+          <Button fw="is-fullwidth" name="Log in" />
         </form>
         <br />
         <a onClick={signUserUp} class="is-pulled-right">

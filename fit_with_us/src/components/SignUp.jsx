@@ -83,14 +83,14 @@ export default function Form(props) {
     const password = e.target[2].value;
     const passwordConfirmation = e.target[3].value;
     const username = e.target[1].value;
-    const currentWeight = e.target[9].value;
-    const goalWeight = e.target[11].value;
-    const height = e.target[13].value;
+    const currentWeight = e.target[8].value;
+    const goalWeight = e.target[10].value;
+    const height = e.target[12].value;
     const age = e.target[4].value;
     const gender = e.target[7].value;
-    const currentWeightUnit = e.target[10].value;
-    const goalWeightUnit = e.target[12].value;
-    const heightUnit = e.target[14].value;
+    const currentWeightUnit = e.target[9].value;
+    const goalWeightUnit = e.target[11].value;
+    const heightUnit = e.target[13].value;
 
     //Check empty Email input
     if (!checkEmptyInput(email)) {
@@ -352,22 +352,6 @@ export default function Form(props) {
                 <option>Female</option>
                 <option>Prefer not to say</option>
               </select>
-            </div>
-          </div>
-          <div class="field">
-            <label htmlFor="dietaryRestrictions" class="label">
-              Dietary Restrictions
-            </label>
-            <div class="control">
-              <div class="select">
-                <select id="dietaryRestrictions" name="dietaryRestrictions">
-                  <option>Vegetarian</option>
-                  <option>Vegan</option>
-                  <option>Dairy-free</option>
-                  <option>Gluten-free</option>
-                  <option>Low FODMAP</option>
-                </select>
-              </div>
             </div>
           </div>
           <label class="label" htmlFor="currentWeight">
