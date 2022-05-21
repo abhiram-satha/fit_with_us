@@ -30,6 +30,7 @@ details {
   width: 90%;
   margin-bottom: 3%;
 }
+
 button {
   border-width: 1px;
     /* color: #363636; */
@@ -41,4 +42,9 @@ button {
     padding-top: calc(0.5em - 1px);
     text-align: center;
     white-space: nowrap;
+}
+
+.toggle-button {
+  display: flex;
+  justify-content: space-between;
 }

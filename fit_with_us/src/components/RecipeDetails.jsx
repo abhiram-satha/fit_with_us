@@ -98,19 +98,21 @@ export default function RecipeDetails({
               </thead>
               <tbody>{RecipeIngredientsArray}</tbody>
             </table>
+            <span className="toggle-button">
             {recipeRecord !==0 && (
-            <button onClick={() => setRecipeRecord((prev) => prev - 1)}>
+            <button  className="button is-primary" onClick={() => setRecipeRecord((prev) => prev - 1)}>
               Prev
             </button>
             )}
 
             {recipeRecord !== 19 && (
-            <button
+            <button className="button is-primary"
               onClick={() =>
                 setRecipeRecord((prev) => Number(prev) + 1)}>
               Next
             </button>
             )}
+            </span>
           </div>
         </div>
       </div>
