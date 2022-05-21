@@ -51,8 +51,8 @@ export default function UserDietaryRestrictions(props) {
     checkCurrentOptions()
       .then(() => {
         props.setUserHasRestrictions(true);
-        window.location.reload(false);
         navigate("/homepage");
+        window.location.reload(false);
       })
       // .then(() => window.location.reload(false))
       .catch((err) => console.log(err));

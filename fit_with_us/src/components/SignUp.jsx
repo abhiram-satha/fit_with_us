@@ -4,6 +4,7 @@ import Button from "./Button";
 import axios from "axios";
 import Error from "./Error";
 import { checkEmptyInput } from "../helpers/signUpHelpers";
+import { useNavigate } from "react-router-dom";
 
 export default function Form(props) {
   //Error States
@@ -25,6 +26,8 @@ export default function Form(props) {
   const [goalWeightClass, setGoalWeightClass] = useState("input");
   const [heightClass, setHeightClass] = useState("input");
   const [ageClass, setAgeClass] = useState("input");
+
+  const navigate = useNavigate();
 
   useEffect(() => {}, []);
 
@@ -197,6 +200,7 @@ export default function Form(props) {
             });
 
             if (userData.length !== 0) {
+              navigate("/food-restrictions");
               props.loggedInUser(user.id);
             }
           });
