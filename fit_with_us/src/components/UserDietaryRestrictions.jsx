@@ -2,11 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import FormCategory from "./FormCategory";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 export default function UserDietaryRestrictions(props) {
   //States
   const [currentOptionsValue, setCurrentOptionsValues] = useState(["None"]);
   const [dietaryRestrictions, setDietaryRestrictions] = useState([]);
+
+  const navigate = useNavigate();
 
   //Helper Functions
   async function getDietaryRestrictions() {
@@ -46,7 +49,11 @@ export default function UserDietaryRestrictions(props) {
     };
 
     checkCurrentOptions()
-      .then(() => props.setUserHasRestrictions(true))
+      .then(() => {
+        props.setUserHasRestrictions(true);
+        navigate("/homepage");
+        window.location.reload(false);
+      })
       // .then(() => window.location.reload(false))
       .catch((err) => console.log(err));
   };

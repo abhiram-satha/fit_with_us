@@ -5,6 +5,7 @@ import axios from "axios";
 import Error from "./Error";
 import { checkEmptyInput } from "../helpers/signUpHelpers";
 import "../styles/SignUp.scss"
+import { useNavigate } from "react-router-dom";
 
 export default function Form(props) {
   //Error States
@@ -26,6 +27,8 @@ export default function Form(props) {
   const [goalWeightClass, setGoalWeightClass] = useState("input");
   const [heightClass, setHeightClass] = useState("input");
   const [ageClass, setAgeClass] = useState("input");
+
+  const navigate = useNavigate();
 
   useEffect(() => {}, []);
 
@@ -72,8 +75,8 @@ export default function Form(props) {
     console.log(e)
     const params = {
       email: e.target[0].value,
-      password: e.target[1].value,
-      username: e.target[3].value,
+      password: e.target[2].value,
+      username: e.target[1].value,
     };
 
     const email = e.target[0].value;
@@ -198,13 +201,14 @@ export default function Form(props) {
             //Returns user ID
             const userData = all[0].data.users;
             const user = userData[0];
-
+            console.log(user);
             axios.post(`http://localhost:8080/api/weights`, {
               user_id: user.id,
               weight: currentWeight,
             });
 
             if (userData.length !== 0) {
+              navigate("/food-restrictions");
               props.loggedInUser(user.id);
             }
           });
