@@ -54,34 +54,74 @@ export default function UserProfile({ user, badges, weight }) {
   const createBadgesIconsArray = badges.map((badge) => {
     //Checks for "What a Star" achievement
     if (badge.name === "What a star!" && achievedWhatAStar) {
-      return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
+      return (
+        <Badge
+          key={badge.id}
+          img_url={badge.img_url}
+          name={badge.name}
+          id_name={badge.id_name}
+        />
+      );
     }
 
     //Checks for "High Fiver" achievement
     if (badge.name === "High Fiver" && achievedHighFiver) {
-      return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
+      return (
+        <Badge
+          key={badge.id}
+          img_url={badge.img_url}
+          name={badge.name}
+          id_name={badge.id_name}
+        />
+      );
     }
 
     //Checks for "Tens!" achievement
     if (badge.name === "Tens!" && achievedTens) {
-      return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
+      return (
+        <Badge
+          key={badge.id}
+          img_url={badge.img_url}
+          name={badge.name}
+          id_name={badge.id_name}
+        />
+      );
     }
 
     //Checks for "Chatter" achievement
     if (badge.name === "Chatter" && achievedChatter) {
-      return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
+      return (
+        <Badge
+          key={badge.id}
+          img_url={badge.img_url}
+          name={badge.name}
+          id_name={badge.id_name}
+        />
+      );
     }
 
     //Checks for "Almost there, bud!" achievement
     if (badge.name === "Almost there, bud!" && achievedAlmostThereBud) {
-      return <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />;
+      return (
+        <Badge
+          key={badge.id}
+          img_url={badge.img_url}
+          name={badge.name}
+          id_name={badge.id_name}
+        />
+      );
     }
 
     //Checks for "Look at those gains!" achievement
     if (badge.name === "Look at those gains!") {
       if (achievedLookAtThoseGains) {
         return (
-          <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />
+          <Badge
+            key={badge.id}
+            img_url={badge.img_url}
+            name={badge.name}
+            id_name={badge.id_name}
+          />
         );
       } else if (userWeightType === "gain") {
         return (
@@ -90,6 +130,7 @@ export default function UserProfile({ user, badges, weight }) {
             img_url={badge.img_url}
             name={badge.name}
             badgeClass="not-achieved"
+            id_name={badge.id_name}
           />
         );
       } else {
@@ -101,7 +142,12 @@ export default function UserProfile({ user, badges, weight }) {
     if (badge.name === "What a loss!") {
       if (achievedWhatALoss) {
         return (
-          <Badge key={badge.id} img_url={badge.img_url} name={badge.name} />
+          <Badge
+            key={badge.id}
+            img_url={badge.img_url}
+            name={badge.name}
+            id_name={badge.id_name}
+          />
         );
       } else if (userWeightType === "loss") {
         return (
@@ -110,6 +156,7 @@ export default function UserProfile({ user, badges, weight }) {
             img_url={badge.img_url}
             name={badge.name}
             badgeClass="not-achieved"
+            id_name={badge.id_name}
           />
         );
       } else {
@@ -123,6 +170,7 @@ export default function UserProfile({ user, badges, weight }) {
         img_url={badge.img_url}
         name={badge.name}
         badgeClass="not-achieved"
+        id_name={badge.id_name}
       />
     );
   });
