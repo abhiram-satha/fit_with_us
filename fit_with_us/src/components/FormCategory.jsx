@@ -27,14 +27,14 @@ export default function FormCategory(props) {
       })
     : null;
 
-  const categoryName = textName(props.name);
+    const labelize = (label) => {
+      return label[0].toUpperCase() + label.slice(1, label.length)
+    }
 
   return (
-    <div className="form-example">
-      <label htmlFor={props.name}>
-        Enter your {categoryName}
-        {categoryName.includes("weight") ? "(lb)" : null}
-        {categoryName.includes("height") ? "(cm)" : null}
+    <div class="field">
+      <label htmlFor={props.name} class="label">
+        {labelize(props.name)}
       </label>
       {inputList ? (
         <select

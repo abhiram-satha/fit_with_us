@@ -94,6 +94,10 @@ export default function App() {
     setSignUp(true);
   }
 
+  function returnToLogin() {
+    setSignUp(false);
+  }
+
   async function getUserRestrictions() {
     return await axios.get("http://localhost:8080/api/user_restrictions");
   }
@@ -433,17 +437,7 @@ export default function App() {
                 <UserProfile badges={badges} user={users} weight={weight} />
               }
             />
-            <Route
-              path={`/food-restrictions`}
-              element={
-                <UserDietaryRestrictions
-                  userID={userID}
-                  setUserHasRestrictions={setUserHasRestrictions}
-                />
-              }
-            />
           </Routes>
-
           <BottomNav />
         </>
       ) : !signUp ? (
@@ -453,7 +447,7 @@ export default function App() {
           setUserHasRestrictions={setUserHasRestrictions}
         />
       ) : (
-        <SignUp loggedInUser={loggedInUser} />
+        <SignUp loggedInUser={loggedInUser} returnToLogin={returnToLogin} />
       )}
     </div>
   );

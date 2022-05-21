@@ -35,28 +35,22 @@ module.exports = (db) => {
   router.post("/", async (req, res) => {
     const userInfo = req.body;
     const hashedPassword = await bcrypt.hashSync(userInfo.password, 10);
+    const adjustedCurrentWeight = userInfo.currentWeightUnit === "lbs" ? Math.round(userInfo.currentWeight) : Math.round(userInfo.currentWeight * 2.20462);
+    const adjustedGoalWeight = userInfo.goalWeightUnit === "lbs" ? Math.round(userInfo.goalWeight) : Math.round(userInfo.goalWeight * 2.20462);
+    const adjustedHeight = userInfo.heightUnit === "cms" ? Math.round(userInfo.height) : Math.round(userInfo.height * 2.54);
+    console.log(adjustedCurrentWeight, adjustedGoalWeight, adjustedHeight)
     const values =
-      userInfo.gender !== "-----"
-        ? [
+          [
             userInfo.email,
             hashedPassword,
             userInfo.username,
-            userInfo.currentWeight,
-            userInfo.goalWeight,
-            userInfo.height,
+            adjustedCurrentWeight,
+            adjustedGoalWeight,
+            adjustedHeight,
             2022 - userInfo.age,
             userInfo.gender,
-          ]
-        : [
-            userInfo.email,
-            hashedPassword,
-            userInfo.username,
-            userInfo.currentWeight,
-            userInfo.goalWeight,
-            userInfo.height,
-            2022 - userInfo.age,
-            "N/A",
           ];
+    console.log()
     const query = `INSERT INTO users(email, password, username, current_weight, goal_weight, height, age, gender) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
     db.query(query, values)
       .then(() => console.log("Successfully created!"))
