@@ -48,8 +48,3 @@ button {
   display: flex;
   justify-content: space-between;
 }
-
-.update-title {
-  color: #4a4a4a;
-  font-size: 1em;
-}
