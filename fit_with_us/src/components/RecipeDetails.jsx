@@ -3,6 +3,8 @@ import RecipeIngredients from "./RecipeIngredients";
 import Input from "./Input";
 import Button from "./Button";
 import "../styles/RecipeDetails.scss";
+import  { Navigate } from 'react-router-dom'
+
 export default function RecipeDetails({
   users,
   recipeRecord,
@@ -10,7 +12,12 @@ export default function RecipeDetails({
   setRecipeRecord,
   newPost,
 }) {
-  const recipe = recipes[0][recipeRecord]
+  console.log(recipes)
+
+  if (!recipes[0][0]["recipe"]["calories"]) {
+    return <Navigate to="/homepage" />
+  } else {
+    const recipe = recipes[0][recipeRecord]
     ? recipes[0][recipeRecord]["recipe"]
     : null;
   const ingredients = recipe.ingredients;
@@ -107,4 +114,6 @@ export default function RecipeDetails({
       </div>
     </section>
   );
+  }
+
 }
