@@ -226,7 +226,8 @@ export default function UserProfile({ user, badges, weight }) {
           <tbody>
             <TableRow name="Age" value={age} />
             <TableRow name="Gender" value={gender} />
-            <TableRow name="Current Weight (lb):" value={currentWeight} />
+            <TableRow name="Starting Weight (lb):" value={currentWeight} />
+            <TableRow name="Current Weight (lb):"  value={latestWeight}/>
             <TableRow name="Goal Weight (lb):" value={goalWeight} />
             <TableRow name="Height (cm):" value={height} />
           </tbody>
