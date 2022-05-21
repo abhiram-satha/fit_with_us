@@ -9,9 +9,12 @@
   span {
     text-align: center;
   }
+}
 
-  button {
-    background-color: transparent;
-    border: none;
+.modal-content,
+.modal-card {
+  width: 80%;
+  h2 {
+    font-weight: bold;
   }
 }
