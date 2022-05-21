@@ -4060,7 +4060,7 @@ body.has-navbar-fixed-bottom {
   width: 3.25rem;
   margin-left: auto; }
   .navbar-burger span {
-    background-color: currentColor;
+    background-color: white;
     display: block;
     height: 1px;
     left: calc(50% - 8px);
