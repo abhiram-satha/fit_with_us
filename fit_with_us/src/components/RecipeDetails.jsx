@@ -19,7 +19,7 @@ export default function RecipeDetails({
   };
 
   const { goal_weight, current_weight } = users.users[0];
-
+  console.log(recipe.ingredients)
   const RecipeIngredientsArray = ingredients.map((ingredient) => {
     return (
       <RecipeIngredients
@@ -97,7 +97,7 @@ export default function RecipeDetails({
             </button>
             <button
               onClick={() =>
-                setRecipeRecord((prev) => Number.parseInt(prev) + 1)
+                setRecipeRecord((prev) => Number(prev) + 1)
               }
             >
               Next
