@@ -265,11 +265,11 @@ export default function App() {
       axios
         .post(`http://localhost:8080/api/weights/${userID}`, data)
 
-        .then((response) =>
+        .then(() =>
           axios.get(`http://localhost:8080/api/weights/${userID}`)
         )
         .then((weights) => setWeight(weights.data.weights))
-        // .then((response) => (event.target[0].value = ""))
+        .then(() => (event.target[0].value = ""))
         .catch((error) => console.log(error));
     }
   };
