@@ -9,6 +9,11 @@
   span {
     text-align: center;
   }
+  button {
+    background-color: transparent;
+    border: solid black 0.1em;
+    border-radius: 20%;
+  }
 }
 
 .modal-content,

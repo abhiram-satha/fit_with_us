@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import BottomNav from "./BottomNav";
 
 export default function Badge({
   img_url,
@@ -26,19 +27,19 @@ export default function Badge({
 
       <div
         id={id_name}
-        class={`modal ${modalActive}`}
+        className={`modal ${modalActive}`}
         onClick={() => setModalActive("")}
       >
-        <div class="modal-background"></div>
+        <div className="modal-background"></div>
 
-        <div class="modal-content">
-          <div class="box">
+        <div className="modal-content">
+          <div className="box">
             <h2>{name}</h2>
             <p>{description}</p>
           </div>
         </div>
 
-        <button class="modal-close is-large" aria-label="close"></button>
+        <button className="modal-close is-large" aria-label="close"></button>
       </div>
     </>
   );

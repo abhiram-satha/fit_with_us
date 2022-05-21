@@ -12,9 +12,6 @@ export default function UserProfile({ user, badges, weight }) {
     weight.length !== 0 ? weight.length : 0
   );
 
-  //States for Badge Modals
-  const [modalActive, setModalActive] = useState(false);
-
   //User Information
   const userID = user.users ? user.users[0].id : null;
   const username = user.users ? user.users[0].username : null;
@@ -64,8 +61,6 @@ export default function UserProfile({ user, badges, weight }) {
           name={badge.name}
           id_name={badge.id_name}
           description={badge.description}
-          modalActive={modalActive}
-          setModalActive={setModalActive}
         />
       );
     }
@@ -217,7 +212,8 @@ export default function UserProfile({ user, badges, weight }) {
   }, []);
 
   return (
-    <div className="columns is-mobile mt-6">
+    <div>
+      {/* <div className="columns is-mobile"> */}
       <div className="column"></div>
       <div className="column is-four-fifths">
         <h1 className="title is-5 has-text-centered">{`User Profile for ${username}`}</h1>

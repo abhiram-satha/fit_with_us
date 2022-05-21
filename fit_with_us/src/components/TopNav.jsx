@@ -40,8 +40,8 @@ export default function TopNav(props) {
 
         <div id="navbarBasicExample" class={menuClass}>
           <div class="navbar-start">
-            <a class="navbar-item">
-              <Link to="/profile">Profile</Link>
+            <a href="/profile " class="navbar-item">
+              Profile
             </a>
 
             <a class="navbar-item">Messages</a>
