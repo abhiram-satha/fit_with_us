@@ -183,7 +183,6 @@ export default function App() {
       })
       .then((categorySelection) => {
         return Promise.all([
-          // axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=${process.env.REACT_APP_ID}&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&excluded=broth&excluded=Homemade%20Essence%20of%20Chicken&calories=300-600`),
           axios.get(
             `https://api.edamam.com/api/recipes/v2?type=public&q=${categorySelection}&app_id=${process.env.REACT_APP_ID}&app_key=35468e3059752f205fc55cbd181c94bc${string}&mealType=Dinner&dishType=Main%20course&excluded=fat&excluded=broth&excluded=Homemade%20Essence%20of%20Chicken&calories=300-600`
           ),
