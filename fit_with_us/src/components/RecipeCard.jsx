@@ -100,7 +100,7 @@ export default function RecipeCard({ recipeRecord, recipes }) {
             </div>
           </Link>
         </div>
-        <a href={url} class="button is-primary is-fullwidth">
+        <a href={url} target="_blank" class="button is-primary is-fullwidth">
           See full recipe
           <i class="fa-solid fa-share"></i>
         </a>

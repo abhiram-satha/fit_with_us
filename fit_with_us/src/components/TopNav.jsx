@@ -57,7 +57,7 @@ export default function TopNav(props) {
               <a class="navbar-link">Update your journey</a>
 
               <div class="navbar-dropdown">
-                <a class="navbar-item">Update current weight</a>
+                <a href="/weightchart" class="navbar-item">Update current weight</a>
                 <a href="/recipe-details" class="navbar-item">
                   Change recipe
                 </a>

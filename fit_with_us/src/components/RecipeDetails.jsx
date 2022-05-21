@@ -20,11 +20,11 @@ export default function RecipeDetails({
     const ingredients = recipe.ingredients;
     const sliceRecipe = (recipeName) => {
       if (recipeName.includes("ecipes")) {
-        return recipeName.slice(0, -7)
+        return recipeName.slice(0, -7);
       } else if (recipeName.includes("ecipe")) {
-        return recipeName.slice(0, -6)
+        return recipeName.slice(0, -6);
       } else {
-        return recipeName
+        return recipeName;
       }
     };
 
@@ -69,7 +69,11 @@ export default function RecipeDetails({
                       role="menu"
                     >
                       <div class="dropdown-content">
-                        <a href={recipe.url} target="_blank" className="dropdown-item">
+                        <a
+                          href={recipe.url}
+                          target="_blank"
+                          className="dropdown-item"
+                        >
                           <strong>Go to recipe</strong>
                         </a>
                       </div>
@@ -100,18 +104,29 @@ export default function RecipeDetails({
                     <th>What you'll need:</th>
                   </tr>
                 </thead>
-                <tbody>{RecipeIngredientsArray}</tbody>
+                <tbody className="recipe-ingredients-overflow">{RecipeIngredientsArray}</tbody>
               </table>
-              <button onClick={() => setRecipeRecord((prev) => prev - 1)}>
-                Prev
-              </button>
-              <button
-                onClick={() =>
-                  setRecipeRecord((prev) => Number.parseInt(prev) + 1)
-                }
-              >
-                Next
-              </button>
+              <div className="recipe-button">
+                {recipeRecord !== 0 && (
+                  <button
+                    className="button is-primary"
+                    onClick={() => setRecipeRecord((prev) => prev - 1)}
+                  >
+                    Prev
+                  </button>
+                )}
+                
+                {recipeRecord !== 19 && (
+                  <button
+                    className="button is-primary"
+                    onClick={() =>
+                      setRecipeRecord((prev) => Number.parseInt(prev) + 1)
+                    }
+                  >
+                    Next
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>

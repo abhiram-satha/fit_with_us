@@ -11,16 +11,17 @@ export default function Settings({
 }) {
   return (
     <>
-        <UpdateWeightGoal users={users} updateGoalWeight={updateGoalWeight} />
+      <UpdateWeightGoal users={users} updateGoalWeight={updateGoalWeight} />
 
-
-        <UpdateCategoryPref
-          deleteCategory={deleteCategory}
-          selectedCategories={selectedCategories}
-          addCategory={addCategory}
-          reloadRecipes={reloadRecipes}
-        />
-
+      <UpdateCategoryPref
+        deleteCategory={deleteCategory}
+        selectedCategories={selectedCategories}
+        addCategory={addCategory}
+        reloadRecipes={reloadRecipes}
+      />
+      <button className="button is-primary full-length" onClick={reloadRecipes}>
+        <a href="/homepage">Update Recipes</a>
+      </button>
     </>
   );
 }

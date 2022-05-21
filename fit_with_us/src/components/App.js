@@ -23,6 +23,7 @@ import {
 } from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
 import UserProfile from "./UserProfile";
+import Weighthistorygraph from "./Weighthistorygraph";
 
 export default function App() {
   const location = useLocation();
@@ -264,34 +265,28 @@ export default function App() {
       axios
         .post(`http://localhost:8080/api/weights/${userID}`, data)
 
-        .then((response) =>
+        .then(() =>
           axios.get(`http://localhost:8080/api/weights/${userID}`)
         )
         .then((weights) => setWeight(weights.data.weights))
-        // .then((response) => (event.target[0].value = ""))
+        .then(() => (event.target[0].value = ""))
         .catch((error) => console.log(error));
     }
   };
 
   const updateGoalWeight = (event) => {
-    console.log(event.target[0].value);
-    console.log(userID);
-    if (!event.target[0].value) {
-      event.preventDefault();
-
-      alert.show("Goal Weight can't be empty");
-      return;
-    } else {
+    console.log(event.target.value);
+    // console.log(userID);
       event.preventDefault();
 
       const data = {
-        goal_weight: event.target[0].value,
+        goal_weight: event.target.value,
       };
 
       axios
         .put(`http://localhost:8080/api/user/${userID}`, data)
 
-        .then((response) => {
+        .then(() => {
           return Promise.all([
             axios.get(`http://localhost:8080/api/user/${userID}`),
           ]);
@@ -300,9 +295,8 @@ export default function App() {
           console.log(data);
           return setUsers(data[0].data);
         })
-        .then((response) => (event.target[0].value = ""))
         .catch((error) => console.log(error));
-    }
+    
   };
 
   const deleteCategory = (event, categoryToRemove) => {
@@ -410,6 +404,20 @@ export default function App() {
                 />
               }
             />
+
+              <Route
+              path={`/weightchart`}
+              element={
+                <Weighthistorygraph
+                  users={users}
+                  userWeight={weight}
+                  updateWeight={updateWeight}
+                  // recipe={userChosenRecipe}
+                  recipeRecord={recipeRecord}
+                  recipes={recipes}
+                />
+              }
+            />    
             <Route
               path="/posts"
               element={
