@@ -15,7 +15,13 @@ export default function RecipeDetails({
     : null;
   const ingredients = recipe.ingredients;
   const sliceRecipe = (recipeName) => {
-    return recipeName.endsWith("ecipe") ? recipeName.slice(0, -6) : recipeName;
+    if (recipeName.includes("ecipes")) {
+      return recipeName.slice(0, -7)
+    } else if (recipeName.includes("ecipe")) {
+      return recipeName.slice(0, -6)
+    } else {
+      return recipeName
+    }
   };
 
   const { goal_weight, current_weight } = users.users[0];
@@ -92,16 +98,18 @@ export default function RecipeDetails({
               </thead>
               <tbody>{RecipeIngredientsArray}</tbody>
             </table>
+            {recipeRecord !==0 && (
             <button onClick={() => setRecipeRecord((prev) => prev - 1)}>
               Prev
             </button>
+            )}
+            {recipeRecord !== 19 && (
             <button
               onClick={() =>
-                setRecipeRecord((prev) => Number(prev) + 1)
-              }
-            >
+                setRecipeRecord((prev) => Number(prev) + 1)}>
               Next
             </button>
+            )}
           </div>
         </div>
       </div>
