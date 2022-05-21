@@ -49,7 +49,11 @@ export default function UserDietaryRestrictions(props) {
     };
 
     checkCurrentOptions()
-      .then(() => props.setUserHasRestrictions(true))
+      .then(() => {
+        props.setUserHasRestrictions(true);
+        window.location.reload(false);
+        navigate("/homepage");
+      })
       // .then(() => window.location.reload(false))
       .catch((err) => console.log(err));
   };
