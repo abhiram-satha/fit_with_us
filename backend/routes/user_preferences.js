@@ -32,38 +32,36 @@ module.exports = (db) => {
       });
   });
 
-  router.delete('/:id', (req, res)=> {
+  router.delete("/:id", (req, res) => {
+    const values = [req.params.id, req.body.category_value];
 
-    const values = [
-      req.params.id,
-      req.body.category_value
-    ]
-   
-    db.query(`DELETE FROM user_preferences
-    WHERE user_id = $1 AND recipe_category_id = $2;`, values)
-    .then((data) => {
-      const users = data.rows;
-      res.send({ users });
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
-  })
-  
-  router.post('/:id', (req, res)=> {
+    db.query(
+      `DELETE FROM user_preferences
+    WHERE user_id = $1 AND recipe_category_id = $2;`,
+      values
+    )
+      .then((data) => {
+        const users = data.rows;
+        res.send({ users });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
 
-    const values = [
-      req.params.id,
-      req.body.category_value
-    ]
-    db.query(`INSERT INTO user_preferences(user_id, recipe_category_id) VALUES ($1, $2)`, values)
-    .then((data) => {
-      const users = data.rows;
-      res.send({ users });
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
-  })
+  router.post("/:id", (req, res) => {
+    const values = [req.params.id, req.body.category_value];
+    db.query(
+      `INSERT INTO user_preferences(user_id, recipe_category_id) VALUES ($1, $2)`,
+      values
+    )
+      .then((data) => {
+        const users = data.rows;
+        res.send({ users });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
   return router;
 };
