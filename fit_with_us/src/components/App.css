@@ -1,7 +1,22 @@
 .category-flex {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  /* accent-color: #23b574; */
+  accent-color: hsl(153, 68%, 42%);
+  /* align-items: baseline; */
+  flex-direction: column;
+}
 
+.subcategory-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* align-items: baseline; */
+}
+
+.label-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: baseline;
 }
