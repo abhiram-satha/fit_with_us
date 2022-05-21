@@ -268,12 +268,14 @@ export default function App() {
           axios.get(`http://localhost:8080/api/weights/${userID}`)
         )
         .then((weights) => setWeight(weights.data.weights))
-        .then((response) => (event.target[0].value = ""))
+        // .then((response) => (event.target[0].value = ""))
         .catch((error) => console.log(error));
     }
   };
 
   const updateGoalWeight = (event) => {
+    console.log(event.target[0].value);
+    console.log(userID);
     if (!event.target[0].value) {
       event.preventDefault();
 
@@ -289,14 +291,15 @@ export default function App() {
       axios
         .put(`http://localhost:8080/api/user/${userID}`, data)
 
-        .then((response) =>
-          axios.get(`http://localhost:8080/api/user/${userID}`)
-        )
-        .then((data) =>
-          setUsers((prev) => {
-            return { ...prev, goal_weight: data.goal_weight };
-          })
-        )
+        .then((response) => {
+          return Promise.all([
+            axios.get(`http://localhost:8080/api/user/${userID}`),
+          ]);
+        })
+        .then((data) => {
+          console.log(data);
+          return setUsers(data[0].data);
+        })
         .then((response) => (event.target[0].value = ""))
         .catch((error) => console.log(error));
     }

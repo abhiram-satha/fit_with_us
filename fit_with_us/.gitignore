@@ -9,7 +9,8 @@
 /coverage
 .src/components/BottomNav.md
 /.env
-
+/CODEDUMP.MD
+/ASYNC.MD
 # production
 /build
 
