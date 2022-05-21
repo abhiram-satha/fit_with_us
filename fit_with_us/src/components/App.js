@@ -275,9 +275,9 @@ export default function App() {
   };
 
   const updateGoalWeight = (event) => {
-    console.log(event.target[0].value);
-    console.log(userID);
-    if (!event.target[0].value) {
+    console.log(event.target.value);
+    // console.log(userID);
+    if (!event.target.value) {
       event.preventDefault();
 
       alert.show("Goal Weight can't be empty");
@@ -286,7 +286,7 @@ export default function App() {
       event.preventDefault();
 
       const data = {
-        goal_weight: event.target[0].value,
+        goal_weight: event.target.value,
       };
 
       axios
