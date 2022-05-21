@@ -57,7 +57,7 @@ export default function UpdateCategoryPref ({ selectedCategories, deleteCategory
     </form>
     {/* <Button onClick={reloadRecipes} type="submit" name="Update Preferences"/> */}
     </div></div></div>
-    <button className="button is-primary full-length" onClick={reloadRecipes}>Update Recipes</button>
+    <button className="button is-primary full-length" onClick={reloadRecipes}><a href="/homepage">Update Recipes</a></button>
     </>
   )
   function handleSelect (event, category) {

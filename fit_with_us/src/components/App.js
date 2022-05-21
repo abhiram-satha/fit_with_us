@@ -277,12 +277,6 @@ export default function App() {
   const updateGoalWeight = (event) => {
     console.log(event.target.value);
     // console.log(userID);
-    if (!event.target.value) {
-      event.preventDefault();
-
-      alert.show("Goal Weight can't be empty");
-      return;
-    } else {
       event.preventDefault();
 
       const data = {
@@ -303,7 +297,7 @@ export default function App() {
         })
         .then((response) => (event.target[0].value = ""))
         .catch((error) => console.log(error));
-    }
+    
   };
 
   const deleteCategory = (event, categoryToRemove) => {
