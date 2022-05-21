@@ -23,6 +23,7 @@ import {
 } from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
 import UserProfile from "./UserProfile";
+import Weighthistorygraph from "./Weighthistorygraph";
 
 export default function App() {
   const location = useLocation();
@@ -410,6 +411,20 @@ export default function App() {
                 />
               }
             />
+
+              <Route
+              path={`/weightchart`}
+              element={
+                <Weighthistorygraph
+                  users={users}
+                  userWeight={weight}
+                  updateWeight={updateWeight}
+                  // recipe={userChosenRecipe}
+                  recipeRecord={recipeRecord}
+                  recipes={recipes}
+                />
+              }
+            />    
             <Route
               path="/posts"
               element={

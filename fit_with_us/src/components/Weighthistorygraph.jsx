@@ -1,9 +1,9 @@
 import { LineChart, Line, CartesianGrid, YAxis, XAxis, Tooltip, ResponsiveContainer} from 'recharts';
 import Input from './Input';
 import Button from './Button';
-export default function Weighthistorygraph({weights, updateWeight}) {
+export default function Weighthistorygraph({userWeight, updateWeight}) {
 
-  let data = weights.map(weight => {
+  let data = userWeight.map(weight => {
     let date = weight.date.slice(5,10)
     return {name: date, lbs: weight.weight}
   })

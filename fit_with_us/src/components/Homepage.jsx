@@ -74,7 +74,7 @@ export default function Homepage({
           </progress>
         ) : (
           <Weighthistorygraph
-            weights={userWeight}
+            userWeight={userWeight}
             className="card"
             updateWeight={updateWeight}
           />
