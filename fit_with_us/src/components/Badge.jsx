@@ -5,7 +5,9 @@ export default function Badge({ img_url, name, badgeClass }) {
     <div
       className={`badge column is-flex is-flex-direction-column is-align-items-center is-one-third ${badgeClass}`}
     >
-      <img className="image is-32x32" src={img_url} alt={name} />
+      <button>
+        <img className="image is-32x32" src={img_url} alt={name} />
+      </button>
       <span>{`${name}`}</span>
     </div>
   );
