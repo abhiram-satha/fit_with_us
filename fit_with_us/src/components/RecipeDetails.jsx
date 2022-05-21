@@ -23,9 +23,9 @@ export default function RecipeDetails({
       return recipeName
     }
   };
-
+  
   const { goal_weight, current_weight } = users.users[0];
-  console.log(recipe.ingredients)
+  console.log(recipe)
   const RecipeIngredientsArray = ingredients.map((ingredient) => {
     return (
       <RecipeIngredients
@@ -65,7 +65,7 @@ export default function RecipeDetails({
                     role="menu"
                   >
                     <div class="dropdown-content">
-                      <a href={recipe.url} class="dropdown-item">
+                      <a href={recipe.url} target="_blank" class="dropdown-item">
                         <strong>Go to recipe</strong>
                       </a>
                     </div>
@@ -103,6 +103,7 @@ export default function RecipeDetails({
               Prev
             </button>
             )}
+
             {recipeRecord !== 19 && (
             <button
               onClick={() =>
