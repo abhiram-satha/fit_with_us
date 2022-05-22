@@ -117,7 +117,7 @@ export default function RecipeDetails({
           <div class="recipe-button column">
                 {recipeRecord !== 0 && (
                   <button
-                    className="button is-primary"
+                    class="button is-primary recipe-switch"
                     onClick={() => setRecipeRecord((prev) => prev - 1)}
                   >
                     Previous recipe
@@ -126,7 +126,7 @@ export default function RecipeDetails({
                 
                 {recipeRecord !== 19 && (
                   <button
-                    className="button is-primary is-pulled-right"
+                    class="button is-primary is-pulled-right recipe-switch"
                     onClick={() =>
                       setRecipeRecord((prev) => Number.parseInt(prev) + 1)
                     }
