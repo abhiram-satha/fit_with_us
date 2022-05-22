@@ -351,6 +351,8 @@ export default function Form(props) {
                 id="month"
                 type="number"
                 maxlength="2"
+                max="12"
+                min="1"
                 placeholder="MM"
               />
             </div>
@@ -361,6 +363,8 @@ export default function Form(props) {
                 type="number"
                 maxlength="2"
                 placeholder="DD"
+                min="1"
+                max="31"
               />
             </div>
           </div>
