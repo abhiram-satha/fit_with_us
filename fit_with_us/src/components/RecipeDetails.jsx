@@ -3,7 +3,7 @@ import RecipeIngredients from "./RecipeIngredients";
 import Input from "./Input";
 import Button from "./Button";
 import "../styles/RecipeDetails.scss";
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function RecipeDetails({
   users,
@@ -42,6 +42,11 @@ export default function RecipeDetails({
 
     return recipes[0][0] ? (
       <section class="section">
+        <div id="back" class="mb-4">
+        <Link to="/homepage">
+         <i id="back-icon" class="fa-solid fa-angle-left"></i>
+        </Link>
+        </div>
         <div class="columns is-two-thirds">
           <div class="column">
             <div class="card">
