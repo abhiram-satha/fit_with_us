@@ -8,7 +8,7 @@ export default function BottomNav(props) {
   const activeRoute = activeURLArray[activeURLArray.length - 1];
 
   const [youClass, setYouClass] = useState(
-    ["homepage", "settings", "profile", "weightchart", "recipe-details"].includes(activeRoute) ? "is-active" : ""
+    ["homepage", "settings", "profile", "weightchart", "recipe-details", "food-restrictions"].includes(activeRoute) ? "is-active" : ""
   );
   const [usClass, setUsClass] = useState(
     activeRoute === "posts" ? "is-active" : ""
