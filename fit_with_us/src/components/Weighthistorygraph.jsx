@@ -24,7 +24,7 @@ export default function Weighthistorygraph({userWeight, updateWeight}) {
           <form onSubmit= {updateWeight} class="mt-4">
             <div class="field has-addons">
               <div class="control is-expanded">
-                <input class="input" placeholder="Enter Current Weight" type="number"/>
+                <input class="input" min="0" placeholder="Enter Current Weight" type="number"/>
               </div>
               <div class="control">
                 <Button type="submit" name="Submit" />

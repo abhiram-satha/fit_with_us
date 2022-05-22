@@ -422,7 +422,7 @@ export default function App() {
               path="/posts"
               element={
                 posts.length === 0 ? (
-                  <progress class="progress is-small is-primary" max="100">
+                  <progress className="progress is-small is-primary" max="100">
                     15%
                   </progress>
                 ) : (

@@ -20,7 +20,7 @@ export default function BottomNav(props) {
   };
 
   return (
-    <div class="navbar tabs is-toggle is-centered is-medium is-fullwidth is-fixed-bottom mb-0">
+    <div className="navbar tabs is-toggle is-centered is-medium is-fullwidth is-fixed-bottom mb-0">
       <ul>
         <li class={youClass} onClick={handleYouClick} id="you">
           {/* <Link to="/homepage">You</Link> */}
