@@ -92,7 +92,7 @@ export default function Form(props) {
     setAgeClass("input");
 
     e.preventDefault();
-    console.log(e);
+  
     const params = {
       email: e.target[0].value,
       password: e.target[2].value,
