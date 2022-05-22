@@ -15,8 +15,6 @@ import { useAlert } from "react-alert";
 import Settings from "./Settings";
 import UserDietaryRestrictions from "./UserDietaryRestrictions";
 import {
-  BrowserRouter as Router,
-  Link,
   Route,
   Routes,
   useLocation,

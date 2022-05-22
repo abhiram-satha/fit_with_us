@@ -9,8 +9,6 @@ export default function Posts({posts, comments, newComment, newPost, users}) {
   const parentPost = postsCopy.reverse().map(post=> {
     return <Thread newComment={newComment} key={post.id} postID={post.id} users={users} username={post.username} message={post.message} comments={comments}/>
   })
-
-
   
   return (
     <section class="section">
