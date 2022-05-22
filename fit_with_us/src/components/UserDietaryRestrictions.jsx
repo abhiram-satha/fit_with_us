@@ -95,69 +95,81 @@ export default function UserDietaryRestrictions({
   }, []);
 
   return (
-    <form
-      onSubmit={submitUserInformation}
-      action="http://localhost:8080/api/dietary_restrictions"
-      method="POST"
-    >
-      <input
-        type="checkbox"
-        value="1"
-        checked={selectedCategories.includes("chicken")}
-        onChange={(event) => handleSelect(event, "chicken")}
-      />
-      <label for="1">Chicken</label>
+    <section class="section">
+        <form
+          onSubmit={submitUserInformation}
+          action="http://localhost:8080/api/dietary_restrictions"
+          method="POST"
+        >
+          <div id="restrictions-card" class="card">
+            <h3 class="title is-5">What kinds of recipes would you like to see?</h3>
+          <label class="checkbox" for="1">
+           <input
+              type="checkbox"
+              value="1"
+              checked={selectedCategories.includes("chicken")}
+              onChange={(event) => handleSelect(event, "chicken")}
+            />
+            &nbsp;Recipes including chicken 
+          </label>
+          <br />
+          <label class="checkbox" for="2">
+            <input
+              type="checkbox"
+              value="2"
+              checked={selectedCategories.includes("fish")}
+              onChange={(event) => handleSelect(event, "fish")}
+            />
+            &nbsp;Recipes including fish
+          </label>
+          <br />
+          <label class="checkbox" for="3">
+            <input
+              type="checkbox"
+              value="3"
+              checked={selectedCategories.includes("beef")}
+              onChange={(event) => handleSelect(event, "beef")}
+            />
+          &nbsp;Recipes including beef</label>
+          <br />
+          <label class="checkbox" for="4">
+            <input
+              type="checkbox"
+              value="4"
+              checked={selectedCategories.includes("pork")}
+              onChange={(event) => handleSelect(event, "pork")}
+            />
+          &nbsp;Recipes including pork</label>
+          <br />
+          <label class="checkbox" for="5">
+            <input
+              type="checkbox"
+              value="5"
+              checked={selectedCategories.includes("vegetarian")}
+              onChange={(event) => handleSelect(event, "vegetarian")}
+            />
+          &nbsp;Vegetarian recipes</label>
+          <br />
+          <label class="checkbox" for="6">
+            <input
+              type="checkbox"
+              value="6"
+              checked={selectedCategories.includes("vegan")}
+              onChange={(event) => handleSelect(event, "vegan")}
+            />
+          &nbsp;Vegan recipes</label>
+          </div>
+          <FormCategory
+            onChange={addToOptionsList}
+            optionsName="dietary-choices"
+            name="dietaryRestrictions"
+            options={dietaryRestrictions}
+            size={true}
+            value={currentOptionsValue}
+          />
 
-      <input
-        type="checkbox"
-        value="2"
-        checked={selectedCategories.includes("fish")}
-        onChange={(event) => handleSelect(event, "fish")}
-      />
-      <label for="2">Fish</label>
-
-      <input
-        type="checkbox"
-        value="3"
-        checked={selectedCategories.includes("beef")}
-        onChange={(event) => handleSelect(event, "beef")}
-      />
-      <label for="3">Beef</label>
-
-      <input
-        type="checkbox"
-        value="4"
-        checked={selectedCategories.includes("pork")}
-        onChange={(event) => handleSelect(event, "pork")}
-      />
-      <label for="4">Pork</label>
-
-      <input
-        type="checkbox"
-        value="5"
-        checked={selectedCategories.includes("vegetarian")}
-        onChange={(event) => handleSelect(event, "vegetarian")}
-      />
-      <label for="5">Vegetarian</label>
-
-      <input
-        type="checkbox"
-        value="6"
-        checked={selectedCategories.includes("vegan")}
-        onChange={(event) => handleSelect(event, "vegan")}
-      />
-      <label for="6">Vegan</label>
-
-      <FormCategory
-        onChange={addToOptionsList}
-        optionsName="dietary-choices"
-        name="dietaryRestrictions"
-        options={dietaryRestrictions}
-        size={true}
-        value={currentOptionsValue}
-      />
-
-      <Button name="Submit" />
-    </form>
+          <Button name="Submit" />
+        </form>
+    </section>
   );
 }

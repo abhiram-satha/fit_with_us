@@ -1,12 +1,17 @@
 import React from "react";
 import { useState } from "react";
 
+
 export default function BottomNav(props) {
+
+  const activeURLArray = window.location.href.split("/");
+  const activeRoute = activeURLArray[activeURLArray.length - 1];
+
   const [youClass, setYouClass] = useState(
-    window.location.href === "http://localhost:3002/homepage" ? "is-active" : ""
+    ["homepage", "settings", "profile", "weightchart", "recipe-details", "food-restrictions", "settings?"].includes(activeRoute) ? "is-active" : ""
   );
   const [usClass, setUsClass] = useState(
-    window.location.href === "http://localhost:3002/posts" ? "is-active" : ""
+    activeRoute === "posts" ? "is-active" : ""
   );
 
   const handleYouClick = () => {

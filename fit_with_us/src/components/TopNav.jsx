@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import "../helpers/navbarQuery";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link} from "react-router-dom";
 import UserProfile from "./UserProfile";
 import "../styles/TopNav.scss";
 
@@ -26,11 +26,12 @@ export default function TopNav(props) {
         aria-label="main navigation"
       >
         <div class="navbar-brand">
-          <a class="navbar-item" href="https://bulma.io">
-            {/* <img src="https://i.imgur.com/cBZaCDn.png" /> */}
-            <img src="https://i.imgur.com/yCquLwJ.png" />
-          </a>
-
+          <Link to="/homepage">
+            <a class="navbar-item">
+              {/* <img src="https://i.imgur.com/cBZaCDn.png" /> */}
+              <img src="https://i.imgur.com/yCquLwJ.png" />
+            </a>
+          </Link>
           <button
             onClick={handleBurger}
             role="button"
@@ -50,8 +51,6 @@ export default function TopNav(props) {
             <a href="/profile " class="navbar-item">
               Profile
             </a>
-
-            <a class="navbar-item">Messages</a>
 
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">Update your journey</a>
