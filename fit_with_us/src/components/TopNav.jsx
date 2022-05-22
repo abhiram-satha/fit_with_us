@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Button from "./Button";
-import "../helpers/navbarQuery";
 import { Link } from "react-router-dom";
 import UserProfile from "./UserProfile";
 import "../styles/TopNav.scss";
@@ -28,7 +27,6 @@ export default function TopNav(props) {
         <div className="navbar-brand">
           <Link to="/homepage">
             <a className="navbar-item">
-              {/* <img src="https://i.imgur.com/cBZaCDn.png" /> */}
               <img src="https://i.imgur.com/yCquLwJ.png" />
             </a>
           </Link>

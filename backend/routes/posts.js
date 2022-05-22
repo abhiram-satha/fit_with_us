@@ -39,7 +39,6 @@ module.exports = (db) => {
 
     const query = `UPDATE post SET message = $2 WHERE id = $1`;
 
-    console.log(query);
     db.query(query, values)
       .then((data) => {
         res.send("Post Updated");

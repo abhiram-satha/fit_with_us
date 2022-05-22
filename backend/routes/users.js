@@ -40,8 +40,7 @@ module.exports = (db) => {
         ? Math.round(userInfo.currentWeight)
         : Math.round(userInfo.currentWeight * 2.20462);
 
-    console.log(userInfo.currentWeightUnit);
-    const adjustedGoalWeight =
+      const adjustedGoalWeight =
       userInfo.goalWeightUnit === "lbs"
         ? Math.round(userInfo.goalWeight)
         : Math.round(userInfo.goalWeight * 2.20462);
@@ -49,7 +48,7 @@ module.exports = (db) => {
       userInfo.heightUnit === "cms"
         ? Math.round(userInfo.height)
         : Math.round(userInfo.height * 2.54);
-    console.log(adjustedCurrentWeight, adjustedGoalWeight, adjustedHeight);
+
     const values = [
       userInfo.email,
       hashedPassword,
@@ -60,7 +59,7 @@ module.exports = (db) => {
       2022 - userInfo.age,
       userInfo.gender,
     ];
-    console.log();
+
     const query = `INSERT INTO users(email, password, username, current_weight, goal_weight, height, age, gender) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
     db.query(query, values)
       .then(() => console.log("Successfully created!"))

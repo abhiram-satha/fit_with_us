@@ -7,8 +7,6 @@ export default function RecipeCard({ recipeRecord, recipes }) {
 
   const url = recipe ? recipe.url : "http://localhost:3003/homepage";
 
-  console.log(recipe);
-  console.log(url);
   return (
     <div className="column">
       <div className="card">

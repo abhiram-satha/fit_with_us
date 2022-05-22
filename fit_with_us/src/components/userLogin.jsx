@@ -37,7 +37,7 @@ export default function UserLogin({
     Promise.all([axios.get("http://localhost:8080/api/users", { params })])
       .then((all) => {
         const userData = all[0].data.users;
-        console.log(userData);
+   
         const user = userData[0];
         if (userData.length !== 0) {
           const errorInformation = loggedInUser(user.id);
@@ -55,9 +55,7 @@ export default function UserLogin({
         }
       })
       .then((response) => {
-        console.log(response);
-
-        if (
+         if (
           response !== "The email is incorrect" &&
           response !== "The password is incorrect"
         ) {

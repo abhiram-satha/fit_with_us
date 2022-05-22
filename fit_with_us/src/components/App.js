@@ -253,8 +253,6 @@ export default function App() {
   };
 
   const updateGoalWeight = (event) => {
-    console.log(event.target.value);
-    // console.log(userID);
     event.preventDefault();
 
     const data = {
