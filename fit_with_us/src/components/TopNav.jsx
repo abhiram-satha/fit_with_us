@@ -52,8 +52,6 @@ export default function TopNav(props) {
               Profile
             </a>
 
-            <a class="navbar-item">Messages</a>
-
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">Update your journey</a>
 
