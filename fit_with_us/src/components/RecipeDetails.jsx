@@ -44,7 +44,7 @@ export default function RecipeDetails({
       <section className="section">
         <div id="back" className="mb-4">
           <Link to="/homepage">
-            <i id="back-icon" className="fa-solid fa-angle-left"></i>
+            <i id="back-icon" className="fa-solid fa-angle-left">&nbsp;Back</i>
           </Link>
         </div>
         <div className="columns is-two-thirds">
@@ -123,7 +123,7 @@ export default function RecipeDetails({
               </button>
             )}
           </div>
-          
+
           <div className="column">
             <div className="card">
               <table className="table is-striped is-fullwidth">
