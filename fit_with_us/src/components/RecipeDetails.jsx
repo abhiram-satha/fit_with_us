@@ -101,20 +101,7 @@ export default function RecipeDetails({
               </div>
             </div>
           </div>
-          <div className="column">
-            <div className="card">
-              <table className="table is-striped is-fullwidth">
-                <thead>
-                  <tr>
-                    <th>What you'll need:</th>
-                  </tr>
-                </thead>
-                <tbody className="recipe-ingredients-overflow">
-                  {RecipeIngredientsArray}
-                </tbody>
-              </table>
-            </div>
-          </div>
+
           <div className="recipe-button column">
             {recipeRecord !== 0 && (
               <button
@@ -136,6 +123,22 @@ export default function RecipeDetails({
               </button>
             )}
           </div>
+          
+          <div className="column">
+            <div className="card">
+              <table className="table is-striped is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>What you'll need:</th>
+                  </tr>
+                </thead>
+                <tbody className="recipe-ingredients-overflow">
+                  {RecipeIngredientsArray}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
         </div>
       </section>
     ) : (
