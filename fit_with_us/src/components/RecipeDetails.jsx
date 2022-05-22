@@ -106,29 +106,30 @@ export default function RecipeDetails({
                 </thead>
                 <tbody className="recipe-ingredients-overflow">{RecipeIngredientsArray}</tbody>
               </table>
-              <div className="recipe-button">
+
+            </div>
+          </div>
+          <div class="recipe-button column">
                 {recipeRecord !== 0 && (
                   <button
                     className="button is-primary"
                     onClick={() => setRecipeRecord((prev) => prev - 1)}
                   >
-                    Prev
+                    Previous recipe
                   </button>
                 )}
                 
                 {recipeRecord !== 19 && (
                   <button
-                    className="button is-primary"
+                    className="button is-primary is-pulled-right"
                     onClick={() =>
                       setRecipeRecord((prev) => Number.parseInt(prev) + 1)
                     }
                   >
-                    Next
+                    Next recipe
                   </button>
                 )}
               </div>
-            </div>
-          </div>
         </div>
       </section>
     ) : (
