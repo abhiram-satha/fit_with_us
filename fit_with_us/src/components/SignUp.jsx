@@ -67,11 +67,11 @@ export default function Form(props) {
     }
 
     if (feb.includes(month) && day >= 1 && day <= 28) {
-      return true
+      return true;
     }
 
     return false;
-  }
+  };
 
   const submitUserInformation = async (e) => {
     //Reset States
@@ -152,7 +152,7 @@ export default function Form(props) {
       return setAgeClass("input is-danger");
     }
 
-    if(!checkValidBirthDate(month, day)) {
+    if (!checkValidBirthDate(month, day)) {
       setErrorAge("Please enter a valid birth date");
       return setAgeClass("input is-danger");
     }
@@ -364,12 +364,12 @@ export default function Form(props) {
               />
             </div>
           </div>
-          <p class="help is-danger attaches-to-above-div">{errorAge}</p>
-          <div class="field">
-            <label htmlFor="gender" class="label">
+          <p className="help is-danger attaches-to-above-div">{errorAge}</p>
+          <div className="field">
+            <label htmlFor="gender" className="label">
               Gender
             </label>
-            <div class="select">
+            <div className="select">
               <select id="gender" name="gender">
                 <option>Male</option>
                 <option>Female</option>
@@ -377,21 +377,21 @@ export default function Form(props) {
               </select>
             </div>
           </div>
-          <label class="label" htmlFor="currentWeight">
+          <label className="label" htmlFor="currentWeight">
             Current weight
           </label>
-          <div class="field has-addons">
-            <p class="control is-expanded">
+          <div className="field has-addons">
+            <p className="control is-expanded">
               <input
-                class={currentWeightClass}
+                className={currentWeightClass}
                 type="number"
                 name="currentWeight"
                 id="currentWeight"
                 placeholder="Enter your current weight"
               />
             </p>
-            <p class="control">
-              <span class="select">
+            <p className="control">
+              <span className="select">
                 <select>
                   <option>lbs</option>
                   <option>kgs</option>
@@ -399,24 +399,24 @@ export default function Form(props) {
               </span>
             </p>
           </div>
-          <p class="help is-danger attaches-to-above-div">
+          <p className="help is-danger attaches-to-above-div">
             {errorCurrentWeight}
           </p>
-          <label htmlFor="goalWeight" class="label">
+          <label htmlFor="goalWeight" className="label">
             Goal weight
           </label>
-          <div class="field has-addons">
-            <p class="control is-expanded">
+          <div className="field has-addons">
+            <p className="control is-expanded">
               <input
                 name="goalWeight"
                 id="goalWeight"
-                class={goalWeightClass}
+                className={goalWeightClass}
                 type="number"
                 placeholder="Enter your desired weight"
               />
             </p>
-            <p class="control">
-              <span class="select">
+            <p className="control">
+              <span className="select">
                 <select>
                   <option>lbs</option>
                   <option>kgs</option>
@@ -424,22 +424,24 @@ export default function Form(props) {
               </span>
             </p>
           </div>
-          <p class="help is-danger attaches-to-above-div">{errorGoalWeight}</p>
-          <label htmlFor="height" class="label">
+          <p className="help is-danger attaches-to-above-div">
+            {errorGoalWeight}
+          </p>
+          <label htmlFor="height" className="label">
             Height
           </label>
-          <div class="field has-addons">
-            <p class="control is-expanded">
+          <div className="field has-addons">
+            <p className="control is-expanded">
               <input
-                class={heightClass}
+                className={heightClass}
                 name="height"
                 id="height"
                 type="number"
                 placeholder="Enter your height"
               />
             </p>
-            <p class="control">
-              <span class="select">
+            <p className="control">
+              <span className="select">
                 <select>
                   <option>in.</option>
                   <option>cms</option>
@@ -447,68 +449,19 @@ export default function Form(props) {
               </span>
             </p>
           </div>
-          <p class="help is-danger attaches-to-above-div">{errorHeight}</p>
-          <div class="field mt-5">
-            <div class="control">
+          <p className="help is-danger attaches-to-above-div">{errorHeight}</p>
+          <div className="field mt-5">
+            <div className="control">
               <Button name="Submit" />
             </div>
           </div>
         </form>
         <br />
         <br />
-        <a onClick={props.returnToLogin} class="is-pulled-right">
+        <a onClick={props.returnToLogin} className="is-pulled-right">
           Already have an account? Click here
         </a>
       </div>
     </div>
-
-    // const email = e.target[0].value;
-    // const password = e.target[2].value;
-    // const passwordConfirmation = e.target[3].value;
-    // const username = e.target[1].value;
-    // const currentWeight = e.target[9].value;
-    // const goalWeight = e.target[11].value;
-    // const height = e.target[13].value;
-    // const age = e.target[4].value;
-    // const gender = e.target[7].value;
   );
 }
-
-// return (
-//   <form
-//     onSubmit={submitUserInformation}
-//     action="http://localhost:8080/api/users"
-//     method="POST"
-//   >
-//     <FormCategory name="email" type="email" class={emailClass} />
-//     {errorEmail ? <Error errorMessage={errorEmail} /> : null}
-//     <FormCategory name="password" type="password" class={passwordClass} />
-//     <FormCategory
-//       name="passwordConfirmation"
-//       type="password"
-//       class={passwordConfirmationClass}
-//     />
-//     {errorPassword ? <Error errorMessage={errorPassword} /> : null}
-//     <FormCategory name="username" type="text" class={usernameClass} />
-//     {errorUsername ? <Error errorMessage={errorUsername} /> : null}
-//     <FormCategory
-//       name="currentWeight"
-//       type="number"
-//       class={currentWeightClass}
-//     />
-//     {errorCurrentWeight ? <Error errorMessage={errorCurrentWeight} /> : null}
-//     <FormCategory name="goalWeight" type="number" class={goalWeightClass} />
-//     {errorGoalWeight ? <Error errorMessage={errorGoalWeight} /> : null}
-//     <FormCategory name="height" type="number" class={heightClass} />
-//     {errorHeight ? <Error errorMessage={errorHeight} /> : null}
-//     <FormCategory name="age" type="number" class={ageClass} />
-//     {errorAge ? <Error errorMessage={errorAge} /> : null}
-//     <FormCategory
-//       optionsName="gender-choices"
-//       name="gender"
-//       options={["-----", "Male", "Female", "Prefer not to disclose"]}
-//     />
-//     <Button name="Submit" />
-//   </form>
-// );
-//}

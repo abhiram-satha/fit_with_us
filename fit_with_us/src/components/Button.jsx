@@ -8,7 +8,7 @@ export default function Button(props) {
       type={props.type}
     >
       {props.name}
-      <i class={props.icon}></i>
+      <i className={props.icon}></i>
     </button>
   );
 }

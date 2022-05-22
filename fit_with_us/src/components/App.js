@@ -14,11 +14,7 @@ import RecipeDetails from "./RecipeDetails";
 import { useAlert } from "react-alert";
 import Settings from "./Settings";
 import UserDietaryRestrictions from "./UserDietaryRestrictions";
-import {
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
 import UserProfile from "./UserProfile";
 import Weighthistorygraph from "./Weighthistorygraph";
@@ -263,9 +259,7 @@ export default function App() {
       axios
         .post(`http://localhost:8080/api/weights/${userID}`, data)
 
-        .then(() =>
-          axios.get(`http://localhost:8080/api/weights/${userID}`)
-        )
+        .then(() => axios.get(`http://localhost:8080/api/weights/${userID}`))
         .then((weights) => setWeight(weights.data.weights))
         .then(() => (event.target[0].value = ""))
         .catch((error) => console.log(error));
@@ -275,26 +269,25 @@ export default function App() {
   const updateGoalWeight = (event) => {
     console.log(event.target.value);
     // console.log(userID);
-      event.preventDefault();
+    event.preventDefault();
 
-      const data = {
-        goal_weight: event.target.value,
-      };
+    const data = {
+      goal_weight: event.target.value,
+    };
 
-      axios
-        .put(`http://localhost:8080/api/user/${userID}`, data)
+    axios
+      .put(`http://localhost:8080/api/user/${userID}`, data)
 
-        .then(() => {
-          return Promise.all([
-            axios.get(`http://localhost:8080/api/user/${userID}`),
-          ]);
-        })
-        .then((data) => {
-          console.log(data);
-          return setUsers(data[0].data);
-        })
-        .catch((error) => console.log(error));
-    
+      .then(() => {
+        return Promise.all([
+          axios.get(`http://localhost:8080/api/user/${userID}`),
+        ]);
+      })
+      .then((data) => {
+        console.log(data);
+        return setUsers(data[0].data);
+      })
+      .catch((error) => console.log(error));
   };
 
   const deleteCategory = (event, categoryToRemove) => {
@@ -403,7 +396,7 @@ export default function App() {
               }
             />
 
-              <Route
+            <Route
               path={`/weightchart`}
               element={
                 <Weighthistorygraph
@@ -415,12 +408,12 @@ export default function App() {
                   recipes={recipes}
                 />
               }
-            />    
+            />
             <Route
               path="/posts"
               element={
                 posts.length === 0 ? (
-                  <progress class="progress is-small is-primary" max="100">
+                  <progress className="progress is-small is-primary" max="100">
                     15%
                   </progress>
                 ) : (

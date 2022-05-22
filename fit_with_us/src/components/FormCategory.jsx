@@ -27,13 +27,13 @@ export default function FormCategory(props) {
       })
     : null;
 
-    const labelize = (label) => {
-      return label[0].toUpperCase() + label.slice(1, label.length)
-    }
+  const labelize = (label) => {
+    return label[0].toUpperCase() + label.slice(1, label.length);
+  };
 
   return (
-    <div class="field">
-      <label htmlFor={props.name} class="label">
+    <div className="field">
+      <label htmlFor={props.name} className="label">
         {labelize(props.name)}
       </label>
       {inputList ? (
@@ -49,7 +49,7 @@ export default function FormCategory(props) {
         </select>
       ) : (
         <input
-          class={props.class}
+          className={props.class}
           type={props.type}
           name={props.name}
           id={props.id ? props.id : props.name}

@@ -10,9 +10,6 @@ export default function UserProfile({ user, badges, weight }) {
   const [totalComments, setTotalComments] = useState(0);
   const [totalWeight, setTotalWeight] = useState(0);
 
-  
-  
-
   //User Information
 
   const userID = user.users ? user.users[0].id : null;
@@ -200,7 +197,6 @@ export default function UserProfile({ user, badges, weight }) {
   };
 
   useEffect(() => {
-
     //Fetch Total Posts for Users
     const fetchTotalPosts = async () => await getTotalPosts();
     fetchTotalPosts()
@@ -211,7 +207,7 @@ export default function UserProfile({ user, badges, weight }) {
     const fetchTotalComments = async () => await getTotalComments();
     fetchTotalComments()
       .then((response) => setTotalComments(parseInt(response.data.total.count)))
-      .then(()=> setTotalWeight(weight.length))
+      .then(() => setTotalWeight(weight.length))
       .catch((err) => console.log(err));
   }, [userID]);
 
@@ -222,12 +218,12 @@ export default function UserProfile({ user, badges, weight }) {
       <div className="column is-four-fifths">
         <h1 className="title is-5 has-text-centered">{`User Profile for ${username}`}</h1>
         <h2 className="title is-6">User Information</h2>
-        <table class="table is-striped is-fullwidth">
+        <table className="table is-striped is-fullwidth">
           <tbody>
             <TableRow name="Age" value={age} />
             <TableRow name="Gender" value={gender} />
             <TableRow name="Starting Weight (lb):" value={currentWeight} />
-            <TableRow name="Current Weight (lb):"  value={latestWeight}/>
+            <TableRow name="Current Weight (lb):" value={latestWeight} />
             <TableRow name="Goal Weight (lb):" value={goalWeight} />
             <TableRow name="Height (cm):" value={height} />
           </tbody>

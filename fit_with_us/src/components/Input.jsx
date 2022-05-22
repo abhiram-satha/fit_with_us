@@ -7,7 +7,7 @@ export default function Input(props) {
     case "input":
       inputTypeElement = (
         <input
-          class={props.inputType}
+          className={props.inputType}
           type={props.type}
           placeholder={props.placeholder}
         />
@@ -16,7 +16,7 @@ export default function Input(props) {
     case "textarea":
       inputTypeElement = (
         <textarea
-          class="textarea"
+          className="textarea"
           type={props.type}
           placeholder={props.placeholder}
         />
@@ -24,10 +24,10 @@ export default function Input(props) {
       break;
   }
   return (
-    <div class="field">
-      <label class="label">{props.label}</label>
-      <div class="control">{inputTypeElement}</div>
-      <p class="help is-danger">{props.help}</p>
+    <div className="field">
+      <label className="label">{props.label}</label>
+      <div className="control">{inputTypeElement}</div>
+      <p className="help is-danger">{props.help}</p>
     </div>
   );
 }
