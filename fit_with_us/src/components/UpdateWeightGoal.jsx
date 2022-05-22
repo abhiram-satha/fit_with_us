@@ -19,9 +19,9 @@ export default function UpdateWeightGoal({ users, updateGoalWeight }) {
                 placeholder={placeholderString}
               />
             </div>
-            <div className="control">
+            {/* <div className="control">
               <Button type="submit" name="Update" />
-            </div>
+            </div> */}
           </div>
         </form>
       </div>{" "}

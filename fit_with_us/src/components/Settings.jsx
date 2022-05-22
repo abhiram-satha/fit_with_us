@@ -24,7 +24,7 @@ export default function Settings({
           className="button is-primary full-length"
           onClick={reloadRecipes}
         >
-          Update Recipes
+          Update Settings
         </button>
       </Link>
     </section>
