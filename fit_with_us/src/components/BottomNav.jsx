@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
+
 export default function BottomNav(props) {
   const [youClass, setYouClass] = useState(
     window.location.href === "http://localhost:3002/homepage" ? "is-active" : ""
