@@ -29,22 +29,7 @@ export default function App() {
   const [login, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false);
   const [recipes, setRecipes] = useState([[]]);
-  // ([
-  //   [
-  //     {
-  //       recipe: {
-  //         images: {
-  //           THUMBNAIL: { url: null },
-  //         },
-  //         yield: null,
-  //         calories: null,
-  //         label: null,
-  //         ingredients: ["milk"],
-  //         url: null,
-  //       },
-  //     },
-  //   ],
-  // ]);
+
   const alert = useAlert();
   const [weight, setWeight] = useState([]);
   const [posts, setPosts] = useState([]);

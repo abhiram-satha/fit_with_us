@@ -9,12 +9,10 @@ export default function UserDietaryRestrictions({
   userID,
   setUserHasRestrictions,
   selectedCategories,
-  setSelectedCategories,
   deleteCategory,
   addCategory,
 }) {
   //States
-  const [currentOptionsValue, setCurrentOptionsValues] = useState(["None"]);
   const [dietaryRestrictions, setDietaryRestrictions] = useState([]);
 
   const navigate = useNavigate();
@@ -35,23 +33,37 @@ export default function UserDietaryRestrictions({
     await axios.post("http://localhost:8080/api/dietary_restrictions", params);
   }
 
-  function addToOptionsList(e) {
-    const numberOfOptions = dietaryRestrictions.length;
-    const selectedList = [];
+  //Create food allergy options for form
+  let dietaryID = 0;
+  const dietaryRestrictionsOptions = dietaryRestrictions.map((restriction) => {
+    dietaryID++;
 
-    for (let i = 0; i < numberOfOptions; i++) {
-      if (e.target[i].selected) {
-        selectedList.push(e.target[i].value);
+    return <FormCategory key={dietaryID} name={restriction} />;
+  });
+
+  //Creates list of checked dietary restrictions from form
+  const createUserDietaryRestrictionValues = (dietarySubmission) => {
+    const listOfUserValues = [];
+    const numberOfOptions = dietaryRestrictions.length;
+
+    for (let i = 0; i < numberOfOptions - 1; i++) {
+      if (dietarySubmission[i].checked) {
+        listOfUserValues.push(dietarySubmission[i].value);
       }
     }
-    setCurrentOptionsValues(selectedList);
-  }
+
+    return listOfUserValues;
+  };
 
   const submitUserInformation = async (e) => {
     e.preventDefault();
 
+    const userDietaryRestrictionsInput = createUserDietaryRestrictionValues(
+      e.target
+    );
+
     const checkCurrentOptions = async () => {
-      await currentOptionsValue.map(async (restriction) => {
+      await userDietaryRestrictionsInput.map(async (restriction) => {
         await createUsersDietaryRestrictions(restriction);
       });
     };
@@ -64,24 +76,6 @@ export default function UserDietaryRestrictions({
       })
       .catch((err) => console.log(err));
   };
-
-  let unique_category = [];
-  const unique_categories = (selectedCategories) => {
-    selectedCategories.forEach((c) => {
-      if (!unique_category.includes(c)) {
-        unique_category.push(c);
-      }
-    });
-  };
-  unique_categories(selectedCategories);
-
-  function handleSelect(event, category) {
-    if (selectedCategories.includes(category)) {
-      deleteCategory(event, category);
-    } else {
-      addCategory(event, category);
-    }
-  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -102,20 +96,18 @@ export default function UserDietaryRestrictions({
         selectedCategories={selectedCategories}
         addCategory={addCategory}
       />
+
       <form
         onSubmit={submitUserInformation}
         action="http://localhost:8080/api/dietary_restrictions"
         method="POST"
       >
-        <FormCategory
-          onChange={addToOptionsList}
-          optionsName="dietary-choices"
-          name="dietaryRestrictions"
-          options={dietaryRestrictions}
-          size={true}
-          value={currentOptionsValue}
-        />
-
+        <div className="card restrictions-card mb-4">
+          <h3 className="title is-5">
+            Let us know if you have any food allergies.
+          </h3>
+          {dietaryRestrictionsOptions}
+        </div>
         <Button name="Submit" />
       </form>
     </section>

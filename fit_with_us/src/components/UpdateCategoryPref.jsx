@@ -14,7 +14,7 @@ export default function UpdateCategoryPref({
   unique_categories(selectedCategories);
 
   return (
-    <div id="restrictions-card" className="card mb-4">
+    <div className="card restrictions-card mb-4">
       <h3 className="title is-5">
         What kinds of recipes would you like to see?
       </h3>
