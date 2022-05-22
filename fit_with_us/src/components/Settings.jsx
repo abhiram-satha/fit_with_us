@@ -11,7 +11,7 @@ export default function Settings({
   reloadRecipes,
 }) {
   return (
-    <section class="section">
+    <section className="section">
       <UpdateWeightGoal users={users} updateGoalWeight={updateGoalWeight} />
 
       <UpdateCategoryPref
@@ -21,9 +21,12 @@ export default function Settings({
         reloadRecipes={reloadRecipes}
       />
       <Link to="/homepage">
-      <button className="button is-primary full-length" onClick={reloadRecipes}>
-        Update Recipes
-      </button>
+        <button
+          className="button is-primary full-length"
+          onClick={reloadRecipes}
+        >
+          Update Recipes
+        </button>
       </Link>
     </section>
   );

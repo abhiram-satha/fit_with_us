@@ -252,92 +252,92 @@ export default function Form(props) {
   };
 
   return (
-    <div class="columns is-mobile is-centered">
-      <div class="column is-four-fifths">
+    <div className="columns is-mobile is-centered">
+      <div className="column is-four-fifths">
         <form
           onSubmit={submitUserInformation}
           action="http://localhost:8080/api/user"
           method="POST"
         >
-          <div class="field">
-            <label htmlFor="email" class="label">
+          <div className="field">
+            <label htmlFor="email" className="label">
               Email
             </label>
-            <div class="control has-icons-left">
+            <div className="control has-icons-left">
               <input
-                class={emailClass}
+                className={emailClass}
                 name="email"
                 id="email"
                 type="email"
                 placeholder="Email"
               />
-              <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
+              <span className="icon is-small is-left">
+                <i className="fas fa-envelope"></i>
               </span>
             </div>
-            <p class="help is-danger">{errorEmail}</p>
+            <p className="help is-danger">{errorEmail}</p>
           </div>
-          <div class="field">
-            <label class="label" htmlFor="username">
+          <div className="field">
+            <label className="label" htmlFor="username">
               Username
             </label>
-            <div class="control has-icons-left">
+            <div className="control has-icons-left">
               <input
-                class={usernameClass}
+                className={usernameClass}
                 name="username"
                 id="username"
                 type="text"
                 placeholder="Username"
               />
-              <span class="icon is-small is-left">
-                <i class="fas fa-user"></i>
+              <span className="icon is-small is-left">
+                <i className="fas fa-user"></i>
               </span>
             </div>
-            <p class="help is-danger">{errorUsername}</p>
+            <p className="help is-danger">{errorUsername}</p>
           </div>
-          <div class="field">
-            <label htmlFor="password" class="label">
+          <div className="field">
+            <label htmlFor="password" className="label">
               Password
             </label>
-            <div class="control has-icons-left">
+            <div className="control has-icons-left">
               <input
-                class={passwordClass}
+                className={passwordClass}
                 name="password"
                 id="password"
                 type="password"
                 placeholder="Password"
               />
-              <span class="icon is-small is-left">
-                <i class="fas fa-user"></i>
+              <span className="icon is-small is-left">
+                <i className="fas fa-user"></i>
               </span>
             </div>
-            <p class="help is-danger">{errorPassword}</p>
+            <p className="help is-danger">{errorPassword}</p>
           </div>
-          <div class="field">
-            <label htmlFor="passwordConfirmation" class="label">
+          <div className="field">
+            <label htmlFor="passwordConfirmation" className="label">
               Re-enter your password
             </label>
-            <div class="control has-icons-left">
+            <div className="control has-icons-left">
               <input
-                class={passwordConfirmationClass}
+                className={passwordConfirmationClass}
                 name="passwordConfirmation"
                 id="passwordConfirmation"
                 type="password"
                 placeholder="Password"
               />
-              <span class="icon is-small is-left">
-                <i class="fas fa-user"></i>
+              <span className="icon is-small is-left">
+                <i className="fas fa-user"></i>
               </span>
             </div>
-            <p class="help is-danger">{errorPassword}</p>
+            <p className="help is-danger">{errorPassword}</p>
           </div>
-          <label htmlFor="age" class="label">
+          <label htmlFor="age" className="label">
             Birth date
           </label>
-          <div class="field is-grouped">
-            <div class="control">
+          <div className="field is-grouped">
+            <div className="control">
               <input
-                class={ageClass}
+                className={ageClass}
                 name="age"
                 id="age"
                 type="number"
@@ -345,9 +345,9 @@ export default function Form(props) {
                 placeholder="YYYY"
               />
             </div>
-            <div class="control">
+            <div className="control">
               <input
-                class={ageClass}
+                className={ageClass}
                 id="month"
                 type="number"
                 maxlength="2"
@@ -356,9 +356,9 @@ export default function Form(props) {
                 placeholder="MM"
               />
             </div>
-            <div class="control">
+            <div className="control">
               <input
-                class={ageClass}
+                className={ageClass}
                 id="day"
                 type="number"
                 maxlength="2"

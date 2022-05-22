@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import "../helpers/navbarQuery";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import UserProfile from "./UserProfile";
 import "../styles/TopNav.scss";
 
@@ -20,14 +20,14 @@ export default function TopNav(props) {
   return (
     <>
       <nav
-        class="navbar"
+        className="navbar"
         id="topnav"
         role="navigation"
         aria-label="main navigation"
       >
-        <div class="navbar-brand">
+        <div className="navbar-brand">
           <Link to="/homepage">
-            <a class="navbar-item">
+            <a className="navbar-item">
               {/* <img src="https://i.imgur.com/cBZaCDn.png" /> */}
               <img src="https://i.imgur.com/yCquLwJ.png" />
             </a>
@@ -35,7 +35,7 @@ export default function TopNav(props) {
           <button
             onClick={handleBurger}
             role="button"
-            class={burgerClass}
+            className={burgerClass}
             aria-label="menu"
             aria-expanded="false"
             data-target="navbarBasicExample"
@@ -46,30 +46,32 @@ export default function TopNav(props) {
           </button>
         </div>
 
-        <div id="navbarBasicExample" class={menuClass}>
-          <div class="navbar-start">
-            <a href="/profile " class="navbar-item">
+        <div id="navbarBasicExample" className={menuClass}>
+          <div className="navbar-start">
+            <a href="/profile " className="navbar-item">
               Profile
             </a>
 
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">Update your journey</a>
+            <div className="navbar-item has-dropdown is-hoverable">
+              <a className="navbar-link">Update your journey</a>
 
-              <div class="navbar-dropdown">
-                <a href="/weightchart" class="navbar-item">Update current weight</a>
-                <a href="/recipe-details" class="navbar-item">
+              <div className="navbar-dropdown">
+                <a href="/weightchart" className="navbar-item">
+                  Update current weight
+                </a>
+                <a href="/recipe-details" className="navbar-item">
                   Change recipe
                 </a>
               </div>
             </div>
-            <a href="/settings" class="navbar-item">
+            <a href="/settings" className="navbar-item">
               Settings
             </a>
           </div>
 
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
+          <div className="navbar-end">
+            <div className="navbar-item">
+              <div className="buttons">
                 {props.backButton ? (
                   <Button
                     onClick={props.backButton}

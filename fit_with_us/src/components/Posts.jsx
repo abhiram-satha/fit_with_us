@@ -11,7 +11,6 @@ export default function Posts({ posts, comments, newComment, newPost, users }) {
         newComment={newComment}
         key={post.id}
         postID={post.id}
-        users={users}
         username={post.username}
         message={post.message}
         comments={comments}

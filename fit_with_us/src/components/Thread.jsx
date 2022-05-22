@@ -1,34 +1,32 @@
-import Comment from "./Comment"
-import CommentReply from "./CommentReply"
+import Comment from "./Comment";
+import CommentReply from "./CommentReply";
 
-export default function Thread({newComment, users,username, message, comments, postID}) {
-
-  const commentArray = comments.filter((comment) => {
-    return comment.parent_id === postID
-  } ).map(comment => {
-    return <Comment comment={comment} />
-  })
+export default function Thread({
+  newComment,
+  username,
+  message,
+  comments,
+  postID,
+}) {
+  const commentArray = comments
+    .filter((comment) => {
+      return comment.parent_id === postID;
+    })
+    .map((comment) => {
+      return <Comment comment={comment} />;
+    });
 
   return (
-    // <div>
-    // {username}<br/>
-    // {message}
-    //   {commentArray}
-    // <CommentReply post_id={postID} newComment={newComment}/>
-    // <br/>
-    // </div>
-    <div class="card mb-2">
-      <div class="card-content mb-0">
-        <div class="media mb-0">
-          <div class="media-content">
-            <p class="username title is-6">{username}</p>
+    <div className="card mb-2">
+      <div className="card-content mb-0">
+        <div className="media mb-0">
+          <div className="media-content">
+            <p className="username title is-6">{username}</p>
           </div>
         </div>
-          <div class="content mb-2">
-           {message}
-          </div>
-          <CommentReply post_id={postID} newComment={newComment}/>
-          {commentArray}
+        <div className="content mb-2">{message}</div>
+        <CommentReply post_id={postID} newComment={newComment} />
+        {commentArray}
       </div>
     </div>
   );

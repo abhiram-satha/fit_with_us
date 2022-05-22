@@ -101,7 +101,7 @@ export default function UserLogin({
           <Button fw="is-fullwidth" name="Log in" />
         </form>
         <br />
-        <a onClick={signUserUp} class="is-pulled-right">
+        <a onClick={signUserUp} className="is-pulled-right">
           Don't have an account? Click here
         </a>
       </div>
