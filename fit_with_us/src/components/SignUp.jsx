@@ -341,7 +341,7 @@ export default function Form(props) {
                 name="age"
                 id="age"
                 type="number"
-                maxlength="4"
+                maxLength="4"
                 placeholder="YYYY"
               />
             </div>
@@ -350,7 +350,7 @@ export default function Form(props) {
                 className={ageClass}
                 id="month"
                 type="number"
-                maxlength="2"
+                maxLength="2"
                 max="12"
                 min="1"
                 placeholder="MM"
@@ -361,7 +361,7 @@ export default function Form(props) {
                 className={ageClass}
                 id="day"
                 type="number"
-                maxlength="2"
+                maxLength="2"
                 placeholder="DD"
                 min="1"
                 max="31"

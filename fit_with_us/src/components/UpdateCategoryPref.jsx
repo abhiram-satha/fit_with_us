@@ -1,14 +1,8 @@
-import { useState } from "react";
-import Button from "./Button";
-
 export default function UpdateCategoryPref({
   selectedCategories,
   deleteCategory,
-  reloadRecipes,
   addCategory,
 }) {
-  // const [includeChicken, setIncludeChicken] = useState([])
-
   let unique_category = [];
   const unique_categories = (selectedCategories) => {
     selectedCategories.forEach((c) => {
@@ -20,11 +14,11 @@ export default function UpdateCategoryPref({
   unique_categories(selectedCategories);
 
   return (
-    <div id="restrictions-card" className="card mt-4 mb-4">
+    <div id="restrictions-card" className="card mb-4">
       <h3 className="title is-5">
         What kinds of recipes would you like to see?
       </h3>
-      <label className="checkbox" for="1">
+      <label className="checkbox" htmlFor="1">
         <input
           type="checkbox"
           value="1"
@@ -34,7 +28,7 @@ export default function UpdateCategoryPref({
         &nbsp;Recipes including chicken
       </label>
       <br />
-      <label className="checkbox" for="2">
+      <label className="checkbox" htmlFor="2">
         <input
           type="checkbox"
           value="2"
@@ -44,7 +38,7 @@ export default function UpdateCategoryPref({
         &nbsp;Recipes including fish
       </label>
       <br />
-      <label className="checkbox" for="3">
+      <label className="checkbox" htmlFor="3">
         <input
           type="checkbox"
           value="3"
@@ -54,7 +48,7 @@ export default function UpdateCategoryPref({
         &nbsp;Recipes including beef
       </label>
       <br />
-      <label className="checkbox" for="4">
+      <label className="checkbox" htmlFor="4">
         <input
           type="checkbox"
           value="4"
@@ -64,7 +58,7 @@ export default function UpdateCategoryPref({
         &nbsp;Recipes including pork
       </label>
       <br />
-      <label className="checkbox" for="5">
+      <label className="checkbox" htmlFor="5">
         <input
           type="checkbox"
           value="5"
@@ -74,7 +68,7 @@ export default function UpdateCategoryPref({
         &nbsp;Vegetarian recipes
       </label>
       <br />
-      <label className="checkbox" for="6">
+      <label className="checkbox" htmlFor="6">
         <input
           type="checkbox"
           value="6"

@@ -18,7 +18,6 @@ export default function Settings({
         deleteCategory={deleteCategory}
         selectedCategories={selectedCategories}
         addCategory={addCategory}
-        reloadRecipes={reloadRecipes}
       />
       <Link to="/homepage">
         <button

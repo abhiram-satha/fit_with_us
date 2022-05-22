@@ -4,7 +4,7 @@ export default function UpdateWeightGoal({ users, updateGoalWeight }) {
   const { goal_weight } = users.users[0];
   const placeholderString = `Current Goal Weight: ${goal_weight} lbs`;
   return (
-    <div className="card">
+    <div className="card mb-4">
       <div className="card-content">
         <h4 className="update-title title is-5">Update your goal weight:</h4>
         <form
