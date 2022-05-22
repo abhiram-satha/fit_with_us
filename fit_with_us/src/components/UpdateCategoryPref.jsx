@@ -16,12 +16,7 @@ export default function UpdateCategoryPref ({ selectedCategories, deleteCategory
   unique_categories(selectedCategories);
 
   return (
-    <>
-    
-    <div class="column">
-          <div class="card">
-            <div class="card-content">
-            <div id="restrictions-card" class="card">
+            <div id="restrictions-card" class="card mt-4 mb-4">
             <h3 class="title is-5">What kinds of recipes would you like to see?</h3>
           <label class="checkbox" for="1">
            <input
@@ -79,10 +74,6 @@ export default function UpdateCategoryPref ({ selectedCategories, deleteCategory
             />
           &nbsp;Vegan recipes</label>
           </div>
-
-    </div></div></div>
-
-    </>
   )
   function handleSelect (event, category) {
     if(selectedCategories.includes(category)) {

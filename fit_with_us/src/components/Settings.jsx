@@ -1,5 +1,6 @@
 import UpdateCategoryPref from "./UpdateCategoryPref";
 import UpdateWeightGoal from "./UpdateWeightGoal";
+import { Link } from "react-router-dom";
 
 export default function Settings({
   users,
@@ -10,7 +11,7 @@ export default function Settings({
   reloadRecipes,
 }) {
   return (
-    <>
+    <section class="section">
       <UpdateWeightGoal users={users} updateGoalWeight={updateGoalWeight} />
 
       <UpdateCategoryPref
@@ -19,9 +20,11 @@ export default function Settings({
         addCategory={addCategory}
         reloadRecipes={reloadRecipes}
       />
+      <Link to="/homepage">
       <button className="button is-primary full-length" onClick={reloadRecipes}>
-        <a href="/homepage">Update Recipes</a>
+        Update Recipes
       </button>
-    </>
+      </Link>
+    </section>
   );
 }

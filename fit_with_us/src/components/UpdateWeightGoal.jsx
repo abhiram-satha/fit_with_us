@@ -5,9 +5,6 @@ export default function UpdateWeightGoal ({users, updateGoalWeight}) {
   const {goal_weight} = users.users[0]
   const placeholderString = `Current Goal Weight: ${goal_weight} lbs`
   return (
-    <>
-     
-        <div className="column">
           <div className="card">
             <div className="card-content">
             <p className="update-title">Update Your Goal Weight:</p>
@@ -21,8 +18,7 @@ export default function UpdateWeightGoal ({users, updateGoalWeight}) {
         {/* <Button  type="submit" name="Update Goal Weight"/> */}
         </div></div>
       </form>
-      </div> </div> </div>
-    </>
+      </div> </div> 
   )
 
   function handleUpdatedWeightGoal (event) {
