@@ -2,7 +2,6 @@ import Button from "./Button"
 import Thread from "./Thread"
 import Input from "./Input"
 import "../styles/Posts.scss"
-import BottomNav from "./BottomNav"
 
 export default function Posts({posts, comments, newComment, newPost, users}) {
   
@@ -10,8 +9,6 @@ export default function Posts({posts, comments, newComment, newPost, users}) {
   const parentPost = postsCopy.reverse().map(post=> {
     return <Thread newComment={newComment} key={post.id} postID={post.id} users={users} username={post.username} message={post.message} comments={comments}/>
   })
-
-
   
   return (
     <section class="section">
