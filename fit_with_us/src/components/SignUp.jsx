@@ -53,6 +53,26 @@ export default function Form(props) {
     return false;
   };
 
+  const checkValidBirthDate = (month, day) => {
+    const thirtyMonth = [4, 6, 9, 11];
+    const thirtyOneMonth = [1, 3, 5, 7, 8, 10, 12];
+    const feb = [2];
+
+    if (thirtyMonth.includes(month) && day >= 1 && day <= 30) {
+      return true;
+    }
+
+    if (thirtyOneMonth.includes(month) && day >= 1 && day <= 31) {
+      return true;
+    }
+
+    if (feb.includes(month) && day >= 1 && day <= 28) {
+      return true
+    }
+
+    return false;
+  }
+
   const submitUserInformation = async (e) => {
     //Reset States
     setErrorEmail(false);
@@ -86,7 +106,9 @@ export default function Form(props) {
     const currentWeight = e.target[8].value;
     const goalWeight = e.target[10].value;
     const height = e.target[12].value;
-    const age = e.target[4].value;
+    const age = e.target[4].valueAsNumber;
+    const month = e.target[5].valueAsNumber;
+    const day = e.target[6].valueAsNumber;
     const gender = e.target[7].value;
     const currentWeightUnit = e.target[9].value;
     const goalWeightUnit = e.target[11].value;
@@ -96,6 +118,11 @@ export default function Form(props) {
     if (!checkEmptyInput(email)) {
       setErrorEmail("This field cannot be blank!");
       return setEmailClass("input is-danger");
+    }
+
+    if (!checkEmptyInput(username)) {
+      setErrorUsername("This field cannot be blank!");
+      return setUsernameClass("input is-danger");
     }
 
     //Check empty password input
@@ -110,10 +137,24 @@ export default function Form(props) {
       return setPasswordConfirmationClass("input is-danger");
     }
 
-    //Check empty username input
-    if (!checkEmptyInput(username)) {
-      setErrorUsername("This field cannot be blank!");
-      return setUsernameClass("input is-danger");
+    if (!checkEmptyInput(age)) {
+      setErrorAge("Please enter a valid birth date");
+      return setAgeClass("input is-danger");
+    }
+
+    if (!checkEmptyInput(month)) {
+      setErrorAge("Please enter a valid birth date");
+      return setAgeClass("input is-danger");
+    }
+
+    if (!checkEmptyInput(day)) {
+      setErrorAge("Please enter a valid birth date");
+      return setAgeClass("input is-danger");
+    }
+
+    if(!checkValidBirthDate(month, day)) {
+      setErrorAge("Please enter a valid birth date");
+      return setAgeClass("input is-danger");
     }
 
     //Check empty current weight input
@@ -132,12 +173,6 @@ export default function Form(props) {
     if (!checkEmptyInput(height)) {
       setErrorHeight("This field cannot be blank!");
       return setHeightClass("input is-danger");
-    }
-
-    //Check empty age input
-    if (!checkEmptyInput(age)) {
-      setErrorAge("Please enter a valid birth date");
-      return setAgeClass("input is-danger");
     }
 
     await getUserInformation()
@@ -228,7 +263,7 @@ export default function Form(props) {
             <label htmlFor="email" class="label">
               Email
             </label>
-            <div class="control has-icons-left has-icons-right">
+            <div class="control has-icons-left">
               <input
                 class={emailClass}
                 name="email"
@@ -239,9 +274,6 @@ export default function Form(props) {
               <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
               </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-exclamation-triangle"></i>
-              </span>
             </div>
             <p class="help is-danger">{errorEmail}</p>
           </div>
@@ -249,7 +281,7 @@ export default function Form(props) {
             <label class="label" htmlFor="username">
               Username
             </label>
-            <div class="control has-icons-left has-icons-right">
+            <div class="control has-icons-left">
               <input
                 class={usernameClass}
                 name="username"
@@ -260,9 +292,6 @@ export default function Form(props) {
               <span class="icon is-small is-left">
                 <i class="fas fa-user"></i>
               </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-check"></i>
-              </span>
             </div>
             <p class="help is-danger">{errorUsername}</p>
           </div>
@@ -270,7 +299,7 @@ export default function Form(props) {
             <label htmlFor="password" class="label">
               Password
             </label>
-            <div class="control has-icons-left has-icons-right">
+            <div class="control has-icons-left">
               <input
                 class={passwordClass}
                 name="password"
@@ -281,9 +310,6 @@ export default function Form(props) {
               <span class="icon is-small is-left">
                 <i class="fas fa-user"></i>
               </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-check"></i>
-              </span>
             </div>
             <p class="help is-danger">{errorPassword}</p>
           </div>
@@ -291,7 +317,7 @@ export default function Form(props) {
             <label htmlFor="passwordConfirmation" class="label">
               Re-enter your password
             </label>
-            <div class="control has-icons-left has-icons-right">
+            <div class="control has-icons-left">
               <input
                 class={passwordConfirmationClass}
                 name="passwordConfirmation"
@@ -301,9 +327,6 @@ export default function Form(props) {
               />
               <span class="icon is-small is-left">
                 <i class="fas fa-user"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-check"></i>
               </span>
             </div>
             <p class="help is-danger">{errorPassword}</p>
