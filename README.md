@@ -1,57 +1,53 @@
-# fit with us
+# Fit WIth Us
 
-User Stories
+## Installation
 
-- user signs up for an account, and they would enter their details
-  - dietary restrictions
-  - how many days they want the meal for
-  - Male/Female/Prefer Not to Disclose
-  - Age 
-  - Current Weight
-  - Goal Weight 
-  - Email (username)
-  - Password
-  - Current Exercise (to calculate their current calories) ** (minutes and generic workout categories to calculate the calories burned)
-  - Private or Not
+If any of the following are applicable to your project, then the directory structure should follow industry best practices by being named the following.
 
-- The user is on the home page
-  - Line Graph with the history
-  - Community tab 
+```
+bin/
+build/
+docs/
+config/
+src/
+tests/
+vendor/
+```
 
-- The user can go to the community tab
-  - Can post to their community where you can reach out to other users 
-  - Badges will be displayed by their name & share pictures
-  - Members from the community can respond to you
+## Install
 
-- Users can earn badges
-  - Can earn badges for reaching their goal weight
-  - Can earn badges for sharing pictures/ responding on the community page
+Via Composer
 
+```bash
+$ composer require :vendor/:package_name
+```
 
-- The app would provide the user with 1 option (offers the users the chance to generate a new meal)
+## Usage
 
-- User is able to track their weight progress and can enter their weight (a historical graph)
+```php
+$skeleton = new League\Skeleton();
+echo $skeleton->echoPhrase('Hello, League!');
+```
 
-- User can update their original settings (profile)
+## Change log
 
-- User can rate the recipe ()
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
+## Testing
 
+```bash
+$ composer test
+```
 
-# Ideas
-- Chat system, similar receipes
+## Contributing
 
-***Admin functionality
-***- User can enter their own receipe to share with others (ingredients, calories,)
+Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
 
-- git pull origin main
-- git checkout -b new-branch
-- write code
-- git add .
-- git commit -m "comment"
-- git push origin new-branch
-- go to github, merge pull request from there
+## Security
 
+If you discover any security related issues, please email :author_email instead of using the issue tracker.
 
+## Credits
 
-
+- [:author_name][link-author]
+- [All Contributors][link-contributors]
