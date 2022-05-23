@@ -57,13 +57,13 @@ npm start
 
 ## Fit With Us Preview
 
-**Homepage**
+**Homepage**  
 ![Home Page](https://github.com/abhiram-satha/fit_with_us/blob/main/fit_with_us/public/images/homepage.PNG?raw=true)
 
-**Community Page**
+**Community Page**  
 ![Community Page](https://github.com/abhiram-satha/fit_with_us/blob/main/fit_with_us/public/images/Community.PNG?raw=true)
 
-**User Profile**
+**User Profile**  
 ![User Profile](https://github.com/abhiram-satha/fit_with_us/blob/main/fit_with_us/public/images/userprofile.PNG?raw=true)
 
 ## Dev Dependencies
