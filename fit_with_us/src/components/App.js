@@ -121,7 +121,7 @@ export default function App() {
     } else {
       setLoggedIn(false);
     }
-      setLoading(false)
+    setLoading(false);
     if (recipes[0].length > 0) return;
 
     const fetchBadgeData = async () => await getBadges();
@@ -268,7 +268,6 @@ export default function App() {
         ]);
       })
       .then((data) => {
-   
         return setUsers(data[0].data);
       })
       .catch((error) => console.log(error));
@@ -445,9 +444,11 @@ export default function App() {
           </Routes>
           <BottomNav />
         </>
-      ) : loading ?<progress className="progress is-small is-primary" max="100">
-      15%
-    </progress> : !signUp ? (
+      ) : loading ? (
+        <progress className="progress is-small is-primary" max="100">
+          15%
+        </progress>
+      ) : !signUp ? (
         <UserLogin
           loggedInUser={loggedInUser}
           signUserUp={signUserUp}

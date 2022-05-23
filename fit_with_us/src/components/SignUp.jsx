@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import FormCategory from "./FormCategory";
 import Button from "./Button";
 import axios from "axios";
-import Error from "./Error";
 import { checkEmptyInput } from "../helpers/signUpHelpers";
 import "../styles/SignUp.scss";
 import { useNavigate } from "react-router-dom";
@@ -92,7 +90,7 @@ export default function Form(props) {
     setAgeClass("input");
 
     e.preventDefault();
-  
+
     const params = {
       email: e.target[0].value,
       password: e.target[2].value,
