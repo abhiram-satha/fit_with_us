@@ -3,10 +3,10 @@ INSERT INTO users(email, password, username, current_weight, goal_weight, height
 INSERT INTO users(email, password, username, current_weight, goal_weight, height, age, gender) VALUES ('test123@12345.com', '$2a$10$6/gff9POlthCUx.E3wXtm.uQYRhUplOeoi7uKk52ga8qD3VE6WPvS', 'Luv2Eat', 120, 150, 180, 25,null);
 
 
-INSERT INTO weights(user_id, date, weight) VALUES (1, '2022-04-21', 135);
+INSERT INTO weights(user_id, date, weight) VALUES (1, '2022-04-21', 200);
 INSERT INTO weights(user_id, date, weight) VALUES (1, '2022-04-28', 150);
 INSERT INTO weights(user_id, date, weight) VALUES (1, '2022-05-01', 140);
-INSERT INTO weights(user_id, date, weight) VALUES (2, '2022-05-02', 135);
+INSERT INTO weights(user_id, date, weight) VALUES (2, '2022-05-02', 200);
 INSERT INTO weights(user_id, date, weight) VALUES (2, '2022-05-03', 150);
 INSERT INTO weights(user_id, date, weight) VALUES (2, '2022-05-04', 140);
 
