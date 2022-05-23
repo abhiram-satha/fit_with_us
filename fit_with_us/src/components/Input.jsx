@@ -7,7 +7,7 @@ export default function Input(props) {
     case "input":
       inputTypeElement = (
         <input
-          className={props.inputType}
+          class={props.class ? props.class : props.inputType}
           type={props.type}
           placeholder={props.placeholder}
         />
@@ -16,7 +16,7 @@ export default function Input(props) {
     case "textarea":
       inputTypeElement = (
         <textarea
-          className="textarea"
+          class="textarea"
           type={props.type}
           placeholder={props.placeholder}
         />

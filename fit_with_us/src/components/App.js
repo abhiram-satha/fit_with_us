@@ -33,6 +33,8 @@ export default function App() {
 
   const alert = useAlert();
   const [weight, setWeight] = useState([]);
+  const [weightClass, setWeightClass] = useState("input")
+  const [weightError, setWeightError] = useState(null)
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
   const [users, setUsers] = useState([]);
@@ -233,12 +235,13 @@ export default function App() {
   const updateWeight = (event) => {
     if (!event.target[0].value) {
       event.preventDefault();
-
-      alert.show("Weight can't be empty");
+      setWeightClass("input is-danger");
+      setWeightError("Weight can't be empty");
       return;
     } else {
       event.preventDefault();
-
+      setWeightClass("input");
+      setWeightError(null);
       const data = {
         newWeight: event.target[0].value,
       };
@@ -373,7 +376,8 @@ export default function App() {
                   users={users}
                   userWeight={weight}
                   updateWeight={updateWeight}
-                  // recipe={userChosenRecipe}
+                  weightClass={weightClass}
+                  weightError={weightError}
                   recipeRecord={recipeRecord}
                   recipes={recipes}
                 />

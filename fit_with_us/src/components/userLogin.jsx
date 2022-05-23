@@ -46,7 +46,7 @@ export default function UserLogin({
             setErrorPassword(errorInformation);
           }
 
-          if (errorInformation === "The email is incorrect") {
+          if (errorInformation === "No user with this email") {
             setEmailClass("input is-danger");
             setErrorEmail(errorInformation);
           }
@@ -56,7 +56,7 @@ export default function UserLogin({
       })
       .then((response) => {
          if (
-          response !== "The email is incorrect" &&
+          response !== "No user with this email" &&
           response !== "The password is incorrect"
         ) {
           navigate("/homepage");

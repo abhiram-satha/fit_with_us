@@ -7,9 +7,9 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import Input from "./Input";
+import "../styles/Weighthistorygraph.scss"
 import Button from "./Button";
-export default function Weighthistorygraph({ userWeight, updateWeight }) {
+export default function Weighthistorygraph({ userWeight, updateWeight, weightClass, weightError }) {
   let data = userWeight.map((weight) => {
     let date = weight.date.slice(5, 10);
     return { name: date, lbs: weight.weight };
@@ -38,7 +38,7 @@ export default function Weighthistorygraph({ userWeight, updateWeight }) {
           <div className="field has-addons">
             <div className="control is-expanded">
               <input
-                className="input"
+                class={weightClass}
                 placeholder="Enter Current Weight"
                 type="number"
               />
@@ -47,6 +47,7 @@ export default function Weighthistorygraph({ userWeight, updateWeight }) {
               <Button type="submit" name="Submit" />
             </div>
           </div>
+          <p id="weight-help" class="help is-danger pb-2">{weightError}</p>
         </form>
       </div>
     </div>
