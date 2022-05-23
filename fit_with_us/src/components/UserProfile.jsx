@@ -9,6 +9,7 @@ export default function UserProfile({ user, badges, weight }) {
   const [totalPosts, setTotalPosts] = useState(0);
   const [totalComments, setTotalComments] = useState(0);
   const [totalWeight, setTotalWeight] = useState(0);
+  const [unit, setUnit] = useState("imperial")
 
   //User Information
 
@@ -196,6 +197,24 @@ export default function UserProfile({ user, badges, weight }) {
     });
   };
 
+  const displayWeight = (weight) => {
+    if (unit === "imperial") {
+      return `${weight} lbs`
+    }
+
+    return `${Math.round(weight / 2.205)} kgs`
+  }
+
+  const displayHeight = (height) => {
+    const feet = Math.floor(Math.round((height / 2.54)) / 12);
+    const inches = Math.round((height / 2.54 / 12 - feet) * 10)
+    if (unit === "imperial") {
+      return `${feet} ft. ${inches} in.`
+    }
+
+    return `${height} cms`
+  }
+
   useEffect(() => {
     //Fetch Total Posts for Users
     const fetchTotalPosts = async () => await getTotalPosts();
@@ -217,15 +236,37 @@ export default function UserProfile({ user, badges, weight }) {
       <div className="column"></div>
       <div className="column is-four-fifths">
         <h1 className="title is-5 has-text-centered">{`User Profile for ${username}`}</h1>
+        <div id="manual">
         <h2 className="title is-6">User Information</h2>
+        <a className="media-right vertical-dots dropdown is-right is-hoverable">
+                    <strong className="dropdown-trigger">&#xFE19;</strong>
+                    <div
+                      className="dropdown-menu is-overlay"
+                      id="dropdown-menu"
+                      role="menu"
+                    >
+                      <div className="dropdown-content">
+                        <a
+                          target="_blank"
+                          className="dropdown-item"
+                          onClick={() => {
+                            setUnit(unit === "imperial" ? "metric" : "imperial")
+                          }}
+                        >
+                          <strong>Display in {unit === "imperial" ? "metric" : "imperial"}</strong>
+                        </a>
+                      </div>
+                    </div>
+                  </a>
+                  </div>
         <table className="table is-striped is-fullwidth">
           <tbody>
             <TableRow name="Age" value={age} />
             <TableRow name="Gender" value={gender} />
-            <TableRow name="Starting Weight (lb):" value={currentWeight} />
-            <TableRow name="Current Weight (lb):" value={latestWeight} />
-            <TableRow name="Goal Weight (lb):" value={goalWeight} />
-            <TableRow name="Height (cm):" value={height} />
+            <TableRow name="Starting Weight" value={displayWeight(currentWeight)} />
+            <TableRow name="Current Weight" value={displayWeight(latestWeight)} />
+            <TableRow name="Goal Weight" value={displayWeight(goalWeight)} />
+            <TableRow name="Height" value={displayHeight(height)} />
           </tbody>
         </table>
         {createBadgesIconsArray.length !== 0 ? (

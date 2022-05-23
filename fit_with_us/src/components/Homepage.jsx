@@ -8,6 +8,8 @@ export default function Homepage({
   recipes,
   userWeight,
   updateWeight,
+  weightClass,
+  weightError
 }) {
   return (
     <section className="section">
@@ -25,6 +27,8 @@ export default function Homepage({
           <Weighthistorygraph
             userWeight={userWeight}
             updateWeight={updateWeight}
+            weightClass={weightClass}
+            weightError={weightError}
           />
         )}
       </div>
