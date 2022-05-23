@@ -97,5 +97,6 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT
 
 ## Credits
 
-- [:author_name][link-author]
-- [All Contributors][link-contributors]
+- [Brian Duong][https://github.com/bduong94]
+- [Lucas Lee][https://github.com/notlucaslee]
+- [Abhiram Sathasivam][https://github.com/abhiram-satha]
