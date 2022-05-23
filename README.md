@@ -55,34 +55,7 @@ npm start
 
 14. Ensure that the server is running at port 3002.
 
-## Install
-
-Via Composer
-
-```bash
-$ composer require :vendor/:package_name
-```
-
-## Usage
-
-```php
-$skeleton = new League\Skeleton();
-echo $skeleton->echoPhrase('Hello, League!');
-```
-
-## Change log
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Testing
-
-```bash
-$ composer test
-```
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
+## Fit With Us Preview
 
 ## Dev Dependencies
 
