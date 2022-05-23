@@ -84,9 +84,16 @@ $ composer test
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
 
-## Security
+## Dev Dependencies
 
-If you discover any security related issues, please email :author_email instead of using the issue tracker.
+- Axios
+- Bcrypt
+- Bulma
+- Cookie-parser
+- Express
+- env-cmd
+- React
+- SASS
 
 ## Credits
 
