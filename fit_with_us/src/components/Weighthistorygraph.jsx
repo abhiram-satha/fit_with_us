@@ -47,7 +47,7 @@ export default function Weighthistorygraph({ userWeight, updateWeight, weightCla
               <Button type="submit" name="Submit" />
             </div>
           </div>
-          <p id="weight-help" class="help is-danger pb-2">{weightError}</p>
+          <p class="help is-danger pb-2 weight-help">{weightError}</p>
         </form>
       </div>
     </div>

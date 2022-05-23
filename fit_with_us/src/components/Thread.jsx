@@ -7,6 +7,10 @@ export default function Thread({
   message,
   comments,
   postID,
+  commentClass,
+  commentError,
+  setCommentClass,
+  setCommentError
 }) {
   const commentArray = comments
     .filter((comment) => {
@@ -25,7 +29,7 @@ export default function Thread({
           </div>
         </div>
         <div className="content mb-2">{message}</div>
-        <CommentReply post_id={postID} newComment={newComment} />
+        <CommentReply post_id={postID} newComment={newComment} commentClass={commentClass} commentError={commentError} setCommentClass={setCommentClass} setCommentError={setCommentError}/>
         {commentArray}
       </div>
     </div>
