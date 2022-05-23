@@ -23,7 +23,7 @@ module.exports = (db) => {
             res.send({ users });
           }
         } else {
-          const users = { 0: { id: "The email is incorrect" } };
+          const users = { 0: { id: "No user with this email" } };
           res.send({ users });
         }
       })

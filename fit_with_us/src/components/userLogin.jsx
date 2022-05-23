@@ -45,7 +45,7 @@ export default function UserLogin({
             setErrorPassword(errorInformation);
           }
 
-          if (errorInformation === "The email is incorrect") {
+          if (errorInformation === "No user with this email") {
             setEmailClass("input is-danger");
             setErrorEmail(errorInformation);
           }

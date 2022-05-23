@@ -33,6 +33,12 @@ export default function App() {
 
   const alert = useAlert();
   const [weight, setWeight] = useState([]);
+  const [weightClass, setWeightClass] = useState("input");
+  const [weightError, setWeightError] = useState(null);
+  const [commentClass, setCommentClass] = useState("input");
+  const [commentError, setCommentError] = useState(null);
+  const [postClass, setPostClass] = useState("textarea");
+  const [postError, setPostError] = useState(null);
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
   const [users, setUsers] = useState([]);
@@ -190,12 +196,13 @@ export default function App() {
   const newPost = (event) => {
     if (!event.target[0].value) {
       event.preventDefault();
-
-      alert.show("Post can't be empty");
+      setPostClass("textarea is-danger");
+      setPostError("Post cannot be blank");
       return;
     } else {
       event.preventDefault();
-
+      setPostClass("textarea");
+      setPostError(null);
       const data = {
         message: event.target[0].value,
       };
@@ -211,12 +218,13 @@ export default function App() {
   const newComment = (event) => {
     if (!event.target[0].value) {
       event.preventDefault();
-
-      alert.show("Comment can't be empty");
+      setCommentClass("input is-danger");
+      setCommentError("Comment cannot be blank");
       return;
     } else {
       event.preventDefault();
-
+      setCommentClass("input");
+      setCommentError(null);
       const data = {
         message: event.target[0].value,
         post_id: event.target[0].attributes.post_id.value,
@@ -233,12 +241,13 @@ export default function App() {
   const updateWeight = (event) => {
     if (!event.target[0].value) {
       event.preventDefault();
-
-      alert.show("Weight can't be empty");
+      setWeightClass("input is-danger");
+      setWeightError("Weight can't be empty");
       return;
     } else {
       event.preventDefault();
-
+      setWeightClass("input");
+      setWeightError(null);
       const data = {
         newWeight: event.target[0].value,
       };
@@ -372,7 +381,8 @@ export default function App() {
                   users={users}
                   userWeight={weight}
                   updateWeight={updateWeight}
-                  // recipe={userChosenRecipe}
+                  weightClass={weightClass}
+                  weightError={weightError}
                   recipeRecord={recipeRecord}
                   recipes={recipes}
                 />
@@ -386,7 +396,8 @@ export default function App() {
                   users={users}
                   userWeight={weight}
                   updateWeight={updateWeight}
-                  // recipe={userChosenRecipe}
+                  weightClass={weightClass}
+                  weightError={weightError}
                   recipeRecord={recipeRecord}
                   recipes={recipes}
                 />
@@ -406,6 +417,12 @@ export default function App() {
                     comments={comments}
                     newPost={newPost}
                     newComment={newComment}
+                    postClass={postClass}
+                    postError={postError}
+                    commentClass={commentClass}
+                    commentError={commentError}
+                    setCommentClass={setCommentClass}
+                    setCommentError={setCommentError}
                   />
                 )
               }
