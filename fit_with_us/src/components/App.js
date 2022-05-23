@@ -7,11 +7,9 @@ import UserLogin from "./UserLogin";
 import SignUp from "./SignUp";
 import TopNav from "./TopNav";
 import BottomNav from "./BottomNav";
-import Button from "./Button";
 import Homepage from "./Homepage";
 import Posts from "./Posts";
 import RecipeDetails from "./RecipeDetails";
-import { useAlert } from "react-alert";
 import Settings from "./Settings";
 import UserDietaryRestrictions from "./UserDietaryRestrictions";
 import { Route, Routes, useLocation } from "react-router-dom";
@@ -31,7 +29,6 @@ export default function App() {
   const [signUp, setSignUp] = useState(false);
   const [recipes, setRecipes] = useState([[]]);
 
-  const alert = useAlert();
   const [weight, setWeight] = useState([]);
   const [weightClass, setWeightClass] = useState("input");
   const [weightError, setWeightError] = useState(null);
